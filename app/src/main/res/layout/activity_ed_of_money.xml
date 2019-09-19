@@ -35,12 +35,12 @@
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/et1"
-            android:layout_width="50dp"
+            android:layout_width="90dp"
             android:layout_height="25dp"
             android:background="@null"
             android:cursorVisible="true"
             android:gravity="center|start"
-            android:maxLength="5"
+            android:maxLength="9"
             android:imeOptions="actionNext"
             android:inputType="number"
             android:textColor="@color/black"
@@ -55,7 +55,8 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <TextView
-        android:text="您可根据需求调整额度,可调区间为0~10.00元"
+        android:id="@+id/xt_m1"
+        android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
         android:paddingStart="15dp"
         android:textSize="@dimen/size13"
@@ -88,11 +89,11 @@
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/et2"
-            android:layout_width="50dp"
+            android:layout_width="90dp"
             android:layout_height="25dp"
             android:background="@null"
             android:cursorVisible="true"
-            android:maxLength="5"
+            android:maxLength="9"
             android:gravity="center|start"
             android:imeOptions="actionNext"
             android:inputType="number"
@@ -108,7 +109,8 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <TextView
-        android:text="您可根据需求调整额度,可调区间为0~10.00元"
+        android:id="@+id/xt_m2"
+        android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
         android:paddingStart="15dp"
         android:textSize="@dimen/size13"

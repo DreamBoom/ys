@@ -88,6 +88,7 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                                 break;
                             case "55":
                                 Bundle bun = new Bundle();
+
                                 bun.putString("type","1");
                                 utils.startActivityBy(FrozenIn.class,bun);
                                 break;

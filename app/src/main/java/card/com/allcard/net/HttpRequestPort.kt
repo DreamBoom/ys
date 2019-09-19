@@ -101,6 +101,9 @@ class HttpRequestPort {
     private val quotaSelect = "AppLoginController/quotaSelect.do"
     private val quotaSet = "AppLoginController/quotaSetting.do"
     private val accountFrozen = "AppLoginController/accountFrozen.do"
+    private val cardParamList = "AppLoginController/cardParamList.do"
+    private val setCardParam = "AppLoginController/setCardParam.do"
+    private val getAccState = "AppLoginController/getAccState.do"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -458,5 +461,30 @@ class HttpRequestPort {
         map!!["phone"] = phone
         map!!["data"] = type
         httpUtil[BASE_URL + accountFrozen, map, callBack]
+    }
+
+    /**查询账户状态*/
+    fun getAccState(user_id: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        httpUtil[BASE_URL + getAccState, map, callBack]
+    }
+
+    /**交易参数查询*/
+    fun cardParamList(user_id: String, callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["is_other"] = ""
+        map!!["nickName"] = ""
+        httpUtil[BASE_URL + cardParamList, map, callBack]
+    }
+
+    /**设置交易参数*/
+    fun setCardParam(user_id: String,m1: String,m2: String, callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["single_consumption_amount"] = m1
+        map!!["account_balance_ceiling"] = m2
+        httpUtil[BASE_URL + setCardParam, map, callBack]
     }
 }
