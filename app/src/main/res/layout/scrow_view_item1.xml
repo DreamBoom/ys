@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/img_yybk"
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+        <ImageView
+            android:id="@+id/im"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_wd_yy"/>
+        <LinearLayout
+            android:layout_toEndOf="@+id/im"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hospital_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="测试条目"
+                android:textColor="@color/black"
+                android:textSize="@dimen/info_size"
+                tools:ignore="RtlSymmetry" />
+            <TextView
+                android:id="@+id/hospital_adr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/img_wd_dz"
+                android:paddingTop="8dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="4dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textSize="@dimen/small_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

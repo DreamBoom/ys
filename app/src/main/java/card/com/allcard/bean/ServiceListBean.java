@@ -1,0 +1,232 @@
+package card.com.allcard.bean;
+
+import java.util.List;
+
+public class ServiceListBean {
+
+    /**
+     * message : 成功
+     * list : [{"basedata":{"id":"16","img":"","in_date":"2019-05-09 15:59:57.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"16","in_date":"2019-05-09 15:59:57.0","is_del":"1","serimg":"http://192.168.12.9:8080/uploads/20190509/15592956.jpg","title":"中美贸易磋商：愿谈则谈，要打便打！","type":"4","user_id":"1"},{"basedata":{"id":"15","img":"","in_date":"2019-05-09 11:11:25.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"15","in_date":"2019-05-09 11:11:25.0","is_del":"1","serimg":"/uploads/20190509/144206112.jpg","title":"中方关于美方拟升级关税措施的声明","type":"4","user_id":"1"},{"basedata":{"id":"14","img":"","in_date":"2019-05-09 10:57:14.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"14","in_date":"2019-05-09 10:57:14.0","is_del":"1","serimg":"/uploads/20190509/144221918.jpg","title":"甲骨文创始人曾扬言遏制中国：培养这么多工程师还得了","type":"4","user_id":"1"}]
+     * status : 0
+     */
+
+    private String message;
+    private String status;
+    private List<ListBean> list;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<ListBean> getList() {
+        return list;
+    }
+
+    public void setList(List<ListBean> list) {
+        this.list = list;
+    }
+
+    public static class ListBean {
+        /**
+         * basedata : {"id":"16","img":"","in_date":"2019-05-09 15:59:57.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"}
+         * content :
+         * id : 16
+         * in_date : 2019-05-09 15:59:57.0
+         * is_del : 1
+         * serimg : http://192.168.12.9:8080/uploads/20190509/15592956.jpg
+         * title : 中美贸易磋商：愿谈则谈，要打便打！
+         * type : 4
+         * user_id : 1
+         */
+
+        private BasedataBean basedata;
+        private String content;
+        private String id;
+        private String in_date;
+        private String is_del;
+        private String serimg;
+        private String title;
+        private String type;
+        private String user_id;
+
+        public BasedataBean getBasedata() {
+            return basedata;
+        }
+
+        public void setBasedata(BasedataBean basedata) {
+            this.basedata = basedata;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getIn_date() {
+            return in_date;
+        }
+
+        public void setIn_date(String in_date) {
+            this.in_date = in_date;
+        }
+
+        public String getIs_del() {
+            return is_del;
+        }
+
+        public void setIs_del(String is_del) {
+            this.is_del = is_del;
+        }
+
+        public String getSerimg() {
+            return serimg;
+        }
+
+        public void setSerimg(String serimg) {
+            this.serimg = serimg;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
+        public static class BasedataBean {
+            /**
+             * id : 16
+             * img :
+             * in_date : 2019-05-09 15:59:57.0
+             * is_enable :
+             * para_code :
+             * para_key : 热点问答
+             * para_name :
+             * para_value :
+             * user_id : 1
+             */
+
+            private String id;
+            private String img;
+            private String in_date;
+            private String is_enable;
+            private String para_code;
+            private String para_key;
+            private String para_name;
+            private String para_value;
+            private String user_id;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getImg() {
+                return img;
+            }
+
+            public void setImg(String img) {
+                this.img = img;
+            }
+
+            public String getIn_date() {
+                return in_date;
+            }
+
+            public void setIn_date(String in_date) {
+                this.in_date = in_date;
+            }
+
+            public String getIs_enable() {
+                return is_enable;
+            }
+
+            public void setIs_enable(String is_enable) {
+                this.is_enable = is_enable;
+            }
+
+            public String getPara_code() {
+                return para_code;
+            }
+
+            public void setPara_code(String para_code) {
+                this.para_code = para_code;
+            }
+
+            public String getPara_key() {
+                return para_key;
+            }
+
+            public void setPara_key(String para_key) {
+                this.para_key = para_key;
+            }
+
+            public String getPara_name() {
+                return para_name;
+            }
+
+            public void setPara_name(String para_name) {
+                this.para_name = para_name;
+            }
+
+            public String getPara_value() {
+                return para_value;
+            }
+
+            public void setPara_value(String para_value) {
+                this.para_value = para_value;
+            }
+
+            public String getUser_id() {
+                return user_id;
+            }
+
+            public void setUser_id(String user_id) {
+                this.user_id = user_id;
+            }
+        }
+    }
+}

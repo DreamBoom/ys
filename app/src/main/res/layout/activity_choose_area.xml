@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include layout="@layout/title" />
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- app:tabIndicatorColor 指示器（字体下面的那一个横）显示颜色 -->
+        <!-- app:tabSelectedTextColor 选中的字体颜色 -->
+        <!-- app:tabTextColor 未选中的字体颜色 -->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:tabIndicatorColor="@color/blue"
+            app:tabPadding="10dp"
+            app:tabSelectedTextColor="@color/blue"
+            app:tabTextColor="@color/text_yy" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:padding="8dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/icon_del" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/driver" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/sheng"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider"
+            android:scrollbars="none"/>
+
+        <ListView
+            android:id="@+id/shi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider"
+            android:scrollbars="none"
+            android:visibility="gone"/>
+
+        <ListView
+            android:id="@+id/qu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider"
+            android:scrollbars="none"
+            android:visibility="gone"/>
+    </FrameLayout>
+</LinearLayout>

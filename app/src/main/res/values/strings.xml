@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">兰考市民卡</string>
+    <string name="fingerprint">指纹仅对本机有效,开通即视为同意</string>
+    <string name="fingerprint2">《指纹相关协议》</string>
+    <string name="changeInfo">如果以下方式不可用,请联系客服办理</string>
+    <string name="by_phone">点击获取验证码,发送短信至以下手机</string>
+    <string name="by_sms">点击发送验证码,验证码发送至以下邮箱</string>
+    <string name="q_info">设置密保问题，可以帮助您修改预留手机号等,保障您的账号安全</string>
+    <string name="login_log">该功能旨在保护账户信息安全，如有异常，请至账户安全修改登录密码</string>
+    <string name="yue">一卡通余额包含社保卡、身份证、记名市民卡三种账户余额，并且账户相通，您持任意一张卡片均可进行消费</string>
+
+    <plurals name="error_over_count">
+        <item quantity="one">You can only select one media file</item>
+        <item quantity="many">You can only select up to %1$d media files</item>
+    </plurals>
+</resources>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DeviceInfo">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="操作系统"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/API"
+            android:text="Android 8.1.0"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View  android:layout_height="1px"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="设备名称"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/deviceName"
+            android:text="HUAWEI"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View  android:layout_height="1px"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="登录账号"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/phone"
+            android:text="134****9645"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View  android:layout_height="1px"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="登录时间"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/time"
+            android:text="2019年1月20日 14:21"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View  android:layout_height="1px"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="认证级别"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/level"
+            android:text="强认证设备"
+            android:textSize="@dimen/small_size"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View  android:layout_height="1px"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        />
+    <TextView
+        android:id="@+id/changePhone"
+        android:gravity="center"
+        android:textSize="@dimen/small_size"
+        android:padding="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/bg_btn"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="变更绑定设备"
+        />
+</LinearLayout>

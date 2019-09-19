@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:scrollbars="none"
+    android:id="@+id/refresh"
+    tools:context="card.com.allcard.activity.TabOne">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="90dp"
+        android:background="@color/blue"
+        app:srlAccentColor="@color/white"
+        app:srlClassicsSpinnerStyle="Scale" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@color/white" />
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

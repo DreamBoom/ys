@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/et_grey"
+    android:orientation="vertical"
+    tools:context=".activity.FrozenIn">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="25dp"
+        android:paddingTop="56dp"
+        android:paddingBottom="10dp"
+        android:text="发送验证码至"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size14" />
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@drawable/bg_pop"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center|start"
+            android:hint="请输入验证码"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/size13" />
+
+        <TextView
+            android:id="@+id/send_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="获取验证码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/tv_djs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:paddingRight="10dp"
+            android:text="60秒后重试"
+            android:textColor="@color/blue"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_frozen"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/btn_b"
+        android:text="确认冻结"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@color/no_color" />
+
+        <TextView
+            android:id="@+id/tit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="冻结须知"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size14" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@color/no_color" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ll01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="25dp"
+        android:paddingTop="25dp"
+        android:paddingEnd="25dp"
+        android:text="1、点击确认即视为认可冻结账户；
+            \n\n2、账户一旦冻结，该账户将不能再进行任何业务的支出交易；
+            \n\n3、该账户持有人所认可的其他移动设备均可以进行冻结业务，由此引起的纠纷需用户自行承担；"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size13" />
+
+    <TextView
+        android:id="@+id/ll02"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="25dp"
+        android:paddingTop="25dp"
+        android:paddingEnd="25dp"
+        android:text="1、点击确认即视为认可解冻账户；
+            \n\n2、账户一旦解冻，该账户将可以进行任何业务的支出交易；
+\n\n3、该账户持有人所认可的其它移动设备均可以进行解冻业务，由此引起的纠纷需用户自行承担。"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size13" />
+</LinearLayout>

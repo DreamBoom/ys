@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/news"
+        android:layout_width="match_parent"
+        android:layout_height="112dp">
+        <ImageView
+            android:id="@+id/im_news"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="13dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/img_sy_fezn" />
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/im_news"
+            android:lineSpacingExtra="5dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size14"
+            android:paddingRight="10dp"
+            android:maxLength="28"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/black3"
+            android:paddingLeft="10dp"/>
+        <TextView
+            android:id="@+id/tv_news_data"
+            android:text="2017-09-30"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/im_news"
+            android:layout_marginBottom="18dp"
+            android:textSize="@dimen/size13"
+            android:textColor="@color/grey91"
+            android:paddingLeft="10dp"/>
+    </RelativeLayout>
+</RelativeLayout>

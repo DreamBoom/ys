@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".activity.SignLock">
+    <ImageView
+        android:id="@+id/bar"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/info_size"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+    <ImageView
+        android:id="@+id/im_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_sign"
+        android:layout_marginTop="25dp"/>
+
+    <com.wangnan.library.GestureLockView
+        android:id="@+id/glv"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/im_icon"
+        android:layout_margin="48dp"
+        app:line_thickness="1dp"
+        app:normal_color="#68B1E6"
+        app:press_color="#1E8BDE"
+        app:error_color="#ED4446"/>
+    <LinearLayout
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/change_type"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="          换方式登录"
+            android:textColor="@color/blue" />
+        <TextView
+            android:id="@+id/change_user"
+            android:layout_alignParentEnd="true"
+            android:text="切换账户          "
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RealNameOk">
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+<ImageView
+    android:id="@+id/im_y"
+    android:layout_below="@+id/bar"
+    android:layout_marginTop="85dp"
+    android:background="@drawable/tr_bdcg"
+    android:layout_centerHorizontal="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/real_ok"
+        android:text="实名认证成功,已开通一卡通账户!"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/im_y"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text_yy"
+        android:textSize="@dimen/info_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/bt_real_ok"
+        android:text="完成"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="65dp"
+        android:paddingEnd="65dp"
+        android:background="@drawable/bg_item"
+        android:layout_marginTop="200dp"
+        android:layout_below="@+id/real_ok"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/blue1"
+        android:textSize="@dimen/info_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

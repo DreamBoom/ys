@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hide">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="50dp"
+        android:background="@drawable/bg_pop">
+
+        <ImageView
+            android:id="@+id/im_finger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/timg_1" />
+
+        <TextView
+            android:id="@+id/tv_pop_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:layout_centerHorizontal="true"
+            android:text="请验证指纹"
+            android:textColor="@color/black"
+            android:textSize="@dimen/info_size" />
+        <ImageView
+            android:id="@+id/line"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/tv_pop_info"
+            android:background="@color/no_color" />
+
+        <TextView
+            android:id="@+id/login_again"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="验证登录密码"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/info_size" />
+        <ImageView
+            android:id="@+id/line0"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/login_again"
+            android:background="@color/no_color" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line0"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/info_size" />
+    </RelativeLayout>
+</RelativeLayout>

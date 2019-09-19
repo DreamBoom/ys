@@ -1,0 +1,10 @@
+<resources>
+    <style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
+        <!--在Android 5.0之前的版本上运行-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+</resources>

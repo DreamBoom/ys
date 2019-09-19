@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CardPro">
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include layout="@layout/title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="55dp"
+        android:text="姓名"
+        android:textColor="@color/grey75"
+        android:textSize="@dimen/size14" />
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@null"
+        android:hint="输入真实姓名"
+        android:maxLength="4"
+        android:padding="20dp"
+        android:singleLine="true"
+        android:textColorHint="@color/grey91"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/size14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="身份证"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/grey75"
+        android:textSize="@dimen/size14" />
+    <EditText
+        android:id="@+id/et_num"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@null"
+        android:hint="请输入身份证号"
+        android:maxLength="20"
+        android:padding="20dp"
+        android:singleLine="true"
+        android:textColorHint="@color/grey91"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/size14" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:id="@+id/img_ok"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="50dp"
+        android:background="@drawable/btn_forget"
+        android:gravity="center"
+        android:text="查询"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size16" />
+</LinearLayout>

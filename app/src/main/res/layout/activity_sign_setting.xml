@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SignSetting">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_user"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:text="指纹"
+            android:textSize="@dimen/small_size"
+            android:textColor="@color/black"
+            tools:ignore="SpUsage" />
+
+        <ImageView
+            android:id="@+id/im_finger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/but_close"
+            android:layout_gravity="end|center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/bg_user"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:text="手势密码"
+            android:textSize="@dimen/small_size"
+            android:textColor="@color/black"
+            tools:ignore="SpUsage" />
+
+        <ImageView
+            android:id="@+id/sign_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="@drawable/but_close" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sign_change"
+        style="@style/account_item"
+        android:layout_marginTop="1dp"
+        android:text="修改手势密码" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="@string/fingerprint"
+            android:textColor="@color/black"
+            android:textSize="@dimen/finger_size" />
+
+        <TextView
+            android:id="@+id/about_finger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:text="@string/fingerprint2"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/finger_size"
+            tools:ignore="SpUsage" />
+    </LinearLayout>
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:visibility="gone"
+        android:layout_gravity="center"
+        style="@style/SpinKitView.Large.ThreeBounce"
+        android:layout_marginTop="25dp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/bluePoint" />
+</LinearLayout>

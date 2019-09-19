@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.MoneyOfDeal">
+    <ImageView
+        android:id="@+id/bar"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_below="@+id/bar"
+        android:id="@+id/close"
+        android:src="@drawable/icon_back"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_below="@+id/bar"
+        android:text="交易详情"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:textColor="@color/black3"
+        android:layout_height="48dp"
+        android:textSize="@dimen/big_size"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@drawable/img_yemx_cz"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="19dp"
+            android:paddingBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="联机账户充值-来自微信"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size17" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+0.00"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size28" />
+        <ImageView
+            android:layout_marginTop="34dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="当前状态"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 充值成功"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="充值时间"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 2019-09-04 08:22:01"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="账户名称"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 张先生"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="账户类型"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 联机账户"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="交易流水"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 45123333544"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="账户余额"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" ￥0"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="18dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="受理网点"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 兰考县第一医院"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="受理类型"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 账户充值"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="充值方式"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="25dp"
+                android:layout_height="wrap_content"
+                android:text=" 微信充值"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

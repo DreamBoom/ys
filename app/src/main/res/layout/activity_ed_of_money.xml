@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.EdOfMoney">
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+    <include layout="@layout/title"/>
+
+    <TextView
+        android:text="单笔消费额度"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="¥"
+            android:padding="15dp"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/big_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:gravity="center|start"
+            android:maxLength="5"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/big_size" />
+        <ImageView
+            android:id="@+id/ed1"
+            android:background="@drawable/ed_xg"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:text="您可根据需求调整额度,可调区间为0~10.00元"
+        android:textColor="@color/grey91"
+        android:paddingStart="15dp"
+        android:textSize="@dimen/size13"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:text="账户余额额度"
+        android:paddingStart="15dp"
+        android:paddingTop="32dp"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="¥"
+            android:padding="15dp"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/big_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et2"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:maxLength="5"
+            android:gravity="center|start"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/big_size" />
+        <ImageView
+            android:id="@+id/ed2"
+            android:background="@drawable/ed_xg"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:text="您可根据需求调整额度,可调区间为0~10.00元"
+        android:textColor="@color/grey91"
+        android:paddingStart="15dp"
+        android:textSize="@dimen/size13"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <Button
+        android:id="@+id/bt_change"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/btn_b"
+        android:text="确认调整"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size16" />
+
+</LinearLayout>

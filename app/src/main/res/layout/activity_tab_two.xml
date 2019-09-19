@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.TabTwo">
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:text="我的导航"
+            android:textColor="@color/black"
+            android:textSize="@dimen/small_size" />
+
+        <TextView
+            android:id="@+id/done"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginEnd="15dp"
+            android:text="完成"
+            android:textColor="#1870b8"
+            android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/line"
+            android:layout_below="@+id/done"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <card.com.allcard.view.MyGridView
+            android:id="@+id/top_grid"
+            android:layout_below="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:numColumns="4"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth" />
+    </RelativeLayout>
+    <include
+        android:id="@+id/grid_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title" />
+
+    <LinearLayout
+        android:id="@+id/ll_top_apps"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="我的导航"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size13" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/topList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="编辑"
+            android:textColor="@color/blue67"
+            android:textSize="@dimen/size13" />
+    </LinearLayout>
+    <ImageView
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            app:srlAccentColor="@color/black"
+            app:srlClassicsSpinnerStyle="Scale" />
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/all_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/white"
+            android:scrollbars="none" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".activity.SignLock">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent" />
+
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <TextView
+            android:id="@+id/tv_t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            android:text="设置交易密码"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size20" />
+
+        <TextView
+            android:id="@+id/tv_t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_t1"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:text="请设置6位数字交易密码"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size14" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_t2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:background="@drawable/bg_et_pass"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+
+            <EditText
+                android:id="@+id/et2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:background="@drawable/bg_et_pass2"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+
+            <EditText
+                android:id="@+id/et3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_et_pass2"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+
+            <EditText
+                android:id="@+id/et4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_et_pass2"
+                android:layout_gravity="center"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+
+            <EditText
+                android:id="@+id/et5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:background="@drawable/bg_et_pass2"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+
+            <EditText
+                android:id="@+id/et6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_et_pass"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <com.xnumberkeyboard.android.XNumberKeyboardView
+            android:id="@+id/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:keyBackground="@drawable/selector_key_background"
+            android:keyTextColor="@color/black"
+            android:shadowColor="@android:color/transparent"
+            android:shadowRadius="0"
+            app:xnkv_blKeyBackground="@color/colorKeyBlank"
+            app:xnkv_brKeyDrawable="@drawable/icon_delete_mm"
+            app:xnkv_brKeyDrawableWidth="24dp"
+            app:xnkv_type="number" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<card.com.allcard.view.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/kar"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:background="@drawable/banner"
+        android:orientation="horizontal" />
+
+    <card.com.allcard.view.MyGridView
+        android:id="@+id/im_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_pop"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:numColumns="4"
+        android:paddingTop="10dp"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:transcriptMode="alwaysScroll"
+        android:verticalSpacing="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im_info"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/bg_ms"
+        android:layout_marginStart="13dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="20dp"
+                android:text="服务指南"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size15"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/service_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:text="更多  >"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+    </LinearLayout>
+</card.com.allcard.view.PercentRelativeLayout>
+

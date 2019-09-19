@@ -1,0 +1,498 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clipChildren="false">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/bar"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@drawable/icon_back"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/big_size" />
+
+        <TextView
+            android:id="@+id/right_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="+新增"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/small_size"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/title">
+
+        <recycler.coverflow.RecyclerCoverFlow
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl1"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/cz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/smj_icon_1"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:text="账户充值"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/mx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/smj_icon_2"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:text="余额明细"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/mm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/smj_icon_3"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:text="重置交易密码"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/smj_icon_4"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:text="就医记录"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="基本信息"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size14" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/kfw_yy"
+                android:orientation="vertical"
+                android:paddingBottom="25dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="持卡人"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="手机号"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="姓名"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="手机号"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="账户余额"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="卡押金"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/money"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="¥ 0.0"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="¥ 0.0"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="办卡时间"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="办卡渠道"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="2019-01-01"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="兰考县人民医院"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="卡状态"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="卡类型"
+                        android:textColor="@color/black3"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/state"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_weight="1"
+                        android:text="正常"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.42"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="非记名实名卡"
+                        android:textColor="@color/black6"
+                        android:textSize="@dimen/size13"
+                        app:width_percent="0.5"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/grey" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/gs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="卡挂失"
+                android:textColor="@color/white"
+                android:textSize="@dimen/small_size" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

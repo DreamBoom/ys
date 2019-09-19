@@ -1,0 +1,150 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '3266316'
+            storeFile file('H:/AllCard/AllCard.jks')
+            storePassword '3266316'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "card.com.allcard"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "4a8dbb99afbad5e72fdf796f ", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //implementation 'com.ohmerhe.kolley:kolley:0.3.1'
+    implementation 'com.pawegio.kandroid:kandroid:0.8.8@aar'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.yanzhenjie:permission:1.1.2'
+    implementation 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:percent:28.0.0'
+    testImplementation 'junit:junit:4.12'
+
+    //自适应屏幕
+    implementation 'me.yatoooon:screenadaptation:1.1.1'
+
+    //RecyclerView库
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    //滑动删除
+    implementation 'com.baoyz.swipemenulistview:library:1.3.0'
+
+    //webview
+    implementation 'com.just.agentweb:agentweb:4.0.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+
+    //加载中
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation 'com.wang.avi:library:2.1.3'
+    implementation 'com.nineoldandroids:library:2.4.0'
+
+    //手势解锁
+    implementation 'com.wangnan:gesturelockview:1.0.2'
+
+    //指纹解锁
+    implementation project(':biometriclib')
+
+    //水波纹
+    //implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+
+    //对话指示框
+    implementation 'com.venmo.view.tooltip:tooltip:0.1.2@aar'
+
+    //3D旋转
+    implementation 'com.jzp:rotate3D:1.0.0'
+
+    //本地存储
+    implementation 'com.tencent:mmkv:1.0.10'
+
+    //图片选择
+    implementation 'com.zwh:matisse:0.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'org.xutils:xutils:3.3.44'
+
+    //版本更新
+    implementation 'com.github.maning0303:MNUpdateAPK:V1.1.8'
+
+    //地图
+
+    //3D地图so及jar
+    implementation 'com.amap.api:map2d:3.0.0'
+    implementation 'com.amap.api:location:3.3.0'
+    implementation 'com.amap.api:search:5.0.0'
+    //微信支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
+
+    //下拉关闭
+    implementation 'com.gongwen:swipeback:1.0.2'
+
+    //时间选择器
+    implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+
+    //安全键盘
+    implementation 'com.github.wuzhendev:android-xnumberkeyboard:2.0.0'
+
+    //卡片式轮播布局
+    implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
+}
+repositories {
+    mavenCentral()
+}

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RealNameTo">
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+    <include layout="@layout/title"/>
+
+    <TextView
+        android:text="手机号"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="50dp"
+        android:textColor="@color/grey75"
+        android:textSize="@dimen/size14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@null"
+        android:maxLength="11"
+        android:singleLine="true"
+        android:textColorHint="@color/grey91"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/size14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:text="姓名"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/grey75"
+        android:textSize="@dimen/size14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@null"
+        android:hint="请输入姓名"
+        android:textColorHint="@color/grey91"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/size14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:text="身份证"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/size14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_num"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@null"
+        android:hint="请输入身份证号"
+        android:singleLine="true"
+        android:textColorHint="@color/grey91"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/size14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:text="验证码"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/grey75"
+        android:textSize="@dimen/size14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center|start"
+            android:textColorHint="@color/grey91"
+            android:hint="请输入验证码"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="16"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/size14"  />
+
+        <TextView
+            android:id="@+id/send_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="50dp"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/tv_djs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="50dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue"
+            android:text="60秒后重试"
+            android:visibility="gone" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/grey" />
+    <TextView
+        android:id="@+id/img_ok"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="50dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size16" />
+</LinearLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Map">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bar" />
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"/>
+
+    <ImageView
+        android:id="@+id/dw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/map_dw" />
+
+    <card.com.allcard.view.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/im"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@mipmap/logo_r1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/im"
+            android:orientation="vertical"
+            android:paddingTop="25dp">
+
+            <TextView
+                android:id="@+id/hospital_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:singleLine="true"
+                android:text="测试条目"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size15"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/hospital_adr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_below="@+id/im"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_btn_blue"
+            android:gravity="center"
+            android:text="拨打电话"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/info_size"
+            app:width_percent="0.45"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/see"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_below="@+id/im"
+            android:layout_margin="10dp"
+            android:layout_toEndOf="@+id/call"
+            android:background="@drawable/bg_btn_blue"
+            android:gravity="center"
+            android:text="查看路线"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/info_size"
+            app:width_percent="0.45"
+            tools:ignore="MissingPrefix" />
+    </card.com.allcard.view.PercentRelativeLayout>
+</RelativeLayout>

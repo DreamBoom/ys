@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#00000000"
+    >
+        <LinearLayout
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+            <ImageView
+                android:id="@+id/im_one"
+                android:background="@drawable/icon_db_01_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blueTop"
+                android:layout_marginTop="2dp"
+                android:text="首页"
+                android:textSize="@dimen/main_size" />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rb_service"
+        android:layout_width="0dp"
+        android:background="@color/transparent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        <ImageView
+            android:id="@+id/im_two"
+            android:background="@drawable/icon_db_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="服务"
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/main_size" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rb_site"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        <ImageView
+            android:id="@+id/im_three"
+            android:background="@drawable/icon_db_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网点"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/main_size"/>
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rb_user"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+            <ImageView
+                android:id="@+id/im_four"
+                android:background="@drawable/icon_db_04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/main_size"/>
+        </LinearLayout>
+</LinearLayout>

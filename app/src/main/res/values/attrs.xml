@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--百分比布局-->
+    <declare-styleable name="Percent">
+        <attr name="width_percent" format="float" />
+        <attr name="height_percent" format="float" />
+    </declare-styleable>
+    <!--水平进度条-->
+    <declare-styleable name="HorizontalProgressbar">
+        <attr name="progress_unreach_color" format="color" />
+        <attr name="progress_unreach_heigth" format="dimension" />
+        <attr name="progress_reach_color" format="color" />
+        <attr name="progress_reach_heigth" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_offset" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="RoundProgressbar">
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CustomHorizontalProgresStyle">
+        <attr name="HorizontalProgresUnReachColor" ></attr>
+        <attr name="HorizontalProgresUnReachHeight" ></attr>
+        <attr name="HorizontalProgresReachColor" ></attr>
+        <attr name="HorizontalProgresReachHeight" ></attr>
+        <attr name="HorizontalProgresTextColor" ></attr>
+        <attr name="HorizontalProgresTextSize" ></attr>
+        <attr name="HorizontalProgresTextOffset"></attr>
+
+    </declare-styleable>
+
+    <!--左下角按键的背景色-->
+    <attr name="xnkvBlKeyBackground" format="color|reference"/>
+
+    <!--右下角按键的图标-->
+    <attr name="xnkvBrKeyDrawable" format="reference"/>
+
+    <!--右下角按键的背景-->
+    <attr name="xnkvBrKeyBackground" format="color|reference"/>
+
+    <!--右下角按键图标的宽度-->
+    <attr name="xnkvBrKeyDrawableWidth" format="dimension"/>
+
+    <!--右下角按键图标的高度-->
+    <attr name="xnkvBrKeyDrawableHeight" format="dimension"/>
+
+    <attr name="keyTextSize"/>
+
+    <attr name="keyTextColor"/>
+
+    <!--键盘的类型-->
+    <attr name="xnkvType">
+        <!--纯数字键盘-->
+        <enum name="number" value="1"/>
+
+        <!--带小数点的数字键盘-->
+        <enum name="digit" value="2"/>
+
+        <!--输入身份证的数字键盘-->
+        <enum name="idcard" value="3"/>
+    </attr>
+</resources>

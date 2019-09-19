@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/r0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="10dp"
+            android:text="mi9"
+            android:textColor="@color/black"
+            android:textSize="@dimen/small_size"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/device_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:layout_toEndOf="@+id/device_name"
+            android:text="(安全设备)"
+            android:textSize="@dimen/finger_size"
+            tools:ignore="MissingPrefix" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/device_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r0"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:text="设备系统：Android "
+        android:textSize="@dimen/finger_size"
+        tools:ignore="MissingPrefix" />
+
+    <TextView
+        android:id="@+id/device_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/device_num"
+        android:paddingStart="16dp"
+        android:paddingBottom="16dp"
+        android:text="最近登录：2019-10-10 10:30"
+        android:textSize="@dimen/finger_size"
+        tools:ignore="MissingPrefix" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/device_time"
+        android:background="@color/grey" />
+</RelativeLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ChangePhone">
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include layout="@layout/title" />
+
+    <FrameLayout
+        android:id="@+id/fra"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/t1"
+                style="@style/account_item1"
+                android:text="请选择一种验证方式" />
+
+            <ImageView
+                android:id="@+id/changeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:padding="3dp"
+                android:src="@drawable/img_yfj" />
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="match_parent"
+                android:layout_height="11dp"
+                android:layout_below="@+id/t1"
+                android:background="@color/grey" />
+
+            <TextView
+                android:id="@+id/byPhone"
+                style="@style/account_item"
+                android:layout_below="@+id/v1"
+                android:text="通过已绑定的手机号码" />
+
+            <View
+                android:id="@+id/v2"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/byPhone"
+                android:background="@color/grey" />
+
+            <TextView
+                android:id="@+id/bySms"
+                style="@style/account_item"
+                android:layout_below="@+id/v2"
+                android:text="通过安全邮箱" />
+
+            <View
+                android:id="@+id/v3"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/bySms"
+                android:background="@color/grey" />
+
+            <TextView
+                android:id="@+id/byQuestion"
+                style="@style/account_item"
+                android:layout_below="@+id/v3"
+                android:text="通过密保问题" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/byQuestion"
+                android:background="@color/grey" />
+        </RelativeLayout>
+
+        <com.venmo.view.TooltipView
+            android:id="@+id/tip"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/changeInfo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size14"
+            android:visibility="gone"
+            app:anchoredView="@id/changeInfo"
+            app:arrowLocation="top"
+            app:tooltipColor="@color/bl"
+            app:width_percent="0.5" />
+    </FrameLayout>
+</LinearLayout>

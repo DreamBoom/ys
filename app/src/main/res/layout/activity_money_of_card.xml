@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<card.com.allcard.view.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.MoneyOfCard">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/blue" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="25dp"
+        android:paddingStart="10dp"
+        android:src="@drawable/back_w"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="一卡通余额"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size17" />
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_top">
+
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_margin="18dp"
+            android:src="@drawable/ykt_user" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_toEndOf="@+id/header"
+            android:gravity="center"
+            android:text="姓名"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size15" />
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/header"
+            android:gravity="center"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size13" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r1"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:text="一卡通余额（元）"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size13" />
+
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t1"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size23" />
+
+    <ImageView
+        android:id="@+id/pay"
+        android:layout_width="156dp"
+        android:layout_height="54dp"
+        android:layout_below="@+id/money"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/but_cz" />
+
+    <ImageView
+        android:id="@+id/getMoney"
+        android:layout_width="156dp"
+        android:layout_height="54dp"
+        android:layout_below="@+id/money"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/but_tx" />
+<ImageView
+    android:id="@+id/i1"
+    android:layout_below="@+id/pay"
+    android:background="@color/grey"
+    android:layout_width="match_parent"
+    android:layout_height="10dp"/>
+    <RelativeLayout
+        android:id="@+id/mx"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/i1">
+
+        <ImageView
+            android:id="@+id/im1"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ykt_icon_1" />
+
+        <TextView
+            android:id="@+id/mx1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/im1"
+            android:text="  余额明细"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size13" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mx1"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/im1"
+            android:text="  每月账单清晰掌握"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/jtgl_back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/kyj"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mx">
+
+        <ImageView
+            android:id="@+id/im2"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ykt_icon_2" />
+
+        <TextView
+            android:id="@+id/mx2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/im2"
+            android:text="  卡押金"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size13" />
+
+        <TextView
+            android:id="@+id/yj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mx2"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/im2"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/jtgl_back" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/xz"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kyj">
+
+        <ImageView
+            android:id="@+id/im3"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ykt_icon_3" />
+
+        <TextView
+            android:id="@+id/mx3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/im3"
+            android:text="  额度限制"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size13" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mx3"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/im3"
+            android:text="  自由调控资金额度"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/jtgl_back" />
+    </RelativeLayout>
+</card.com.allcard.view.PercentRelativeLayout>

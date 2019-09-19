@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">兰考市民卡</string>
+    <string name="biometric_dialog_title">验证</string>
+    <string name="biometric_dialog_subtitle">验证指纹以继续</string>
+    <string name="biometric_dialog_use_password">使用密码</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<TextView
+    android:id="@+id/tab_name"
+    android:text="社保卡管理"
+    android:paddingStart="17dp"
+    android:paddingTop="17dp"
+    android:paddingBottom="10dp"
+    android:background="@color/white"
+    android:layout_marginTop="10dp"
+    android:textColor="@color/black3"
+    android:textSize="@dimen/size16"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+    <card.com.allcard.view.MyGridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:numColumns="4"
+        android:padding="5dp"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:transcriptMode="alwaysScroll"
+        android:verticalSpacing="2dp" />
+</LinearLayout>

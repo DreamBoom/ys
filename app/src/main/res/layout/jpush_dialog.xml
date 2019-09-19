@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/hide">
+
+    <card.com.allcard.view.PercentRelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_pop">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:padding="15dp"
+            android:gravity="center"
+            app:height_percent = "0.7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/info_size"
+            tools:ignore="MissingPrefix" />
+
+        <ImageView
+            android:id="@+id/line0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/title"
+            android:background="@color/grey" />
+
+            <TextView
+                android:id="@+id/sure"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_below="@+id/line0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="重新登录"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/info_size" />
+
+    </card.com.allcard.view.PercentRelativeLayout>
+</RelativeLayout>
