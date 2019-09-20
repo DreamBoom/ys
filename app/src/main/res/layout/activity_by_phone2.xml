@@ -29,7 +29,7 @@
             android:text="新手机号码"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/small_size" />
+            android:textSize="@dimen/size13" />
         <EditText
             android:id="@+id/phone"
             android:layout_toEndOf="@+id/t1"
@@ -46,7 +46,7 @@
             android:inputType="number"
             android:textColor="@color/black"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/small_size" />
+            android:textSize="@dimen/size13" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             android:text="短信验证码"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/small_size" />
+            android:textSize="@dimen/size13" />
         <EditText
             android:id="@+id/tv_code"
             android:layout_width="0dp"
@@ -80,7 +80,7 @@
             android:inputType="number"
             android:textColor="@color/black"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/small_size" />
+            android:textSize="@dimen/size13" />
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
@@ -94,7 +94,7 @@
             android:text="获取验证码"
             android:layout_gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/small_size" />
+            android:textSize="@dimen/size13" />
         <TextView
             android:id="@+id/tv_djs"
             android:layout_width="wrap_content"

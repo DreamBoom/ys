@@ -19,7 +19,7 @@
             android:gravity="center"
             android:padding="15dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/info_size"
+            android:textSize="@dimen/size14"
             app:height_percent="0.7"
             tools:ignore="MissingPrefix" />
 
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text="取消"
                 android:textColor="@color/text_gray"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
 
             <ImageView
                 android:layout_width="1dp"
@@ -59,7 +59,7 @@
                 android:gravity="center"
                 android:text="确定"
                 android:textColor="@color/blue1"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
         </LinearLayout>
     </card.com.allcard.view.PercentRelativeLayout>
 </RelativeLayout>

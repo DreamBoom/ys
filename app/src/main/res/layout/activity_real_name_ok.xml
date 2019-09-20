@@ -24,8 +24,8 @@
         android:layout_marginTop="55dp"
         android:layout_below="@+id/im_y"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/text_yy"
-        android:textSize="@dimen/info_size"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
@@ -40,7 +40,7 @@
         android:layout_below="@+id/real_ok"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue1"
-        android:textSize="@dimen/info_size"
+        android:textSize="@dimen/size14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>

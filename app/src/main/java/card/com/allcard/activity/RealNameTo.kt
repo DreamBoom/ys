@@ -6,7 +6,6 @@ import android.text.TextUtils
 import android.view.View
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
-import card.com.allcard.bean.ResultBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -29,7 +28,8 @@ class RealNameTo : BaseActivity() {
         address.text = "请认证"
         mHandler = Handler()
         phone = mk.decodeString(Tool.PHONE, "")
-        et_phone.setText(phone.toCharArray(), 0, phone.length)
+        val phone1 = phone.substring(0, 3) + "****" + phone.substring(7, 11)
+        et_phone.setText(phone1.toCharArray(), 0, phone1.length)
         send_code.setOnClickListener { sendCode() }
         img_ok.setOnClickListener {
             val name = et_name.text.toString().trim()
@@ -102,11 +102,11 @@ class RealNameTo : BaseActivity() {
 
 
     private fun realName(userId:String,userName:String,userNum:String) {
-        HttpRequestPort.instance.realName(userId,userName,userNum, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.realName(userId,userName,userNum,phone, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                val bean = JSONObject.parseObject(data, object : TypeReference<ResultBean>() {})
-                val status = bean.status
+                val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
+                val status = bean.result
                 if (status == "0") {
                     startActivity<RealNameOk>()
                     finish()

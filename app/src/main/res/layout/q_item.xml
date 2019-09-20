@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:id="@+id/tv_q"
     android:textColor="@color/black"
-    android:textSize="@dimen/info_size"
+    android:textSize="@dimen/size13"
     android:gravity="center"
     android:padding="15dp"
     android:background="@color/white"

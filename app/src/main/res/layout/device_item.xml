@@ -21,7 +21,7 @@
             android:paddingBottom="10dp"
             android:text="mi9"
             android:textColor="@color/black"
-            android:textSize="@dimen/small_size"
+            android:textSize="@dimen/size13"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:paddingTop="18dp"
             android:layout_toEndOf="@+id/device_name"
             android:text="(安全设备)"
-            android:textSize="@dimen/finger_size"
+            android:textSize="@dimen/size14"
             tools:ignore="MissingPrefix" />
     </RelativeLayout>
 
@@ -43,7 +43,7 @@
         android:paddingStart="16dp"
         android:paddingBottom="8dp"
         android:text="设备系统：Android "
-        android:textSize="@dimen/finger_size"
+        android:textSize="@dimen/size14"
         tools:ignore="MissingPrefix" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:paddingStart="16dp"
         android:paddingBottom="16dp"
         android:text="最近登录：2019-10-10 10:30"
-        android:textSize="@dimen/finger_size"
+        android:textSize="@dimen/size14"
         tools:ignore="MissingPrefix" />
 
     <ImageView

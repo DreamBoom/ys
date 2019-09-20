@@ -104,8 +104,7 @@ class DeviceInfo : BaseActivity() {
         sendCode!!.visibility = View.GONE
         tv_djs!!.visibility = View.VISIBLE
         //请求网络发送验证码
-        HttpRequestPort.instance.sandMessage(phone, "5", object : BaseHttpCallBack(this) {})
-    }
+        HttpRequestPort.instance.sandMessage(phone, "5", object : BaseHttpCallBack(this) {}) }
 
     private fun checkCode(phone: String, code: String) {
         HttpRequestPort.instance.checkCode(phone,

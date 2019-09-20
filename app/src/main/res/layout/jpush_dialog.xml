@@ -20,7 +20,7 @@
             android:gravity="center"
             app:height_percent = "0.7"
             android:textColor="@color/black"
-            android:textSize="@dimen/info_size"
+            android:textSize="@dimen/size14"
             tools:ignore="MissingPrefix" />
 
         <ImageView
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:text="重新登录"
                 android:textColor="@color/blue1"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
 
     </card.com.allcard.view.PercentRelativeLayout>
 </RelativeLayout>

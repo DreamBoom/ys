@@ -47,7 +47,7 @@
                     android:layout_marginEnd="15dp"
                     android:padding="15dp"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/small_size" />
+                    android:textSize="@dimen/size13" />
             </LinearLayout>
 
             <View
@@ -78,7 +78,7 @@
                     android:layout_marginEnd="15dp"
                     android:padding="15dp"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/small_size" />
+                    android:textSize="@dimen/size14" />
             </LinearLayout>
 
             <View
@@ -109,7 +109,7 @@
                     android:layout_marginEnd="15dp"
                     android:padding="15dp"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/small_size" />
+                    android:textSize="@dimen/size13" />
             </LinearLayout>
 
             <View

@@ -1,5 +1,6 @@
 package card.com.allcard.activity
 
+import android.os.Bundle
 import android.text.TextUtils
 import card.com.allcard.R
 import card.com.allcard.bean.AnswerBean
@@ -27,7 +28,9 @@ class ByQuestion : BaseActivity() {
         next.setOnClickListener { check() }
         getAns()
         forgetQuestion.setOnClickListener {
-            startActivity<ChangeQuestion>()
+            val bundle = Bundle()
+            bundle.putString("type","0")
+            utils.startActivityBy(ChangeQuestion::class.java,bundle)
             finish()
         }
     }

@@ -9,12 +9,13 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import card.com.allcard.R
 import card.com.allcard.adapter.CardAdapter
+import card.com.allcard.bean.JmBeam
 import kotlinx.android.synthetic.main.activity_card_info.*
 import kotlinx.android.synthetic.main.title.*
 
 class CardInfo : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_card_info
-    private var serviceGuide = mutableListOf<String>()
+    private var serviceGuide = mutableListOf<JmBeam.CardsListBean>()
     private var adapt: CardAdapter? = null
     private var exitPop: PopupWindow? = null
     @SuppressLint("SetTextI18n")
@@ -23,17 +24,12 @@ class CardInfo : BaseActivity() {
         utils.changeStatusBlack(true, window)
         list.setFlatFlow(true)//平面滚动
         adapt = CardAdapter(this,R.layout.card_item,serviceGuide)
-        serviceGuide.add("张三")
-        serviceGuide.add("李素")
-        serviceGuide.add("王五")
-        serviceGuide.add("发送到")
-        serviceGuide.add("高德")
         address.text = "社保卡服务   1/"+ serviceGuide.size
         close.setOnClickListener { finish() }
         list.adapter = adapt
         list.setOnItemSelectedListener {
             position -> address.text = "社保卡服务   "+(position + 1).toString() + "/" + list.layoutManager!!.itemCount
-            name.text = serviceGuide[position]
+            name.text = serviceGuide[position].trDate
         }
         exitPop()
         gs.setOnClickListener { exitPop!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0) }

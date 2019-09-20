@@ -1,67 +1,48 @@
 package card.com.allcard.bean;
 
-import java.util.List;
-
 public class HeaderImgBean {
 
-    private List<ImgurlBean> imgurl;
-    private List<MessageBean> message;
+    /**
+     * result : 0
+     * imgurl : http://222.138.67.71:19533/uploads/20190920/aa34e856-49e6-4738-ac21-ca6a6e8d6a04.png
+     * s_url : http://222.138.67.71:19533
+     * message : 头像修改成功
+     */
 
-    public List<ImgurlBean> getImgurl() {
+    private String result;
+    private String imgurl;
+    private String s_url;
+    private String message;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getImgurl() {
         return imgurl;
     }
 
-    public void setImgurl(List<ImgurlBean> imgurl) {
+    public void setImgurl(String imgurl) {
         this.imgurl = imgurl;
     }
 
-    public List<MessageBean> getMessage() {
+    public String getS_url() {
+        return s_url;
+    }
+
+    public void setS_url(String s_url) {
+        this.s_url = s_url;
+    }
+
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(List<MessageBean> message) {
+    public void setMessage(String message) {
         this.message = message;
-    }
-
-    public static class ImgurlBean {
-        /**
-         * imgurl : /uploads/20190220/090528269.jpg
-         */
-
-        private String imgurl;
-
-        public String getImgurl() {
-            return imgurl;
-        }
-
-        public void setImgurl(String imgurl) {
-            this.imgurl = imgurl;
-        }
-    }
-
-    public static class MessageBean {
-        /**
-         * message : 头像修改成功
-         * status : 0
-         */
-
-        private String message;
-        private String status;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
     }
 }

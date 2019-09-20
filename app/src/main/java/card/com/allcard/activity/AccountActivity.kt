@@ -3,6 +3,7 @@ package card.com.allcard.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
 import android.view.Gravity
@@ -42,7 +43,6 @@ class AccountActivity : BaseActivity() {
         MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
-        val userId = mk.decodeString(Tool.USER_ID)
         address!!.text = "账户与安全"
         bindPopup()
         close.setOnClickListener { finish() }
@@ -64,9 +64,9 @@ class AccountActivity : BaseActivity() {
         setSms.setOnClickListener {
             when (isAuth) {
                 "0" -> {
-                    when (mk.decodeString(Tool.BINDQ, "")) {
-                        "1" -> startActivity(Intent(this, BySms::class.java).putExtra("type", "1"))
-                        else ->   startActivity(Intent(this, BySms::class.java).putExtra("type", "0"))
+                    when (mk.decodeString(Tool.EMAIL, "")) {
+                        "" -> startActivity(Intent(this, SetSms::class.java).putExtra("type", "0"))
+                        else ->   startActivity(Intent(this, BySms::class.java).putExtra("type", "1"))
                     }
                 }
                 else -> utils.showToast("请在个人中心先进行实名认证")
@@ -77,7 +77,11 @@ class AccountActivity : BaseActivity() {
             when (isAuth) {
                 "0" -> {
                     when (qState.text) {
-                        "重置" -> startActivity<ChangeQuestion>()
+                        "重置" -> {
+                            val bundle = Bundle()
+                            bundle.putString("type","0")
+                            utils.startActivityBy(ChangeQuestion::class.java,bundle)
+                        }
                         else ->   startActivity(Intent(this, SetQuestion::class.java).putExtra("type", "0"))
                     }
                 }
@@ -131,6 +135,7 @@ class AccountActivity : BaseActivity() {
                                         utils.showToast("查询失败")
                                     }
                                 } else {
+                                    click = 0
                                     bindPopup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
                                 }
                             }else{

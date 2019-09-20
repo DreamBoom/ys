@@ -344,7 +344,7 @@ class ActivityUtils {
 
     fun shake(view: View): ObjectAnimator {
         // 8dp 左右抖动的幅度
-        val delta = view.resources.getDimensionPixelOffset(R.dimen.main_size)
+        val delta = view.resources.getDimensionPixelOffset(R.dimen.size11)
         val pvhTranslateX = PropertyValuesHolder.ofKeyframe(View.TRANSLATION_X,
                 Keyframe.ofFloat(0f, 0f),
                 Keyframe.ofFloat(.10f, (-delta).toFloat()),

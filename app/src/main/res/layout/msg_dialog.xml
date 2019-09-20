@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="发送验证码"
             android:textColor="@color/black"
-            android:textSize="@dimen/info_size" />
+            android:textSize="@dimen/size14" />
 
         <ImageView
             android:id="@+id/line"
@@ -36,7 +36,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/big_size" />
+            android:textSize="@dimen/size17" />
 
         <TextView
             android:id="@+id/bind"
@@ -48,7 +48,7 @@
             android:layout_marginBottom="5dp"
             android:text="该操作将绑定当前设备为安全设备"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/finger_size" />
+            android:textSize="@dimen/size14" />
 
         <LinearLayout
             android:id="@+id/et_num"
@@ -75,7 +75,7 @@
                 android:textCursorDrawable="@null"
                 android:hint="输入验证码"
                 android:textColor="@color/black"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size14" />
 
             <ImageView
                 android:layout_width="1dp"
@@ -131,7 +131,7 @@
                 android:gravity="center"
                 android:text="取消"
                 android:textColor="@color/text_gray"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
 
             <ImageView
                 android:layout_width="1dp"
@@ -148,7 +148,7 @@
                 android:gravity="center"
                 android:text="确定"
                 android:textColor="@color/blue1"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
         </LinearLayout>
 
     </RelativeLayout>

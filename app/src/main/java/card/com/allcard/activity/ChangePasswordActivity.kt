@@ -46,8 +46,8 @@ class ChangePasswordActivity : BaseActivity() {
             val new = et_new!!.text.toString().trim()
             val new1 = et_new1!!.text.toString().trim()
             when {
-                TextUtils.isEmpty(old) -> utils.showToast("输入原密码")
-                MD5Utils.encrypt(old) != pass -> utils.showToast("原密码输入错误")
+                TextUtils.isEmpty(old) -> utils.showToast("输入旧密码")
+                MD5Utils.encrypt(old) != pass -> utils.showToast("旧密码输入错误")
                 TextUtils.isEmpty(new) -> utils.showToast("输入新密码")
                 (new.length < 6) -> utils.showToast("密码长度为6-12位")
                 TextUtils.isEmpty(new1) -> utils.showToast("确认新密码")

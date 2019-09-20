@@ -31,9 +31,11 @@ class BySms : BaseActivity() {
         close.setOnClickListener { finish() }
         address.text = "邮箱验证"
         val email = mk.decodeString(Tool.EMAIL, "")
-        val split = email.split("@")
-        val email1 = split[0].substring(0, 2) + "****" +split[0].substring(split[0].length-1,split[0].length)
-        tv_email.text = email1+"@"+split[1]
+        if(!TextUtils.isEmpty(email)){
+            val split = email.split("@")
+            val email1 = split[0].substring(0, 2) + "****" +split[0].substring(split[0].length-1,split[0].length)
+            tv_email.text = email1+"@"+split[1]
+        }
         mHandler = Handler()
         type = intent.getStringExtra("type")
         next.setOnClickListener {

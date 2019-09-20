@@ -9,8 +9,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
 import card.com.allcard.R
-import card.com.allcard.bean.ForgetBean
-import card.com.allcard.bean.GetNum
 import card.com.allcard.bean.RegisterBean
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
@@ -30,7 +28,6 @@ class ForgetPassword : BaseActivity() {
     private var mHandler: Handler? = null
     private var mRunnable: Runnable? = null
     private var captchaTime = 60
-    private var key: Int = 2
     private val str = "0"
     private var from = 0
     private var click = 0
@@ -63,6 +60,8 @@ class ForgetPassword : BaseActivity() {
             if ( click == 1 ) {
                 getNum()
                 getCaptchaTime()
+            }else{
+                utils.showToast("该手机号不存在！")
             }
         }
         img_ok.setOnClickListener {
@@ -110,10 +109,10 @@ class ForgetPassword : BaseActivity() {
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
                         super.success(data)
-                        val bean = JSONObject.parseObject(data, object : TypeReference<ForgetBean>() {})
-                        utils.showToast(bean.message[0].message)
+                        val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
+                        utils.showToast(bean.message)
                         val str = "您输入的验证码有误！"
-                        if (bean.message[0].message != str) {
+                        if (bean.message != str) {
                             MyApplication.instance.removeAllActivity()
                             utils.startActivity(LoginActivity::class.java)
                             finish()
@@ -138,23 +137,13 @@ class ForgetPassword : BaseActivity() {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
-                val status = bean.message[0].status
-                if (status == str) {
+                val status = bean.result
+                if (status == "1") {
                     //改手机号已存在
-                    if (key == 1) {
-                        utils.showToast(bean.message[0].message)
-                    } else {
-                        click = 1
-                        tvGet.setTextColor(resources.getColor(R.color.blue))
-                    }
+                    click = 1
                 } else {
                     // 改手机号不存在
-                    if (key == 1) {
-                        click = 1
-                        tvGet.setTextColor(resources.getColor(R.color.blue))
-                    } else {
-                        utils.showToast(bean.message[0].message)
-                    }
+                    utils.showToast(bean.message)
                 }
             }
         })
@@ -194,17 +183,7 @@ class ForgetPassword : BaseActivity() {
         tvGet!!.visibility = View.GONE
         tv_djs!!.visibility = View.VISIBLE
         //请求网络发送验证码
-        HttpRequestPort.instance.sandMessage(et_phone!!.text.toString(), "6", object : BaseHttpCallBack(this) {
-            override fun success(data: String) {
-                super.success(data)
-                val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                val status = bean.result
-                if (status == str) {
-                    //改手机号已存在
-                    utils.showToast(bean.message)
-                }
-            }
-        })
+        HttpRequestPort.instance.sandMessage(et_phone!!.text.toString(), "6", object : BaseHttpCallBack(this) {})
     }
 
     internal inner class passWatcher(var editText: EditText) : TextWatcher {
@@ -242,14 +221,12 @@ class ForgetPassword : BaseActivity() {
         override fun afterTextChanged(editable: Editable) {
             val i = 11
             if (et_phone!!.text.length < i) {
-                tvGet!!.setTextColor(resources.getColor(R.color.text_gray))
                 click = 0
                 return
             }
             if (et_phone!!.text.length == 11) {
                 if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
                     utils.showToast("您输入的手机号不正确!")
-                    tvGet!!.setTextColor(resources.getColor(R.color.text_gray))
                     click = 0
                     return
                 }

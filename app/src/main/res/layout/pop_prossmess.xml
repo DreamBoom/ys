@@ -21,7 +21,7 @@
             android:layout_margin="20dp"
             android:text="权限被拒绝"
             android:textColor="@color/black"
-            android:textSize="@dimen/info_size" />
+            android:textSize="@dimen/size14" />
 
         <TextView
             android:id="@+id/tv_2"
@@ -34,7 +34,7 @@
             android:layout_marginBottom="15dp"
             android:text="存储权限被拒绝，请在设置中授权后重试"
             android:textColor="@color/black"
-            android:textSize="@dimen/info_size" />
+            android:textSize="@dimen/size14" />
 
         <ImageView
             android:id="@+id/line"
@@ -58,7 +58,7 @@
                 android:padding="15dp"
                 android:text="暂不"
                 android:textColor="@color/text_yy"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
 
             <ImageView
                 android:layout_width="1dp"
@@ -74,7 +74,7 @@
                 android:padding="15dp"
                 android:text="去设置"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/info_size" />
+                android:textSize="@dimen/size13" />
         </LinearLayout>
 
     </RelativeLayout>

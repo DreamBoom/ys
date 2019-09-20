@@ -3,14 +3,30 @@ package card.com.allcard.bean;
 import java.util.List;
 
 public class RegistBean {
-    private List<MessageBean> message;
+
+    /**
+     * result : 0
+     * message : 用户注册成功！
+     * token : [{"qq":null,"img":null,"wechatnum":null,"user_id":"13","phone":"13462439645","user_name":"13462439645","idCard":null,"is_auth":"1","real_name":null}]
+     */
+
+    private String result;
+    private String message;
     private List<TokenBean> token;
 
-    public List<MessageBean> getMessage() {
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(List<MessageBean> message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
@@ -22,40 +38,14 @@ public class RegistBean {
         this.token = token;
     }
 
-    public static class MessageBean {
-        /**
-         * message : 用户注册成功！
-         * status : 0
-         */
-
-        private String message;
-        private String status;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-    }
-
     public static class TokenBean {
         /**
          * qq : null
          * img : null
          * wechatnum : null
-         * user_id : 35
-         * phone : 13462439641
-         * user_name : 13462439641
+         * user_id : 13
+         * phone : 13462439645
+         * user_name : 13462439645
          * idCard : null
          * is_auth : 1
          * real_name : null

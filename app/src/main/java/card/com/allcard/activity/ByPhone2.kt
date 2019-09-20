@@ -61,11 +61,11 @@ class ByPhone2 : BaseActivity() {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
-                val status = bean.message[0].status
+                val status = bean.result
                 if (status == "0") {
                     //改手机号已存在
                     click = 0
-                    get_num!!.setTextColor(resources.getColor(card.com.allcard.R.color.text_gray))
+                    get_num!!.setTextColor(resources.getColor(R.color.text_gray))
                     utils.showToast("该手机号已经注册")
                 } else {
                     // 改手机号不存在
@@ -191,14 +191,14 @@ class ByPhone2 : BaseActivity() {
             val i = 11
             if (phone.text.length < i) {
                 click = 0
-                get_num!!.setTextColor(resources.getColor(card.com.allcard.R.color.text_gray))
+                get_num!!.setTextColor(resources.getColor(R.color.text_gray))
                 return
             }
             if (phone!!.text.length == 11) {
                 if (RegexUtils.verifyUsername(phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
                     utils.showToast("您输入的手机号不正确!")
                     click = 0
-                    get_num!!.setTextColor(resources.getColor(card.com.allcard.R.color.text_gray))
+                    get_num!!.setTextColor(resources.getColor(R.color.text_gray))
                     return
                 }
             }

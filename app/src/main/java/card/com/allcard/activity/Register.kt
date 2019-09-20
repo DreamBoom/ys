@@ -30,7 +30,6 @@ class Register : BaseActivity() {
     private var mHandler: Handler? = null
     private var captchaTime = 60
     private var key: Int = 1
-    private val str = "0"
     var click = 1
     val deviceId = utils.getDeviceId(this)
     private val phoneName = utils.PhoneName(this)
@@ -99,8 +98,8 @@ class Register : BaseActivity() {
                     override fun success(data: String) {
                         super.success(data)
                         val bean = JSONObject.parseObject(data, object : TypeReference<RegistBean>() {})
-                        val status = bean.message[0].status
-                        utils.showToast(bean.message[0].message)
+                        val status = bean.result
+                        utils.showToast(bean.message)
                         if (status == "0") {
                             mk.encode(Tool.USER_NAME, bean.token[0].user_name)
                             mk.encode(Tool.USER_ID, bean.token[0].user_id)
@@ -173,8 +172,8 @@ class Register : BaseActivity() {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
-                val status = bean.message[0].status
-                click = if (status == str) {
+                val status = bean.result
+                click = if (status == "1") {
                     //改手机号已存在
                     utils.showToast("该手机号已经注册")
                     1
@@ -196,7 +195,7 @@ class Register : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 val status = bean.result
-                if (status == str) {
+                if (status == "1") {
                     //改手机号已存在
                     utils.showToast(bean.message)
                 }

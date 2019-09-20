@@ -40,28 +40,30 @@ class RealName : BaseActivity() {
     private fun initData() {
         utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.isRealName(userId, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.smzInfo(userId, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<RealNameBean>() {})
-                if(bean.status == "0"){
-                    val list = bean.list
-                    name.text = list.name
-                    val cert = list.user_cert.substring(0, 6) + "********" +
-                            list.user_cert.substring(list.user_cert.length-4, list.user_cert.length)
+                if(bean.result == "0"){
+                    name.text = bean.clientName
+                    val cert = bean.certNo.substring(0, 3) + "********" +
+                            bean.certNo.substring(bean.certNo.length-4,bean.certNo.length)
                     num.text = cert
-                    tv_real_name.text = list.name
-                  when(list.sex){
+                    tv_real_name.text = bean.clientName
+                  when(bean.sex){
                       "1" ->  tv_sex.text = "男"
-                      else -> tv_sex.text = "女"
+                      "2" -> tv_sex.text = "女"
                   }
-                    tv_data.text = list.birthday
-                    tv_address.text = list.resideAddr
+                    tv_data.text = bean.birthday
+                    if(!TextUtils.isEmpty(bean.resideAddr)){
+                        tv_address.text = bean.resideAddr
+                    }
                 }
             }
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
+                utils.showToast("信息拉取失败，返回重试")
             }
 
             override fun onFinished() {

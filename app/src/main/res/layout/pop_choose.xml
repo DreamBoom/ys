@@ -25,7 +25,7 @@
                 android:src="@drawable/icon_back"
                 tools:ignore="RtlHardcoded" />
 
-            <TextView
+1            <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:layout_gravity="center"
                 android:text="余额明细"
                 android:textColor="@color/black"
-                android:textSize="@dimen/big_size" />
+                android:textSize="@dimen/size17" />
 
             <TextView
                 android:id="@+id/q_pop"
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="10dp"
                 android:text="取消"
                 android:textColor="@color/grey75"
-                android:textSize="@dimen/small_size"
+                android:textSize="@dimen/size14"
                 tools:ignore="RtlHardcoded" />
         </RelativeLayout>
 

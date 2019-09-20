@@ -5,14 +5,22 @@ import java.util.List;
 public class MoneyBean {
 
     /**
+     * result : 0
      * message : 成功
-     * list : [{"trState":"0","accBalBef":"154","trDate":"2019-05-16 11:34:55","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"1","trCodeName":"联机账户银联充值"},{"trState":"0","accBalBef":"153","trDate":"2019-05-16 10:31:23","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"4","trCodeName":"联机账户银联充值"},{"trState":"0","accBalBef":"149","trDate":"2019-05-16 10:26:32","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"6","trCodeName":"联机账户银联充值"},{"trState":"0","accBalBef":"143","trDate":"2019-05-15 10:42:35","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"9","trCodeName":"联机账户银联充值"},{"trState":"0","accBalBef":"134","trDate":"2019-05-15 10:10:25","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"33","trCodeName":"联机账户银联充值"},{"trState":"0","accBalBef":"101","trDate":"2019-05-15 09:30:47","bizName":"运营中心网点","accKind":"5","accName":"刘建民","amt":"101","trCodeName":"联机账户银联充值"}]
-     * status : 0
+     * cardsList : [{"trState":"0","accBalBef":"0","trCode":"2835","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:22:16","trActionNo":"451666","accKind":"1","accName":"王梦想","amt":"1610","accUsableBal":"-89720543","trCodeName":"临时卡退现"},{"trState":"0","accBalBef":"1610","trCode":"2835","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:21:58","trActionNo":"451665","accKind":"1","accName":"王梦想","amt":"390","accUsableBal":"-89720933","trCodeName":"临时卡退现"},{"trState":"0","accBalBef":"2000","trCode":"2150","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:21:27","trActionNo":"451664","accKind":"1","accName":"王梦想","amt":"2000","accUsableBal":"0","trCodeName":"联机账户现金充值"},{"trState":"0","accBalBef":"0","trCode":"2835","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:21:11","trActionNo":"451663","accKind":"1","accName":"王梦想","amt":"220","accUsableBal":"-89719153","trCodeName":"临时卡退现"},{"trState":"0","accBalBef":"220","trCode":"2835","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:20:55","trActionNo":"451662","accKind":"1","accName":"王梦想","amt":"172","accUsableBal":"-89719325","trCodeName":"临时卡退现"},{"trState":"0","accBalBef":"392","trCode":"2835","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:20:17","trActionNo":"451661","accKind":"1","accName":"王梦想","amt":"1610","accUsableBal":"-89720935","trCodeName":"临时卡退现"},{"trState":"0","accBalBef":"2002","trCode":"2150","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 11:19:48","trActionNo":"451660","accKind":"1","accName":"王梦想","amt":"2000","accUsableBal":"2","trCodeName":"联机账户现金充值"},{"trState":"0","accBalBef":"2","trCode":"2156","bizName":"兰考县妇幼保健院","trDate":"2019-09-04 09:44:20","trActionNo":"451628","accKind":"1","accName":"王梦想","amt":"1","accUsableBal":"1","trCodeName":"联机账户快e付充值"},{"trState":"0","accBalBef":"1","trCode":"2156","bizName":"兰考第一医院（集团）","trDate":"2019-09-04 09:31:37","trActionNo":"451627","accKind":"1","accName":"王梦想","amt":"1","accUsableBal":"0","trCodeName":"联机账户快e付充值"}]
      */
 
+    private String result;
     private String message;
-    private String status;
-    private List<ListBean> list;
+    private List<CardsListBean> cardsList;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getMessage() {
         return message;
@@ -22,41 +30,39 @@ public class MoneyBean {
         this.message = message;
     }
 
-    public String getStatus() {
-        return status;
+    public List<CardsListBean> getCardsList() {
+        return cardsList;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCardsList(List<CardsListBean> cardsList) {
+        this.cardsList = cardsList;
     }
 
-    public List<ListBean> getList() {
-        return list;
-    }
-
-    public void setList(List<ListBean> list) {
-        this.list = list;
-    }
-
-    public static class ListBean {
+    public static class CardsListBean {
         /**
          * trState : 0
-         * accBalBef : 154
-         * trDate : 2019-05-16 11:34:55
-         * bizName : 运营中心网点
-         * accKind : 5
-         * accName : 刘建民
-         * amt : 1
-         * trCodeName : 联机账户银联充值
+         * accBalBef : 0
+         * trCode : 2835
+         * bizName : 兰考第一医院（集团）
+         * trDate : 2019-09-04 11:22:16
+         * trActionNo : 451666
+         * accKind : 1
+         * accName : 王梦想
+         * amt : 1610
+         * accUsableBal : -89720543
+         * trCodeName : 临时卡退现
          */
 
         private String trState;
         private String accBalBef;
-        private String trDate;
+        private String trCode;
         private String bizName;
+        private String trDate;
+        private String trActionNo;
         private String accKind;
         private String accName;
         private String amt;
+        private String accUsableBal;
         private String trCodeName;
 
         public String getTrState() {
@@ -75,12 +81,12 @@ public class MoneyBean {
             this.accBalBef = accBalBef;
         }
 
-        public String getTrDate() {
-            return trDate;
+        public String getTrCode() {
+            return trCode;
         }
 
-        public void setTrDate(String trDate) {
-            this.trDate = trDate;
+        public void setTrCode(String trCode) {
+            this.trCode = trCode;
         }
 
         public String getBizName() {
@@ -89,6 +95,22 @@ public class MoneyBean {
 
         public void setBizName(String bizName) {
             this.bizName = bizName;
+        }
+
+        public String getTrDate() {
+            return trDate;
+        }
+
+        public void setTrDate(String trDate) {
+            this.trDate = trDate;
+        }
+
+        public String getTrActionNo() {
+            return trActionNo;
+        }
+
+        public void setTrActionNo(String trActionNo) {
+            this.trActionNo = trActionNo;
         }
 
         public String getAccKind() {
@@ -113,6 +135,14 @@ public class MoneyBean {
 
         public void setAmt(String amt) {
             this.amt = amt;
+        }
+
+        public String getAccUsableBal() {
+            return accUsableBal;
+        }
+
+        public void setAccUsableBal(String accUsableBal) {
+            this.accUsableBal = accUsableBal;
         }
 
         public String getTrCodeName() {

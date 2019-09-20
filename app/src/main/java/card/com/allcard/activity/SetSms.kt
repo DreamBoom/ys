@@ -59,12 +59,10 @@ class SetSms : BaseActivity() {
                 return@setOnClickListener
             }
             if (RegexUtils.isEmail(eamil)) {
-                if (type == "0") {
-                    getNum(eamil, "0")
-                } else if (type == "1") {
-                    getNum(eamil, "1")
-                } else {
-                    getNum(eamil, "4")
+                when (type) {
+                    "0" -> getNum(eamil, "0")
+                    "1" -> getNum(eamil, "1")
+                    else -> getNum(eamil, "4")
                 }
                 getCaptchaTime()
                 sendCode.text = "重新获取"
@@ -120,6 +118,7 @@ class SetSms : BaseActivity() {
     }
 
     fun bind() {
+        utils.getProgress(this)
         val eamil = sms_num.text.toString().trim()
         val phone = mk.decodeString(Tool.PHONE, "")
         HttpRequestPort.instance.eamilBind(phone, eamil, object : BaseHttpCallBack(this) {
@@ -132,10 +131,20 @@ class SetSms : BaseActivity() {
                     finish()
                 }
             }
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("绑定失败")
+            }
+
+            override fun onFinished() {
+                super.onFinished()
+                utils.hindProgress()
+            }
         })
     }
 
     private fun upSms() {
+        utils.getProgress(this)
         val eamil = sms_num.text.toString().trim()
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.upEmail(userId, eamil, object : BaseHttpCallBack(this) {
@@ -156,6 +165,7 @@ class SetSms : BaseActivity() {
 
             override fun onFinished() {
                 super.onFinished()
+                utils.hindProgress()
             }
         })
     }

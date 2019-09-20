@@ -91,19 +91,22 @@ class HttpRequestPort {
     private val searchArea = "AppLoginController/searchArea.do"
     private val iconSave = "AppLoginController/iconSave.do"
     private val cardBind = "AppLoginController/cardBind.do"
-    private val realName = "AppLoginController/realName.do"
+    private val realName = "AppLoginController/smrz.do"
     private val searchYj = "AppLoginController/searchYj.do"
     private val cardDeposit = "AppLoginController/cardDeposit.do"
     private val searchYuE = "AppLoginController/searchYuE.do"
-    private val yuEDetail = "AppLoginController/yuEDetail.do"
+    private val yuEDetail = "AppLoginController/searchYuEDetail.do"
     private val order = "AppLoginController/searchExceptionOrder.do"
-    private val isRealName = "AppLoginController/realNameSelect.do"
     private val quotaSelect = "AppLoginController/quotaSelect.do"
     private val quotaSet = "AppLoginController/quotaSetting.do"
     private val accountFrozen = "AppLoginController/accountFrozen.do"
     private val cardParamList = "AppLoginController/cardParamList.do"
     private val setCardParam = "AppLoginController/setCardParam.do"
     private val getAccState = "AppLoginController/getAccState.do"
+    private val smzInfo = "AppLoginController/smzInfo.do"
+    private val CardProgress = "AppLoginController/selectMakeCardProgress.do"
+    private val smCardList = "AppLoginController/smCardList.do"
+    private val reportLoss = "AppLoginController/reportLoss.do"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -326,9 +329,11 @@ class HttpRequestPort {
     }
 
     /**服务指南列表 */
-    fun serviceList(type: String, callBack: BaseHttpCallBack) {
+    fun serviceList(type: String,callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["type"] = type
+        map!!["order_page"] = "1"
+        map!!["page_size"] = "100"
         httpUtil[BASE_URL + serviceList, map, callBack]
     }
 
@@ -381,19 +386,20 @@ class HttpRequestPort {
     }
 
     /**实名认证 */
-    fun realName(user_id: String, user_name: String, user_cert: String, callBack: BaseHttpCallBack) {
+    fun realName(user_id: String, user_name: String, userNo: String, phone: String, callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
-        map!!["user_name"] = user_name
-        map!!["user_cert"] = user_cert
+        map!!["clientName"] = user_name
+        map!!["certNo"] = userNo
+        map!!["phone"] = phone
         httpUtil[BASE_URL + realName, map, callBack]
     }
 
-    /**已实名认证 */
-    fun isRealName(user_id: String, callBack: BaseHttpCallBack) {
+    /**实名认证信息*/
+    fun smzInfo(user_id: String,callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
-        httpUtil[BASE_URL + isRealName, map, callBack]
+        httpUtil[BASE_URL + smzInfo, map, callBack]
     }
 
     /**押金 */
@@ -410,13 +416,16 @@ class HttpRequestPort {
     }
 
     /**余额明细查询 */
-    fun yuEDetail(user_id: String, month: String, order_page: String, page_size: String, tr_code: String, callBack: BaseHttpCallBack) {
+    fun yuEDetail(user_id: String, month: String, order_page: String, page_size: String,
+                  tr_code: String,is_other: String,nickName: String, callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
         map!!["month"] = month
         map!!["order_page"] = order_page
         map!!["page_size"] = page_size
         map!!["tr_code"] = tr_code
+        map!!["is_other"] = is_other
+        map!!["nickName"] = nickName
         httpUtil[BASE_URL + yuEDetail, map, callBack]
     }
 
@@ -486,5 +495,41 @@ class HttpRequestPort {
         map!!["single_consumption_amount"] = m1
         map!!["account_balance_ceiling"] = m2
         httpUtil[BASE_URL + setCardParam, map, callBack]
+    }
+
+    /**社保卡制卡进度查询*/
+    fun CardProgress(name: String,num: String, callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["clientName"] = name
+        map!!["certNo"] = num
+        httpUtil[BASE_URL + CardProgress, map, callBack]
+    }
+
+    /**实名卡查询*/
+    fun smCardList(user_id: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["order_page"] = "1"
+        map!!["page_size"] = "100"
+        httpUtil[BASE_URL + smCardList, map, callBack]
+    }
+
+
+    /**卡挂失*/
+    fun gs(user_id: String,cardNo: String,lssFlag: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        map!!["lssFlag"] = lssFlag
+        httpUtil[BASE_URL + reportLoss, map, callBack]
+    }
+
+
+    /**卡解挂*/
+    fun jg(user_id: String,cardNo: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        httpUtil[BASE_URL + reportLoss, map, callBack]
     }
 }

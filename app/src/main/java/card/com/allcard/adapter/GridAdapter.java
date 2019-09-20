@@ -23,8 +23,8 @@ import card.com.allcard.R;
 import card.com.allcard.activity.BaseActivity;
 import card.com.allcard.activity.CardInfo;
 import card.com.allcard.activity.CardOne;
-import card.com.allcard.activity.CardProgress;
 import card.com.allcard.activity.ChangeCardPass;
+import card.com.allcard.activity.ChangeQuestion;
 import card.com.allcard.activity.FrozenIn;
 import card.com.allcard.activity.LoginActivity;
 import card.com.allcard.activity.MoneyIn;
@@ -113,7 +113,7 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                         case "18":
                             utils.startActivity(ChangeCardPass.class);
                             break;
-                        case "10":
+                        case "59":
                             utils.startActivity(CardOne.class);
                             break;
                         case "54":
@@ -122,8 +122,10 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                         case "55":
                             getType("1");
                             break;
-                        case "44":
-                            utils.startActivity(CardProgress.class);
+                        case "58":
+                            Bundle bundle = new Bundle();
+                            bundle.putString("type","1");
+                            utils.startActivityBy(ChangeQuestion.class,bundle);
                             break;
                         case "15":
                             utils.startActivity(MoneyIn.class);
@@ -145,14 +147,11 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                     case "18":
                         utils.startActivity(ChangeCardPass.class);
                         break;
-                    case "10":
+                    case "59":
                         utils.startActivity(CardOne.class);
                         break;
                     case "54":
                         utils.startActivity(FrozenIn.class);
-                        break;
-                    case "44":
-                        utils.startActivity(CardProgress.class);
                         break;
                     case "15":
                         utils.startActivity(MoneyIn.class);

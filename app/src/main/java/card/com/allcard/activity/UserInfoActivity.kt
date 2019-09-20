@@ -89,10 +89,10 @@ class UserInfoActivity : BaseActivity() {
             override fun success(data: String) {
                 super.success(data)
                 val headerImgBean = JSONObject.parseObject(data, object : TypeReference<HeaderImgBean>() {})
-                utils.showToast(headerImgBean.message[0].message)
-                val status = headerImgBean.message[0].status
+                utils.showToast(headerImgBean.message)
+                val status = headerImgBean.result
                 if (!TextUtils.isEmpty(status) && "0" == status) {
-                    val imgUrl = headerImgBean.imgurl[0].imgurl
+                    val imgUrl = headerImgBean.imgurl
                     mk.encode(Tool.HEADER, imgUrl)
                     runDelayed(1000){
                         x.image().bind(im_photo,imgUrl,options)
@@ -103,6 +103,7 @@ class UserInfoActivity : BaseActivity() {
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
+                utils.showToast("请求失败，请稍后重试")
                 utils.hindProgress()
             }
         })

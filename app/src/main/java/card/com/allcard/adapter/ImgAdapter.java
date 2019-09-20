@@ -19,8 +19,8 @@ import card.com.allcard.R;
 import card.com.allcard.activity.BaseActivity;
 import card.com.allcard.activity.CardInfo;
 import card.com.allcard.activity.CardOne;
-import card.com.allcard.activity.CardProgress;
 import card.com.allcard.activity.ChangeCardPass;
+import card.com.allcard.activity.ChangeQuestion;
 import card.com.allcard.activity.FrozenIn;
 import card.com.allcard.activity.LoginActivity;
 import card.com.allcard.activity.MainActivity;
@@ -78,7 +78,7 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                             case "18":
                                 utils.startActivity(ChangeCardPass.class);
                                 break;
-                            case "10":
+                            case "59":
                                 utils.startActivity(CardOne.class);
                                 break;
                             case "54":
@@ -92,8 +92,10 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                                 bun.putString("type","1");
                                 utils.startActivityBy(FrozenIn.class,bun);
                                 break;
-                            case "44":
-                                utils.startActivity(CardProgress.class);
+                            case "58":
+                                Bundle bundle1 = new Bundle();
+                                bundle1.putString("type","1");
+                                utils.startActivityBy(ChangeQuestion.class,bundle1);
                                 break;
                             case "15":
                                 utils.startActivity(MoneyIn.class);
@@ -115,14 +117,11 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                         case "18":
                             utils.startActivity(ChangeCardPass.class);
                             break;
-                        case "10":
+                        case "59":
                             utils.startActivity(CardOne.class);
                             break;
                         case "54":
                             utils.startActivity(FrozenIn.class);
-                            break;
-                        case "44":
-                            utils.startActivity(CardProgress.class);
                             break;
                         case "15":
                             utils.startActivity(MoneyIn.class);

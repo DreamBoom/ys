@@ -32,7 +32,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
     var dat = ""
     private  var type = 1
     var adapter: MoneyAdapter? = null
-    private val dataList = ArrayList<String>()
+    private val dataList = ArrayList<MoneyBean.CardsListBean>()
     private fun date(): String {
         if (dat == "") {
             dat = if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10) {
@@ -59,7 +59,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
         }
         adapter = MoneyAdapter(this@MoneyInfo, dataList, R.layout.money_item)
         listView.adapter = adapter
-
+        getList()
         //data.setOnClickListener { checkDate() }
         //时间弹窗
         val tenYears = 10L * 365 * 1000 * 60 * 60 * 24L
@@ -82,15 +82,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
                 .setWheelItemTextSize(17)
                 .setType(Type.YEAR_MONTH)
                 .build()
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        dataList.add("充值")
-        adapter!!.notifyDataSetChanged()
     }
 
     private fun checkDate() {
@@ -104,21 +95,20 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
     }
 
     fun getList() {
-        utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.yuEDetail(userId,
-                date(), "1", "200", "all",
+                date(), "1", "200", "all","","",
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
                         super.success(data)
                         val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
-                        if (bean.status == "0") {
+                        if (bean.result == "0") {
                             dataList.clear()
-                            val list = bean.list
+                            val list = bean.cardsList
                             if (list.size > 0) {
                                 noData.visibility = View.GONE
-//                                dataList.addAll(list)
-//                                adapter!!.notifyDataSetChanged()
+                                dataList.addAll(list)
+                                adapter!!.notifyDataSetChanged()
                             } else {
                                 noData.visibility = View.VISIBLE
                             }
@@ -128,11 +118,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
                     override fun onError(throwable: Throwable, b: Boolean) {
                         super.onError(throwable, b)
                         noData.visibility = View.VISIBLE
-                    }
-
-                    override fun onFinished() {
-                        super.onFinished()
-                        utils.hindProgress()
                     }
                 })
     }
