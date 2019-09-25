@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
-import card.com.allcard.bean.RegisterBean
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
@@ -60,7 +59,7 @@ class ByPhone2 : BaseActivity() {
         HttpRequestPort.instance.checkPhone(phone, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
+                val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 val status = bean.result
                 if (status == "0") {
                     //改手机号已存在

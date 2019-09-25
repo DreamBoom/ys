@@ -3,7 +3,6 @@ package card.com.allcard.net
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
-import card.com.allcard.utils.ActivityUtils
 import card.com.allcard.utils.LogUtils
 import org.xutils.common.Callback
 
@@ -14,7 +13,6 @@ open class BaseHttpCallBack(
         //private final int CODE_0 = 0;//请求成功
         // private final int CODE_102 = 102;//token已失效
         private val aty: Activity) : Callback.CommonCallback<String> {
-    private val utils: ActivityUtils = ActivityUtils(aty)
 
     override fun onSuccess(s: String) {
         // utils.showToast(s)

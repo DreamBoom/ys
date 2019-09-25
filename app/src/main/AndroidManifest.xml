@@ -109,14 +109,10 @@
         <activity android:name=".activity.RealNameOk" />
         <activity android:name=".activity.RealNameTo" />
         <activity android:name=".activity.TabTwo" />
-        <activity android:name=".activity.MoneyWaitPay" />
         <activity android:name=".activity.AllService" />
         <activity android:name=".activity.MoreServiceActivity" />
         <activity android:name=".activity.MoneyOfCard" />
         <activity android:name=".activity.BindCardTwo" />
-        <activity android:name=".activity.BindCard" />
-        <activity android:name=".activity.Doctor" />
-        <activity android:name=".activity.Section" />
         <activity android:name=".activity.HospitalInfo" />
         <activity android:name=".activity.ChooseArea" />
         <activity android:name=".activity.TabThree" />

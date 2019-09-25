@@ -20,7 +20,6 @@ import com.jzxiang.pickerview.TimePickerDialog
 import com.jzxiang.pickerview.data.Type
 import com.jzxiang.pickerview.listener.OnDateSetListener
 import kotlinx.android.synthetic.main.activity_money_info.*
-import kotlinx.android.synthetic.main.title.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,7 +31,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
     var dat = ""
     private  var type = 1
     var adapter: MoneyAdapter? = null
-    private val dataList = ArrayList<MoneyBean.CardsListBean>()
+    private val dataList = ArrayList<MoneyBean.DetailListBeanX>()
     private fun date(): String {
         if (dat == "") {
             dat = if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10) {
@@ -57,9 +56,8 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
             refresh.finishRefresh()
             getList()
         }
-        adapter = MoneyAdapter(this@MoneyInfo, dataList, R.layout.money_item)
+        adapter = MoneyAdapter(this@MoneyInfo, dataList, R.layout.money_item_one)
         listView.adapter = adapter
-        getList()
         //data.setOnClickListener { checkDate() }
         //时间弹窗
         val tenYears = 10L * 365 * 1000 * 60 * 60 * 24L
@@ -82,6 +80,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
                 .setWheelItemTextSize(17)
                 .setType(Type.YEAR_MONTH)
                 .build()
+        refresh.autoRefresh()
     }
 
     private fun checkDate() {
@@ -97,14 +96,14 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
     fun getList() {
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.yuEDetail(userId,
-                date(), "1", "200", "all","","",
+                "", "1", "1000","", "all","0","",
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
                         super.success(data)
                         val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
                         if (bean.result == "0") {
                             dataList.clear()
-                            val list = bean.cardsList
+                            val list = bean.detailList
                             if (list.size > 0) {
                                 noData.visibility = View.GONE
                                 dataList.addAll(list)
@@ -137,7 +136,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
         val t3 = v.findViewById<TextView>(R.id.t3)
         val t4 = v.findViewById<TextView>(R.id.t4)
         val t5 = v.findViewById<TextView>(R.id.t5)
-        val t6 = v.findViewById<TextView>(R.id.t6)
         when (i) {
             1 -> {
                 t1.setTextColor(ContextCompat.getColor(this, R.color.blue))
@@ -158,10 +156,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
             5 -> {
                 t5.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 t5.background = ContextCompat.getDrawable(this, R.drawable.bg_btn_blu)
-            }
-            6 -> {
-                t6.setTextColor(ContextCompat.getColor(this, R.color.blue))
-                t6.background = ContextCompat.getDrawable(this, R.drawable.bg_btn_blu)
             }
         }
         v.findViewById<ImageView>(R.id.c_pop).setOnClickListener {
@@ -194,11 +188,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
         }
         t5.setOnClickListener {
             type = 5
-            popupWindow!!.dismiss()
-
-        }
-        t6.setOnClickListener {
-            type = 6
             popupWindow!!.dismiss()
 
         }

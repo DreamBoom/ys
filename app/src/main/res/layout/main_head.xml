@@ -9,7 +9,6 @@
         android:id="@+id/kar"
         android:layout_width="match_parent"
         android:layout_height="184dp"
-        android:background="@drawable/banner"
         android:orientation="horizontal" />
 
     <card.com.allcard.view.MyGridView

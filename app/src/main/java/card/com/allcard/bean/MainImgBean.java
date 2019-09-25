@@ -4,16 +4,32 @@ import java.util.List;
 
 public class MainImgBean {
 
-    private List<ServiceguideBean> serviceguide;
+    /**
+     * result : 0
+     * image : ["http://222.138.67.71:19533/uploads/icon/banner@2x.png"]
+     * summarydetail : [{"sumd_name":"充值","sumd_img":"http://222.138.67.71:19533//uploads/20190920/ccf69a3f-af3c-4273-9d2f-153f305fe259.png","id":"15","summ_link":"http://222.138.67.71:19534/weixin/accountRecharge/accountRecharge.jsp","is_login":"0"},{"sumd_name":"一卡通余额","sumd_img":"http://222.138.67.71:19533//uploads/20190920/88398a5c-3982-42db-9c94-e81067cb9c6e.png","id":"17","summ_link":"http://222.138.67.71:19534//weixin/cardBalance/cardBalance.jsp","is_login":"0"},{"sumd_name":"医生排班","sumd_img":"http://222.138.67.71:19533//uploads/20190920/80f912c8-c3ab-4f03-a9f6-749d37cbe314.png","id":"23","summ_link":"http://222.138.67.71:19534/weixin/hospital/medicalHospitalRecordyy.jsp","is_login":"1"},{"sumd_name":"门诊缴费","sumd_img":"http://222.138.67.71:19533//uploads/20190920/e052c783-6093-41a0-b91b-b1946a93ae0d.png","id":"57","summ_link":"http://222.138.67.71:19534/null","is_login":"1"},{"sumd_name":"社保卡服务","sumd_img":"http://222.138.67.71:19533//uploads/20190920/028e5979-05de-4bff-a12a-4a36f643896f.png","id":"59","summ_link":"http://222.138.67.71:19534/","is_login":"1"},{"sumd_name":"全部","sumd_img":"http://222.138.67.71:19533/uploads/icon/all.png","id":"","summ_link":"","is_login":"1"}]
+     * message : 成功
+     */
+
+    private String result;
+    private String message;
     private List<String> image;
     private List<SummarydetailBean> summarydetail;
 
-    public List<ServiceguideBean> getServiceguide() {
-        return serviceguide;
+    public String getResult() {
+        return result;
     }
 
-    public void setServiceguide(List<ServiceguideBean> serviceguide) {
-        this.serviceguide = serviceguide;
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public List<String> getImage() {
@@ -32,68 +48,12 @@ public class MainImgBean {
         this.summarydetail = summarydetail;
     }
 
-    public static class ServiceguideBean {
-        /**
-         * serimg : http://192.168.12.10:8080//uploads/20190505/100332059.jpg
-         * in_date : 2019-04-25 14:32:25.0
-         * id : 6
-         * title : 《复联4》票房创纪录，中影、万达电影的概念股股价遭重挫
-         * url : http://192.168.12.10:8080/weixin/wxservicede.jsp
-         */
-
-        private String serimg;
-        private String in_date;
-        private String id;
-        private String title;
-        private String url;
-
-        public String getSerimg() {
-            return serimg;
-        }
-
-        public void setSerimg(String serimg) {
-            this.serimg = serimg;
-        }
-
-        public String getIn_date() {
-            return in_date;
-        }
-
-        public void setIn_date(String in_date) {
-            this.in_date = in_date;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-    }
-
     public static class SummarydetailBean {
         /**
-         * sumd_name : 卡状态
-         * sumd_img : http://192.168.12.10:8080//uploads/20190128/095932182.png
-         * id : 10
-         * summ_link : /WeiMemberCard/list?cardType=200&flagType=0
+         * sumd_name : 充值
+         * sumd_img : http://222.138.67.71:19533//uploads/20190920/ccf69a3f-af3c-4273-9d2f-153f305fe259.png
+         * id : 15
+         * summ_link : http://222.138.67.71:19534/weixin/accountRecharge/accountRecharge.jsp
          * is_login : 0
          */
 

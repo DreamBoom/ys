@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="card.com.allcard.activity.ForgetPassword">
+    tools:context="card.com.allcard.activity.PayBind">
 
     <ImageView
         android:id="@+id/bar"
@@ -34,13 +34,13 @@
         android:layout_marginRight="50dp"
         android:background="@null"
         android:hint="请输入绑定的手机号"
-        android:inputType="textPassword"
-        android:maxLength="20"
-        android:padding="20dp"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:textColor="@color/black3"
         android:singleLine="true"
         android:textColorHint="@color/grey91"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/size14" />
+        android:textSize="@dimen/size13" />
 
     <View
         android:layout_width="match_parent"
@@ -62,15 +62,15 @@
         android:layout_height="38dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
+        android:textColor="@color/black3"
         android:layout_marginRight="50dp"
         android:background="@null"
         android:hint="请输入绑定人的真实姓名"
         android:maxLength="4"
-        android:padding="20dp"
         android:singleLine="true"
         android:textColorHint="@color/grey91"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/size14" />
+        android:textSize="@dimen/size13" />
 
     <View
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:text="身份证"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/grey75"
         android:textSize="@dimen/size14" />
     <EditText
@@ -94,13 +94,13 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@null"
+        android:textColor="@color/black3"
         android:hint="请输入绑定人的身份证号"
         android:maxLength="20"
-        android:padding="20dp"
         android:singleLine="true"
         android:textColorHint="@color/grey91"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/size14" />
+        android:textSize="@dimen/size13" />
 
     <View
         android:layout_width="match_parent"
@@ -131,11 +131,11 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="输入验证码"
+            android:textColor="@color/black3"
             android:inputType="number"
             android:maxLength="6"
             android:singleLine="true"
             android:textColorHint="@color/grey91"
-            android:textColor="@color/black"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/size13" />
 

@@ -23,13 +23,14 @@ import card.com.allcard.R;
 import card.com.allcard.activity.BaseActivity;
 import card.com.allcard.activity.CardInfo;
 import card.com.allcard.activity.CardOne;
-import card.com.allcard.activity.ChangeCardPass;
 import card.com.allcard.activity.ChangeQuestion;
+import card.com.allcard.activity.ForgetPayPass;
 import card.com.allcard.activity.FrozenIn;
 import card.com.allcard.activity.LoginActivity;
 import card.com.allcard.activity.MoneyIn;
 import card.com.allcard.activity.MoneyInfo;
 import card.com.allcard.activity.MoneyOfCard;
+import card.com.allcard.activity.MoreServiceActivity;
 import card.com.allcard.activity.TabTwo;
 import card.com.allcard.bean.AccStateBean;
 import card.com.allcard.bean.TabTwoBean;
@@ -111,10 +112,13 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                             utils.startActivity(MoneyInfo.class);
                             break;
                         case "18":
-                            utils.startActivity(ChangeCardPass.class);
+                            utils.startActivity(ForgetPayPass.class);
                             break;
-                        case "59":
+                        case "60":
                             utils.startActivity(CardOne.class);
+                            break;
+                        case "61":
+                            utils.startActivity(CardInfo.class);
                             break;
                         case "54":
                             getType("0");
@@ -124,14 +128,11 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                             break;
                         case "58":
                             Bundle bundle = new Bundle();
-                            bundle.putString("type","1");
-                            utils.startActivityBy(ChangeQuestion.class,bundle);
+                            bundle.putString("type", "1");
+                            utils.startActivityBy(ChangeQuestion.class, bundle);
                             break;
                         case "15":
                             utils.startActivity(MoneyIn.class);
-                            break;
-                        case "11":
-                            utils.startActivity(CardInfo.class);
                             break;
                     }
                 }
@@ -145,9 +146,12 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                         utils.startActivity(MoneyInfo.class);
                         break;
                     case "18":
-                        utils.startActivity(ChangeCardPass.class);
+                        utils.startActivity(ForgetPayPass.class);
                         break;
                     case "59":
+                        utils.startActivity(MoreServiceActivity.class);
+                        break;
+                    case "60":
                         utils.startActivity(CardOne.class);
                         break;
                     case "54":

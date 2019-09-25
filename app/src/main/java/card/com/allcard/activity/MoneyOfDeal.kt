@@ -7,6 +7,7 @@ class MoneyOfDeal : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_money_of_deal
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
+        utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
     }
 }

@@ -124,17 +124,12 @@ dependencies {
     //版本更新
     implementation 'com.github.maning0303:MNUpdateAPK:V1.1.8'
 
-    //地图
-
     //3D地图so及jar
     implementation 'com.amap.api:map2d:3.0.0'
     implementation 'com.amap.api:location:3.3.0'
     implementation 'com.amap.api:search:5.0.0'
     //微信支付
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
-
-    //下拉关闭
-    implementation 'com.gongwen:swipeback:1.0.2'
 
     //时间选择器
     implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'

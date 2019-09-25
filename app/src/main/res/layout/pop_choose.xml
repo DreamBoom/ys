@@ -132,16 +132,12 @@
             <TextView
                 android:id="@+id/t6"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
+                android:layout_height="0dp"
                 android:layout_margin="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:paddingStart="25dp"
-                android:paddingEnd="25dp"
-                android:text="异常订单"
-                android:textColor="@color/black3"
-                android:textSize="@dimen/size14" />
+                android:paddingEnd="25dp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

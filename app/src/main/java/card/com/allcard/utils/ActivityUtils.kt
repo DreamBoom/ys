@@ -88,7 +88,9 @@ class ActivityUtils {
     @SuppressLint("ShowToast")
     fun showToast(msg: CharSequence) {
         val activity = activity ?: return
-        toast = Toast.makeText(activity, null, Toast.LENGTH_SHORT)
+        if(toast == null){
+            toast = Toast.makeText(activity, "", Toast.LENGTH_SHORT)
+        }
         toast!!.setText(msg)
         toast!!.show()
     }

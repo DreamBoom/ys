@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.gw.swipeback.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipeBackLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:directionMode="top"
-    app:isSwipeFromEdge="true"
-    app:maskAlpha="125"
-    app:swipeBackFactor="0.5">
+    android:layout_height="match_parent">
 
     <card.com.allcard.view.PercentRelativeLayout
         android:background="@color/white"
@@ -39,92 +33,19 @@
             android:textColor="@color/black3"
             android:textSize="@dimen/size16" />
 
-        <TextView
-            android:id="@+id/tab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <card.com.allcard.view.MyGridView
+            android:id="@+id/grid"
             android:layout_below="@+id/fl"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/tab2"
-            android:background="@drawable/bg_fw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="全部"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            app:width_percent="0.3"
-            tools:ignore="MissingPrefix" />
-
-        <TextView
-            android:id="@+id/tab2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fl"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_fw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="社保卡办理流程"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            app:width_percent="0.3"
-            tools:ignore="MissingPrefix" />
+            android:background="@color/white"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:transcriptMode="alwaysScroll"
+            android:verticalSpacing="10dp" />
 
-        <TextView
-            android:id="@+id/tab3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fl"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/tab2"
-            android:background="@drawable/bg_fw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="使用说明"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            app:width_percent="0.3"
-            tools:ignore="MissingPrefix" />
-
-        <TextView
-            android:id="@+id/tab4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tab1"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/tab5"
-            android:background="@drawable/bg_fw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="政策法规"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            app:width_percent="0.3"
-            tools:ignore="MissingPrefix" />
-
-        <TextView
-            android:id="@+id/tab5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tab1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_fw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="热点问答"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            app:width_percent="0.3"
-            tools:ignore="MissingPrefix" />
     </card.com.allcard.view.PercentRelativeLayout>
-</com.gw.swipeback.SwipeBackLayout>
+</RelativeLayout>

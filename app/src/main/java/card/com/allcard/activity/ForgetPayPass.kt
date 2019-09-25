@@ -1,15 +1,18 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
 import android.view.View
 import card.com.allcard.R
+import card.com.allcard.bean.GetNum
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
-import com.pawegio.kandroid.startActivity
+import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_forget_pay_pass.*
 import kotlinx.android.synthetic.main.title.*
 
@@ -40,6 +43,8 @@ class ForgetPayPass : BaseActivity() {
             getCaptchaTime()
         }
         img_ok.setOnClickListener {
+            val realName = mk.decodeString(Tool.REAL_NAME, "")
+            val userNum = mk.decodeString(Tool.USER_NUM, "")
             val name = et_name.text.toString().trim()
             val num = et_num.text.toString().trim()
             val code = et_code.text.toString().trim()
@@ -55,13 +60,16 @@ class ForgetPayPass : BaseActivity() {
                 utils.showToast("请输入验证码")
                 return@setOnClickListener
             }
-            forPayPass()
+            if (realName!=name ) {
+                utils.showToast("请输入正确姓名")
+                return@setOnClickListener
+            }
+            if (userNum != num) {
+                utils.showToast("请输入正确身份证号")
+                return@setOnClickListener
+            }
+            check()
         }
-    }
-
-    private fun forPayPass(){
-        mk.encode(Tool.payPass,"")
-        startActivity<PayPassChangeActivity>()
     }
 
     private fun getCaptchaTime() {
@@ -96,6 +104,31 @@ class ForgetPayPass : BaseActivity() {
         tv_get!!.visibility = View.GONE
         tv_djs!!.visibility = View.VISIBLE
         //请求网络发送验证码
-        HttpRequestPort.instance.sandMessage(et_phone!!.text.toString(), "8", object : BaseHttpCallBack(this) {})
+        HttpRequestPort.instance.sandMessage(et_phone!!.text.toString(), "c", object : BaseHttpCallBack(this) {})
     }
+
+    private fun check(){
+        utils.getProgress(this)
+        val trim = et_code.text.toString().trim()
+            HttpRequestPort.instance.checkCode(et_phone!!.text.toString(), trim,"c", object : BaseHttpCallBack(this) {
+                override fun success(data: String) {
+                    super.success(data)
+                    val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
+                    val status = bean.result
+                    if (status == "0") {
+                        val bundle = Bundle()
+                        bundle.putInt("type", 0)
+                        bundle.putString("cardNo", "")
+                        utils.startActivityBy(PayPassChangeActivity::class.java, bundle)
+                    } else {
+                        utils.showToast("验证码错误")
+                    }
+                }
+                override fun onError(throwable: Throwable, b: Boolean) {
+                    super.onError(throwable, b)
+                    utils.showToast("验证码验证失败")
+                    utils.hindProgress()
+                }
+            })
+        }
 }

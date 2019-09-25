@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.PayActivity">
 
     <ImageView
         android:id="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white" />
+        android:layout_height="wrap_content" />
 
     <include
         android:id="@+id/title"
@@ -32,30 +32,51 @@
             app:srlAccentColor="@color/black"
             app:srlClassicsSpinnerStyle="Scale" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
-
-            <ImageView
-                android:id="@+id/banner"
-                android:layout_marginTop="13dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="5dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="146dp"
-                android:background="@drawable/banner_jtgl" />
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-            <com.baoyz.swipemenulistview.SwipeMenuListView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/white"
-                android:layout_below="@+id/banner"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="20dp"
-                android:scrollbars="none" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/banner_jtgl" />
+
+                <com.baoyz.swipemenulistview.SwipeMenuListView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="7dp"
+                    android:divider="@color/white"
+                    android:scrollbars="none" />
+
+                <include
+                    android:id="@+id/addItem"
+                    layout="@layout/payadd_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+            </LinearLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="220dp"
+        android:drawableTop="@drawable/img_zwsj"
+        android:gravity="center"
+        android:text="暂无数据"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size13"
+        android:visibility="gone" />
 </RelativeLayout>

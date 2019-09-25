@@ -19,14 +19,15 @@ import card.com.allcard.R;
 import card.com.allcard.activity.BaseActivity;
 import card.com.allcard.activity.CardInfo;
 import card.com.allcard.activity.CardOne;
-import card.com.allcard.activity.ChangeCardPass;
 import card.com.allcard.activity.ChangeQuestion;
+import card.com.allcard.activity.ForgetPayPass;
 import card.com.allcard.activity.FrozenIn;
 import card.com.allcard.activity.LoginActivity;
 import card.com.allcard.activity.MainActivity;
 import card.com.allcard.activity.MoneyIn;
 import card.com.allcard.activity.MoneyInfo;
 import card.com.allcard.activity.MoneyOfCard;
+import card.com.allcard.activity.MoreServiceActivity;
 import card.com.allcard.bean.MainImgBean;
 import card.com.allcard.tools.Tool;
 import card.com.allcard.utils.ActivityUtils;
@@ -41,7 +42,6 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
         this.data = datas;
         this.mContext = context;
         utils = new ActivityUtils((Activity) mContext);
-        int size = datas.size();
     }
 
     @Override
@@ -76,9 +76,9 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                                 utils.startActivity(MoneyInfo.class);
                                 break;
                             case "18":
-                                utils.startActivity(ChangeCardPass.class);
+                                utils.startActivity(ForgetPayPass.class);
                                 break;
-                            case "59":
+                            case "60":
                                 utils.startActivity(CardOne.class);
                                 break;
                             case "54":
@@ -100,7 +100,7 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                             case "15":
                                 utils.startActivity(MoneyIn.class);
                                 break;
-                            case "11":
+                            case "61":
                                 utils.startActivity(CardInfo.class);
                                 break;
                         }
@@ -115,9 +115,12 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                             utils.startActivity(MoneyInfo.class);
                             break;
                         case "18":
-                            utils.startActivity(ChangeCardPass.class);
+                            utils.startActivity(ForgetPayPass.class);
                             break;
                         case "59":
+                            utils.startActivity(MoreServiceActivity.class);
+                            break;
+                        case "60":
                             utils.startActivity(CardOne.class);
                             break;
                         case "54":

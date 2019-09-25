@@ -17,18 +17,19 @@ import java.util.List;
 
 import card.com.allcard.R;
 import card.com.allcard.activity.WebPostOther;
-import card.com.allcard.bean.MainImgBean;
+import card.com.allcard.bean.ServiceListBean;
+import card.com.allcard.net.HttpRequestPort;
 
-public class NewListAdapter extends BaseQuickAdapter<MainImgBean.ServiceguideBean, BaseViewHolder> {
+public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, BaseViewHolder> {
     private Activity act;
 
-    public NewListAdapter(Activity act,int layoutResId, @Nullable List<MainImgBean.ServiceguideBean> data) {
+    public NewListAdapter(Activity act,int layoutResId, @Nullable List<ServiceListBean.ListBean> data) {
         super(layoutResId, data);
         this.act =act;
     }
     @SuppressLint("SetTextI18n")
     @Override
-    protected void convert(BaseViewHolder holder, MainImgBean.ServiceguideBean datas) {
+    protected void convert(BaseViewHolder holder, ServiceListBean.ListBean datas) {
         holder.setText(R.id.tv_news_title,datas.getTitle());
         holder.setText(R.id.tv_news_data,datas.getIn_date().substring(0,10));
         ImageView img = holder.getView(R.id.im_news);
@@ -42,7 +43,7 @@ public class NewListAdapter extends BaseQuickAdapter<MainImgBean.ServiceguideBea
         news.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setClass(act, WebPostOther.class);
-            intent.putExtra("url",datas.getUrl()+ "?id=" + datas.getId()+"&fixparam=android");
+            intent.putExtra("url", HttpRequestPort.H5_BASE_URL+"WeiLoginController/wxservicede1.do?id="+datas.getId());
             act.startActivity(intent);
         });
     }

@@ -17,6 +17,7 @@ import org.xutils.x
 class MoneyOfCard : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_money_of_card
     var m = 0
+    @SuppressLint("SetTextI18n")
     override fun initView() {
         utils.changeStatusBlack(false, window)
         close.setOnClickListener { finish() }
@@ -30,7 +31,8 @@ class MoneyOfCard : BaseActivity() {
         val m = mk.decodeString(Tool.oneMoney, "0")
         money.text = utils.save2(m.toDouble())
         val num0 = mk.decodeString(Tool.USER_NUM, "")
-        num.text = num0
+        num.text = num0.substring(0, 3) + "********" +
+                num0.substring(num0.length - 4, num0.length)
         val img = mk.decodeString(Tool.HEADER, "")
         val options = ImageOptions.Builder()
                 .setSize(300, 300)

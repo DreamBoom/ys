@@ -9,40 +9,59 @@ import android.widget.RadioGroup
 import card.com.allcard.R
 import card.com.allcard.adapter.DepthPageTransformer
 import card.com.allcard.adapter.TabPagerAdapter
-import card.com.allcard.fragment.*
+import card.com.allcard.bean.ServiceTypeBean
+import card.com.allcard.fragment.Service1
+import card.com.allcard.net.BaseHttpCallBack
+import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import card.com.allcard.tools.Tool.RESULTCODE_SERVICE
+import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_more_service.*
 
 class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
-        ViewPager.OnPageChangeListener,TabLayout.OnTabSelectedListener {
+        ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
     override fun layoutId(): Int = R.layout.activity_more_service
-    private var fragments: MutableList<Fragment> = mutableListOf(
-            Service1(), Service2(), Service3(), Service4(), Service5())
+    private var fragments: MutableList<Fragment> = mutableListOf()
     private val adapt = TabPagerAdapter(supportFragmentManager, fragments)
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
-        tab.setUnboundedRipple(true)//点击的动画
-        tab.isTabIndicatorFullWidth = true//下划线指示器的宽度不要填充完
-        tab.addTab(tab.newTab().setText("全部"))
-        tab.addTab(tab.newTab().setText("社保卡办理流程"))
-        tab.addTab(tab.newTab().setText("使用说明"))
-        tab.addTab(tab.newTab().setText("政策法规"))
-        tab.addTab(tab.newTab().setText("热点问答           "))
-        tab.tabMode = TabLayout.MODE_SCROLLABLE
-        tab.tabGravity = TabLayout.GRAVITY_FILL
-        tab.getTabAt(0)!!.select()//默认选中
-        tab.addOnTabSelectedListener(this)
-        viewpager.setPageTransformer(true, DepthPageTransformer())
-        viewpager.adapter = adapt
-        viewpager.addOnPageChangeListener(this)
+
+        HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<ServiceTypeBean>() {})
+                if (bean.result == "0") {
+                    tab.setUnboundedRipple(true)//点击的动画
+                    tab.isTabIndicatorFullWidth = true//下划线指示器的宽度不要填充完
+                    fragments.add(Service1())
+                    tab.addTab(tab.newTab().setText("全部"))
+                    for (i in 0 until bean.list.size) {
+                        fragments.add(Service1())
+                        tab.addTab(tab.newTab().setText(bean.list[i].para_key))
+                    }
+                    tab.tabMode = TabLayout.MODE_SCROLLABLE
+                    tab.tabGravity = TabLayout.GRAVITY_FILL
+                    tab.getTabAt(0)!!.select()//默认选中
+                    tab.addOnTabSelectedListener(this@MoreServiceActivity)
+                    viewpager.setPageTransformer(true, DepthPageTransformer())
+                    viewpager.adapter = adapt
+                    adapt.notifyDataSetChanged()
+                    viewpager.addOnPageChangeListener(this@MoreServiceActivity)                }
+            }
+
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("请求失败")
+            }
+        })
+
         all.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("tab",tab.selectedTabPosition)
-            utils.toStartActivityForResult(AllService::class.java,RESULTCODE_SERVICE,bundle)
-            overridePendingTransition(R.anim.activity_open,R.anim.activity_close)
+            bundle.putInt("tab", tab.selectedTabPosition)
+            utils.toStartActivityForResult(AllService::class.java, RESULTCODE_SERVICE, bundle)
         }
     }
 
@@ -64,12 +83,12 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
 
     override fun onPageScrollStateChanged(state: Int) {
         if (state == 2) {
-            when (viewpager.currentItem) {
-                0 ->  tab.getTabAt(0)!!.select()
-                1 ->  tab.getTabAt(1)!!.select()
-                2 ->  tab.getTabAt(2)!!.select()
-                3 ->  tab.getTabAt(3)!!.select()
-                4 ->  tab.getTabAt(4)!!.select()
+         tab.getTabAt(viewpager.currentItem)!!.select()
+            mk.encode(Tool.tab,"${viewpager.currentItem}")
+            if(viewpager.currentItem == 0){
+                mk.encode(Tool.tab,"")
+            }else{
+                mk.encode(Tool.tab,"${viewpager.currentItem}")
             }
         }
     }
@@ -90,23 +109,7 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
         when (requestCode) {
             RESULTCODE_SERVICE -> {
                 val i = data!!.extras!!.getInt("tab", 0)
-                when(i){
-                    0 -> {
-                        tab.getTabAt(0)!!.select()
-                    }
-                    1 -> {
-                        tab.getTabAt(1)!!.select()
-                    }
-                    2 -> {
-                        tab.getTabAt(2)!!.select()
-                    }
-                    3 -> {
-                        tab.getTabAt(3)!!.select()
-                    }
-                    4 -> {
-                        tab.getTabAt(4)!!.select()
-                    }
-                }
+                tab.getTabAt(i)!!.select()
             }
         }
     }

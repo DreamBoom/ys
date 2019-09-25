@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/et_grey">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@color/et_grey">
+
+        <TextView
+            android:id="@+id/yue"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/btn_yue"
+            android:drawableEnd="@drawable/yemx_jt"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="本月"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size13" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/zc"
+                android:text="支出："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size14" />
+            <TextView
+                android:id="@+id/sr"
+                android:text="收入："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size14" />
+        </LinearLayout>
+    </RelativeLayout>
+    <card.com.allcard.view.MyListView
+        android:id="@id/list"
+        android:layout_below="@+id/rl"
+        android:divider="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

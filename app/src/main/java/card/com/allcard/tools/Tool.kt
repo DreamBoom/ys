@@ -18,7 +18,6 @@ object Tool {
     val RESULTCODE_SERVICE = 108
     var CHOOSE = 0
     val ZERO = "0"
-    val ONE = "1"
     val one = "one"
     val two = "two"
     val three = "three"
@@ -45,9 +44,9 @@ object Tool {
     val BY_LOGIN = "BY_LOGIN"
     val isFirst = "isFirst"
     val oneMoney = "oneMoney"
-    val otherMoney = "otherMoney"
     val chooseArea = "chooseArea"
     val Area_ID = "Area_ID"
     val search = "search"
     val payPass = "payPass"
+    val tab = "tab"
 }

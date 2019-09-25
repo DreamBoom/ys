@@ -2,7 +2,7 @@ package card.com.allcard.activity
 
 import android.text.TextUtils
 import card.com.allcard.R
-import card.com.allcard.bean.ResultBean
+import card.com.allcard.bean.GetNum
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -40,54 +40,36 @@ class BindCardTwo : BaseActivity() {
                 utils.showToast("请输入卡号")
                 return@setOnClickListener
             }
-            //bindSbk(name,num,card)
+            bindSbk(name,num,card)
         }
     }
 
     fun bindSbk(name: String, num: String, card: String) {
         utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.cardBind(userId, name, num, card, "200",
-                object : BaseHttpCallBack(this) {
-                    override fun success(data: String) {
-                        super.success(data)
-                        val bean = JSONObject.parseObject(data, object : TypeReference<ResultBean>() {})
-                        utils.showToast(bean.message)
-                    }
+        HttpRequestPort.instance.cardBind(userId, name, num, card, object : BaseHttpCallBack(this) {
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
+                utils.showToast(bean.message)
+                if(bean.result == "0"){
+                    utils.showToast("绑定成功")
+                    finish()
+                }else{
+                    utils.showToast(bean.message)
+                }
+            }
 
-                    override fun failed(desc: String) {
-                        super.failed(desc)
-                        utils.showToast("网络异常,绑定失败")
-                    }
+            override fun failed(desc: String) {
+                super.failed(desc)
+                utils.showToast("网络异常,绑定失败")
+            }
 
-                    override fun onFinished() {
-                        super.onFinished()
-                        utils.hindProgress()
-                    }
-                })
+            override fun onFinished() {
+                super.onFinished()
+                utils.hindProgress()
+            }
+        })
     }
 
-
-    fun bindLsk(name: String, num: String, card: String) {
-        utils.getProgress(this)
-        val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.cardBind(userId, name, num, card, "210",
-                object : BaseHttpCallBack(this) {
-                    override fun success(data: String) {
-                        super.success(data)
-                        val bean = JSONObject.parseObject(data, object : TypeReference<ResultBean>() {})
-                        utils.showToast(bean.message)
-                    }
-
-                    override fun failed(desc: String) {
-                        super.failed(desc)
-                        utils.showToast("网络异常,绑定失败")
-                    }
-
-                    override fun onFinished() {
-                        super.onFinished()
-                        utils.hindProgress()
-                    }
-                })
-    }
 }

@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/et_grey"
     tools:context=".activity.RealName">
 
     <ImageView
         android:id="@+id/r1"
         android:layout_width="match_parent"
         android:layout_height="239dp"
-        android:layout_below="@+id/bar"
-        android:background="@drawable/img_smrz_bg" />
+        android:background="@drawable/img_smrz_bg_ztl" />
 
     <ImageView
         android:id="@+id/close"
@@ -38,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/close"
         android:orientation="horizontal">
 
@@ -64,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
-            android:text="410**********0000"
             android:textColor="@color/white"
             android:textSize="@dimen/size14" />
     </LinearLayout>
@@ -74,7 +72,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/l1"
-        android:layout_margin="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="22dp"
         android:background="@drawable/bg_pop">
 
         <TextView
