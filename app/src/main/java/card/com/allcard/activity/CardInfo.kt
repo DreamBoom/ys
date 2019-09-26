@@ -72,9 +72,14 @@ class CardInfo : BaseActivity() {
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("请求失败，请稍后重试")
+            }
+
+            override fun onFinished() {
+                super.onFinished()
                 utils.hindProgress()
             }
         })
+
     }
 
     private fun cardStatus(name:String,cardNo:String,certNo:String) {

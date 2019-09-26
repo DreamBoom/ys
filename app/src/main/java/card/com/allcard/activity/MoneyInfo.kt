@@ -23,13 +23,17 @@ import kotlinx.android.synthetic.main.activity_money_info.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MoneyInfo : BaseActivity(), OnDateSetListener {
+class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
     override fun layoutId(): Int = R.layout.activity_money_info
     @SuppressLint("SimpleDateFormat")
     private var sf = SimpleDateFormat("yyyy-MM")
     private var timeDialog: TimePickerDialog? = null
     var dat = ""
+    var cardNo = ""
+    var nickName = ""
+    var is_other = ""
     private  var type = 1
+    private  var trCode = "all"
     var adapter: MoneyAdapter? = null
     private val dataList = ArrayList<MoneyBean.DetailListBeanX>()
     private fun date(): String {
@@ -56,7 +60,11 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
             refresh.finishRefresh()
             getList()
         }
+        cardNo = intent.getStringExtra("cardNo")
+        nickName = intent.getStringExtra("nickName")
+        is_other = intent.getStringExtra("is_other")
         adapter = MoneyAdapter(this@MoneyInfo, dataList, R.layout.money_item_one)
+        adapter!!.Click = this
         listView.adapter = adapter
         //data.setOnClickListener { checkDate() }
         //时间弹窗
@@ -83,20 +91,20 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
         refresh.autoRefresh()
     }
 
-    private fun checkDate() {
+    override fun onClickListener() {
         timeDialog!!.show(supportFragmentManager, "year_month")
     }
 
     override fun onDateSet(p0: TimePickerDialog?, millseconds: Long) {
         val d = Date(millseconds)
-        //  data.text = sf.format(d)
-        // dat = sf.format(d)
+         dat = sf.format(d)
+        refresh.autoRefresh()
     }
 
     fun getList() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.yuEDetail(userId,
-                "", "1", "1000","", "all","0","",
+        HttpRequestPort.instance.yuEDetail(userId, dat, "1", "1000",
+                cardNo, trCode,is_other,nickName,
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
                         super.success(data)
@@ -113,7 +121,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
                             }
                         }
                     }
-
                     override fun onError(throwable: Throwable, b: Boolean) {
                         super.onError(throwable, b)
                         noData.visibility = View.VISIBLE
@@ -122,7 +129,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
     }
 
     var popupWindow: PopupWindow? = null
-
     private fun showPopup(i: Int) {
         val v = utils.getView(this, R.layout.pop_choose)
         popupWindow = PopupWindow(
@@ -136,6 +142,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
         val t3 = v.findViewById<TextView>(R.id.t3)
         val t4 = v.findViewById<TextView>(R.id.t4)
         val t5 = v.findViewById<TextView>(R.id.t5)
+        val t6 = v.findViewById<TextView>(R.id.t6)
         when (i) {
             1 -> {
                 t1.setTextColor(ContextCompat.getColor(this, R.color.blue))
@@ -157,39 +164,52 @@ class MoneyInfo : BaseActivity(), OnDateSetListener {
                 t5.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 t5.background = ContextCompat.getDrawable(this, R.drawable.bg_btn_blu)
             }
+            6 -> {
+                t6.setTextColor(ContextCompat.getColor(this, R.color.blue))
+                t6.background = ContextCompat.getDrawable(this, R.drawable.bg_btn_blu)
+            }
         }
         v.findViewById<ImageView>(R.id.c_pop).setOnClickListener {
             popupWindow!!.dismiss()
-
         }
         v.findViewById<TextView>(R.id.q_pop).setOnClickListener {
             popupWindow!!.dismiss()
-
         }
         t1.setOnClickListener {
             type = 1
+            trCode = "all"
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
-
         }
         t2.setOnClickListener {
             type = 2
+            trCode = "cz"
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
-
         }
         t3.setOnClickListener {
             type = 3
+            trCode = "2830"
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
-
         }
         t4.setOnClickListener {
             type = 4
+            trCode = ""
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
-
         }
         t5.setOnClickListener {
             type = 5
+            trCode = "2835"
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
-
+        }
+        t6.setOnClickListener {
+            type = 6
+            trCode = "2834"
+            refresh.autoRefresh()
+            popupWindow!!.dismiss()
         }
     }
 }

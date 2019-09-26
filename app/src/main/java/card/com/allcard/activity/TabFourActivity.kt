@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Bundle
 import android.provider.Settings
 import android.text.TextUtils
 import android.view.Gravity
@@ -110,7 +111,13 @@ class TabFourActivity : BaseActivity() {
         ll_mx.setOnClickListener {
             when {
                 !noUserId() -> when (mk.decodeString(Tool.IS_AUTH, "")) {
-                    "0" -> startActivity<MoneyInfo>()
+                    "0" -> {
+                        val bundle = Bundle()
+                        bundle.putString("cardNo", "")
+                        bundle.putString("nickName", "")
+                        bundle.putString("is_other", "0")
+                        utils.startActivityBy(MoneyInfo::class.java, bundle)
+                    }
                     "1" -> utils.showToast("请先进行实名认证")
                 }
             }

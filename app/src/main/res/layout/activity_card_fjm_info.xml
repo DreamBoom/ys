@@ -406,4 +406,15 @@
             android:textColor="@color/grey91"
             android:textSize="@dimen/size13" />
     </card.com.allcard.view.PercentRelativeLayout>
+    <TextView
+        android:id="@+id/delete"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:background="@drawable/btn_bg"
+        android:text="删除本卡"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size14"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"/>
 </card.com.allcard.view.PercentRelativeLayout>

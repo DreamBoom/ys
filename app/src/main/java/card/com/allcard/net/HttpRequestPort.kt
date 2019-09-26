@@ -119,6 +119,8 @@ class HttpRequestPort {
     private val ResPwd = "AppLoginController/ResPwd.do"
     private val fsmResPwd = "AppLoginController/fsmResPwd.do"
     private val searchYuEOther = "AppLoginController/searchYuEOther.do"
+    private val deleteCard = "AppLoginController/deleteCard.do"
+    private val baseData = "AppLoginController/baseData.do"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -650,5 +652,21 @@ class HttpRequestPort {
         map!!["cardNo"] = cardNo
         map!!["pwd"] = pwd
         httpUtil[BASE_URL + fsmResPwd, map, callBack]
+    }
+
+    /**设置交易密码 重置交易密码*/
+    fun deleteCard(user_id: String,cardNo: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        map!!["cardType"] = "210"
+        httpUtil[BASE_URL + deleteCard, map, callBack]
+    }
+
+    /**基础数据接口*/
+    fun baseData(param: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["param"] = param
+        httpUtil[BASE_URL + baseData, map, callBack]
     }
 }

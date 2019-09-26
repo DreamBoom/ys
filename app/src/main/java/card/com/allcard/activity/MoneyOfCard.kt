@@ -1,6 +1,7 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.widget.ImageView
 import card.com.allcard.R
 import card.com.allcard.bean.YjBean
@@ -24,7 +25,13 @@ class MoneyOfCard : BaseActivity() {
         pay.setOnClickListener { startActivity<MoneyIn>()  }
         getMoney.setOnClickListener {  }
         xz.setOnClickListener { startActivity<EdOfMoney>() }
-        mx.setOnClickListener { startActivity<MoneyInfo>()  }
+        mx.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo", "")
+            bundle.putString("nickName", "")
+            bundle.putString("is_other", "0")
+            utils.startActivityBy(MoneyInfo::class.java, bundle)
+        }
         kyj.setOnClickListener { startActivity<MoneyOfCash>() }
         val realName = mk.decodeString(Tool.REAL_NAME, "")
         name.text = realName

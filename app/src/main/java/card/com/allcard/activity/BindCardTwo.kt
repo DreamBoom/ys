@@ -44,14 +44,13 @@ class BindCardTwo : BaseActivity() {
         }
     }
 
-    fun bindSbk(name: String, num: String, card: String) {
+    private fun bindSbk(name: String, num: String, card: String) {
         utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.cardBind(userId, name, num, card, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                utils.showToast(bean.message)
                 if(bean.result == "0"){
                     utils.showToast("绑定成功")
                     finish()

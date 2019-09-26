@@ -1,5 +1,6 @@
 package card.com.allcard.activity
 
+import android.content.Intent
 import android.support.design.widget.TabLayout
 import android.view.View
 import card.com.allcard.R
@@ -17,13 +18,13 @@ import kotlinx.android.synthetic.main.title.*
 
 class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
     override fun layoutId(): Int = R.layout.activity_choose_area
-
     var shengList = mutableListOf<AreaBean.ArealistBean>()
     var shiList = mutableListOf<AreaBean.ArealistBean>()
     var quList = mutableListOf<AreaBean.ArealistBean>()
     var shengAdapter: ShengAdapter? = null
     var shiAdapter: ShiAdapter? = null
     var quAdapter: QuAdapter? = null
+    var name = ""
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
@@ -39,6 +40,9 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
         qu.adapter = quAdapter
         close.setOnClickListener {
             Tool.CHOOSE = 1
+            val intent = Intent()
+            intent.putExtra("name", name)
+            setResult(Tool.RESULTCODE_SUCCESS, intent)
             finish()
         }
         getSheng()
@@ -84,7 +88,23 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
     }
 
     override fun onTabSelected(p0: TabLayout.Tab?) {
-
+        when (p0!!.position) {
+            0 -> {
+                shi.visibility = View.GONE
+                qu.visibility = View.GONE
+                sheng.visibility = View.VISIBLE
+            }
+            1 -> {
+                shi.visibility = View.VISIBLE
+                qu.visibility = View.GONE
+                sheng.visibility = View.GONE
+            }
+            2 -> {
+                shi.visibility = View.GONE
+                qu.visibility = View.VISIBLE
+                sheng.visibility = View.GONE
+            }
+        }
     }
 
     fun hide1(name: String) {
@@ -93,7 +113,6 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
         shi.visibility = View.VISIBLE
         qu.visibility = View.GONE
         getShi(name)
-
     }
 
     fun hide2(name: String) {
@@ -104,8 +123,19 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
         getQu(name)
     }
 
-    fun hide3() {
+    fun hide3(name: String) {
         Tool.CHOOSE = 1
+        this.name = name
+        val intent = Intent()
+        intent.putExtra("name", name)
+        setResult(Tool.RESULTCODE_SUCCESS, intent)
+    }
+    fun hide4(name: String) {
+        Tool.CHOOSE = 1
+        this.name = name
+        val intent = Intent()
+        intent.putExtra("name", name)
+        setResult(Tool.RESULTCODE_SUCCESS, intent)
         finish()
     }
 
@@ -138,10 +168,15 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
                 super.success(data)
                 val areaBean = JSONObject.parseObject(data, object : TypeReference<AreaBean>() {})
                 val arealist = areaBean.arealist
+                shiList.clear()
                 shiList.addAll(arealist)
                 shiAdapter!!.notifyDataSetChanged()
                 tab.getTabAt(0)!!.text = "  $name  "
-                tab.addTab(tab.newTab().setText("请选择"))
+                if(tab.tabCount == 1){
+                    tab.addTab(tab.newTab().setText("请选择"))
+                }else{
+                    tab.getTabAt(1)!!.text = "请选择"
+                }
                 tab.getTabAt(1)!!.select()
             }
 
@@ -157,14 +192,15 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
         HttpRequestPort.instance.getArea(shiAdapter!!.shiId, "4", object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                val areaBean = JSONObject.parseObject(data, object : TypeReference<AreaBean>() {
-
-                })
+                val areaBean = JSONObject.parseObject(data, object : TypeReference<AreaBean>() {})
                 val arealist = areaBean.arealist
+                quList.clear()
                 quList.addAll(arealist)
                 quAdapter!!.notifyDataSetChanged()
                 tab.getTabAt(1)!!.text = "  $name  "
-                tab.addTab(tab.newTab().setText("请选择"))
+                if(tab.tabCount == 2){
+                    tab.addTab(tab.newTab().setText("请选择"))
+                }
                 tab.getTabAt(2)!!.select()
             }
 

@@ -1,6 +1,7 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import card.com.allcard.R
 import card.com.allcard.bean.OtherMoneyBean
 import card.com.allcard.net.BaseHttpCallBack
@@ -42,10 +43,17 @@ class PayMoney : BaseActivity() {
                 utils.hindProgress()
             }
         })
+        rl_mx.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo", "")
+            bundle.putString("nickName", name1)
+            bundle.putString("is_other", "1")
+            utils.startActivityBy(MoneyInfo::class.java, bundle)
+        }
     }
     // wait_pay.setOnClickListener { startActivity<MoneyInfo>() }
 //        xz.setOnClickListener { startActivity<EdOfMoney>() }
-//        mx.setOnClickListener { startActivity<MoneyInfo>()  }
+
 //        kyj.setOnClickListener { startActivity<MoneyOfCash>() }
 
 }

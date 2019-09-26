@@ -35,7 +35,7 @@ public class QuAdapter extends CommonAdapter<AreaBean.ArealistBean> {
         tvPop.setOnClickListener(view -> {
             mk.encode(Tool.INSTANCE.getChooseArea(),bean.getArea_name());
             mk.encode(Tool.INSTANCE.getArea_ID(),areaId);
-            fragment.hide3();
+            fragment.hide4(bean.getArea_name());
         });
     }
 }

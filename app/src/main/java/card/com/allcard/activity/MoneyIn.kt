@@ -1,37 +1,58 @@
 package card.com.allcard.activity
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.PopupWindow
 import card.com.allcard.R
+import card.com.allcard.adapter.PayTypeAdapter
+import card.com.allcard.bean.PayTypeBean
+import card.com.allcard.net.BaseHttpCallBack
+import card.com.allcard.net.HttpRequestPort
+import card.com.allcard.view.MyListView
+import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_money_in.*
 import kotlinx.android.synthetic.main.title.*
+import org.xutils.x
+import java.util.*
 
 class MoneyIn : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_money_in
-    private var type = 1
+    private var adapter0 :PayTypeAdapter?= null
+    val dataList = ArrayList<PayTypeBean.ListBean>()
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
         address.text = "支付"
         bt_cz.isEnabled = false
-        bt_cz.setOnClickListener {  }
-        im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn,R.drawable.img_yl))
+        bt_cz.setOnClickListener { }
+        im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn, R.drawable.img_yl))
         et_money!!.addTextChangedListener(PhoneWatcher(et_money))
-        payType.setOnClickListener { showPopup(type) }
+        payType.setOnClickListener { showPopup() }
+        adapter0 = PayTypeAdapter(this, dataList, R.layout.pay_item0)
+        HttpRequestPort.instance.baseData("paytype", object : BaseHttpCallBack(this) {
+            @SuppressLint("SetTextI18n")
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<PayTypeBean>() {})
+                if (bean.result == "0") {
+                    bean.list[0].is_enable = "1"
+                    dataList.addAll(bean.list)
+                    adapter0!!.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
     var popupWindow: PopupWindow? = null
 
-    private fun showPopup(i: Int) {
+    private fun showPopup() {
         val v = utils.getView(this, R.layout.pop_pay)
         popupWindow = PopupWindow(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -39,47 +60,16 @@ class MoneyIn : BaseActivity() {
         popupWindow!!.setBackgroundDrawable(ColorDrawable(0x00000000))
         popupWindow!!.isClippingEnabled = false
         popupWindow!!.showAsDropDown(bar)
-        val pay1 = v.findViewById<LinearLayout>(R.id.pay1)
-        val pay2 = v.findViewById<LinearLayout>(R.id.pay2)
-        val pay3 = v.findViewById<LinearLayout>(R.id.pay3)
-        val pay4 = v.findViewById<LinearLayout>(R.id.pay4)
-        val imP1 = v.findViewById<ImageView>(R.id.im_p1)
-        val imP2 = v.findViewById<ImageView>(R.id.im_p2)
-        val imP3 = v.findViewById<ImageView>(R.id.im_p3)
-        val imP4 = v.findViewById<ImageView>(R.id.im_p4)
-        when(i){
-            1 -> imP1.visibility = View.VISIBLE
-            2 -> imP2.visibility = View.VISIBLE
-            3 -> imP3.visibility = View.VISIBLE
-            4 -> imP4.visibility = View.VISIBLE
-        }
-        pay1.setOnClickListener {
-            type = 1
-            im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn,R.drawable.img_yl))
-            pay_name.text = "银联支付"
+        val list = v.findViewById<MyListView>(R.id.list)
+        list.adapter = adapter0
+        list.setOnItemClickListener { parent, view, position, id ->
+            for (i in 0 until dataList.size){
+                dataList[i].is_enable = "0"
+            }
+            dataList[position].is_enable = "1"
+            x.image().bind(im_pay,  dataList[position].img)
+            pay_name.text =  dataList[position].para_name
             popupWindow!!.dismiss()
-
-        }
-        pay2.setOnClickListener {
-            type = 2
-            im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn,R.drawable.img_kef))
-            pay_name.text = "农行快e付"
-            popupWindow!!.dismiss()
-
-        }
-        pay3.setOnClickListener {
-            type = 3
-            im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn,R.drawable.img_wx))
-            pay_name.text = "微信支付"
-            popupWindow!!.dismiss()
-
-        }
-        pay4.setOnClickListener {
-            type = 4
-            im_pay.setImageDrawable(ContextCompat.getDrawable(this@MoneyIn,R.drawable.img_zfb))
-            pay_name.text = "支付宝支付"
-            popupWindow!!.dismiss()
-
         }
     }
 

@@ -42,10 +42,11 @@ public class ShengAdapter extends CommonAdapter<AreaBean.ArealistBean> {
             if(shengId.equals(str)){
                 mk.encode(Tool.INSTANCE.getChooseArea(),"全部");
                 mk.encode(Tool.INSTANCE.getArea_ID(),"");
-                fragment.hide3();
+                fragment.hide4("全部");
             }else {
                 mk.encode(Tool.INSTANCE.getChooseArea(),bean.getArea_name());
                 mk.encode(Tool.INSTANCE.getArea_ID(),bean.getArea_id());
+                fragment.hide3(bean.getArea_name());
                 searchArea(bean);
             }
         });
@@ -59,7 +60,7 @@ public class ShengAdapter extends CommonAdapter<AreaBean.ArealistBean> {
                         SearchAreaBean bean = JSONObject.parseObject(data, new TypeReference<SearchAreaBean>() {});
                         int number = bean.getMessage().get(0).getNumber();
                         if(number == 0){
-                            fragment.hide3();
+                            fragment.hide4(areaBean.getArea_name());
                         }else {
                             fragment.hide1(areaBean.getArea_name());
                         }

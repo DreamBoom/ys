@@ -86,7 +86,7 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
          tab.getTabAt(viewpager.currentItem)!!.select()
             mk.encode(Tool.tab,"${viewpager.currentItem}")
             if(viewpager.currentItem == 0){
-                mk.encode(Tool.tab,"")
+                mk.encode(Tool.tab,"全部")
             }else{
                 mk.encode(Tool.tab,"${viewpager.currentItem}")
             }

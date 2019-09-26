@@ -21,93 +21,16 @@
             android:text="选择支付方式"
             android:textColor="@color/black3"
             android:textSize="@dimen/size14" />
-
-        <LinearLayout
-            android:id="@+id/pay1"
+        <ImageView
+            android:background="@color/grey"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/pay_item"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/img_yl"
-                android:text="  银联支付" />
-
-            <ImageView
-                android:id="@+id/im_p1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:visibility="gone"
-                android:background="@drawable/img_dui" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pay2"
+            android:layout_height="0.5dp"/>
+        <card.com.allcard.view.MyListView
+            android:id="@+id/list"
+            android:scrollbars="none"
+            android:dividerHeight="0.5dp"
+            android:divider="@color/grey"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/pay_item"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/img_kef"
-                android:text="  农行支付" />
-
-            <ImageView
-                android:id="@+id/im_p2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/img_dui"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pay3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/pay_item"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/img_wx"
-                android:text="  微信支付" />
-
-            <ImageView
-                android:id="@+id/im_p3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/img_dui"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pay4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/pay_item"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/img_zfb"
-                android:text="  支付宝支付" />
-
-            <ImageView
-                android:id="@+id/im_p4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/img_dui"
-                android:visibility="gone" />
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>

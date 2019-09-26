@@ -39,6 +39,7 @@ public class ShiAdapter extends CommonAdapter<AreaBean.ArealistBean> {
             shiId = bean.getArea_id();
             mk.encode(Tool.INSTANCE.getChooseArea(),bean.getArea_name());
             mk.encode(Tool.INSTANCE.getArea_ID(),bean.getArea_id());
+            fragment.hide3(bean.getArea_name());
             searchArea(bean);
         });
     }
@@ -51,7 +52,7 @@ public class ShiAdapter extends CommonAdapter<AreaBean.ArealistBean> {
                 SearchAreaBean bean = JSONObject.parseObject(data, new TypeReference<SearchAreaBean>() {});
                 int number = bean.getMessage().get(0).getNumber();
                 if(number == 0){
-                    fragment.hide3();
+                    fragment.hide4(areaBean.getArea_name());
                 }else {
                     fragment.hide2(areaBean.getArea_name());
                 }

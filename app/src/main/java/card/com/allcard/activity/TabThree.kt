@@ -15,7 +15,7 @@ import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_tab_three.*
 import java.util.*
 
-class TabThree : BaseActivity(){
+class TabThree : BaseActivity() {
     private var adapter: HospitalAdapter? = null
     private var noData: View? = null
     private var noWeb: View? = null
@@ -25,7 +25,7 @@ class TabThree : BaseActivity(){
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
-        area.setOnClickListener { utils.startActivityForResult(ChooseArea::class.java,REQUETCODE_SEARCH) }
+        area.setOnClickListener { utils.startActivityForResult(ChooseArea::class.java, REQUETCODE_SEARCH) }
         noData = utils.getView(R.layout.no_data)
         noWeb = utils.getView(R.layout.view_no_web)
         refresh.setEnableOverScrollDrag(false)
@@ -36,11 +36,13 @@ class TabThree : BaseActivity(){
         adapter = HospitalAdapter(this, dataList, R.layout.scrow_view_item)
         listView!!.adapter = adapter
         refresh.autoRefresh()
-//        search.setOnClickListener {
-        searchName = et_search.text.toString().trim()
-//            utils.hideSoftKeyboard()
-//        }
+        search.setOnClickListener {
+            searchName = et_search.text.toString().trim()
+            refresh.autoRefresh()
+            utils.hideSoftKeyboard()
+        }
     }
+
     fun getList() {
         val areaId = mk.decodeString(Tool.Area_ID, "")
         HttpRequestPort.instance.hospitalList("1",
@@ -83,9 +85,9 @@ class TabThree : BaseActivity(){
         when (requestCode) {
             REQUETCODE_SEARCH -> {
                 val name = data!!.getStringExtra("name")
-                if(TextUtils.isEmpty(name)){
+                if (TextUtils.isEmpty(name)) {
                     area.text = "全部"
-                }else{
+                } else {
                     area.text = name
                 }
                 getList()
