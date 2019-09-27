@@ -106,7 +106,7 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                 } else {
                     switch (data.getId()) {
                         case "17":
-                            utils.startActivity(MoneyOfCard.class);
+                            getType1();
                             break;
                         case "20":
                             utils.startActivity(MoneyInfo.class);
@@ -139,9 +139,6 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
             } else {
                 //跳转不需要登录也能浏览的网页
                 switch (data.getId()) {
-                    case "17":
-                        utils.startActivity(MoneyOfCard.class);
-                        break;
                     case "20":
                         utils.startActivity(MoneyInfo.class);
                         break;
@@ -153,9 +150,6 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                         break;
                     case "60":
                         utils.startActivity(CardOne.class);
-                        break;
-                    case "54":
-                        utils.startActivity(FrozenIn.class);
                         break;
                     case "15":
                         utils.startActivity(MoneyIn.class);
@@ -192,6 +186,31 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                             bun.putString("type", "1");
                             utils.startActivityBy(FrozenIn.class, bun);
                         }
+                    }
+                }
+            }
+
+            @Override
+            public void onError(@NotNull Throwable throwable, boolean b) {
+                super.onError(throwable, b);
+                utils.showToast("加载失败，请稍后重试");
+            }
+        });
+    }
+
+    void getType1() {
+        MMKV mk = BaseActivity.Companion.getMk();
+        String userId = mk.decodeString(Tool.INSTANCE.getUSER_ID(), "");
+        HttpRequestPort.Companion.getInstance().getAccState(userId, new BaseHttpCallBack(act) {
+            @Override
+            public void onSuccess(@NotNull String s) {
+                super.onSuccess(s);
+                AccStateBean bean = JSONObject.parseObject(s, new TypeReference<AccStateBean>() {});
+                if (bean.getResult().equals("0")) {
+                    if (bean.getAccstate().equals("0")) {
+                        utils.startActivity(MoneyOfCard.class);
+                    } else {
+                        utils.showToast("您的账户已冻结,无法查询");
                     }
                 }
             }

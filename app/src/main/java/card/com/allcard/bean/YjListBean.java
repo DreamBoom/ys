@@ -7,7 +7,7 @@ public class YjListBean {
     /**
      * result : 0
      * message : 成功
-     * cardsList : [{"trDate":"2019-09-11","amt":"1","cardState":"1","cardNo":"4753002019050103307"}]
+     * cardsList : [{"trDate":"2019-09-21","amt":"1","cardState":"1","cardNo":"4753002019050103539"}]
      */
 
     private String result;
@@ -40,10 +40,10 @@ public class YjListBean {
 
     public static class CardsListBean {
         /**
-         * trDate : 2019-09-11
+         * trDate : 2019-09-21
          * amt : 1
          * cardState : 1
-         * cardNo : 4753002019050103307
+         * cardNo : 4753002019050103539
          */
 
         private String trDate;

@@ -101,7 +101,13 @@ class TabFourActivity : BaseActivity() {
         pay.setOnClickListener {
             when {
                 !noUserId() -> when (mk.decodeString(Tool.IS_AUTH, "")) {
-                    "0" ->  startActivity<MoneyIn>()
+                    "0" -> {
+                        val bundle = Bundle()
+                        bundle.putString("cardNo","")
+                        bundle.putString("nickName", "")
+                        bundle.putString("flag","0")
+                        utils.startActivityBy(MoneyIn::class.java,bundle)
+                    }
                     "1" -> utils.showToast("请先进行实名认证")
                 }
             }
@@ -126,7 +132,14 @@ class TabFourActivity : BaseActivity() {
         ll_ye.setOnClickListener {
             when {
                 !noUserId() -> when (mk.decodeString(Tool.IS_AUTH, "")) {
-                    "0" -> startActivity<MoneyOfCard>()
+                    "0" -> {
+                        val dj = mk.decodeString(Tool.ZHDJ, "")
+                        if(dj == "2"){
+                            utils.showToast("账户已冻结，无法查询")
+                        }else{
+                            startActivity<MoneyOfCard>()
+                        }
+                    }
                     "1" -> utils.showToast("请先进行实名认证")
                 }
             }

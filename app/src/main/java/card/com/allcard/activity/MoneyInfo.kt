@@ -36,16 +36,6 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
     private  var trCode = "all"
     var adapter: MoneyAdapter? = null
     private val dataList = ArrayList<MoneyBean.DetailListBeanX>()
-    private fun date(): String {
-        if (dat == "") {
-            dat = if (Calendar.getInstance().get(Calendar.MONTH) + 1 < 10) {
-                "${Calendar.getInstance().get(Calendar.YEAR)}-0${Calendar.getInstance().get(Calendar.MONTH) + 1}"
-            } else {
-                "${Calendar.getInstance().get(Calendar.YEAR)}-${Calendar.getInstance().get(Calendar.MONTH) + 1}"
-            }
-        }
-        return dat
-    }
 
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)

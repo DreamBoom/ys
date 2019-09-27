@@ -121,6 +121,8 @@ class HttpRequestPort {
     private val searchYuEOther = "AppLoginController/searchYuEOther.do"
     private val deleteCard = "AppLoginController/deleteCard.do"
     private val baseData = "AppLoginController/baseData.do"
+    private val acc = "AppLoginController/accountrecharge.do"
+    private val accother = "AppLoginController/accountrechargeForother.do"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -432,9 +434,11 @@ class HttpRequestPort {
         httpUtil[BASE_URL + searchYj, map, callBack]
     }
     /**余额 */
-    fun searchYuE(user_id: String, callBack: BaseHttpCallBack) {
+    fun searchYuE(user_id: String, cardNo: String, flag: String, callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        map!!["flag"] = flag
         httpUtil[BASE_URL + searchYuE, map, callBack]
     }
 
@@ -454,9 +458,12 @@ class HttpRequestPort {
     }
 
     /**押金明细查询 */
-    fun cardDeposit(user_id: String, callBack: BaseHttpCallBack) {
+    fun cardDeposit(user_id: String,cardNo: String,flag: String, nickName:String,callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        map!!["nickName"] = nickName
+        map!!["flag"] = flag
         httpUtil[BASE_URL + cardDeposit, map, callBack]
     }
 
@@ -668,5 +675,29 @@ class HttpRequestPort {
         map = HashMap()
         map!!["param"] = param
         httpUtil[BASE_URL + baseData, map, callBack]
+    }
+    /**账户充值 本人 非实名卡*/
+    fun acc(user_id: String,cardNo: String,acptType: String,payWay: String,
+            amt: String,flag: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["cardNo"] = cardNo
+        map!!["acptType"] = acptType
+        map!!["payWay"] = payWay
+        map!!["amt"] = amt
+        map!!["flag"] = flag
+        httpUtil[BASE_URL + acc, map, callBack]
+    }
+    /**账户充值 家庭管理*/
+    fun accOther(user_id: String,acptType: String,payWay: String,amt: String,
+                 flag: String,nickName: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["user_id"] = user_id
+        map!!["acptType"] = acptType
+        map!!["payWay"] = payWay
+        map!!["amt"] = amt
+        map!!["flag"] = flag
+        map!!["nickName"] = nickName
+        httpUtil[BASE_URL + accother, map, callBack]
     }
 }

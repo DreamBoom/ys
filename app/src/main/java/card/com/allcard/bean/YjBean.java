@@ -4,12 +4,14 @@ public class YjBean {
 
     /**
      * result : 0
-     * amt : 0
+     * ye_amt : 0
+     * yj_amt : 0.03
      * message : 成功
      */
 
     private String result;
-    private String amt;
+    private String ye_amt;
+    private String yj_amt;
     private String message;
 
     public String getResult() {
@@ -20,12 +22,20 @@ public class YjBean {
         this.result = result;
     }
 
-    public String getAmt() {
-        return amt;
+    public String getYe_amt() {
+        return ye_amt;
     }
 
-    public void setAmt(String amt) {
-        this.amt = amt;
+    public void setYe_amt(String ye_amt) {
+        this.ye_amt = ye_amt;
+    }
+
+    public String getYj_amt() {
+        return yj_amt;
+    }
+
+    public void setYj_amt(String yj_amt) {
+        this.yj_amt = yj_amt;
     }
 
     public String getMessage() {

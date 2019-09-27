@@ -22,7 +22,12 @@ class MoneyOfCard : BaseActivity() {
     override fun initView() {
         utils.changeStatusBlack(false, window)
         close.setOnClickListener { finish() }
-        pay.setOnClickListener { startActivity<MoneyIn>()  }
+        pay.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo","")
+            bundle.putString("nickName", "")
+            bundle.putString("flag","0")
+            utils.startActivityBy(MoneyIn::class.java,bundle) }
         getMoney.setOnClickListener {  }
         xz.setOnClickListener { startActivity<EdOfMoney>() }
         mx.setOnClickListener {
@@ -32,7 +37,13 @@ class MoneyOfCard : BaseActivity() {
             bundle.putString("is_other", "0")
             utils.startActivityBy(MoneyInfo::class.java, bundle)
         }
-        kyj.setOnClickListener { startActivity<MoneyOfCash>() }
+        kyj.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo","")
+            bundle.putString("nickName","")
+            bundle.putString("flag","0")
+            utils.startActivityBy(MoneyOfCash::class.java,bundle)
+      }
         val realName = mk.decodeString(Tool.REAL_NAME, "")
         name.text = realName
         val m = mk.decodeString(Tool.oneMoney, "0")
@@ -51,38 +62,18 @@ class MoneyOfCard : BaseActivity() {
                 .setIgnoreGif(false)
                 .setCircular(true).build()
         x.image().bind(header, img, options)
-        //查询卡押金
-        val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.searchYj(userId, object : BaseHttpCallBack(this) {
-            @SuppressLint("SetTextI18n")
-            override fun success(data: String) {
-                super.success(data)
-                val bean = JSONObject.parseObject(data, object : TypeReference<YjBean>() {})
-                val status = bean.result
-                if (status == "0") {
-                    yj.text = "  ${bean.amt}元"
-                    money.text = utils.save2(bean.amt.toDouble())
-                }
-            }
-
-            override fun onFinished() {
-                super.onFinished()
-                utils.hindProgress()
-            }
-        })
     }
 
     private fun initData() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.searchYuE(userId, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.searchYuE(userId,"","0", object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<YjBean>() {})
-                val status = bean.result
-                if (status == "0") {
-                    money.text = bean.amt
-                    money.text = utils.save2(bean.amt.toDouble())
+                if ( bean.result == "0") {
+                    money.text = utils.save2(bean.ye_amt.toDouble())
+                    yj.text = "  ${utils.save2(bean.yj_amt.toDouble())}元"
                 }
             }
 

@@ -103,6 +103,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
         );
         money.setOnClickListener(v -> {
             Intent intent = new Intent(act, PayMoney.class);
+            intent.putExtra("cardNo","");
             intent.putExtra("name", data.getNickName());
             intent.putExtra("num", data.getCertNo());
             act.startActivity(intent);

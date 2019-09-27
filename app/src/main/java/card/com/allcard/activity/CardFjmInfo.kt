@@ -68,6 +68,14 @@ class CardFjmInfo : BaseActivity() {
             bundle.putString("name", name1)
             utils.startActivityBy(ChangeCardPass::class.java, bundle)
         }
+        yue.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo", cardNo)
+            bundle.putString("name", name1)
+            bundle.putString("num", certNo)
+            utils.startActivityBy(PayMoney::class.java, bundle)
+        }
+
         right_menu.setOnClickListener { startActivity<BindCardTwo>() }
         delete.setOnClickListener { delete() }
     }
@@ -85,7 +93,6 @@ class CardFjmInfo : BaseActivity() {
                     serviceGuide.addAll(bean.cardList)
                     rl_zwwl.visibility = View.GONE
                     delete.visibility = View.VISIBLE
-                    name.text = mk.decodeString(Tool.REAL_NAME, "")
                     val certNo = serviceGuide[0].certNo
                     val s = certNo.substring(0, 3) + "****" + certNo.substring(certNo.length - 4, certNo.length)
                     phone.text = s
@@ -93,6 +100,7 @@ class CardFjmInfo : BaseActivity() {
                     address.text = "非记名市民卡   1/" + serviceGuide.size
                     time.text = serviceGuide[0].createTime
                     name.text = serviceGuide[0].clientName
+                    name1 = serviceGuide[0].clientName
                     cardNo = serviceGuide[0].cardNo
                     when (serviceGuide[0].cardStatus) {
                         "0" -> state.text = "未启用"

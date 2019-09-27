@@ -70,5 +70,4 @@ class BindCardTwo : BaseActivity() {
             }
         })
     }
-
 }

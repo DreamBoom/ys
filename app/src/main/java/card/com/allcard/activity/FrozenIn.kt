@@ -84,26 +84,24 @@ class FrozenIn : BaseActivity() {
         tv_djs!!.visibility = View.VISIBLE
         val ph = mk.decodeString(Tool.PHONE, "")
         //请求网络发送验证码
-        if(type == "0"){
-            HttpRequestPort.instance.sandMessage(ph, "d", object : BaseHttpCallBack(this) {})
-        }else{
-            HttpRequestPort.instance.sandMessage(ph, "j", object : BaseHttpCallBack(this) {})
-        }
-
+        HttpRequestPort.instance.sandMessage(ph, "d", object : BaseHttpCallBack(this) {})
     }
 
     private fun check(){
         utils.getProgress(this)
         val ph = mk.decodeString(Tool.PHONE, "")
         val trim = et_code.text.toString().trim()
-        if(type == "0"){
             HttpRequestPort.instance.checkCode(ph, trim,"d", object : BaseHttpCallBack(this) {
                 override fun success(data: String) {
                     super.success(data)
                     val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                     val status = bean.result
                     if (status == "0") {
-                        frozenIn()
+                        if(type == "0") {
+                            frozenIn()
+                        }else{
+                            frozenOut()
+                        }
                     } else {
                         utils.showToast("验证码错误")
                     }
@@ -114,26 +112,6 @@ class FrozenIn : BaseActivity() {
                     utils.hindProgress()
                 }
             })
-        }else{
-            HttpRequestPort.instance.checkCode(ph, trim, "j", object : BaseHttpCallBack(this) {
-                override fun success(data: String) {
-                    super.success(data)
-                    val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                    val status = bean.result
-                    if (status == "0") {
-                        frozenOut()
-                    } else {
-                        utils.showToast(bean.message)
-                    }
-                }
-
-                override fun onError(throwable: Throwable, b: Boolean) {
-                    super.onError(throwable, b)
-                    utils.showToast("请求失败")
-                    utils.hindProgress()
-                }
-            })
-        }
     }
 
     fun frozenIn(){

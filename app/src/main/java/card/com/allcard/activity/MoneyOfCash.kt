@@ -17,10 +17,17 @@ class MoneyOfCash : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_money_of_cash
     private val dataList = ArrayList<YjListBean.CardsListBean>()
     var adapt: YjAdapter? = null
+    var cardNo = ""
+    var nickName = ""
+    var flag = ""
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "卡押金"
+        val bundle = intent.extras
+        cardNo = intent.getStringExtra("cardNo")
+        nickName = intent.getStringExtra("nickName")
+        flag = intent.getStringExtra("flag")
         close.setOnClickListener { finish() }
         refresh.setEnableOverScrollDrag(false)
         refresh.setOnRefreshListener {
@@ -34,7 +41,7 @@ class MoneyOfCash : BaseActivity() {
 
     private fun getList() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.cardDeposit(userId, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.cardDeposit(userId, cardNo,flag,nickName,object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)
@@ -42,6 +49,7 @@ class MoneyOfCash : BaseActivity() {
                 val status = bean.result
                 if (status == "0") {
                     dataList.addAll(bean.cardsList)
+                    adapt!!.notifyDataSetChanged()
                 }
             }
 
