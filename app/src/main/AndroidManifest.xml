@@ -67,7 +67,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".activity.MoneyIn"/>
+        <!-- 该行及上面一行处理9.0系统  三方BUG https请求 -->
+        <activity android:name=".activity.MoneyIn"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.PayBind" />
         <activity android:name=".activity.PayMoney" />
         <activity android:name=".activity.CardPro" />
@@ -81,7 +85,7 @@
         <activity android:name=".activity.Register" />
         <activity
             android:name=".activity.ForgetPayPass"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" /> <!-- 该行及上面一行处理9.0系统  三方BUG https请求 -->
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
             android:name=".activity.PayPassChangeActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />

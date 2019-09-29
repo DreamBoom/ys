@@ -33,7 +33,6 @@ public class MoneyTwoAdapter extends CommonAdapter<MoneyBean.DetailListBeanX.Det
             case "2834":
                 holder.setImageResource(R.id.type, R.drawable.img_yemx_zhtx);
                 holder.setText(R.id.money,"+ "+s);
-                holder.setTextColor(R.id.money,R.color.black3);
                 break;
             case "2835":
             case "1610":

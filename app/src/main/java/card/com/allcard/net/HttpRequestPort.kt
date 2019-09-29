@@ -123,6 +123,7 @@ class HttpRequestPort {
     private val baseData = "AppLoginController/baseData.do"
     private val acc = "AppLoginController/accountrecharge.do"
     private val accother = "AppLoginController/accountrechargeForother.do"
+    private val isSuccess = "AppLoginController/is_success.do"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -511,11 +512,12 @@ class HttpRequestPort {
     }
 
     /**交易参数查询*/
-    fun cardParamList(user_id: String, callBack: BaseHttpCallBack) {
+    fun cardParamList(user_id: String,flag: String,cardNo: String,nickName: String, callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
-        map!!["is_other"] = ""
-        map!!["nickName"] = ""
+        map!!["cardNo"] = cardNo
+        map!!["flag"] = flag
+        map!!["nickName"] = nickName
         httpUtil[BASE_URL + cardParamList, map, callBack]
     }
 
@@ -700,4 +702,12 @@ class HttpRequestPort {
         map!!["nickName"] = nickName
         httpUtil[BASE_URL + accother, map, callBack]
     }
+
+    /**账户充值 家庭管理*/
+    fun isSuccess(actionNo: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["actionNo"] = actionNo
+        httpUtil[BASE_URL + isSuccess, map, callBack]
+    }
+
 }

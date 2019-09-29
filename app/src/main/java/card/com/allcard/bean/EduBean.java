@@ -6,11 +6,13 @@ public class EduBean {
 
     /**
      * result : 0
+     * balance : 0.01
      * message : 成功
-     * cardsList : [{"upper_limit_recharge":"200","cumulative_withdrawal_cash":"2000","daily_consumption_amount":"5000","in_date":"Wed Jun 26 11:01:23 CST 2019","single_consumption_amount":"1000000","limit_single_withdrawal":"1000","lower_limit_cash_drawing":"100","number_withdrawals":"1000","account_balance_ceiling":"500000","accumulative_recharge_amount":"6000","oper_id":"admin","client_id":"0000000000"},{"upper_limit_recharge":"200","cumulative_withdrawal_cash":"2000","daily_consumption_amount":"5000","in_date":"Wed Jun 26 11:01:23 CST 2019","single_consumption_amount":"1000000","limit_single_withdrawal":"1000","lower_limit_cash_drawing":"100","number_withdrawals":"1000","account_balance_ceiling":"500000","accumulative_recharge_amount":"6000","oper_id":"admin","client_id":"0000000000"}]
+     * cardsList : [{"upper_limit_recharge":"200","cumulative_withdrawal_cash":"2000","daily_consumption_amount":"5000","in_date":"Wed Jun 26 11:01:23 CST 2019","single_consumption_amount":"1000000","limit_single_withdrawal":"1000","lower_limit_cash_drawing":"100","number_withdrawals":"1000","account_balance_ceiling":"500000","accumulative_recharge_amount":"6000","oper_id":"admin","client_id":"0000000000"},{"in_date":"Thu Sep 19 14:47:05 CST 2019","single_consumption_amount":"1200","account_balance_ceiling":"500000","oper_id":"9106273720","client_id":"1001278112"}]
      */
 
     private String result;
+    private String balance;
     private String message;
     private List<CardsListBean> cardsList;
 
@@ -20,6 +22,14 @@ public class EduBean {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
     public String getMessage() {

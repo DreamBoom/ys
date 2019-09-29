@@ -15,7 +15,7 @@ public class EditInputFilter implements InputFilter {
     /**
      * 最大数字
      */
-    public static final int MAX_VALUE = 900000;
+    public static  double MAX_VALUE = 1000;
 
     /**
      * 小数点后的数字的位数

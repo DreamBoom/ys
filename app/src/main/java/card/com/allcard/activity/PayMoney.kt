@@ -28,11 +28,6 @@ class PayMoney : BaseActivity() {
         forWho.text = "为 $name1 一键充值"
         name.text = name1
         num.text = num1
-        if (TextUtils.isEmpty(cardNo)) {
-            initJt()
-        } else {
-            initFjm()
-        }
         rl_cz.setOnClickListener {
             if (TextUtils.isEmpty(cardNo)) {
                 val bundle = Bundle()
@@ -128,5 +123,13 @@ class PayMoney : BaseActivity() {
     // wait_pay.setOnClickListener { startActivity<MoneyInfo>() }
 //     xz.setOnClickListener { startActivity<EdOfMoney>() }
 
+    override fun onResume() {
+        super.onResume()
+        if (TextUtils.isEmpty(cardNo)) {
+            initJt()
+        } else {
+            initFjm()
+        }
+    }
 
 }

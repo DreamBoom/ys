@@ -60,20 +60,6 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
-
-    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_BACK) {
-            if (urlNow.contains("95516")) {
-                showPop()
-                showPop!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
-            } else {
-                agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
-            }
-            return true
-        }
-        return super.dispatchKeyEvent(event)
-    }
-
     inner class ChangeIcon {
         @JavascriptInterface
         fun toLogin() {
@@ -208,7 +194,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     private var showPop: PopupWindow? = null
-    fun showPop() {
+    private fun showPop() {
         val view = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)
         val sure = view.findViewById<TextView>(R.id.sure)
         val cancel = view.findViewById<TextView>(R.id.cancel)
@@ -222,11 +208,42 @@ class WebViewActivity : BaseActivity() {
         val dw = ColorDrawable(0x00000000)
         showPop!!.setBackgroundDrawable(dw)
         sure.setOnClickListener {
-            agentWeb!!.back()
             showPop!!.dismiss()
+            finish()
         }
         cancel.setOnClickListener {
             showPop!!.dismiss()
         }
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!urlNow.contains("wxinindex")) {
+                if (!urlNow.contains("wxindex")) {
+                    if (MyNetUtils.isNetworkConnected(this)) {
+                        if (urlNow.contains("95516.com/pages/wap/reg.html")
+                                || urlNow.contains("user.95516.com/pages/misc/newAgree")
+                                || urlNow.contains("!result?r=")
+                                || urlNow.contains("95516.com/pages/wap/findpwd")) {
+                            //处理银联广告
+                            agentWeb!!.back()
+                        } else {
+                            if (urlNow.contains("95516")
+                                    ||urlNow.contains("render.alipay")) {
+                                //处理银联支付高等无法返回
+                                showPop()
+                                showPop!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
+                            } else {
+                                agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
+                            }
+                        }
+                    } else {
+                        agentWeb!!.back()
+                    }
+                }
+            }
+            return false
+        }
+        return super.dispatchKeyEvent(event)
     }
 }
