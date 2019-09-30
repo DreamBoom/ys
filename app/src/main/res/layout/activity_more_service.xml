@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".activity.MoreServiceActivity">
 
     <ImageView
@@ -16,7 +17,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -52,8 +52,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
         <!-- app:tabIndicatorColor 指示器（字体下面的那一个横）显示颜色 -->
         <!-- app:tabSelectedTextColor 选中的字体颜色 -->
         <!-- app:tabTextColor 未选中的字体颜色 -->
@@ -88,11 +87,23 @@
         android:layout_height="0.5dp"
         android:background="@color/grey" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:layout_weight="1"
-        android:background="@color/white"/>
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            app:srlAccentColor="@color/black"
+            app:srlClassicsSpinnerStyle="Scale" />
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/listView"
+            android:dividerHeight="0dp"
+            android:divider="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

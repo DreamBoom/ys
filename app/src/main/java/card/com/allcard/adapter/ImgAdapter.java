@@ -74,6 +74,9 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                         utils.startActivity(LoginActivity.class);
                     } else {
                         switch (datas.getId()){
+                            case "16":
+                                utils.showToast("敬请期待");
+                                break;
                             case "17":
                                 getType1();
                                 break;
@@ -98,7 +101,11 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                                 utils.startActivityBy(ChangeQuestion.class,bundle1);
                                 break;
                             case "15":
-                                utils.startActivity(MoneyIn.class);
+                                Bundle b= new Bundle();
+                                b.putString("cardNo","");
+                                b.putString("nickName", "");
+                                b.putString("flag","0");
+                                utils.startActivityBy(MoneyIn.class,b);
                                 break;
                             case "61":
                                 utils.startActivity(CardInfo.class);
@@ -119,9 +126,6 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                             break;
                         case "60":
                             utils.startActivity(CardOne.class);
-                            break;
-                        case "15":
-                            utils.startActivity(MoneyIn.class);
                             break;
                     }
                 }

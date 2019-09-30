@@ -39,21 +39,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
+            android:id="@+id/im"
             android:background="@drawable/img_yemx_cz"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_width="44dp"
-            android:layout_height="44dp"/>
+            android:layout_marginTop="35dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
         <TextView
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="19dp"
             android:paddingBottom="20dp"
             android:layout_gravity="center_horizontal"
-            android:text="联机账户充值-来自微信"
             android:textColor="@color/black3"
             android:textSize="@dimen/size17" />
         <TextView
+            android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+0.00"
@@ -80,10 +82,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 充值成功"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
@@ -102,10 +104,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv4"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 2019-09-04 08:22:01"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
@@ -123,10 +125,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv5"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 张先生"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
@@ -144,16 +146,16 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv6"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
+                android:text="联机账户"
                 android:layout_height="wrap_content"
-                android:text=" 联机账户"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginBottom="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -165,41 +167,22 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv7"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 45123333544"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="25dp"
-                android:text="账户余额"
-                android:textColor="@color/grey91"
-                android:textSize="@dimen/size13" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:paddingStart="25dp"
-                android:layout_height="wrap_content"
-                android:text=" ￥0"
-                android:textColor="@color/black3"
-                android:textSize="@dimen/size13" />
-        </LinearLayout>
         <ImageView
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@color/grey"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -212,10 +195,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv8"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 兰考县第一医院"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
@@ -233,10 +216,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv9"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 账户充值"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>
@@ -254,10 +237,10 @@
                 android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/tv10"
                 android:layout_width="wrap_content"
                 android:paddingStart="25dp"
                 android:layout_height="wrap_content"
-                android:text=" 微信充值"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
         </LinearLayout>

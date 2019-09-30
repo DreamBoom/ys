@@ -35,6 +35,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         payAdapter = PayAdapter(this, dataList, R.layout.pay_item)
         right_menu.visibility = View.VISIBLE
         right_menu.text = "+新增"
+        right_menu.textSize = 13f
         right_menu.setOnClickListener {
            // list.setSelection(list.bottom)
             list.smoothScrollToPosition(list.bottom)

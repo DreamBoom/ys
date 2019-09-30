@@ -20,7 +20,7 @@
 
             <card.com.allcard.view.PercentRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="191dp"
                 android:background="@drawable/img_me_bg">
 
                 <ImageView
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_marginStart="13dp"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="150dp"
                 android:layout_marginEnd="13dp"
                 android:background="@drawable/bg_user"
                 tools:ignore="MissingPrefix">
@@ -319,11 +319,11 @@
                     android:textSize="@dimen/size13" />
 
                 <TextView
+                    android:id="@+id/phone_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginEnd="25dp"
-                    android:text="400-083-2531"
                     android:textColor="@color/grey91"
                     android:textSize="@dimen/size13" />
             </LinearLayout>

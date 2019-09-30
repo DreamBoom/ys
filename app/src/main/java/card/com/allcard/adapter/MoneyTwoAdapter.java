@@ -1,7 +1,8 @@
 package card.com.allcard.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
 import java.util.List;
 
@@ -28,27 +29,33 @@ public class MoneyTwoAdapter extends CommonAdapter<MoneyBean.DetailListBeanX.Det
             case "2830":
                 holder.setImageResource(R.id.type, R.drawable.img_yemx_xf);
                 holder.setText(R.id.money,"- "+s);
-                holder.setTextColor(R.id.money,R.color.black3);
                 break;
             case "2834":
                 holder.setImageResource(R.id.type, R.drawable.img_yemx_zhtx);
+                holder.setTextColor(R.id.money, ContextCompat.getColor(mContext,R.color.blue));
                 holder.setText(R.id.money,"+ "+s);
                 break;
             case "2835":
             case "1610":
                 holder.setImageResource(R.id.type, R.drawable.img_yemx_tx);
                 holder.setText(R.id.money,"- "+s);
-                holder.setTextColor(R.id.money,R.color.black3);
                 break;
             default:
                 holder.setImageResource(R.id.type, R.drawable.img_yemx_cz);
+                holder.setTextColor(R.id.money,ContextCompat.getColor(mContext,R.color.blue));
                 holder.setText(R.id.money,"+ "+s);
                 break;
         }
         holder.getView(R.id.item).setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setClass(mContext, MoneyOfDeal.class);
-            mContext.startActivity(intent);
+            Bundle bundle = new Bundle();
+            bundle.putString("img",datas.getTrCode());
+            bundle.putString("tv1",datas.getTrCodeName());
+            bundle.putString("tv2",s);
+            bundle.putString("tv4",datas.getTrDate());
+            bundle.putString("tv5",datas.getAccName());
+            bundle.putString("tv7",datas.getTrActionNo());
+            bundle.putString("tv8",datas.getBizName());
+            utils.startActivityBy( MoneyOfDeal.class,bundle);
         });
     }
 

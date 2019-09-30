@@ -17,6 +17,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import card.com.allcard.R
+import card.com.allcard.bean.PhoneBean
 import card.com.allcard.bean.UserDataBean
 import card.com.allcard.bean.VersionBean
 import card.com.allcard.getActivity.MyApplication
@@ -51,7 +52,7 @@ class TabFourActivity : BaseActivity() {
     private var options: ImageOptions? = null
     private var phone: String? = null
     private var exitPop: PopupWindow? = null
-    private var m = 0
+    private var phoneKf = ""
     override fun initView() {
         utils.changeStatusBlack(false, window)
         options = ImageOptions.Builder()
@@ -63,20 +64,6 @@ class TabFourActivity : BaseActivity() {
                 .setUseMemCache(true)
                 .setIgnoreGif(false)
                 .setCircular(true).build()
-
-//        moneyShow.setOnClickListener {
-//            if (m == 0) {
-//                m = 1
-//                moneyShow.setImageDrawable(ContextCompat.getDrawable(this@TabFourActivity,R.drawable.icon_eye_close))
-//                oneMoney.text = "****"
-//            } else {
-//                m = 0
-//                moneyShow.setImageDrawable(ContextCompat.getDrawable(this@TabFourActivity,R.drawable.icon_eye_open))
-//                val m = mk.decodeString(Tool.oneMoney, "0")
-//                oneMoney.text = utils.save2(m.toDouble())
-//            }
-//        }
-
         im_icon.setOnClickListener {
             when {
                 !noUserId() -> startActivity<UserInfoActivity>()
@@ -112,7 +99,9 @@ class TabFourActivity : BaseActivity() {
                 }
             }
         }
-        getMoney.setOnClickListener {  }
+        getMoney.setOnClickListener {
+            utils.showToast("敬请期待")
+        }
 
         ll_mx.setOnClickListener {
             when {
@@ -242,6 +231,19 @@ class TabFourActivity : BaseActivity() {
         } else {
             ll_exit.visibility = View.GONE
         }
+
+        //获取客服电话
+        HttpRequestPort.instance.baseData("telPhone", object : BaseHttpCallBack(this) {
+            @SuppressLint("SetTextI18n")
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<PhoneBean>() {})
+                if (bean.result == "0") {
+                    phoneKf = bean.list[0].para_value
+                    phone_num.text = bean.list[0].para_value
+                }
+            }
+        })
     }
 
     private fun noUserId(): Boolean {
@@ -315,7 +317,7 @@ class TabFourActivity : BaseActivity() {
         val dw = ColorDrawable(0x00000000)
         popup!!.setBackgroundDrawable(dw)
         sure.setOnClickListener {
-            call("400-083-2531")
+            call(phoneKf)
         }
         cancel.setOnClickListener {
             popup!!.dismiss()

@@ -10,11 +10,8 @@ import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-
 import org.xutils.x;
-
 import java.util.List;
-
 import card.com.allcard.R;
 import card.com.allcard.activity.WebPostOther;
 import card.com.allcard.bean.ServiceListBean;
@@ -27,6 +24,7 @@ public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, B
         super(layoutResId, data);
         this.act =act;
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder holder, ServiceListBean.ListBean datas) {

@@ -105,6 +105,9 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                     act.startActivity(intent);
                 } else {
                     switch (data.getId()) {
+                        case "16":
+                           utils.showToast("敬请期待");
+                            break;
                         case "17":
                             getType1();
                             break;
@@ -132,7 +135,11 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                             utils.startActivityBy(ChangeQuestion.class, bundle);
                             break;
                         case "15":
-                            utils.startActivity(MoneyIn.class);
+                            Bundle b= new Bundle();
+                            b.putString("cardNo","");
+                            b.putString("nickName", "");
+                            b.putString("flag","0");
+                            utils.startActivityBy(MoneyIn.class,b);
                             break;
                     }
                 }
@@ -150,9 +157,6 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                         break;
                     case "60":
                         utils.startActivity(CardOne.class);
-                        break;
-                    case "15":
-                        utils.startActivity(MoneyIn.class);
                         break;
                 }
             }

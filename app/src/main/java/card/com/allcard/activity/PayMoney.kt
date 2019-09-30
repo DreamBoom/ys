@@ -84,8 +84,8 @@ class PayMoney : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<OtherMoneyBean>() {})
                 if (bean.result == "0") {
-                    money.text = bean.amt.toDouble().toString()
-                    yj_money.text = "${bean.yj.toDouble()}元"
+                    money.text = utils.save2(bean.amt.toDouble())
+                    yj_money.text = "${utils.save2(bean.yj.toDouble())}元"
                 } else {
                     utils.showToast("修改失败，请重试")
                 }
@@ -107,8 +107,8 @@ class PayMoney : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<YjBean>() {})
                 if (bean.result == "0") {
-                    money.text = bean.ye_amt.toDouble().toString()
-                    yj_money.text = "${bean.yj_amt.toDouble()}元"
+                    money.text =  utils.save2(bean.ye_amt.toDouble())
+                    yj_money.text = "${utils.save2(bean.yj_amt.toDouble())}元"
                 } else {
                     utils.showToast("修改失败，请重试")
                 }
