@@ -317,9 +317,10 @@
                         android:textSize="@dimen/size14" />
 
                     <TextView
+                        android:id="@+id/ads"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="您的卡已到达[兰考县]卡管理中心！"
+                        android:text="您的卡已到达[]卡管理中心！"
                         android:textColor="@color/grey75"
                         android:textSize="@dimen/size14" />
 

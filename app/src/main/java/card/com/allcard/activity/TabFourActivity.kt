@@ -122,12 +122,7 @@ class TabFourActivity : BaseActivity() {
             when {
                 !noUserId() -> when (mk.decodeString(Tool.IS_AUTH, "")) {
                     "0" -> {
-                        val dj = mk.decodeString(Tool.ZHDJ, "")
-                        if(dj == "2"){
-                            utils.showToast("账户已冻结，无法查询")
-                        }else{
-                            startActivity<MoneyOfCard>()
-                        }
+                        startActivity<MoneyOfCard>()
                     }
                     "1" -> utils.showToast("请先进行实名认证")
                 }
@@ -294,9 +289,6 @@ class TabFourActivity : BaseActivity() {
         JPushInterface.deleteAlias(this, 0)
         JPushInterface.clearAllNotifications(this@TabFourActivity)
         ll_exit!!.visibility = View.GONE
-        if (WebActivity2.mAgentWeb != null) {
-            WebActivity2.mAgentWeb!!.urlLoader.loadUrl(HttpRequestPort.H5_BASE_URL + "weixin/wxindexdd.jsp?fixparam=android&user_id=")
-        }
         AgentWebConfig.clearDiskCache(this)
         MainActivity.instance!!.tabHost!!.currentTab = 0
     }

@@ -20,7 +20,7 @@
         android:layout_gravity="left|center_vertical"
         android:layout_marginTop="25dp"
         android:paddingStart="10dp"
-        android:src="@drawable/back_w"
+        android:src="@drawable/back_b"
         tools:ignore="RtlHardcoded" />
 
     <TextView

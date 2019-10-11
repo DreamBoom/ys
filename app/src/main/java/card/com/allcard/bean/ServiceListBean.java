@@ -5,14 +5,32 @@ import java.util.List;
 public class ServiceListBean {
 
     /**
+     * result : 0
+     * img_httpurl : http://222.138.67.71:19533
      * message : 成功
-     * list : [{"basedata":{"id":"16","img":"","in_date":"2019-05-09 15:59:57.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"16","in_date":"2019-05-09 15:59:57.0","is_del":"1","serimg":"http://192.168.12.9:8080/uploads/20190509/15592956.jpg","title":"中美贸易磋商：愿谈则谈，要打便打！","type":"4","user_id":"1"},{"basedata":{"id":"15","img":"","in_date":"2019-05-09 11:11:25.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"15","in_date":"2019-05-09 11:11:25.0","is_del":"1","serimg":"/uploads/20190509/144206112.jpg","title":"中方关于美方拟升级关税措施的声明","type":"4","user_id":"1"},{"basedata":{"id":"14","img":"","in_date":"2019-05-09 10:57:14.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"14","in_date":"2019-05-09 10:57:14.0","is_del":"1","serimg":"/uploads/20190509/144221918.jpg","title":"甲骨文创始人曾扬言遏制中国：培养这么多工程师还得了","type":"4","user_id":"1"}]
-     * status : 0
+     * list : [{"basedata":{"id":"11","img":"","in_date":"2019-10-10 08:50:15.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"11","in_date":"2019-10-10 08:50:15.0","is_del":"1","serimg":"/uploads/20191010/9c4bdd5f-0a17-466c-982e-8c227b50f04b.jpg","title":"测试05","type":"4","user_id":"1"},{"basedata":{"id":"10","img":"","in_date":"2019-10-10 08:50:02.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"},"content":"","id":"10","in_date":"2019-10-10 08:50:02.0","is_del":"1","serimg":"/uploads/20191010/22024276-e4cf-4438-bd2f-fdf11d87f9fd.jpg","title":"测试04","type":"4","user_id":"1"},{"basedata":{"id":"9","img":"","in_date":"2019-10-10 08:49:36.0","is_enable":"","para_code":"","para_key":"政策法规","para_name":"","para_value":"","user_id":"1"},"content":"","id":"9","in_date":"2019-10-10 08:49:36.0","is_del":"1","serimg":"/uploads/20191010/5ac3d3f7-76b9-4a40-94fe-afe3cfc3da2a.jpg","title":"测试03","type":"3","user_id":"1"}]
      */
 
+    private String result;
+    private String img_httpurl;
     private String message;
-    private String status;
     private List<ListBean> list;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getImg_httpurl() {
+        return img_httpurl;
+    }
+
+    public void setImg_httpurl(String img_httpurl) {
+        this.img_httpurl = img_httpurl;
+    }
 
     public String getMessage() {
         return message;
@@ -20,14 +38,6 @@ public class ServiceListBean {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public List<ListBean> getList() {
@@ -40,13 +50,13 @@ public class ServiceListBean {
 
     public static class ListBean {
         /**
-         * basedata : {"id":"16","img":"","in_date":"2019-05-09 15:59:57.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"}
+         * basedata : {"id":"11","img":"","in_date":"2019-10-10 08:50:15.0","is_enable":"","para_code":"","para_key":"热点问答","para_name":"","para_value":"","user_id":"1"}
          * content :
-         * id : 16
-         * in_date : 2019-05-09 15:59:57.0
+         * id : 11
+         * in_date : 2019-10-10 08:50:15.0
          * is_del : 1
-         * serimg : http://192.168.12.9:8080/uploads/20190509/15592956.jpg
-         * title : 中美贸易磋商：愿谈则谈，要打便打！
+         * serimg : /uploads/20191010/9c4bdd5f-0a17-466c-982e-8c227b50f04b.jpg
+         * title : 测试05
          * type : 4
          * user_id : 1
          */
@@ -135,9 +145,9 @@ public class ServiceListBean {
 
         public static class BasedataBean {
             /**
-             * id : 16
+             * id : 11
              * img :
-             * in_date : 2019-05-09 15:59:57.0
+             * in_date : 2019-10-10 08:50:15.0
              * is_enable :
              * para_code :
              * para_key : 热点问答

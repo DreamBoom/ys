@@ -4,13 +4,15 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
 import android.support.annotation.RequiresApi
-import android.util.Log
+import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
 import android.widget.LinearLayout
 import card.com.allcard.R
 import card.com.allcard.getActivity.MyApplication
+import card.com.allcard.tools.Tool
+import card.com.allcard.utils.LogUtils
 import card.com.allcard.utils.MyNetUtils
 import com.just.agentweb.AgentWeb
 import com.pawegio.kandroid.runDelayed
@@ -22,12 +24,22 @@ class WebOther : BaseActivity() {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetJavaScriptEnabled")
     override fun layoutId(): Int = R.layout.activity_web_other
-
+    private var before = ""
+    private var bytes: ByteArray? = null
     override fun initView() {
         MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
+        val userId = mk.decodeString(Tool.USER_ID, "")
         url = intent.getStringExtra("url")
+        before = url.substringBefore("?")
+        val end = url.substringAfter("?")
+        val end1 = if (TextUtils.isEmpty(end)) {
+            "fixparam=android&user_id=$userId"
+        } else {
+            "$end&fixparam=android&user_id=$userId"
+        }
+        bytes = end1.toByteArray()
         assert(web_view != null)
         agentWeb = AgentWeb.with(this)
                 .setAgentWebParent(web_view!!, LinearLayout.LayoutParams(-1, -1))
@@ -35,7 +47,7 @@ class WebOther : BaseActivity() {
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.view_no_web, -1)
                 .createAgentWeb()
-                .go(url)
+                .go(null)
         agentWeb!!.jsInterfaceHolder.addJavaObject("ChangeIcon", ChangeIcon())
         if (Build.VERSION.SDK_INT >= 21) {
             val webSettings = agentWeb!!.agentWebSettings.webSettings
@@ -43,6 +55,8 @@ class WebOther : BaseActivity() {
         }
         if (!MyNetUtils.isNetworkConnected(this)) {
             utils.showToast("请检查是否连接网络,或连接的网络未登录")
+        }else{
+            agentWeb!!.urlLoader.postUrl(before, bytes)
         }
         no_web.setOnClickListener {
             agentWeb!!.urlLoader.loadUrl(url)
@@ -50,9 +64,15 @@ class WebOther : BaseActivity() {
     }
 
     inner class ChangeIcon {
+        @JavascriptInterface
+        fun goBack() {
+            if (agentWeb!!.back()) {
+                agentWeb!!.back()
+            }
+        }
 
         @JavascriptInterface
-        fun close() {
+        fun goClose() {
             finish()
         }
 
@@ -80,7 +100,7 @@ class WebOther : BaseActivity() {
     private val mWebViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            Log.i("WebOther=====>", url)
+            LogUtils.i("webOther===>",url)
             runDelayed(1500) {
                 no_web.visibility = View.GONE
             }
@@ -105,8 +125,6 @@ class WebOther : BaseActivity() {
             val errorCode = error!!.errorCode
             // 断网或者网络连接超时
             if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_TIMEOUT) {
-                //view.loadUrl("about:blank"); //避免出现默认的错误界面
-                //下面为农行跳转放行
                     no_web.visibility = View.VISIBLE
                     utils.showToast("请检查是否连接网络,或连接的网络未登录")
             }

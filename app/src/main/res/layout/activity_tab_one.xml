@@ -1,28 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/et_grey"
-    android:scrollbars="none"
-    android:id="@+id/refresh"
-    tools:context="card.com.allcard.activity.TabOne">
+    android:layout_height="match_parent">
 
-    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_height="90dp"
-        android:background="@color/blue"
-        app:srlAccentColor="@color/white"
-        app:srlClassicsSpinnerStyle="Scale" />
+        android:layout_height="wrap_content"
+        android:background="@color/et_grey"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="0dp"
-        android:divider="@color/white" />
+        <ImageView
+            android:id="@+id/kar"
+            android:layout_width="match_parent"
+            android:layout_height="184dp" />
 
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <card.com.allcard.view.MyGridView
+            android:id="@+id/im_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_pop"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:numColumns="4"
+            android:paddingTop="10dp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:transcriptMode="alwaysScroll"
+            android:verticalSpacing="2dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="3dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="20dp"
+                android:text="服务指南"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size15"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/service_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:text="更多  >"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pull_view"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
+

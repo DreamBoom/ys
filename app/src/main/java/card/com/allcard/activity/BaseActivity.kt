@@ -29,13 +29,6 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun layoutId(): Int
     abstract fun initView()
 
-    override fun onPause() {
-        super.onPause()
-        if (utils.toast != null) {
-            utils.toast!!.cancel()
-        }
-    }
-
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         if (ev.action == MotionEvent.ACTION_DOWN) {
             // 判断连续点击事件时间差

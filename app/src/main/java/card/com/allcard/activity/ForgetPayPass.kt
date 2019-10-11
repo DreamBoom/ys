@@ -120,6 +120,7 @@ class ForgetPayPass : BaseActivity() {
                         bundle.putInt("type", 0)
                         bundle.putString("cardNo", "")
                         utils.startActivityBy(PayPassChangeActivity::class.java, bundle)
+                        finish()
                     } else {
                         utils.showToast("验证码错误")
                     }
@@ -127,6 +128,11 @@ class ForgetPayPass : BaseActivity() {
                 override fun onError(throwable: Throwable, b: Boolean) {
                     super.onError(throwable, b)
                     utils.showToast("验证码验证失败")
+                    utils.hindProgress()
+                }
+
+                override fun onFinished() {
+                    super.onFinished()
                     utils.hindProgress()
                 }
             })

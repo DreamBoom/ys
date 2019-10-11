@@ -36,6 +36,8 @@ public class MoneyAdapter extends CommonAdapter<MoneyBean.DetailListBeanX> {
         holder.setText(R.id.zc,"支出:"+s1);
         holder.setText(R.id.sr,"收入:"+s2);
         if(datas.getDetailList().size()>0){
+            holder.getView(R.id.noData).setVisibility(View.GONE);
+            holder.getView(R.id.list).setVisibility(View.VISIBLE);
             MyListView list = holder.getView(R.id.list);
             MoneyTwoAdapter adapter = new MoneyTwoAdapter(mContext,datas.getDetailList(),R.layout.money_item);
             list.setAdapter(adapter);

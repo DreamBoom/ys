@@ -14,8 +14,8 @@
         android:background="@drawable/smk_fw" >
         <ImageView
             android:id="@+id/close"
-            android:src="@drawable/back_w"
-            android:paddingTop="25dp"
+            android:src="@drawable/back_b"
+            android:paddingTop="35dp"
             android:paddingStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -1,10 +1,11 @@
 package card.com.allcard.activity
 
 import android.content.Intent
+import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.View
 import card.com.allcard.R
-import card.com.allcard.adapter.HospitalAdapter
+import card.com.allcard.adapter.TabThreeAdapter
 import card.com.allcard.bean.HospitalList
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
@@ -12,11 +13,12 @@ import card.com.allcard.tools.Tool
 import card.com.allcard.tools.Tool.REQUETCODE_SEARCH
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
+import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.activity_tab_three.*
 import java.util.*
 
 class TabThree : BaseActivity() {
-    private var adapter: HospitalAdapter? = null
+    private var adapter: TabThreeAdapter? = null
     private var noData: View? = null
     private var noWeb: View? = null
     var searchName = ""
@@ -33,8 +35,11 @@ class TabThree : BaseActivity() {
             refresh.finishRefresh()
             getList()
         }
-        adapter = HospitalAdapter(this, dataList, R.layout.scrow_view_item)
+        adapter = TabThreeAdapter(this, R.layout.scrow_view_item,dataList)
         listView!!.adapter = adapter
+        listView.layoutManager = LinearLayoutManager(this@TabThree)
+        //动画效果
+        adapter!!.openLoadAnimation(BaseQuickAdapter.EMPTY_VIEW)
         refresh.autoRefresh()
         search.setOnClickListener {
             searchName = et_search.text.toString().trim()
@@ -49,30 +54,14 @@ class TabThree : BaseActivity() {
                 "100", areaId, searchName, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                val hospitalList = JSONObject.parseObject(data, object : TypeReference<HospitalList>() {})
-                val pharmacy = hospitalList.hospital
+                val bean = JSONObject.parseObject(data, object : TypeReference<HospitalList>() {})
                 dataList.clear()
-                if (pharmacy.size > 0) {
-                    if (listView.headerViewsCount > 0) {
-                        listView.removeHeaderView(noData)
-                    }
-                    dataList.addAll(pharmacy)
-                    adapter!!.notifyDataSetChanged()
-                } else {
-                    if (listView.headerViewsCount == 0) {
-                        listView.addHeaderView(noData)
-                    }
-                }
+                setData(bean.hospital)
             }
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
-                dataList.clear()
-                adapter!!.notifyDataSetChanged()
-                if (listView.headerViewsCount > 0) {
-                    listView.removeAllViews()
-                }
-                listView.addHeaderView(noWeb)
+                setData(null)
             }
         })
     }
@@ -92,6 +81,17 @@ class TabThree : BaseActivity() {
                 }
                 getList()
             }
+        }
+    }
+
+    private fun setData(data: List<HospitalList.HospitalBean>?) {
+        if ( adapter!!.headerLayout != null) {
+            adapter!!.removeAllHeaderView()
+        }
+        adapter!!.setNewData(data)
+        when {
+            data == null -> adapter!!.addHeaderView(utils.getView(this, R.layout.view_no_web))
+            data.size < 1 -> adapter!!.addHeaderView(utils.getView(this, R.layout.no_data))
         }
     }
 }

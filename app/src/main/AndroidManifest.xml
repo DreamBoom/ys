@@ -68,10 +68,11 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme">
         <!-- 该行及上面一行处理9.0系统  三方BUG https请求 -->
-        <activity android:name=".activity.MoneyIn"
+        <activity
+            android:name=".activity.MoneyIn"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.PayBind" />
         <activity android:name=".activity.PayMoney" />
         <activity android:name=".activity.CardPro" />
@@ -139,9 +140,6 @@
             android:name=".activity.TabOne"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WebPostOther"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen">
@@ -151,16 +149,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--        <activity-->
+        <!--            android:name=".activity.WebPost"-->
+        <!--            android:exported="true"-->
+        <!--            android:hardwareAccelerated="true"-->
+        <!--            android:launchMode="singleTop"-->
+        <!--            android:screenOrientation="portrait" />-->
+
+        <activity
+            android:name=".activity.WebNew"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.WebOther"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.WebPost"
-            android:exported="true"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.ChangeQuestion2"
             android:screenOrientation="portrait" />
@@ -228,10 +233,6 @@
         <activity
             android:name=".activity.ChangePasswordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.WebActivity2"
-            android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SignLock"

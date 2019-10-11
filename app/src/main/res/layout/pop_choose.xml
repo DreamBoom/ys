@@ -13,19 +13,18 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="45dp">
 
             <ImageView
                 android:id="@+id/c_pop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="10dp"
                 android:padding="10dp"
-                android:src="@drawable/icon_back"
+                android:src="@drawable/back_h"
                 tools:ignore="RtlHardcoded" />
 
-1            <TextView
+         <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

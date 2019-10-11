@@ -1,6 +1,8 @@
 package card.com.allcard.bean;
 
-public class CardProBean {
+import java.io.Serializable;
+
+public class CardProBean implements Serializable {
 
     /**
      * cert_no : 410804199203180053

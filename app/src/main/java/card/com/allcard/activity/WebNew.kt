@@ -4,25 +4,25 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
 import android.support.annotation.RequiresApi
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
 import android.widget.LinearLayout
 import card.com.allcard.R
 import card.com.allcard.getActivity.MyApplication
-import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.utils.MyNetUtils
 import com.just.agentweb.AgentWeb
 import com.pawegio.kandroid.runDelayed
-import kotlinx.android.synthetic.main.activity_web_post_other.*
+import kotlinx.android.synthetic.main.activity_web_other.*
 
-class WebPostOther : BaseActivity() {
-    override fun layoutId(): Int = R.layout.activity_web_post_other
+class WebNew : BaseActivity() {
     private var agentWeb: AgentWeb? = null
     private var url = ""
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetJavaScriptEnabled")
+    override fun layoutId(): Int = R.layout.activity_web_other
+    private var before = ""
+    private var bytes: ByteArray? = null
     override fun initView() {
         MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
@@ -35,31 +35,39 @@ class WebPostOther : BaseActivity() {
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.view_no_web, -1)
                 .createAgentWeb()
-                .go(null)
+                .go(url)
         agentWeb!!.jsInterfaceHolder.addJavaObject("ChangeIcon", ChangeIcon())
         if (Build.VERSION.SDK_INT >= 21) {
             val webSettings = agentWeb!!.agentWebSettings.webSettings
             webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
         if (!MyNetUtils.isNetworkConnected(this)) {
-            utils.showToast("请检查是否连接了商城网络,或连接的网络未登录")
-        } else{
-            val end =url.substringAfter("?")
-            val bytes = end.toByteArray()
-            agentWeb!!.urlLoader.postUrl(HttpRequestPort.H5_BASE_URL + "WeiLoginController/wxservicede.do", bytes)
-            Log.i("WebPostOther=====>", HttpRequestPort.H5_BASE_URL + "WeiLoginController/wxservicede.do"+end)
+            utils.showToast("请检查是否连接网络,或连接的网络未登录")
         }
         no_web.setOnClickListener {
-            val end = url.substringAfter("?")+"?"
-            val bytes = end.toByteArray()
-            agentWeb!!.urlLoader.postUrl(HttpRequestPort.H5_BASE_URL + "WeiLoginController/wxservicede.do", bytes)
-            Log.i("WebPostOther=====>", HttpRequestPort.H5_BASE_URL + "WeiLoginController/wxservicede.do"+end)
+            agentWeb!!.urlLoader.loadUrl(url)
         }
     }
+
     inner class ChangeIcon {
         @JavascriptInterface
-        fun close() {
+        fun goBack() {
+            if (agentWeb!!.back()) {
+                agentWeb!!.back()
+            }
+        }
+
+        @JavascriptInterface
+        fun goClose() {
             finish()
+        }
+
+        @JavascriptInterface
+        fun goFour() {
+            web_view!!.post { MainActivity.instance!!.tabHost!!.currentTab = 3 }
+            runDelayed(500){
+                finish()
+            }
         }
     }
 
@@ -92,7 +100,7 @@ class WebPostOther : BaseActivity() {
             }
             // 在这里显示自定义错误页
             no_web.visibility = View.VISIBLE
-            utils.showToast("请检查是否连接了商城网络,或连接的网络未登录")
+            utils.showToast("请检查是否连接网络,或连接的网络未登录")
         }
 
         @RequiresApi(api = 23)
@@ -102,14 +110,12 @@ class WebPostOther : BaseActivity() {
             val errorCode = error!!.errorCode
             // 断网或者网络连接超时
             if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_TIMEOUT) {
-                //view.loadUrl("about:blank"); //避免出现默认的错误界面
-                //下面为农行跳转放行
-                no_web.visibility = View.VISIBLE
-                utils.showToast("请检查是否连接了商城网络,或连接的网络未登录")
+                    no_web.visibility = View.VISIBLE
+                    utils.showToast("请检查是否连接网络,或连接的网络未登录")
             }
             if (request!!.isForMainFrame) {
                 no_web.visibility = View.VISIBLE
-                utils.showToast("请检查是否连接了商城网络,或连接的网络未登录")
+                utils.showToast("请检查是否连接网络,或连接的网络未登录")
             }
         }
 
@@ -135,4 +141,5 @@ class WebPostOther : BaseActivity() {
         agentWeb!!.webLifeCycle.onDestroy()
         super.onDestroy()
     }
+
 }

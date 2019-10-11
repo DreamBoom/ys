@@ -45,6 +45,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
             addItem.isFocusableInTouchMode = true
             addItem.requestFocus()
             addItem.visibility = View.VISIBLE
+            no_data.visibility = View.GONE
         }
 
         add_sure.setOnClickListener {
@@ -62,7 +63,9 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         add_cancel.setOnClickListener {
             utils.hideSoftKeyboard()
             list.isEnabled = true
-            addItem.visibility = View.GONE }
+            addItem.visibility = View.GONE
+            refresh.autoRefresh()
+        }
         //设置左滑菜单
         val creator = SwipeMenuCreator { menu ->
             // create "delete" item
@@ -106,10 +109,10 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
                     if(bean.memberlinkList.size>0){
                         no_data.visibility = View.GONE
                         dataList.addAll(bean.memberlinkList)
-                        payAdapter!!.notifyDataSetChanged()
                     }else{
                         no_data.visibility = View.VISIBLE
                     }
+                    payAdapter!!.notifyDataSetChanged()
                 }
             }
 

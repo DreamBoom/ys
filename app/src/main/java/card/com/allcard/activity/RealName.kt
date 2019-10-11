@@ -46,7 +46,7 @@ class RealName : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<RealNameBean>() {})
                 if(bean.result == "0"){
                     name.text = bean.clientName
-                    val cert = bean.certNo.substring(0, 3) + "********" +
+                    val cert = bean.certNo.substring(0, 6) + "********" +
                             bean.certNo.substring(bean.certNo.length-4,bean.certNo.length)
                     num.text = cert
                     tv_real_name.text = bean.clientName

@@ -25,8 +25,6 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import card.com.allcard.R
 import card.com.allcard.activity.WebOther
-import card.com.allcard.activity.WebPost
-import card.com.allcard.activity.WebPostOther
 import card.com.allcard.activity.WebViewActivity
 import java.io.UnsupportedEncodingException
 import java.lang.ref.WeakReference
@@ -84,15 +82,13 @@ class ActivityUtils {
         fragmentWeakReference = WeakReference(fragment)
     }
 
-    var toast: Toast? = null
+
     @SuppressLint("ShowToast")
     fun showToast(msg: CharSequence) {
         val activity = activity ?: return
-        if(toast == null){
-            toast = Toast.makeText(activity, "", Toast.LENGTH_SHORT)
-        }
-        toast!!.setText(msg)
-        toast!!.show()
+        val toast = Toast.makeText(activity, "", Toast.LENGTH_SHORT)
+        toast.setText(msg)
+        toast.show()
     }
 
     fun showToast(resId: Int) {
@@ -123,14 +119,6 @@ class ActivityUtils {
         activity.startActivity(intent)
     }
 
-    fun startPostOther(url: String) {
-        val activity = activity ?: return
-        val intent = Intent(activity, WebPostOther::class.java)
-        intent.putExtra("url", url)
-        activity.startActivity(intent)
-    }
-
-
     fun startWeb(url: String) {
         val activity = activity ?: return
         val intent = Intent(activity, WebViewActivity::class.java)
@@ -138,12 +126,6 @@ class ActivityUtils {
         activity.startActivity(intent)
     }
 
-    fun startPostWeb(url: String) {
-        val activity = activity ?: return
-        val intent = Intent(activity, WebPost::class.java)
-        intent.putExtra("url", url)
-        activity.startActivity(intent)
-    }
 
     fun startActivityForResult(clazz: Class<out Activity>, requestcode: Int) {
         val activity = activity ?: return

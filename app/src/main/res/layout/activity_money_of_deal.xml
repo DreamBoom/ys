@@ -15,7 +15,7 @@
     <ImageView
         android:layout_below="@+id/bar"
         android:id="@+id/close"
-        android:src="@drawable/icon_back"
+        android:src="@drawable/back_h"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_gravity="left|center_vertical"

@@ -15,69 +15,60 @@
 
     <include layout="@layout/title" />
 
-    <LinearLayout
-        android:id="@+id/account_login_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="55dp"
+            android:text="姓名"
+            android:textColor="@color/grey75"
+            android:textSize="@dimen/size14" />
         <EditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:background="@null"
-            android:cursorVisible="true"
-            android:gravity="center|start"
-            android:hint="请输入姓名"
-            android:imeOptions="actionNext"
-            android:textColor="@color/black"
+            android:hint="请输入真实姓名"
+            android:maxLength="4"
+            android:singleLine="true"
             android:textCursorDrawable="@null"
-            android:textSize="15sp" />
+            android:textSize="@dimen/size13" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:background="@color/grey" />
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="身份证"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/grey75"
+            android:textSize="@dimen/size14" />
         <EditText
             android:id="@+id/et_num"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:background="@null"
-            android:gravity="center|start"
             android:hint="请输入身份证号"
-            android:imeOptions="actionDone"
-            android:maxLength="19"
-            android:textColor="@color/black"
+            android:maxLength="20"
+            android:singleLine="true"
             android:textCursorDrawable="@null"
-            android:textSize="15sp" />
-
+            android:textSize="@dimen/size13" />
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:background="@color/grey" />
-    </LinearLayout>
+
     <Button
         android:id="@+id/bt_next"
         style="?android:attr/borderlessButtonStyle"

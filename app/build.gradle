@@ -90,8 +90,9 @@ dependencies {
 
     //webview
     implementation 'com.just.agentweb:agentweb:4.0.2'
+    //下拉刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
-
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     //加载中
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
     implementation 'com.wang.avi:library:2.1.3'

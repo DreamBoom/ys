@@ -30,7 +30,6 @@ class Register : BaseActivity() {
     private var mHandler: Handler? = null
     private var captchaTime = 60
     private var key: Int = 1
-    var click = 1
     val deviceId = utils.getDeviceId(this)
     private val phoneName = utils.PhoneName(this)
     private val buildVersion = utils.BuildVersion(this)
@@ -41,11 +40,8 @@ class Register : BaseActivity() {
         mHandler = Handler()
         login_password.addTextChangedListener(passWatcher(login_password))
         login_phone!!.addTextChangedListener(PhoneWatcher(login_phone))
-        zc_clear.setOnClickListener {
-            zc_clear.visibility = View.GONE
-            login_phone.setText("".toCharArray(), 0, "".length)
-        }
         close.setOnClickListener { finish() }
+        send_code.isEnabled = false
         bt_register.setOnClickListener {
             val name = login_phone!!.text.toString()
             if (TextUtils.isEmpty(name)) {
@@ -71,17 +67,9 @@ class Register : BaseActivity() {
             checkCode(name, login_code!!.text.toString().trim())
         }
         send_code.setOnClickListener {
-            val name = login_phone!!.text.toString()
-            if (click == 0) {
                 send_code.text = "重新获取"
                 getNum()
                 getCaptchaTime()
-            } else {
-                if (!TextUtils.isEmpty(name) && RegexUtils.verifyUsername(name) == RegexUtils.VERIFY_SUCCESS) {
-                    utils.showToast("该手机号已存在")
-                }
-            }
-
         }
         tv_agree.setOnClickListener { utils.startOtherWeb(HttpRequestPort.H5_BASE_URL + "weixin/registrationAgreement.jsp?fixparam=android") }
     }
@@ -173,13 +161,12 @@ class Register : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<RegisterBean>() {})
                 val status = bean.result
-                click = if (status == "1") {
+              if (status == "1") {
                     //改手机号已存在
                     utils.showToast("该手机号已经注册")
-                    1
                 } else {
                     // 改手机号不存在
-                    0
+                  send_code.isEnabled = true
                 }
             }
         })
@@ -284,22 +271,15 @@ class Register : BaseActivity() {
         }
 
         override fun afterTextChanged(editable: Editable) {
-            val y = 1
-            if (editText.text.length < y) {
-                zc_clear.visibility = View.GONE
-            } else {
-                zc_clear.visibility = View.VISIBLE
-            }
-
             val i = 11
             if (login_phone!!.text.length < i) {
-                click = 1
+                send_code.isEnabled = false
                 return
             }
             if (login_phone!!.text.length == 11) {
                 if (RegexUtils.verifyUsername(login_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
                     utils.showToast("您输入的手机号不正确!")
-                    click = 0
+                    send_code.isEnabled = false
                     return
                 }
             }

@@ -104,7 +104,7 @@ class Map : AppCompatActivity() , LocationSource, RouteSearch.OnRouteSearchListe
             //获取两点之间距离
             CoordinateConverter.calculateLineDistance(mPoint, mPoint1)
             val distance = CoordinateConverter.calculateLineDistance(mPoint, mPoint1) / 1000
-            hospital_adr.text = "$address0    距您:${distance.toInt()} KM"
+            hospital_adr.text = "$address0\n距您:${distance.toInt()} KM"
             // tv.setText("距离:" + distance.toInt() + "KM")
             dw.setOnClickListener {
                 aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(la, lg), 18f))

@@ -42,8 +42,8 @@
             android:gravity="center|start"
             android:maxLength="9"
             android:imeOptions="actionNext"
-            android:inputType="number"
-            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:textColor="@color/grey91"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/size17" />
         <ImageView
@@ -96,8 +96,8 @@
             android:maxLength="9"
             android:gravity="center|start"
             android:imeOptions="actionNext"
-            android:inputType="number"
-            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:textColor="@color/grey91"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/size17" />
         <ImageView

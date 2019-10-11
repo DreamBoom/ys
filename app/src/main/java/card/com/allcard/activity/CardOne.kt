@@ -17,39 +17,46 @@ class CardOne : BaseActivity() {
     override fun initView() {
         utils.changeStatusBlack(false, window)
         close.setOnClickListener { finish() }
-        jm.setOnClickListener { jm()  }
+        jm.setOnClickListener {
+            val ss = mk.decodeString(Tool.IS_AUTH, "")
+            if (ss == "1") {
+                utils.showToast("请先进行实名认证")
+            } else {
+                jm()
+            }
+        }
         fjm.setOnClickListener { startActivity<CardFjmInfo>() }
     }
 
-        private fun jm() {
-            utils.getProgress(this)
-            val userId = mk.decodeString(Tool.USER_ID, "")
-            HttpRequestPort.instance.smCardList(userId, object : BaseHttpCallBack(this) {
-                @SuppressLint("SetTextI18n")
-                override fun success(data: String) {
-                    super.success(data)
-                    val bean = JSONObject.parseObject(data, object : TypeReference<JmBeam>() {})
-                    if ("0" == bean.result) {
-                        if(bean.cardsList.size>0){
-                            startActivity<CardJmInfo>()
-                        }else{
-                            utils.showToast("您的账户当前未绑定记名市民卡")
-                        }
+    private fun jm() {
+        utils.getProgress(this)
+        val userId = mk.decodeString(Tool.USER_ID, "")
+        HttpRequestPort.instance.smCardList(userId, object : BaseHttpCallBack(this) {
+            @SuppressLint("SetTextI18n")
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<JmBeam>() {})
+                if ("0" == bean.result) {
+                    if (bean.cardsList.size > 0) {
+                        startActivity<CardJmInfo>()
                     } else {
-                        utils.showToast(bean.message)
+                        utils.showToast("您的账户当前未绑定记名市民卡")
                     }
+                } else {
+                    utils.showToast(bean.message)
                 }
+            }
 
-                override fun onError(throwable: Throwable, b: Boolean) {
-                    super.onError(throwable, b)
-                    utils.showToast("请求失败，请稍后重试")
-                }
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("请求失败，请稍后重试")
+            }
 
-                override fun onFinished() {
-                    super.onFinished()
-                    utils.hindProgress()
-                }
-            })
-        }
+            override fun onFinished() {
+                super.onFinished()
+                utils.hindProgress()
+            }
+        })
+    }
 
 }

@@ -79,18 +79,8 @@
             android:maxLength="11"
             android:textColor="@color/black3"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/size14" />
+            android:textSize="@dimen/size13" />
 
-        <ImageView
-            android:id="@+id/zc_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
-            android:padding="10dp"
-            android:src="@drawable/dl_close"
-            android:visibility="gone" />
 
         <View
             android:id="@+id/line1"
@@ -130,7 +120,7 @@
                 android:maxLength="16"
                 android:textColor="@color/black3"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/size14" />
+                android:textSize="@dimen/size13" />
 
             <TextView
                 android:id="@+id/send_code"
@@ -139,7 +129,7 @@
                 android:layout_gravity="center"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_forget"
                 android:gravity="center"
                 android:text="获取验证码"
                 android:textSize="@dimen/sp_12"

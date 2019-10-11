@@ -16,6 +16,7 @@ import card.com.allcard.tools.Tool.RESULTCODE_SERVICE
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_more_service.*
+import kotlinx.android.synthetic.main.title.*
 import java.util.*
 
 class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
@@ -30,6 +31,7 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
+        address.text = "服务指南"
         noData = utils.getView(R.layout.no_data)
         noWeb = utils.getView(R.layout.view_no_web)
         HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {
@@ -45,7 +47,8 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
                     }
                     tab.tabMode = TabLayout.MODE_SCROLLABLE
                     tab.tabGravity = TabLayout.GRAVITY_FILL
-                    tab.getTabAt(0)!!.select()//默认选中
+                    tab.getTabAt(0)!!.select()
+                    //默认选中
                     tab.addOnTabSelectedListener(this@MoreServiceActivity)
                 }
             }

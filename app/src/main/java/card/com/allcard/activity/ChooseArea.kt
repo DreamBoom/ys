@@ -45,6 +45,8 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
             setResult(Tool.RESULTCODE_SUCCESS, intent)
             finish()
         }
+        mk.encode(Tool.chooseArea, "全部")
+        mk.encode(Tool.Area_ID, "")
         getSheng()
         tab.setUnboundedRipple(true)//点击的动画
         tab.isTabIndicatorFullWidth = true//下划线指示器的宽度不要填充完

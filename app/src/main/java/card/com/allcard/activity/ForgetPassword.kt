@@ -42,27 +42,24 @@ class ForgetPassword : BaseActivity() {
         mHandler = Handler()
         from = intent.getIntExtra("from", 0)
         close.setOnClickListener {
-            if(from == 0){
+            if (from == 0) {
                 MyApplication.instance.removeAllActivity()
                 utils.startActivity(LoginActivity::class.java)
                 finish()
-            }else{
+            } else {
                 finish()
             }
-          }
+        }
+        tvGet.isEnabled = false
         tvGet.setOnClickListener {
             val phone = et_phone!!.text.toString().trim()
             if (TextUtils.isEmpty(phone) || phone == "输入手机号") {
                 utils.showToast("请输入手机号")
                 return@setOnClickListener
             }
-
-            if ( click == 1 ) {
-                getNum()
-                getCaptchaTime()
-            }else{
-                utils.showToast("该手机号不存在！")
-            }
+            tvGet.text = "重新获取"
+            getNum()
+            getCaptchaTime()
         }
         img_ok.setOnClickListener {
             val phone = et_phone!!.text.toString().trim()
@@ -77,7 +74,7 @@ class ForgetPassword : BaseActivity() {
                 return@setOnClickListener
             }
 
-            if (pass.length<6 || pass == "设置登录密码") {
+            if (pass.length < 6 || pass == "设置登录密码") {
                 utils.showToast("密码长度为6-12位")
                 return@setOnClickListener
             }
@@ -104,7 +101,7 @@ class ForgetPassword : BaseActivity() {
         val trim = et_password!!.text.toString().trim()
         val encrypt = MD5Utils.encrypt(trim)
         val deviceId = utils.getDeviceId(this)
-        HttpRequestPort.instance.forgotpasswd(deviceId,et_phone!!.text.toString().trim(),
+        HttpRequestPort.instance.forgotpasswd(deviceId, et_phone!!.text.toString().trim(),
                 encrypt, et_num!!.text.toString().trim(),
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
@@ -122,8 +119,9 @@ class ForgetPassword : BaseActivity() {
 
                     override fun onError(throwable: Throwable, b: Boolean) {
                         super.onError(throwable, b)
-                        utils.showToast(""+throwable.message)
+                        utils.showToast("" + throwable.message)
                     }
+
                     override fun onFinished() {
                         super.onFinished()
                         utils.hindProgress()
@@ -141,8 +139,10 @@ class ForgetPassword : BaseActivity() {
                 if (status == "1") {
                     //改手机号已存在
                     click = 1
+                    tvGet.isEnabled = true
                 } else {
                     // 改手机号不存在
+                    tvGet.isEnabled = false
                     utils.showToast(bean.message)
                 }
             }
@@ -240,11 +240,11 @@ class ForgetPassword : BaseActivity() {
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_BACK) {
-            if(from == 0){
+            if (from == 0) {
                 MyApplication.instance.removeAllActivity()
                 utils.startActivity(LoginActivity::class.java)
                 finish()
-            }else{
+            } else {
                 finish()
             }
             return false

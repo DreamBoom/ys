@@ -1,7 +1,9 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.support.v4.content.ContextCompat
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.widget.EditText
@@ -10,6 +12,8 @@ import card.com.allcard.bean.EduBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.EditInputFilter1
+import card.com.allcard.utils.EditInputFilter2
 import card.com.allcard.utils.KeyboardStateObserver
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
@@ -40,13 +44,18 @@ class EdOfMoney : BaseActivity() {
         ed1.setOnClickListener {
             et1.isFocusableInTouchMode = true
             et1.isFocusable = true
+            et1.setTextColor(ContextCompat.getColor(this,R.color.black))
             et1.requestFocus()
+            et1.setSelection(et1.text.length)
         }
         ed2.setOnClickListener {
             et2.isFocusableInTouchMode = true
             et2.isFocusable = true
+            et1.setTextColor(ContextCompat.getColor(this,R.color.black))
             et2.requestFocus()
+            et2.setSelection(et2.text.length)
         }
+
         KeyboardStateObserver.getKeyboardStateObserver(this).
                 setKeyboardVisibilityListener(object :KeyboardStateObserver.OnKeyboardVisibilityListener{
                     override fun onKeyboardShow() {
@@ -55,11 +64,12 @@ class EdOfMoney : BaseActivity() {
                     override fun onKeyboardHide() {
                         et1.isFocusable = false
                         et1.isFocusableInTouchMode = false
+                        et1.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
                         et2.isFocusable = false
                         et2.isFocusableInTouchMode = false
+                        et1.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
                     }
                 })
-
     }
 
     private fun initData() {
@@ -77,9 +87,20 @@ class EdOfMoney : BaseActivity() {
                     val d1 = (mo1.toDouble() * 0.01).toString()
                     val d2 = (mo2.toDouble() * 0.01).toString()
                     et1.setText(d1.toCharArray(), 0,d1.length)
-                    xt_m1.text = "您可根据需求调整额度,可调区间为0~$d1 元"
                     et2.setText(d2.toCharArray(), 0, d2.length)
-                    xt_m2.text = "您可根据需求调整额度,可调区间为0~$d2 元"
+
+                    val m1 = bean.cardsList[0].single_consumption_amount
+                    val m2 = bean.cardsList[0].account_balance_ceiling
+                    val dl1 = (m1.toDouble() * 0.01).toString()
+                    val dl2 = (m2.toDouble() * 0.01).toString()
+                    EditInputFilter1.MAX_VALUE = (m1.toDouble()+1) * 0.01
+                    xt_m1.text = "您可根据需求调整额度,可调区间为0~$dl1 元"
+                    EditInputFilter2.MAX_VALUE = (m2.toDouble()+1) * 0.01
+                    xt_m2.text = "您可根据需求调整额度,可调区间为0~$dl2 元"
+                    val filters1 = arrayOf<InputFilter>(EditInputFilter1())
+                    val filters2 = arrayOf<InputFilter>(EditInputFilter2())
+                    et1.filters = filters1
+                    et2.filters = filters2
                 } else {
                     utils.showToast("额度加载失败，返回后重进加载")
                 }

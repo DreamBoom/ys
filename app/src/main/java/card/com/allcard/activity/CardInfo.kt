@@ -2,14 +2,17 @@ package card.com.allcard.activity
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.TextView
 import card.com.allcard.R
 import card.com.allcard.adapter.CardSAdapter
 import card.com.allcard.bean.CardBean
+import card.com.allcard.bean.CardStatusBean
 import card.com.allcard.bean.GetNum
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
@@ -27,6 +30,8 @@ class CardInfo : BaseActivity() {
     private var gsPop: PopupWindow? = null
     private var jgPop: PopupWindow? = null
     private var cardNo = ""
+    private var nameNo = ""
+    private var certNo = ""
     @SuppressLint("SetTextI18n")
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
@@ -58,12 +63,15 @@ class CardInfo : BaseActivity() {
                 serviceGuide.clear()
                 val bean = JSONObject.parseObject(data, object : TypeReference<CardBean>() {})
                 if (bean.result == "0") {
+                    cardNo = bean.aaZ500
+                    nameNo = bean.aaC003
+                    certNo = bean.certNo
                     serviceGuide.add(bean.aaZ500)
                     name.text = bean.aaC003
                     num.text = bean.certNo.substring(0, 3) + "****" +
                             bean.certNo.substring(bean.certNo.length - 4, bean.certNo.length)
                     adapt!!.notifyDataSetChanged()
-                 //   cardStatus(bean.aaC003,bean.aaZ500,bean.certNo)
+                    cardStatus(bean.aaC003,bean.aaZ500,bean.certNo)
                 } else {
                     utils.showToast(bean.message)
                 }
@@ -79,7 +87,6 @@ class CardInfo : BaseActivity() {
                 utils.hindProgress()
             }
         })
-
     }
 
     private fun cardStatus(name:String,cardNo:String,certNo:String) {
@@ -87,15 +94,25 @@ class CardInfo : BaseActivity() {
         HttpRequestPort.instance.getCardStatus(userId,name,cardNo,certNo, object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
-
+                val bean = JSONObject.parseObject(data, object : TypeReference<CardStatusBean>() {})
+                if(bean.result == "0"){
+                    if(bean.cardState == "正常"){
+                        state.text = "正常"
+                        state.setTextColor(ContextCompat.getColor(this@CardInfo,R.color.blue))
+                        gs.text = "卡挂失"
+                    }else{
+                        state.text = "挂失"
+                        state.setTextColor(ContextCompat.getColor(this@CardInfo,R.color.red))
+                        gs.text = "卡解挂"
+                    }
+                }else{
+                    state.text = "未知"
+                    gs.visibility = View.GONE
+                }
             }
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
-                utils.showToast("请求失败，请稍后重试")
-            }
-            override fun onFinished() {
-                super.onFinished()
-                utils.hindProgress()
+                utils.showToast("卡状态请求失败，请稍后重试")
             }
         })
     }
@@ -167,7 +184,7 @@ class CardInfo : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 if (bean.result == "0") {
                     utils.showToast("挂失成功")
-                    initData()
+                    cardStatus(nameNo,cardNo,certNo)
                 } else {
                     utils.showToast("挂失失败")
                 }
@@ -189,7 +206,7 @@ class CardInfo : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 if (bean.result == "0") {
                     utils.showToast("解挂成功")
-                    initData()
+                    cardStatus(nameNo,cardNo,certNo)
                 } else {
                     utils.showToast("解挂失败")
                 }

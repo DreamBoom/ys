@@ -93,7 +93,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
 
     fun getList() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.yuEDetail(userId, dat, "1", "1000",
+        HttpRequestPort.instance.yuEDetail(userId, dat, "1", "500",
                 cardNo, trCode,is_other,nickName,
                 object : BaseHttpCallBack(this) {
                     override fun success(data: String) {
@@ -101,19 +101,9 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
                         val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
                         if (bean.result == "0") {
                             dataList.clear()
-                            val list = bean.detailList
-                            if (list.size > 0) {
-                                noData.visibility = View.GONE
-                                dataList.addAll(list)
-                                adapter!!.notifyDataSetChanged()
-                            } else {
-                                noData.visibility = View.VISIBLE
-                            }
+                            dataList.addAll(bean.detailList)
+                            adapter!!.notifyDataSetChanged()
                         }
-                    }
-                    override fun onError(throwable: Throwable, b: Boolean) {
-                        super.onError(throwable, b)
-                        noData.visibility = View.VISIBLE
                     }
                 })
     }

@@ -1,9 +1,14 @@
 package card.com.allcard.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.RelativeLayout;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
@@ -11,15 +16,16 @@ import card.com.allcard.R;
 import card.com.allcard.activity.HospitalInfo;
 import card.com.allcard.bean.HospitalList;
 
-public class HospitalAdapter extends CommonAdapter<HospitalList.HospitalBean> {
+public class TabThreeAdapter extends BaseQuickAdapter<HospitalList.HospitalBean, BaseViewHolder> {
     private Activity act;
-    public HospitalAdapter(Activity act, List<HospitalList.HospitalBean> data, int layoutId) {
-        super(act, data, layoutId);
-        this.act = act;
-    }
 
+    public TabThreeAdapter(Activity act, int layoutResId, @Nullable List<HospitalList.HospitalBean> data) {
+        super(layoutResId, data);
+        this.act =act;
+    }
+    @SuppressLint("SetTextI18n")
     @Override
-    public void convert(ViewHolder holder, HospitalList.HospitalBean data) {
+    protected void convert(BaseViewHolder holder, HospitalList.HospitalBean data) {
         if(TextUtils.isEmpty(data.getAddress())){
             holder.setText(R.id.hospital_adr," 暂无地址信息");
         }else {
