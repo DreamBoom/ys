@@ -39,7 +39,6 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:textColor="@color/black"
             android:textSize="@dimen/size13" />
     </LinearLayout>
@@ -79,7 +78,6 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:textColor="@color/black"
             android:textSize="@dimen/size13" />
     </LinearLayout>
@@ -119,7 +117,6 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:textColor="@color/black"
             android:textSize="@dimen/size13" />
 

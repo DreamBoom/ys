@@ -29,7 +29,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
     private Activity act;
     public ClickListener click;
     private final ActivityUtils utils;
-
+    private String oldName = "";
     public void setClickListener(ClickListener onClickListener) {
         this.click = onClickListener;
     }
@@ -56,6 +56,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
         TextView money = holder.getView(R.id.money);
         EditText et_name = holder.getView(R.id.et_name);
         name.setText(data.getNickName());
+        oldName = data.getNickName();
         if (!TextUtils.isEmpty(data.getCertNo())) {
             mo.setVisibility(View.GONE);
             money.setVisibility(View.VISIBLE);
@@ -85,7 +86,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
                     click.onClickListener(position, trim);
                     et_name.setText("".toCharArray(), 0, "".length());
                     utils.hideSoftKeyboard();
-                    up(data.getNickName(), trim);
+                    up(trim);
                 }
 
         );
@@ -118,11 +119,11 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
         );
     }
 
-    private void up(String old, String newName) {
+    private void up(String newName) {
         MMKV mk = BaseActivity.Companion.getMk();
         utils.getProgress(act);
         String userId = mk.decodeString(Tool.INSTANCE.getUSER_ID(), "");
-        HttpRequestPort.Companion.getInstance().upName(userId, newName, old, new BaseHttpCallBack(act) {
+        HttpRequestPort.Companion.getInstance().upName(userId, oldName, newName, "1",new BaseHttpCallBack(act) {
             @Override
             public void success(String data) {
                 super.success(data);

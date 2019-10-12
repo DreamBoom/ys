@@ -57,6 +57,8 @@ class RealName : BaseActivity() {
                     tv_data.text = bean.birthday
                     if(!TextUtils.isEmpty(bean.resideAddr)){
                         tv_address.text = bean.resideAddr
+                    }else{
+                        tv_address.text = "暂无"
                     }
                 }
             }

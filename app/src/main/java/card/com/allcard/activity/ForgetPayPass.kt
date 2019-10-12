@@ -41,6 +41,7 @@ class ForgetPayPass : BaseActivity() {
             }
             getNum()
             getCaptchaTime()
+            tv_get.text = "重新获取"
         }
         img_ok.setOnClickListener {
             val realName = mk.decodeString(Tool.REAL_NAME, "")

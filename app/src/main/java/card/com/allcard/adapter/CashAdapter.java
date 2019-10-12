@@ -25,7 +25,7 @@ public class CashAdapter extends BaseQuickAdapter<YjListBean.CardsListBean, Base
     @Override
     protected void convert(BaseViewHolder holder, YjListBean.CardsListBean datas) {
         String s = datas.getCardNo();
-        String num = s.substring(0, 4) + "****" + datas.getCardNo().substring(s.length()-4,s.length());
+        String num = s.substring(0, 4) + "****" + datas.getCardNo().substring(s.length()-6,s.length());
         holder.setText(R.id.tv_num,num);
         holder.setText(R.id.tv_time,"办卡时间："+datas.getTrDate());
         holder.setText(R.id.tv_yj,"押金"+utils.save2(Double.valueOf(datas.getAmt())*0.01)+"元");

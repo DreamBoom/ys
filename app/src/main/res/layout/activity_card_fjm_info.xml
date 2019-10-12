@@ -1,10 +1,10 @@
-<card.com.allcard.view.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:clipChildren="false">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/bar"
@@ -16,7 +16,6 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/bar"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -53,367 +52,35 @@
             tools:ignore="RtlHardcoded" />
     </LinearLayout>
 
-    <card.com.allcard.view.PercentRelativeLayout
-        android:id="@+id/rl1"
+    <include
+        android:id="@+id/clue"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/title">
+        android:layout_height="match_parent"
+        layout="@layout/fjm"/>
 
-        <recycler.coverflow.RecyclerCoverFlow
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </card.com.allcard.view.PercentRelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/l1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/yue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/smj_icon_1"
-            android:drawablePadding="7dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:text="账户余额"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/sp_12" />
-
-        <TextView
-            android:id="@+id/mx"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/smj_icon_2"
-            android:drawablePadding="7dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:text="余额明细"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/sp_12" />
-
-        <TextView
-            android:id="@+id/mm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/smj_icon_3"
-            android:drawablePadding="7dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:text="重置交易密码"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/sp_12" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/smj_icon_4"
-            android:drawablePadding="7dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:text="就医记录"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/sp_12" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/t1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l1"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:text="基本信息"
-        android:textColor="@color/black3"
-        android:textSize="@dimen/size14" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/kfw_yy"
-            android:orientation="vertical"
-            android:layout_below="@+id/t1"
-            android:paddingBottom="25dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:text="持卡人"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="手机号"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black6"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:id="@+id/phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black6"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginEnd="35dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:text="办卡时间"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="办卡渠道"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black6"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:id="@+id/qd"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black6"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginEnd="35dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:text="卡状态"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="卡类型"
-                    android:textColor="@color/black3"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/state"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.42"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:id="@+id/type"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="非记名实名卡"
-                    android:textColor="@color/black6"
-                    android:textSize="@dimen/size13"
-                    app:width_percent="0.5"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey" />
-            </LinearLayout>
-        </LinearLayout>
-    <card.com.allcard.view.PercentRelativeLayout
-        android:id="@+id/rl_zwwl"
+    <RelativeLayout
+        android:id="@+id/rl_zw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/title"
+        android:clickable="false"
         android:background="@color/white"
         android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/t121"
+            android:layout_above="@+id/t1"
             android:layout_centerHorizontal="true"
             android:background="@drawable/img_zwsj" />
 
         <TextView
-            android:id="@+id/t121"
+            android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="暂无数据"
             android:textColor="@color/grey91"
             android:textSize="@dimen/size13" />
-    </card.com.allcard.view.PercentRelativeLayout>
-    <TextView
-        android:id="@+id/delete"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="25dp"
-        android:background="@drawable/btn_bg"
-        android:text="删除本卡"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size14"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"/>
-</card.com.allcard.view.PercentRelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

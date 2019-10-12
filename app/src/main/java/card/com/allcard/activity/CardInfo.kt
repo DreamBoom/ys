@@ -68,7 +68,7 @@ class CardInfo : BaseActivity() {
                     certNo = bean.certNo
                     serviceGuide.add(bean.aaZ500)
                     name.text = bean.aaC003
-                    num.text = bean.certNo.substring(0, 3) + "****" +
+                    num.text = bean.certNo.substring(0, 6) + "********" +
                             bean.certNo.substring(bean.certNo.length - 4, bean.certNo.length)
                     adapt!!.notifyDataSetChanged()
                     cardStatus(bean.aaC003,bean.aaZ500,bean.certNo)
@@ -100,14 +100,17 @@ class CardInfo : BaseActivity() {
                         state.text = "正常"
                         state.setTextColor(ContextCompat.getColor(this@CardInfo,R.color.blue))
                         gs.text = "卡挂失"
+                        im_gs.visibility=View.GONE
                     }else{
                         state.text = "挂失"
                         state.setTextColor(ContextCompat.getColor(this@CardInfo,R.color.red))
                         gs.text = "卡解挂"
+                        im_gs.visibility=View.VISIBLE
                     }
                 }else{
                     state.text = "未知"
                     gs.visibility = View.GONE
+                    im_gs.visibility=View.GONE
                 }
             }
             override fun onError(throwable: Throwable, b: Boolean) {

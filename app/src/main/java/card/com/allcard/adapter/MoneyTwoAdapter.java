@@ -48,6 +48,7 @@ public class MoneyTwoAdapter extends CommonAdapter<MoneyBean.DetailListBeanX.Det
         }
         holder.getView(R.id.item).setOnClickListener(v -> {
             Bundle bundle = new Bundle();
+            bundle.putString("type",datas.getAccKind());
             bundle.putString("img",datas.getTrCode());
             bundle.putString("tv1",datas.getTrCodeName());
             bundle.putString("tv2",s);

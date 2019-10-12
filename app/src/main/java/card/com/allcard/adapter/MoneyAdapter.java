@@ -33,8 +33,8 @@ public class MoneyAdapter extends CommonAdapter<MoneyBean.DetailListBeanX> {
         holder.setText(R.id.yue,datas.getMonth());
         String s1  = utils.save2(Double.valueOf(datas.getOutAmt()) * 0.01);
         String s2  = utils.save2(Double.valueOf(datas.getInAmt()) * 0.01);
-        holder.setText(R.id.zc,"支出:"+s1);
-        holder.setText(R.id.sr,"收入:"+s2);
+        holder.setText(R.id.zc,"支出: ¥"+s1);
+        holder.setText(R.id.sr,"收入: ¥"+s2);
         if(datas.getDetailList().size()>0){
             holder.getView(R.id.noData).setVisibility(View.GONE);
             holder.getView(R.id.list).setVisibility(View.VISIBLE);

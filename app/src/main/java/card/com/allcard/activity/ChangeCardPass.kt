@@ -3,13 +3,17 @@ package card.com.allcard.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
+import card.com.allcard.utils.RegexUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_change_card_pass.*
@@ -33,6 +37,8 @@ class ChangeCardPass : BaseActivity() {
         close.setOnClickListener {
             finish()
         }
+        tv_get.isEnabled = false
+        et_phone!!.addTextChangedListener(PhoneWatcher(et_phone))
         tv_get.setOnClickListener {
             val phone = et_phone!!.text.toString().trim()
             if (TextUtils.isEmpty(phone) || phone == "输入办卡手机号") {
@@ -123,5 +129,35 @@ class ChangeCardPass : BaseActivity() {
                 utils.hindProgress()
             }
         })
+    }
+
+    internal inner class PhoneWatcher(var editText: EditText) : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int,
+                                       after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+        }
+
+        override fun afterTextChanged(editable: Editable) {
+            val i = 11
+            if (et_phone!!.text.length < i) {
+                tv_get.isEnabled = false
+                return
+            }
+            if (et_phone!!.text.length == 11) {
+                if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
+                    utils.showToast("您输入的手机号不正确!")
+                    tv_get.isEnabled = false
+                    return
+                }
+            }
+            if (et_phone!!.text.length == 11 && RegexUtils.verifyUsername(
+                            et_phone!!.text.toString().trim()) == RegexUtils.VERIFY_SUCCESS) {
+                tv_get.isEnabled = true
+            }
+        }
     }
 }

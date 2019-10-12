@@ -3,6 +3,7 @@ package card.com.allcard.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import card.com.allcard.R
 import card.com.allcard.bean.OtherMoneyBean
 import card.com.allcard.bean.YjBean
@@ -86,8 +87,11 @@ class PayMoney : BaseActivity() {
                 if (bean.result == "0") {
                     money.text = utils.save2(bean.amt.toDouble())
                     yj_money.text = "${utils.save2(bean.yj.toDouble())}元"
+                    if(bean.message == "账户已冻结"){
+                        im_dj.visibility = View.VISIBLE
+                    }
                 } else {
-                    utils.showToast("修改失败，请重试")
+                    utils.showToast("请求失败，请重试")
                 }
             }
 
@@ -109,8 +113,11 @@ class PayMoney : BaseActivity() {
                 if (bean.result == "0") {
                     money.text =  utils.save2(bean.ye_amt.toDouble())
                     yj_money.text = "${utils.save2(bean.yj_amt.toDouble())}元"
+                    if(bean.message == "账户已冻结"){
+                        im_dj.visibility = View.VISIBLE
+                    }
                 } else {
-                    utils.showToast("修改失败，请重试")
+                    utils.showToast("请求失败，请重试")
                 }
             }
 

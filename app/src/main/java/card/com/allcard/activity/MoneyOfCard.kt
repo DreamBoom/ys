@@ -2,6 +2,7 @@ package card.com.allcard.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import card.com.allcard.R
 import card.com.allcard.bean.YjBean
@@ -49,7 +50,7 @@ class MoneyOfCard : BaseActivity() {
         val m = mk.decodeString(Tool.oneMoney, "0")
         money.text = utils.save2(m.toDouble())
         val num0 = mk.decodeString(Tool.USER_NUM, "")
-        num.text = num0.substring(0, 3) + "********" +
+        num.text = num0.substring(0, 6) + "********" +
                 num0.substring(num0.length - 4, num0.length)
         val img = mk.decodeString(Tool.HEADER, "")
         val options = ImageOptions.Builder()
@@ -74,6 +75,11 @@ class MoneyOfCard : BaseActivity() {
                 if ( bean.result == "0") {
                     money.text = utils.save2(bean.ye_amt.toDouble())
                     yj.text = "  ${utils.save2(bean.yj_amt.toDouble())}元"
+                    if(bean.message == "账户已冻结"){
+                        im_dj.visibility = View.VISIBLE
+                    }
+                }else{
+                    utils.showToast(bean.message)
                 }
             }
 

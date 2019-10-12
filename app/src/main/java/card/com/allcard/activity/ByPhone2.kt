@@ -61,7 +61,7 @@ class ByPhone2 : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 val status = bean.result
-                if (status == "0") {
+                if (status == "1") {
                     //改手机号已存在
                     click = 0
                     get_num!!.setTextColor(resources.getColor(R.color.text_gray))

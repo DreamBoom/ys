@@ -43,7 +43,7 @@
     </RelativeLayout>
     <TextView
         android:text="@string/login_log"
-        android:textSize="@dimen/size14"
+        android:textSize="@dimen/size13"
         android:padding="15dp"
         android:lineSpacingExtra="5dp"
         android:background="@color/et_grey"

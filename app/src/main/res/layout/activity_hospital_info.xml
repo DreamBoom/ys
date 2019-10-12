@@ -174,8 +174,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="http://"
-                android:textColor="@color/blue"
+                android:text="暂无信息"
+                android:textColor="@color/black6"
                 android:textSize="@dimen/size13" />
 
             <TextView
@@ -193,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
+                android:text="暂无信息"
                 android:textColor="@color/black6"
                 android:textSize="@dimen/size13" />
         </LinearLayout>

@@ -19,7 +19,7 @@
         android:paddingStart="15dp"
         android:paddingTop="15dp"
         android:textColor="@color/black3"
-        android:textSize="@dimen/size15"
+        android:textSize="@dimen/size14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -59,7 +59,7 @@
         android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
         android:paddingStart="15dp"
-        android:textSize="@dimen/size13"
+        android:textSize="@dimen/size12"
         android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -73,7 +73,7 @@
         android:paddingStart="15dp"
         android:paddingTop="32dp"
         android:textColor="@color/black3"
-        android:textSize="@dimen/size15"
+        android:textSize="@dimen/size14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -113,7 +113,7 @@
         android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
         android:paddingStart="15dp"
-        android:textSize="@dimen/size13"
+        android:textSize="@dimen/size12"
         android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -127,6 +127,7 @@
         android:id="@+id/bt_change"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:enabled="false"
         android:layout_marginStart="25dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
@@ -134,6 +135,6 @@
         android:background="@drawable/btn_b"
         android:text="确认调整"
         android:textColor="@color/white"
-        android:textSize="@dimen/size16" />
+        android:textSize="@dimen/size14" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ class MoneyOfDeal : BaseActivity() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
+        val type = intent.getStringExtra("type")
         val code = intent.getStringExtra("img")
         val t1 = intent.getStringExtra("tv1")
         val t2 = intent.getStringExtra("tv2")
@@ -29,29 +30,29 @@ class MoneyOfDeal : BaseActivity() {
             "2830" -> {
                 im.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.img_yemx_xf))
                 tv3.text = "消费成功"
-                tv9.text = "账户消费"
                 tv2.text = "- $t2"
             }
             "2834" -> {
                 im.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.img_yemx_zhtx))
                 tv3.text = "退款成功"
-                tv9.text = "账户退款"
                 tv2.text = "+ $t2"
             }
             "2835",
             "1610" -> {
                 im.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.img_yemx_tx))
                 tv3.text = "提现成功"
-                tv9.text = "账户提现"
                 tv2.text = "- $t2"
             }
             else -> {
                 im.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.img_yemx_cz))
                 tv3.text = "充值成功"
-                tv9.text = "账户充值"
                 tv2.text = "+ $t2"
             }
-
+        }
+        when(type){
+            "1" ->  tv9.text = "柜面"
+            "3" ->  tv9.text = "自助机"
+            "5" ->  tv9.text = "APP"
         }
     }
 }

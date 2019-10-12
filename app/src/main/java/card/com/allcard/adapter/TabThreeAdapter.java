@@ -37,6 +37,7 @@ public class TabThreeAdapter extends BaseQuickAdapter<HospitalList.HospitalBean,
         item.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setClass(act, HospitalInfo.class);
+            intent.putExtra("hosId",data.getId());
             intent.putExtra("name",data.getHosp_name());
             intent.putExtra("phone",data.getTelephone());
             intent.putExtra("address",data.getAddress());

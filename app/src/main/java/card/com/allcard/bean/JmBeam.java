@@ -7,7 +7,7 @@ public class JmBeam {
     /**
      * result : 0
      * message : 成功
-     * cardsList : [{"trDate":"2019-09-20","amt":"1","cardState":"1","cardNo":"4753002019050103537"}]
+     * cardsList : [{"bizName":"兰考县妇幼保健院","trDate":"2019-10-12","amt":"1000","cardState":"1","cardNo":"4753002019050100366"}]
      */
 
     private String result;
@@ -40,16 +40,26 @@ public class JmBeam {
 
     public static class CardsListBean {
         /**
-         * trDate : 2019-09-20
-         * amt : 1
+         * bizName : 兰考县妇幼保健院
+         * trDate : 2019-10-12
+         * amt : 1000
          * cardState : 1
-         * cardNo : 4753002019050103537
+         * cardNo : 4753002019050100366
          */
 
+        private String bizName;
         private String trDate;
         private String amt;
         private String cardState;
         private String cardNo;
+
+        public String getBizName() {
+            return bizName;
+        }
+
+        public void setBizName(String bizName) {
+            this.bizName = bizName;
+        }
 
         public String getTrDate() {
             return trDate;

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.InputFilter
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.widget.EditText
 import card.com.allcard.R
@@ -30,6 +29,12 @@ class EdOfMoney : BaseActivity() {
         address.text = "资金额度设置"
         bt_change.isEnabled = false
         bt_change.setOnClickListener {
+            et1.isFocusable = false
+            et1.isFocusableInTouchMode = false
+            et1.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
+            et2.isFocusable = false
+            et2.isFocusableInTouchMode = false
+            et1.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
             val t1 = (et1.text.toString().trim().toDouble()*100).toString()
             val t2 = (et2.text.toString().trim().toDouble()*100).toString()
             upMoney(t1,t2)
@@ -47,6 +52,7 @@ class EdOfMoney : BaseActivity() {
             et1.setTextColor(ContextCompat.getColor(this,R.color.black))
             et1.requestFocus()
             et1.setSelection(et1.text.length)
+            bt_change.isEnabled = true
         }
         ed2.setOnClickListener {
             et2.isFocusableInTouchMode = true
@@ -54,6 +60,7 @@ class EdOfMoney : BaseActivity() {
             et1.setTextColor(ContextCompat.getColor(this,R.color.black))
             et2.requestFocus()
             et2.setSelection(et2.text.length)
+            bt_change.isEnabled = true
         }
 
         KeyboardStateObserver.getKeyboardStateObserver(this).
@@ -148,10 +155,10 @@ class EdOfMoney : BaseActivity() {
 
     internal inner class moneyWatcher(var editText: EditText) : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        }
         override fun afterTextChanged(s: Editable) {
             val text = s.toString()
-            bt_change.isEnabled = !TextUtils.isEmpty(text)
             if (text.isNotEmpty() && text.substring(0, 1) == "0") {
                 editText.setText(text.substring(1))
             }

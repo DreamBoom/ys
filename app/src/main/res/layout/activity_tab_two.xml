@@ -63,43 +63,42 @@
         android:layout_height="wrap_content"
         layout="@layout/title" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_top_apps"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="54dp"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:paddingStart="20dp"
         android:paddingEnd="10dp">
 
         <TextView
+            android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:text="我的导航"
             android:textColor="@color/black3"
             android:textSize="@dimen/size13" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/topList"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1" />
-
-
+            android:layout_toEndOf="@+id/t1"
+            android:layout_centerVertical="true" />
         <TextView
             android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:text="编辑"
             android:textColor="@color/blue67"
             android:textSize="@dimen/size13" />
-    </LinearLayout>
+    </RelativeLayout>
     <ImageView
         android:background="@color/grey"
         android:layout_width="match_parent"

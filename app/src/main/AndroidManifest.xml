@@ -75,7 +75,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activity.PayBind" />
         <activity android:name=".activity.PayMoney" />
-        <activity android:name=".activity.CardPro" />
+        <activity android:name=".activity.WebHos" />
         <activity android:name=".activity.FrozenIn" />
         <activity android:name=".activity.CardProgress" />
         <activity android:name=".activity.ChangeCardPass" />

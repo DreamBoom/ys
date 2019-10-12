@@ -26,7 +26,7 @@ class CardJmInfo : BaseActivity() {
     private var gsPop: PopupWindow? = null
     private var jgPop: PopupWindow? = null
     private var cardNo = ""
-    private var pos = 1
+    private var pos = 0
     @SuppressLint("SetTextI18n")
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
@@ -41,8 +41,9 @@ class CardJmInfo : BaseActivity() {
             serviceGuide[position].cardNo
             cardNo = serviceGuide[position].cardNo
             address.text = "记名市民卡   " + (position + 1).toString() + "/" + list.layoutManager!!.itemCount
-            pos = position + 1
+            pos = position
             time.text = serviceGuide[position].trDate
+            qd.text = serviceGuide[position].bizName
             when (serviceGuide[position].cardState) {
                 "0" -> state.text = "未启用"
                 "1" -> {
@@ -84,12 +85,12 @@ class CardJmInfo : BaseActivity() {
                 if ("0" == bean.result) {
                     name.text = mk.decodeString(Tool.REAL_NAME, "")
                     val certNo = mk.decodeString(Tool.USER_NUM, "")
-                    val s = certNo.substring(0, 3) + "********" + certNo.substring(certNo.length - 4, certNo.length)
+                    val s = certNo.substring(0, 6) + "********" + certNo.substring(certNo.length - 4, certNo.length)
                     num.text = s
                     type.text = "记名市民卡"
-                    qd.text = "柜面"
+                    qd.text = bean.cardsList[pos].bizName
                     serviceGuide.addAll(bean.cardsList)
-                    address.text = "记名市民卡   $pos/${serviceGuide.size}"
+                    address.text = "记名市民卡   1/${bean.cardsList.size}"
                     time.text = serviceGuide[pos].trDate
                     cardNo = serviceGuide[pos].cardNo
                     when (serviceGuide[pos].cardState) {
@@ -108,7 +109,6 @@ class CardJmInfo : BaseActivity() {
                         "9" -> state.text = "注销"
                     }
                     adapt!!.notifyDataSetChanged()
-
                 } else {
                     utils.showToast(bean.message)
                 }

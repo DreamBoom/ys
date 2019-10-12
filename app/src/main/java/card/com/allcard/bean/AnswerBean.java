@@ -3,15 +3,24 @@ package card.com.allcard.bean;
 import java.util.List;
 
 public class AnswerBean {
+
     /**
-     * answerlist : [{"answer":"一","id":16,"inDate":{"date":27,"day":3,"hours":15,"minutes":56,"month":1,"seconds":27,"time":1551254187000,"timezoneOffset":-480,"year":119},"paraId":"5","remark":"你妈妈的名字？","userId":"39"},{"answer":"二","id":17,"inDate":{"date":27,"day":3,"hours":15,"minutes":56,"month":1,"seconds":27,"time":1551254187000,"timezoneOffset":-480,"year":119},"paraId":"6","remark":"你爸爸的名字？","userId":"39"},{"answer":"三","id":18,"inDate":{"date":27,"day":3,"hours":15,"minutes":56,"month":1,"seconds":27,"time":1551254187000,"timezoneOffset":-480,"year":119},"paraId":"7","remark":"高中学校的名字？","userId":"39"}]
+     * result : 0
+     * answerlist : [{"answer":"哈哈","id":25,"inDate":{"date":11,"day":5,"hours":16,"minutes":32,"month":9,"seconds":45,"time":1570782765000,"timezoneOffset":-480,"year":119},"paraId":"5","remark":"你妈妈的名字？","userId":"186"},{"answer":"呵呵","id":26,"inDate":{"date":11,"day":5,"hours":16,"minutes":32,"month":9,"seconds":45,"time":1570782765000,"timezoneOffset":-480,"year":119},"paraId":"6","remark":"你爸爸的名字？","userId":"186"},{"answer":"嘿嘿","id":27,"inDate":{"date":11,"day":5,"hours":16,"minutes":32,"month":9,"seconds":45,"time":1570782765000,"timezoneOffset":-480,"year":119},"paraId":"7","remark":"高中学校的名字？","userId":"186"}]
      * message : 成功
-     * status : 0
      */
 
+    private String result;
     private String message;
-    private String status;
     private List<AnswerlistBean> answerlist;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getMessage() {
         return message;
@@ -19,14 +28,6 @@ public class AnswerBean {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public List<AnswerlistBean> getAnswerlist() {
@@ -39,12 +40,12 @@ public class AnswerBean {
 
     public static class AnswerlistBean {
         /**
-         * answer : 一
-         * id : 16
-         * inDate : {"date":27,"day":3,"hours":15,"minutes":56,"month":1,"seconds":27,"time":1551254187000,"timezoneOffset":-480,"year":119}
+         * answer : 哈哈
+         * id : 25
+         * inDate : {"date":11,"day":5,"hours":16,"minutes":32,"month":9,"seconds":45,"time":1570782765000,"timezoneOffset":-480,"year":119}
          * paraId : 5
          * remark : 你妈妈的名字？
-         * userId : 39
+         * userId : 186
          */
 
         private String answer;
@@ -104,13 +105,13 @@ public class AnswerBean {
 
         public static class InDateBean {
             /**
-             * date : 27
-             * day : 3
-             * hours : 15
-             * minutes : 56
-             * month : 1
-             * seconds : 27
-             * time : 1551254187000
+             * date : 11
+             * day : 5
+             * hours : 16
+             * minutes : 32
+             * month : 9
+             * seconds : 45
+             * time : 1570782765000
              * timezoneOffset : -480
              * year : 119
              */

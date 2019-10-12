@@ -92,8 +92,9 @@ class MoneyIn : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<EduBean>() {})
                 if (bean.result == "0") {
-                    EditInputFilter.MAX_VALUE = bean.cardsList[0].accumulative_recharge_amount.toDouble() * 0.01
-                    ed.text = "账户余额不能超过0.0元，还可充值${bean.cardsList[0].accumulative_recharge_amount.toDouble() * 0.01}元"
+                    val m1 = bean.cardsList[0].account_balance_ceiling.toDouble() * 0.01
+                    EditInputFilter.MAX_VALUE = m1 - bean.balance.toDouble() * 0.01
+                    ed.text = "账户余额不能超过$m1 元，还可充值${EditInputFilter.MAX_VALUE}元"
                 }
             }
         })

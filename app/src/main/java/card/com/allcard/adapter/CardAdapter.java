@@ -23,11 +23,13 @@ public class CardAdapter extends BaseQuickAdapter<JmBeam.CardsListBean, BaseView
     @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder holder, JmBeam.CardsListBean datas) {
-        String cert = datas.getCardNo().substring(0, 3) + "********" +
+        String cert = datas.getCardNo().substring(0, 6) + "********" +
                 datas.getCardNo().substring(datas.getCardNo().length()-4);
         holder.setText(R.id.kh,"卡号: "+cert);
         if(datas.getCardState().equals("2")||datas.getCardState().equals("8")){
             holder.getView(R.id.im_gs).setVisibility(View.VISIBLE);
+        }else {
+            holder.getView(R.id.im_gs).setVisibility(View.GONE);
         }
     }
 }

@@ -614,12 +614,13 @@ class HttpRequestPort {
     }
 
     /**家庭修改昵称*/
-    fun upName(user_id: String,nickName: String,oldnickName: String,
+    fun upName(user_id: String,nickName: String,newName: String,flag: String,
                callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["user_id"] = user_id
         map!!["nickName"] = nickName
-        map!!["oldnickName"] = oldnickName
+        map!!["updateNickName"] = newName
+        map!!["flag"] = flag
         map!!["familyserialNum"] = ""
         httpUtil[BASE_URL + updateNickName, map, callBack]
     }

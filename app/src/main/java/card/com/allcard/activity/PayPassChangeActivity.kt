@@ -6,6 +6,7 @@ import card.com.allcard.R
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import com.pawegio.kandroid.runDelayed
 import com.xnumberkeyboard.android.KeyboardType
 import com.xnumberkeyboard.android.OnNumberKeyboardListener
 import com.xnumberkeyboard.android.XNumberKeyboardView
@@ -125,7 +126,9 @@ class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
                                 setOtherPass(setPass2)
                             }
                         } else {
-                            clear()
+                            runDelayed(500){
+                                clear()
+                            }
                             setPass2 = ""
                             utils.showToast("密码输入不一致，请重新输入")
                         }

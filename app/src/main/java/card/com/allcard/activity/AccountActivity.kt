@@ -130,12 +130,12 @@ class AccountActivity : BaseActivity() {
                                             intent.putExtra( "API" , list[0].deviceApi)
                                             intent.putExtra( "time" , simpleDateFormat.format(list[0].deviceTime.time))
                                             intent.putExtra( "type", list[0].deviceType)
+                                            startActivity(intent)
                                         }
                                     }else{
                                         utils.showToast("查询失败")
                                     }
                                 } else {
-                                    click = 0
                                     bindPopup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
                                 }
                             }else{
@@ -154,6 +154,11 @@ class AccountActivity : BaseActivity() {
                     override fun onError(throwable: Throwable, b: Boolean) {
                         super.onError(throwable, b)
                         utils.showToast("查询失败")
+                    }
+
+                    override fun onFinished() {
+                        super.onFinished()
+                        click = 0
                     }
                 })
     }
@@ -175,7 +180,6 @@ class AccountActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        click = 0
         login()
         val ph = mk.decodeString(Tool.PHONE)
         if(!TextUtils.isEmpty(ph)){

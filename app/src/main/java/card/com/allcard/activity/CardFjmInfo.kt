@@ -1,9 +1,15 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
+import android.widget.TextView
 import card.com.allcard.R
 import card.com.allcard.adapter.CardFjmAdapter
 import card.com.allcard.bean.FjmBean
@@ -11,11 +17,11 @@ import card.com.allcard.bean.GetNum
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
-import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_card_fjm_info.*
+import kotlinx.android.synthetic.main.fjm.*
 
 class CardFjmInfo : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_card_fjm_info
@@ -24,6 +30,7 @@ class CardFjmInfo : BaseActivity() {
     var certNo = ""
     var name1 = ""
     var cardNo = ""
+    private var pos = 0
     @SuppressLint("SetTextI18n")
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
@@ -34,12 +41,15 @@ class CardFjmInfo : BaseActivity() {
         close.setOnClickListener { finish() }
         list.adapter = adapt
         list.setOnItemSelectedListener { position ->
+            pos = position
             address.text = "非记名市民卡   " + (position + 1).toString() + "/" + list.layoutManager!!.itemCount
             time.text = serviceGuide[position].createTime
             name1 = serviceGuide[position].clientName
+            qd.text = serviceGuide[position].cardStateName
             name.text = name1
             cardNo = serviceGuide[position].cardNo
-            val s = certNo.substring(0, 3) + "****" + certNo.substring(certNo.length - 4, certNo.length)
+            val phoneNum = serviceGuide[position].certNo
+            val s = phoneNum.substring(0, 3) + "****" + phoneNum.substring(phoneNum.length - 4, phoneNum.length)
             phone.text = s
             when (serviceGuide[position].cardStatus) {
                 "0" -> state.text = "未启用"
@@ -75,9 +85,16 @@ class CardFjmInfo : BaseActivity() {
             bundle.putString("num", certNo)
             utils.startActivityBy(PayMoney::class.java, bundle)
         }
+        jl.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("url", HttpRequestPort.H5_BASE_URL+
+                    "weixin/hospital_v2/medicalHospitalRecordUn.jsp?cardNo=$cardNo&fixparam=android&version=v101")
+            utils.startActivityBy(WebOther::class.java, bundle)
+        }
 
         right_menu.setOnClickListener { startActivity<BindCardTwo>() }
-        delete.setOnClickListener { delete() }
+        delete.setOnClickListener { exitPop!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0) }
+        exitPop()
     }
 
     private fun initData() {
@@ -91,35 +108,32 @@ class CardFjmInfo : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<FjmBean>() {})
                 if ("0" == bean.result) {
                     serviceGuide.addAll(bean.cardList)
-                    rl_zwwl.visibility = View.GONE
-                    delete.visibility = View.VISIBLE
-                    val certNo = serviceGuide[0].certNo
+                    rl_zw.visibility = View.GONE
+                    clue.visibility = View.VISIBLE
+                    val certNo = serviceGuide[pos].certNo
                     val s = certNo.substring(0, 3) + "****" + certNo.substring(certNo.length - 4, certNo.length)
                     phone.text = s
-                    qd.text = "柜面"
+                    qd.text = serviceGuide[pos].cardStateName
                     address.text = "非记名市民卡   1/" + serviceGuide.size
-                    time.text = serviceGuide[0].createTime
-                    name.text = serviceGuide[0].clientName
-                    name1 = serviceGuide[0].clientName
-                    cardNo = serviceGuide[0].cardNo
-                    when (serviceGuide[0].cardStatus) {
-                        "0" -> state.text = "未启用"
-                        "1" -> {
+                    time.text = serviceGuide[pos].createTime
+                    name.text = serviceGuide[pos].clientName
+                    name1 = serviceGuide[pos].clientName
+                    cardNo = serviceGuide[pos].cardNo
+                    when (serviceGuide[pos].cardStatus) {
+                        "0" -> {
                             state.setTextColor(ContextCompat.getColor(this@CardFjmInfo, R.color.blue))
                             state.text = "正常"
                         }
-                        "2", "8" -> {
+                        else -> {
                             state.setTextColor(ContextCompat.getColor(this@CardFjmInfo, R.color.red))
-                            state.text = "挂失"
+                            state.text = "异常"
                         }
-                        "7" -> state.text = "作废"
-                        "9" -> state.text = "注销"
                     }
                     adapt!!.notifyDataSetChanged()
                 } else {
                     address.text = "非记名市民卡   0/0"
-                    delete.visibility = View.GONE
-                    rl_zwwl.visibility = View.VISIBLE
+                    clue.visibility = View.GONE
+                    rl_zw.visibility = View.VISIBLE
                 }
             }
 
@@ -135,9 +149,32 @@ class CardFjmInfo : BaseActivity() {
         })
     }
 
+    private var exitPop: PopupWindow? = null
+    @SuppressLint("InflateParams")
+    private fun exitPop() {
+        val view = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)
+        val sure = view.findViewById<TextView>(R.id.sure)
+        val cancel = view.findViewById<TextView>(R.id.cancel)
+        sure.text = "确定"
+        val title = view.findViewById<TextView>(R.id.title)
+        title.text = "删除本张市民卡?"
+        exitPop = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT, true)
+        exitPop!!.isTouchable = true
+        exitPop!!.isOutsideTouchable = false
+        val dw = ColorDrawable(0x00000000)
+        exitPop!!.setBackgroundDrawable(dw)
+        sure.setOnClickListener {
+            delete()
+
+        }
+        cancel.setOnClickListener {
+            exitPop!!.dismiss()
+        }
+    }
+
     private fun delete() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        LogUtils.i("===>", cardNo)
         HttpRequestPort.instance.deleteCard(userId, cardNo, object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {

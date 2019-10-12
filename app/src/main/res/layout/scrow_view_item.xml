@@ -32,7 +32,7 @@
             android:singleLine="true"
             android:text="测试条目"
             android:textColor="@color/black3"
-            android:textSize="@dimen/size14"
+            android:textSize="@dimen/size13"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:paddingEnd="15dp"
             android:singleLine="true"
             android:textColor="@color/grey91"
-            android:textSize="@dimen/sp_12" />
+            android:textSize="@dimen/size12" />
     </LinearLayout>
     <ImageView
         android:layout_alignParentBottom="true"

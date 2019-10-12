@@ -81,6 +81,7 @@ class FrozenIn : BaseActivity() {
     }
     private fun getNum() {
         send_code!!.visibility = View.GONE
+        send_code.text = "重新获取"
         tv_djs!!.visibility = View.VISIBLE
         val ph = mk.decodeString(Tool.PHONE, "")
         //请求网络发送验证码
@@ -109,6 +110,10 @@ class FrozenIn : BaseActivity() {
                 override fun onError(throwable: Throwable, b: Boolean) {
                     super.onError(throwable, b)
                     utils.showToast("验证码验证失败")
+                }
+
+                override fun onFinished() {
+                    super.onFinished()
                     utils.hindProgress()
                 }
             })
@@ -124,8 +129,7 @@ class FrozenIn : BaseActivity() {
                 val status = bean.result
                 if (status == "0") {
                     utils.showToast(bean.message)
-                    finish()
-                    }
+                    finish() }
                 }
 
             override fun onError(throwable: Throwable, b: Boolean) {

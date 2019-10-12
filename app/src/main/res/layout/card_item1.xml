@@ -9,8 +9,8 @@
     <RelativeLayout
         android:layout_centerInParent="true"
         android:background="@drawable/img_card_ssmk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_width="270dp"
+        android:layout_height="170dp" >
         <TextView
             android:id="@+id/kh"
             android:layout_marginTop="135dp"
@@ -22,9 +22,10 @@
             android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/im_gs"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
             android:visibility="gone"
-            android:layout_marginStart="45dp"
-            android:layout_toEndOf="@+id/kh"
             android:background="@drawable/img_card_gs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

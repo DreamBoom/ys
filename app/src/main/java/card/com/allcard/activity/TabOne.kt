@@ -39,7 +39,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         //动画效果
         adapter!!.openLoadAnimation(BaseQuickAdapter.EMPTY_VIEW)
         pull_view.adapter = adapter
-        onRefresh()
+        initData()
         service_more.setOnClickListener { startActivity<MoreServiceActivity>() }
     }
 
@@ -48,7 +48,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun initData() {
-        swipeLayout.isRefreshing = true
+        //swipeLayout.isRefreshing = true
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.mainImg(userId, object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
@@ -76,7 +76,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
             override fun onFinished() {
                 super.onFinished()
-                runDelayed(1500) {
+                runDelayed(1000) {
                     if (swipeLayout!!.isRefreshing) {
                         swipeLayout!!.isRefreshing = false
                     }
@@ -109,7 +109,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     override fun onResume() {
         super.onResume()
         userId = mk.decodeString(Tool.USER_ID, "")
-        onRefresh()
+        initData()
     }
 
     private fun setData(data: List<ServiceListBean.ListBean>) {

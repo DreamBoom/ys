@@ -63,7 +63,7 @@ class ByQuestion : BaseActivity() {
             override fun onSuccess(s: String) {
                 super.onSuccess(s)
                 val bean = JSONObject.parseObject(s, object : TypeReference<AnswerBean>() {})
-                if (bean.status == "0") {
+                if (bean.result == "0") {
                     q1.text = bean.answerlist[0].remark
                     q2.text = bean.answerlist[1].remark
                     q3.text = bean.answerlist[2].remark

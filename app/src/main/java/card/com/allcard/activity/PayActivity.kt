@@ -127,7 +127,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
     private fun add(newName:String) {
         utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.upName(userId, newName,"",object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.upName(userId, newName,"","0",object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)

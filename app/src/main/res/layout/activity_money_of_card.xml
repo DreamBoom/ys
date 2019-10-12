@@ -42,7 +42,15 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/bg_top">
-
+        <ImageView
+            android:id="@+id/im_dj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:visibility="gone"
+            android:background="@drawable/my_zhdj" />
         <ImageView
             android:id="@+id/header"
             android:layout_width="52dp"
