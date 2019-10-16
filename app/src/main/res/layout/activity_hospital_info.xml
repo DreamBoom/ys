@@ -16,7 +16,18 @@
         android:paddingTop="10dp" />
 
     <include layout="@layout/title" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="147dp"
@@ -87,18 +98,7 @@
             android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -127,9 +127,10 @@
                 android:paddingBottom="10dp"
                 android:text="医院地址"
                 android:textColor="@color/grey75"
-                android:textSize="@dimen/size14" />
+                android:textSize="@dimen/size13" />
 
             <TextView
+                android:id="@+id/zn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -170,12 +171,13 @@
                 android:textSize="@dimen/size15" />
 
             <TextView
+                android:id="@+id/hos_web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text="暂无信息"
-                android:textColor="@color/black6"
+                android:textColor="@color/blue"
                 android:textSize="@dimen/size13" />
 
             <TextView
@@ -192,7 +194,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:padding="10dp"
+                android:layout_marginBottom="30dp"
                 android:text="暂无信息"
                 android:textColor="@color/black6"
                 android:textSize="@dimen/size13" />

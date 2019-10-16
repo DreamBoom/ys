@@ -113,6 +113,7 @@ class HttpRequestPort {
     private val getCardStatus = "AppLoginController/getCardStatus.do"
     private val getmemberLinkList = "AppLoginController/getmemberLinkList.do"
     private val smrz = "AppLoginController/smrz.do"
+    private val smzForother = "AppLoginController/smzForother.do"
     private val updateNickName = "AppLoginController/updateNickName.do"
     private val deleteNickName = "AppLoginController/deleteNickName.do"
     private val manageType = "AppLoginController/manageType.do"
@@ -238,7 +239,6 @@ class HttpRequestPort {
         map = HashMap()
         map!!["user_name"] = user_name
         map!!["passwd"] = passwd
-        map!!["fixparam"] = "android"
         map!!["device_num"] = device_num
         map!!["device_name"] = device_name
         map!!["device_api"] = device_api
@@ -610,7 +610,7 @@ class HttpRequestPort {
         map!!["nickName"] = nickName
         map!!["phone"] = phone
         map!!["familyserialNum"] = ""
-        httpUtil[BASE_URL + smrz, map, callBack]
+        httpUtil[BASE_URL + smzForother, map, callBack]
     }
 
     /**家庭修改昵称*/

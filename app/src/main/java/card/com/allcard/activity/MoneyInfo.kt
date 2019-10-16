@@ -175,7 +175,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
         }
         t4.setOnClickListener {
             type = 4
-            trCode = "1610"
+            trCode = "2837"
             refresh.autoRefresh()
             popupWindow!!.dismiss()
         }

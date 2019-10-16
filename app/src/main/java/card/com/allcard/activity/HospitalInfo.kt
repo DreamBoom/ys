@@ -1,37 +1,43 @@
 package card.com.allcard.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import card.com.allcard.R
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import com.zzhoujay.richtext.RichText
+import com.zzhoujay.richtext.callback.OnUrlClickListener
 import kotlinx.android.synthetic.main.activity_hospital_info.*
 import kotlinx.android.synthetic.main.title.*
 
 class HospitalInfo : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_hospital_info
-
-    @SuppressLint("SetTextI18n")
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
-        var hosId = intent.getStringExtra("hosId")
-        var name0 = intent.getStringExtra("name")
+        val hosId = intent.getStringExtra("hosId")
+        val name0 = intent.getStringExtra("name")
         var phone0 = intent.getStringExtra("phone")
         var address0 = intent.getStringExtra("address")
+        var tran = intent.getStringExtra("tran")
         val lat = intent.getStringExtra("lat")
         val lng = intent.getStringExtra("Lng")
-        address.text = name0
+        val hosWeb = intent.getStringExtra("hosWeb")
+        val hosInfo = intent.getStringExtra("hosInfo")
         when {
-            TextUtils.isEmpty(name0) -> name0 = "暂无信息"
+            TextUtils.isEmpty(tran) -> tran = "暂无信息"
             TextUtils.isEmpty(phone0) -> phone0 = "暂无信息"
             TextUtils.isEmpty(address0) -> address0 = "暂无地址信息"
         }
-        tel.text = "医院电话:$phone0"
-        address1.text = "医院地址:$address0"
+        address.text = name0
+        tel.text = "医院电话: $phone0"
+        address1.text = "医院地址: $address0"
+        zn.text = "交通指南: $tran"
+        hos_web.text = hosWeb
         mapName.text = address0
         val userId = mk.decodeString(Tool.USER_ID, "")
         val q = mk.decodeString(Tool.IS_AUTH, "")
@@ -53,14 +59,14 @@ class HospitalInfo : BaseActivity() {
             val bundle = Bundle()
             bundle.putString("id", hosId)
             bundle.putString("url", HttpRequestPort.H5_BASE_URL
-                    + "weixin/hospital/departmentNavSelect.jsp")
+                    + "weixin/hospital_v2/departmentNavSelect.jsp")
             utils.startActivityBy(WebHos::class.java, bundle)
         }
         dh.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("id", hosId)
             bundle.putString("url", HttpRequestPort.H5_BASE_URL
-                    + "weixin/hospital/departmentNav.jsp")
+                    + "weixin/hospital_v2/departmentNav.jsp")
             utils.startActivityBy(WebHos::class.java, bundle)
         }
         jl.setOnClickListener {
@@ -78,6 +84,13 @@ class HospitalInfo : BaseActivity() {
                 }
             }
         }
+        hos_web.setOnClickListener {
+            val intent = Intent()
+            intent.action = "android.intent.action.VIEW"
+            val contentUrl = Uri.parse(hosWeb)
+            intent.data = contentUrl
+            startActivity(intent)
+        }
         map.setOnClickListener {
             if (TextUtils.isEmpty(lat) || TextUtils.isEmpty(lng)) {
                 utils.showToast("暂无地址信息")
@@ -91,5 +104,28 @@ class HospitalInfo : BaseActivity() {
                 startActivity(intent)
             }
         }
+
+        if (!TextUtils.isEmpty(hosInfo)) {
+            RichText.initCacheDir(this)
+            RichText.debugMode = true
+            RichText.from(hosInfo)
+                    .urlClick(OnUrlClickListener { url ->
+                        if (url.startsWith("code://")) {
+                            Toast.makeText(this@HospitalInfo, url.replaceFirst("code://".toRegex(), ""), Toast.LENGTH_SHORT).show()
+                            return@OnUrlClickListener true
+                        }
+                        false
+                    })
+                    .into(info)
+        }
+
+//
+//        RichText.from(img)
+//                .imageClick { imageUrls, position ->
+//                    val calendar = Calendar.getInstance()
+//                    val m = calendar.get(Calendar.MINUTE)
+//                    val s = calendar.get(Calendar.SECOND)
+//                    Toast.makeText(this@HospitalInfo, "M:$m,S:$s", Toast.LENGTH_SHORT).show()
+//                }.into(info2)
     }
 }

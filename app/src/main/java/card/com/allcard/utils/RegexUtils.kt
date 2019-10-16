@@ -69,5 +69,18 @@ object RegexUtils {
         return m.matches()
     }
 
+    /**
+     * 身份证号校验
+     *
+     * @param idCard
+     * @return
+     */
+    fun isNum(idCard: String): Boolean {
+        val reg = "^\\d{15}$|^\\d{17}[0-9Xx]$"
+        if (!idCard.matches(reg.toRegex())) {
+            return false
+        }
+        return true
+    }
 }
 

@@ -18,7 +18,6 @@ import com.tencent.mmkv.MMKV
 import com.yatoooon.screenadaptation.ScreenAdapterTools
 import org.xutils.x
 import java.util.*
-
 /**
  * @author Created by Dream
  */

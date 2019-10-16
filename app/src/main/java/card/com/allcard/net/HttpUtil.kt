@@ -25,6 +25,7 @@ class HttpUtil {
                 params.addQueryStringParameter(key, value)
             }
             params.addQueryStringParameter("version", "v101")
+            params.addQueryStringParameter("fixparam", "android")
         }
         params.connectTimeout = 5000
         return x.http().get(params, callBack)
@@ -46,6 +47,7 @@ class HttpUtil {
             }
         }
         params.addParameter("version", "v101")
+        params.addQueryStringParameter("fixparam", "android")
         params.connectTimeout = 5000
         return x.http().post(params, callback)
     }
@@ -66,6 +68,7 @@ class HttpUtil {
         params.addParameter("user_id", user_id)
         params.addParameter("old_img", old_img)
         params.addHeader("Connection","close")
+        params.addQueryStringParameter("fixparam", "android")
         return x.http().post(params, callback)
     }
 

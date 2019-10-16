@@ -1,80 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeLayout"
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<ScrollView
-    android:scrollbars="none"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/et_grey"
-        android:orientation="vertical">
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/blue"
+        app:srlAccentColor="@color/white"
+        app:srlClassicsSpinnerStyle="Scale" />
 
-        <ImageView
-            android:id="@+id/kar"
-            android:layout_width="match_parent"
-            android:layout_height="184dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-        <card.com.allcard.view.MyGridView
-            android:id="@+id/im_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_pop"
-            android:fadingEdge="none"
-            android:listSelector="#00000000"
-            android:numColumns="4"
-            android:paddingTop="10dp"
-            android:scrollbars="none"
-            android:stretchMode="columnWidth"
-            android:transcriptMode="alwaysScroll"
-            android:verticalSpacing="2dp" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="3dp"
-            android:background="@color/white">
+            android:background="@color/et_grey"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingStart="20dp"
-                android:text="服务指南"
-                android:textColor="@color/black3"
-                android:textSize="@dimen/size15"
-                tools:ignore="SpUsage" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/service_more"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/kar"
+                    android:layout_width="match_parent"
+                    android:layout_height="184dp" />
+
+                <card.com.allcard.view.MyGridView
+                    android:id="@+id/im_info"
+                    android:layout_marginTop="170dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_pop"
+                    android:fadingEdge="none"
+                    android:listSelector="#00000000"
+                    android:numColumns="4"
+                    android:paddingTop="10dp"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"
+                    android:transcriptMode="alwaysScroll"
+                    android:verticalSpacing="2dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
-                android:text="更多  >"
-                android:textColor="@color/grey91"
-                android:textSize="@dimen/size13" />
-        </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/pull_view"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp" />
-    </LinearLayout>
-</ScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>
+                android:background="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:text="服务指南"
+                    android:textColor="@color/black3"
+                    android:textSize="@dimen/size15"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/service_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="更多  >"
+                    android:textColor="@color/grey91"
+                    android:textSize="@dimen/size13" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pull_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

@@ -2,8 +2,11 @@ package card.com.allcard.activity
 
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
 import card.com.allcard.getActivity.MyApplication
@@ -26,17 +29,15 @@ class PayBind : BaseActivity() {
         bar!!.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "请绑定"
+        close.setOnClickListener { finish() }
         val nickName = intent.getStringExtra("nickName")
+        et_phone!!.addTextChangedListener(PhoneWatcher(et_phone))
         mHandler = Handler()
+        send_code.isEnabled = false
         send_code.setOnClickListener {
-            val phone = et_phone!!.text.toString()
-            if (!TextUtils.isEmpty(phone) && RegexUtils.verifyUsername(phone) == RegexUtils.VERIFY_SUCCESS) {
-                send_code.text = "重新获取"
-                getNum()
-                getCaptchaTime()
-            } else {
-                utils.showToast("请输入正确手机号")
-            }
+            send_code.text = "重新获取"
+            getNum()
+            getCaptchaTime()
         }
         img_ok.setOnClickListener {
             val phone = et_phone!!.text.toString()
@@ -54,6 +55,12 @@ class PayBind : BaseActivity() {
                 utils.showToast("请输入身份证号")
                 return@setOnClickListener
             }
+
+            if(!RegexUtils.isNum(num)){
+                utils.showToast("请输入正确的身份证号")
+                return@setOnClickListener
+            }
+
             val code = et_code!!.text.toString()
             if (TextUtils.isEmpty(code)) {
                 utils.showToast("请输入验证码")
@@ -138,6 +145,41 @@ class PayBind : BaseActivity() {
                 utils.hindProgress()
             }
         })
+    }
 
+    internal inner class PhoneWatcher(var editText: EditText) : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int,
+                                       after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+        }
+
+        override fun afterTextChanged(editable: Editable) {
+            val i = 11
+            if (et_phone!!.text.length < i) {
+                send_code.isEnabled = false
+                return
+            }
+            if (et_phone!!.text.length == 11) {
+                if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
+                    utils.showToast("您输入的手机号不正确!")
+                    send_code.isEnabled = false
+                    return
+                }
+            }
+            if (et_phone!!.text.length == 11 && RegexUtils.verifyUsername(
+                            et_phone!!.text.toString().trim()) == RegexUtils.VERIFY_SUCCESS) {
+                val trim = et_phone!!.text.toString().trim()
+                val decodeString = mk.decodeString(Tool.PHONE, "")
+                if(decodeString == trim){
+                    utils.showToast("不能绑定本人信息，请重新输入")
+                }else{
+                    send_code.isEnabled = true
+                }
+            }
+        }
     }
 }

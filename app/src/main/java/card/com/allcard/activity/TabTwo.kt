@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_tab_two.*
 import kotlinx.android.synthetic.main.title.*
 import java.util.*
 
-class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.TwoClickListener{
+class TabTwo : BaseActivity(), GridTopAdapter.GridClickListener, TabTwoAdapter.TwoClickListener {
     override fun layoutId(): Int = R.layout.activity_tab_two
     //全部图标
     private var adapt: TabTwoAdapter? = null
@@ -29,6 +29,7 @@ class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.Two
     private var topAdapter: TabTopAdapter? = null
     //顶部编辑图标
     private var gridAdapter: GridTopAdapter? = null
+
     //编辑状态
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -36,27 +37,29 @@ class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.Two
         @SuppressLint("StaticFieldLeak")
         val TopList = ArrayList<TabTwoBean.ListBean.SummarydetailBean>()
     }
+
     private val dataList = ArrayList<TabTwoBean.ListBean.IconAllBean>()
     //上传图标数组
     private val iconList = ArrayList<String>()
+
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "服务"
         close.visibility = View.GONE
-        topAdapter = TabTopAdapter(this,R.layout.im_item, TopList)
-        gridAdapter = GridTopAdapter(this,TopList, R.layout.gridview_item)
+        topAdapter = TabTopAdapter(this, R.layout.im_item, TopList)
+        gridAdapter = GridTopAdapter(this, TopList, R.layout.gridview_item)
         gridAdapter!!.gridClickListener = this
-        adapt = TabTwoAdapter(this,dataList,R.layout.tab_two_item)
+        adapt = TabTwoAdapter(this, dataList, R.layout.tab_two_item)
         adapt!!.Click = this
         val layoutManager = LinearLayoutManager(this@TabTwo)
         topList.layoutManager = layoutManager
-        layoutManager.orientation=OrientationHelper.HORIZONTAL
+        layoutManager.orientation = OrientationHelper.HORIZONTAL
         topList.adapter = topAdapter
         all_list.adapter = adapt
         top_grid.adapter = gridAdapter
         tv_edit.setOnClickListener {
-            if(!noUserId()){
+            if (!noUserId()) {
                 grid_title.visibility = View.GONE
                 ll_top_apps.visibility = View.GONE
                 rl_top.visibility = View.VISIBLE
@@ -71,8 +74,10 @@ class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.Two
             putUp()
         }
         refresh.setOnRefreshListener { refresh ->
+            initData()
             refresh.finishRefresh()
-            //重新刷新页面
+        }
+        restart.setOnClickListener {
             initData()
         }
         refresh.autoRefresh()
@@ -80,32 +85,35 @@ class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.Two
 
     private fun putUp() {
         iconList.clear()
-        for (i in 0 until TopList.size){
+        for (i in 0 until TopList.size) {
             iconList.add(TopList[i].id)
         }
         val icon = iconList.toString()
                 .replace("[", "")
                 .replace("]", "")
-                .replace(" ","").trim()
+                .replace(" ", "").trim()
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.iconSave(userId,icon,object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.iconSave(userId, icon, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<ResultBean>() {})
-                if(bean.status != "0"){
-                    //utils.showToast(bean.message)
-                }
+//                if (bean.status != "0") {
+//                    //utils.showToast(bean.message)
+//                }
             }
         })
     }
 
-    private fun initData(){
+    private fun initData() {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.tabTwo(userId,object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.tabTwo(userId, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<TabTwoBean>() {})
-                if(bean.result == "0"){
+                if (bean.result == "0") {
+                    if (rl_zw.visibility == View.VISIBLE) {
+                        rl_zw.visibility = View.GONE
+                    }
                     dataList.clear()
                     TopList.clear()
                     dataList.addAll(bean.list.iconAll)
@@ -113,7 +121,19 @@ class TabTwo : BaseActivity(),GridTopAdapter.GridClickListener,TabTwoAdapter.Two
                     adapt!!.notifyDataSetChanged()
                     topAdapter!!.notifyDataSetChanged()
                     gridAdapter!!.notifyDataSetChanged()
+                } else {
+                    if (rl_zw.visibility == View.GONE) {
+                        rl_zw.visibility = View.VISIBLE
+                    }
                 }
+            }
+
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                if (rl_zw.visibility == View.GONE) {
+                    rl_zw.visibility = View.VISIBLE
+                }
+                utils.showToast("加载失败，请稍后重试")
             }
         })
     }

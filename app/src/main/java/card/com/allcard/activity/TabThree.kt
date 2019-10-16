@@ -35,6 +35,12 @@ class TabThree : BaseActivity() {
             refresh.finishRefresh()
             getList()
         }
+        val name = mk.decodeString(Tool.chooseArea,"")
+        if(TextUtils.isEmpty(name)){
+            area.text = "全部"
+        }else{
+            area.text = name
+        }
         adapter = TabThreeAdapter(this, R.layout.scrow_view_item,dataList)
         listView!!.adapter = adapter
         listView.layoutManager = LinearLayoutManager(this@TabThree)
@@ -45,6 +51,7 @@ class TabThree : BaseActivity() {
             searchName = et_search.text.toString().trim()
             refresh.autoRefresh()
             utils.hideSoftKeyboard()
+            et_search.isCursorVisible = false
         }
     }
 
@@ -76,10 +83,11 @@ class TabThree : BaseActivity() {
                 val name = data!!.getStringExtra("name")
                 if (TextUtils.isEmpty(name)) {
                     area.text = "全部"
+                    getList()
                 } else {
                     area.text = name
+                    getList()
                 }
-                getList()
             }
         }
     }

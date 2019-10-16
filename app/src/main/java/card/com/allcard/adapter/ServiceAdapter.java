@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import org.xutils.x;
+
 import java.util.List;
 
 import card.com.allcard.R;
@@ -27,8 +29,7 @@ public class ServiceAdapter extends CommonAdapter<ServiceListBean.ListBean> {
         if(TextUtils.isEmpty(datas.getSerimg())){
             img.setBackgroundResource(R.drawable.img_sy_fezn);
         }else {
-            //x.image().bind(img, datas.getSerimg());
-            img.setBackgroundResource(R.drawable.img_sy_fezn);
+            x.image().bind(img, datas.getSerimg());
         }
         RelativeLayout news = holder.getView(R.id.news);
         news.setOnClickListener(view -> {

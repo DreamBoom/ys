@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import org.xutils.x;
+
 import java.util.List;
 
 import card.com.allcard.R;
@@ -35,10 +37,8 @@ public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, B
         if(TextUtils.isEmpty(datas.getSerimg())){
             img.setBackgroundResource(R.drawable.img_sy_fezn);
         }else {
-          //  x.image().bind(img, datas.getSerimg());
-            img.setBackgroundResource(R.drawable.img_sy_fezn);
+            x.image().bind(img, datas.getSerimg());
         }
-
         RelativeLayout news = holder.getView(R.id.news);
         news.setOnClickListener(view -> {
             Intent intent = new Intent();

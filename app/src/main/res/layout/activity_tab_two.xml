@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activity.TabTwo">
+
     <ImageView
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white" />
+
     <RelativeLayout
         android:id="@+id/rl_top"
-        android:visibility="gone"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bar"
+        android:background="@color/white"
+        android:visibility="gone">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:gravity="center"
             android:layout_marginStart="15dp"
+            android:gravity="center"
             android:text="我的导航"
             android:textColor="@color/black"
             android:textSize="@dimen/size13" />
 
         <TextView
             android:id="@+id/done"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:gravity="center"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
+            android:gravity="center"
             android:text="完成"
             android:textColor="@color/blue"
             android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/line"
-            android:layout_below="@+id/done"
-            android:background="@color/grey"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:layout_below="@+id/done"
+            android:background="@color/grey" />
+
         <card.com.allcard.view.MyGridView
             android:id="@+id/top_grid"
-            android:layout_below="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_marginBottom="10dp"
             android:background="@color/white"
             android:numColumns="4"
             android:paddingStart="15dp"
-            android:paddingEnd="15dp"
             android:paddingTop="10dp"
+            android:paddingEnd="15dp"
             android:paddingBottom="10dp"
-            android:layout_marginBottom="10dp"
             android:scrollbars="none"
             android:stretchMode="columnWidth" />
     </RelativeLayout>
+
     <include
         android:id="@+id/grid_title"
+        layout="@layout/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/title" />
+        android:layout_below="@+id/rl_top" />
 
     <RelativeLayout
         android:id="@+id/ll_top_apps"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:layout_below="@+id/grid_title"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingStart="20dp"
@@ -85,13 +93,14 @@
             android:id="@+id/topList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/t1"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/t1" />
+
         <TextView
             android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -99,14 +108,19 @@
             android:textColor="@color/blue67"
             android:textSize="@dimen/size13" />
     </RelativeLayout>
+
     <ImageView
-        android:background="@color/grey"
+        android:id="@+id/lin"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_top_apps"
+        android:background="@color/grey" />
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lin">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
@@ -122,4 +136,38 @@
             android:divider="@color/white"
             android:scrollbars="none" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_zw"
+        android:layout_below="@+id/grid_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/zw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/img_wwl"
+            android:gravity="center"
+            android:text="网络失败"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size13" />
+
+        <TextView
+            android:id="@+id/restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/zw"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_btn"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="点击重试"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size13" />
+    </RelativeLayout>
+
+</RelativeLayout>

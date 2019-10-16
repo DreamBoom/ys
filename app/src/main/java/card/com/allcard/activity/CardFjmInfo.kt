@@ -43,7 +43,7 @@ class CardFjmInfo : BaseActivity() {
         list.setOnItemSelectedListener { position ->
             pos = position
             address.text = "非记名市民卡   " + (position + 1).toString() + "/" + list.layoutManager!!.itemCount
-            time.text = serviceGuide[position].createTime
+            time.text = serviceGuide[position].updateTime
             name1 = serviceGuide[position].clientName
             qd.text = serviceGuide[position].cardStateName
             name.text = name1
@@ -115,7 +115,7 @@ class CardFjmInfo : BaseActivity() {
                     phone.text = s
                     qd.text = serviceGuide[pos].cardStateName
                     address.text = "非记名市民卡   1/" + serviceGuide.size
-                    time.text = serviceGuide[pos].createTime
+                    time.text = serviceGuide[pos].updateTime
                     name.text = serviceGuide[pos].clientName
                     name1 = serviceGuide[pos].clientName
                     cardNo = serviceGuide[pos].cardNo
@@ -166,7 +166,6 @@ class CardFjmInfo : BaseActivity() {
         exitPop!!.setBackgroundDrawable(dw)
         sure.setOnClickListener {
             delete()
-
         }
         cancel.setOnClickListener {
             exitPop!!.dismiss()

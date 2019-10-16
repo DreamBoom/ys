@@ -24,8 +24,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import android.widget.Toast
 import card.com.allcard.R
+import card.com.allcard.activity.WebNew
 import card.com.allcard.activity.WebOther
-import card.com.allcard.activity.WebViewActivity
 import java.io.UnsupportedEncodingException
 import java.lang.ref.WeakReference
 import java.net.URLEncoder
@@ -121,7 +121,7 @@ class ActivityUtils {
 
     fun startWeb(url: String) {
         val activity = activity ?: return
-        val intent = Intent(activity, WebViewActivity::class.java)
+        val intent = Intent(activity, WebNew::class.java)
         intent.putExtra("url", url)
         activity.startActivity(intent)
     }

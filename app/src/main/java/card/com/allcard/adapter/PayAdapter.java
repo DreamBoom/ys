@@ -24,12 +24,12 @@ import card.com.allcard.net.BaseHttpCallBack;
 import card.com.allcard.net.HttpRequestPort;
 import card.com.allcard.tools.Tool;
 import card.com.allcard.utils.ActivityUtils;
+import card.com.allcard.utils.LogUtils;
 
 public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
     private Activity act;
     public ClickListener click;
     private final ActivityUtils utils;
-    private String oldName = "";
     public void setClickListener(ClickListener onClickListener) {
         this.click = onClickListener;
     }
@@ -56,10 +56,12 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
         TextView money = holder.getView(R.id.money);
         EditText et_name = holder.getView(R.id.et_name);
         name.setText(data.getNickName());
-        oldName = data.getNickName();
         if (!TextUtils.isEmpty(data.getCertNo())) {
             mo.setVisibility(View.GONE);
             money.setVisibility(View.VISIBLE);
+        }else {
+            mo.setVisibility(View.VISIBLE);
+            money.setVisibility(View.GONE);
         }
         edit.setOnClickListener(v -> {
                     name.setVisibility(View.GONE);
@@ -86,7 +88,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
                     click.onClickListener(position, trim);
                     et_name.setText("".toCharArray(), 0, "".length());
                     utils.hideSoftKeyboard();
-                    up(trim);
+                    up(name.getText().toString(),trim);
                 }
 
         );
@@ -119,7 +121,8 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
         );
     }
 
-    private void up(String newName) {
+    private void up(String oldName,String newName) {
+        LogUtils.i("====>",oldName+"==="+newName);
         MMKV mk = BaseActivity.Companion.getMk();
         utils.getProgress(act);
         String userId = mk.decodeString(Tool.INSTANCE.getUSER_ID(), "");
@@ -132,6 +135,7 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
                 if (bean.getResult().equals("0")) {
                     click.upName();
                 } else {
+                    click.upName();
                     utils.showToast("修改失败，请重试");
                 }
             }

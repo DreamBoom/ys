@@ -48,7 +48,6 @@ class Map : AppCompatActivity() , LocationSource, RouteSearch.OnRouteSearchListe
         window.statusBarColor = resources.getColor(R.color.hide)
         initView()
         close.setOnClickListener { finish() }
-        address.text = "网点地图"
     }
     var phone0 = ""
     var aMap: AMap?=null
@@ -68,6 +67,7 @@ class Map : AppCompatActivity() , LocationSource, RouteSearch.OnRouteSearchListe
         if(TextUtils.isEmpty(address0)){
             address0 = "暂无地址信息"
         }
+        address.text = name0
         hospital_name.text = name0
         val latLng = LatLng(la, lg)
         markerOption.position(latLng)

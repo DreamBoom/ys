@@ -16,7 +16,6 @@ import card.com.allcard.tools.Tool
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.pawegio.kandroid.runDelayed
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_tab_one.*
 import org.xutils.image.ImageOptions
@@ -33,14 +32,18 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     override fun initView() {
         adapter = NewListAdapter(this, R.layout.news_list_item, serviceGuide)
         utils.changeStatusBlack(false, window)
-        swipeLayout.setOnRefreshListener(this)
-        swipeLayout.setColorSchemeResources(R.color.blue)
+        refresh.setEnableOverScrollDrag(false)
+        refresh.setOnRefreshListener {
+            refresh.finishRefresh()
+            initData()
+        }
         pull_view.layoutManager = LinearLayoutManager(this@TabOne)
         //动画效果
         adapter!!.openLoadAnimation(BaseQuickAdapter.EMPTY_VIEW)
         pull_view.adapter = adapter
         initData()
         service_more.setOnClickListener { startActivity<MoreServiceActivity>() }
+        refresh.autoRefresh()
     }
 
     override fun onRefresh() {
@@ -76,11 +79,6 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
             override fun onFinished() {
                 super.onFinished()
-                runDelayed(1000) {
-                    if (swipeLayout!!.isRefreshing) {
-                        swipeLayout!!.isRefreshing = false
-                    }
-                }
                 initData2()
             }
         })
@@ -95,13 +93,13 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                 if (bean.result == "0") {
                     setData(bean.list)
                 } else {
-                    adapter!!.addHeaderView(utils.getView(this@TabOne, R.layout.view_no_web))
+                    setData(null)
                 }
             }
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
-                adapter!!.addHeaderView(utils.getView(this@TabOne, R.layout.view_no_web))
+                setData(null)
             }
         })
     }
@@ -112,12 +110,14 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         initData()
     }
 
-    private fun setData(data: List<ServiceListBean.ListBean>) {
-        if (adapter!!.headerLayout != null) {
+
+    private fun setData(data: List<ServiceListBean.ListBean>?) {
+        if ( adapter!!.headerLayout != null) {
             adapter!!.removeAllHeaderView()
         }
         adapter!!.setNewData(data)
         when {
+            data == null -> adapter!!.addHeaderView(utils.getView(this, R.layout.tab_no_web))
             data.size < 1 -> adapter!!.addHeaderView(utils.getView(this, R.layout.no_data))
         }
     }

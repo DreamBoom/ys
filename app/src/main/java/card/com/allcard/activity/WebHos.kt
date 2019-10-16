@@ -36,9 +36,9 @@ class WebHos : BaseActivity() {
         before = url.substringBefore("?")
         val end = url.substringAfter("?")
         val end1 = if (TextUtils.isEmpty(end)) {
-            "fixparam=android&user_id=$userId&hosp_id=$id"
+            "fixparam=android&user_id=$userId&hosp_id=$id&flag=0"
         } else {
-            "$end&fixparam=android&user_id=$userId&hosp_id=$id"
+            "$end&fixparam=android&user_id=$userId&hosp_id=$id&flag=0"
         }
         bytes = end1.toByteArray()
         assert(web_view != null)

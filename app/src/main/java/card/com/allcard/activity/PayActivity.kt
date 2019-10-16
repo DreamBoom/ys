@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.baoyz.swipemenulistview.SwipeMenuCreator
 import com.baoyz.swipemenulistview.SwipeMenuItem
+import com.hyb.library.PreventKeyboardBlockUtil
 import kotlinx.android.synthetic.main.activity_pay.*
 import kotlinx.android.synthetic.main.payadd_item.*
 import kotlinx.android.synthetic.main.title.*
@@ -90,6 +91,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         payAdapter!!.setClickListener(this)
         list.adapter = payAdapter
         refresh.setEnableOverScrollDrag(false)
+        refresh.setHeaderMaxDragRate(2.0f)
         refresh.setOnRefreshListener { refresh ->
             refresh.finishRefresh()
             initData()
@@ -103,16 +105,18 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)
+                dataList.clear()
                 val bean = JSONObject.parseObject(data, object : TypeReference<PayListBean>() {})
                 if(bean.result == "0"){
-                    dataList.clear()
                     if(bean.memberlinkList.size>0){
-                        no_data.visibility = View.GONE
+                        if(no_data.visibility == View.VISIBLE){
+                            no_data.visibility = View.GONE
+                        }
                         dataList.addAll(bean.memberlinkList)
+                        payAdapter!!.notifyDataSetChanged()
                     }else{
                         no_data.visibility = View.VISIBLE
                     }
-                    payAdapter!!.notifyDataSetChanged()
                 }
             }
 
@@ -151,6 +155,16 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         initData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        initData()
+        PreventKeyboardBlockUtil.getInstance(this).setBtnView(im).register()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PreventKeyboardBlockUtil.getInstance(this).unRegister()
+    }
 
     private fun delete(name:String) {
         val userId = mk.decodeString(Tool.USER_ID, "")

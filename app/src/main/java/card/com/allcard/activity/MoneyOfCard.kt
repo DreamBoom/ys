@@ -29,7 +29,7 @@ class MoneyOfCard : BaseActivity() {
             bundle.putString("nickName", "")
             bundle.putString("flag","0")
             utils.startActivityBy(MoneyIn::class.java,bundle) }
-        getMoney.setOnClickListener {  }
+        getMoney.setOnClickListener { utils.showToast("敬请期待") }
         xz.setOnClickListener { startActivity<EdOfMoney>() }
         mx.setOnClickListener {
             val bundle = Bundle()

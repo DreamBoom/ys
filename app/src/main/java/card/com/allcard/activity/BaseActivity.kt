@@ -9,6 +9,8 @@ import card.com.allcard.utils.ActivityUtils
 import com.tencent.mmkv.MMKV
 import com.yatoooon.screenadaptation.ScreenAdapterTools
 
+
+
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -38,4 +40,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
+
+
 }
