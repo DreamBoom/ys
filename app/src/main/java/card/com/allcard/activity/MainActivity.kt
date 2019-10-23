@@ -1,19 +1,38 @@
 package card.com.allcard.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.ActivityManager
+import android.app.AlertDialog
 import android.app.TabActivity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.TabHost
+import android.widget.TextView
 import card.com.allcard.R
+import card.com.allcard.bean.JpushBean
 import card.com.allcard.getActivity.MyApplication
+import card.com.allcard.getActivity.MyApplication.Companion.context
+import card.com.allcard.receiver.ExampleUtil
 import card.com.allcard.tools.DataCleanTools
 import card.com.allcard.tools.Tool
 import card.com.allcard.utils.ActivityUtils
+import cn.jpush.android.api.JPushInterface
+import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.TypeReference
+import com.pawegio.kandroid.startActivity
 import com.tencent.mmkv.MMKV
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.buttom_bar.*
+
 
 /**
  * @author Created by Dream
@@ -28,8 +47,16 @@ class MainActivity : TabActivity() {
         var instance: MainActivity? = null
         @SuppressLint("StaticFieldLeak")
         var tab: TabHost? = null
-    }
 
+        @SuppressLint("StaticFieldLeak")
+        val MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION"
+        @SuppressLint("StaticFieldLeak")
+        val KEY_TITLE = "title"
+        @SuppressLint("StaticFieldLeak")
+        val KEY_MESSAGE = "message"
+        @SuppressLint("StaticFieldLeak")
+        val KEY_EXTRAS = "extras"
+    }
     private var firstTime: Long = 0
     private var utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +67,7 @@ class MainActivity : TabActivity() {
         instance = this
         tab = tabhost
         initView()
+        registerMessageReceiver()
     }
 
     private fun initView() {
@@ -110,5 +138,133 @@ class MainActivity : TabActivity() {
             }
         }
         return super.dispatchKeyEvent(event)
+    }
+
+
+    override fun onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver!!)
+        super.onDestroy()
+    }
+
+    //for receive customer msg from jpush server
+    private var mMessageReceiver: MessageReceiver? = null
+    fun registerMessageReceiver() {
+        mMessageReceiver = MessageReceiver()
+        val filter = IntentFilter()
+        filter.priority = IntentFilter.SYSTEM_HIGH_PRIORITY
+        filter.addAction(MESSAGE_RECEIVED_ACTION)
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver!!, filter)
+    }
+
+    inner class MessageReceiver : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            try {
+                if (MESSAGE_RECEIVED_ACTION == intent.action) {
+                    val messge = intent.getStringExtra(KEY_MESSAGE)
+                    val extras = intent.getStringExtra(KEY_EXTRAS)
+                    val showMsg = StringBuilder()
+                    showMsg.append("$KEY_MESSAGE : $messge\n")
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append("$KEY_EXTRAS : $extras\n")
+                    }
+                    setCostomMsg(showMsg.toString())
+                }
+            } catch (e: Exception) {
+            }
+
+        }
+    }
+
+    private fun setCostomMsg(msg: String) {
+        val split = msg.split("{")
+        val bean = JSONObject.parseObject("{${split[1]}", object : TypeReference<JpushBean>() {})
+        when (bean.msgType) {
+            "login" -> {
+                pop(this, bean.datetime, 0)
+            }
+            "updatePwd" -> {
+                val mk = BaseActivity.mk
+                val userId = mk.decodeString(Tool.USER_ID, "")
+                mk.clearAll()
+                SplashActivity.mkBD.encode(userId + "finger", "")
+                SplashActivity.mkBD.encode(userId + "sign", "")
+                jPush(this, "")
+                JPushInterface.clearAllNotifications(context)
+                pop(this, bean.datetime, 1)
+            }
+            "modPhone" -> {
+                val mk = BaseActivity.mk
+                val userId = mk.decodeString(Tool.USER_ID, "")
+                mk.clearAll()
+                SplashActivity.mkBD.encode(userId + "finger", "")
+                SplashActivity.mkBD.encode(userId + "sign", "")
+                jPush(this, "")
+                JPushInterface.clearAllNotifications(context)
+                pop(this,  bean.datetime, 2)
+            }
+        }
+    }
+
+    private fun jPush(context: Context, alias: String) {
+        JPushInterface.setAliasAndTags(context, alias, null) { i, s, set -> }
+    }
+
+    private fun pop(context: Context, mes: String, type: Int) {
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val cn = am.getRunningTasks(1)[0].topActivity
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            for (act in MyApplication.instance.activitys!!) {
+                if (".${act.localClassName}" == cn.shortClassName
+                        || cn.shortClassName == ".unihome.UniHomeLauncher"
+                        ||cn.shortClassName == ".launcher.Launcher") {
+                    if (!act.isDestroyed) {
+                        when (type) {
+                            0 -> alert(act, "您的账号于 $mes 在另一台设备登录。如非本人操作，则密码可能已泄露，建议前往修改密码。")
+                            1 -> alertLogin(act, "该账号于 $mes 在另一台设备修改了密码。请重新登录。")
+                            2 -> alertLogin(act, "该账号于 $mes 在另一台设备修改了手机号。请重新登录。")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun alertLogin(context: Activity, str: String) {
+        val builder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.jpush_dialog, null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        val alertDialog = builder.create()
+        alertDialog.show()
+        alertDialog.window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val title = view.findViewById<TextView>(R.id.title)
+        title.text = str
+        val sure = view.findViewById<TextView>(R.id.sure)
+        sure.setOnClickListener {
+            context.startActivity<LoginActivity>()
+        }
+    }
+
+    private fun alert(context: Activity, str: String) {
+        val builder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.jpush_login_dialog, null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        val alertDialog = builder.create()
+        alertDialog.show()
+        alertDialog.window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val title = view.findViewById<TextView>(R.id.title)
+        title.text = str
+        val sure = view.findViewById<TextView>(R.id.sure)
+        val cancel = view.findViewById<TextView>(R.id.cancel)
+        sure.text = "修改密码"
+        sure.setOnClickListener {
+            alertDialog.dismiss()
+            context.startActivity<ChangePasswordActivity>()
+        }
+        cancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
     }
 }

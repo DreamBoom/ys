@@ -9,6 +9,7 @@ import card.com.allcard.R
 import card.com.allcard.adapter.ServiceAdapter
 import card.com.allcard.bean.ServiceListBean
 import card.com.allcard.bean.ServiceTypeBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -28,6 +29,7 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
     private val dataList = ArrayList<ServiceListBean.ListBean>()
     var tabNum = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }

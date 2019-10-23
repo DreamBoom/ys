@@ -12,15 +12,14 @@ import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.KeyBoardListener
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.baoyz.swipemenulistview.SwipeMenuCreator
 import com.baoyz.swipemenulistview.SwipeMenuItem
-import com.hyb.library.PreventKeyboardBlockUtil
 import kotlinx.android.synthetic.main.activity_pay.*
 import kotlinx.android.synthetic.main.payadd_item.*
 import kotlinx.android.synthetic.main.title.*
-
 
 class PayActivity : BaseActivity(), PayAdapter.ClickListener {
     override fun layoutId(): Int = R.layout.activity_pay
@@ -30,6 +29,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
+        KeyBoardListener.getInstance(this).init()
         MyApplication.instance.addActivity(this)
         address.text = "家庭管理"
         close.setOnClickListener { finish() }
@@ -38,9 +38,9 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         right_menu.text = "+新增"
         right_menu.textSize = 13f
         right_menu.setOnClickListener {
-           // list.setSelection(list.bottom)
+            // list.setSelection(list.bottom)
             list.smoothScrollToPosition(list.bottom)
-           // list.smoothScrollBy()
+            // list.smoothScrollBy()
             list.isEnabled = false
             addItem.isFocusable = true
             addItem.isFocusableInTouchMode = true
@@ -52,9 +52,9 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         add_sure.setOnClickListener {
             utils.hideSoftKeyboard()
             val name = et_add_name.text.toString().trim()
-            if(TextUtils.isEmpty(name)){
+            if (TextUtils.isEmpty(name)) {
                 utils.showToast("请输入昵称")
-            }else{
+            } else {
                 list.isEnabled = true
                 et_add_name.setText("".toCharArray(), 0, "".length)
                 add(name)
@@ -96,7 +96,7 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
             refresh.finishRefresh()
             initData()
         }
-        refresh.autoRefresh()
+        initData()
     }
 
     private fun initData() {
@@ -107,16 +107,16 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
                 super.success(data)
                 dataList.clear()
                 val bean = JSONObject.parseObject(data, object : TypeReference<PayListBean>() {})
-                if(bean.result == "0"){
-                    if(bean.memberlinkList.size>0){
-                        if(no_data.visibility == View.VISIBLE){
+                if (bean.result == "0") {
+                    if (bean.memberlinkList.size > 0) {
+                        if (no_data.visibility == View.VISIBLE) {
                             no_data.visibility = View.GONE
                         }
                         dataList.addAll(bean.memberlinkList)
-                        payAdapter!!.notifyDataSetChanged()
-                    }else{
+                    } else {
                         no_data.visibility = View.VISIBLE
                     }
+                    payAdapter!!.notifyDataSetChanged()
                 }
             }
 
@@ -128,18 +128,18 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
         })
     }
 
-    private fun add(newName:String) {
+    private fun add(newName: String) {
         utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.upName(userId, newName,"","0",object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.upName(userId, newName, "", "0", object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                if(bean.result == "0"){
+                if (bean.result == "0") {
                     initData()
                     addItem.visibility = View.GONE
-                }else{
+                } else {
                     utils.showToast(bean.message)
                 }
             }
@@ -158,24 +158,19 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
     override fun onResume() {
         super.onResume()
         initData()
-        PreventKeyboardBlockUtil.getInstance(this).setBtnView(im).register()
     }
 
-    override fun onPause() {
-        super.onPause()
-        PreventKeyboardBlockUtil.getInstance(this).unRegister()
-    }
 
-    private fun delete(name:String) {
+    private fun delete(name: String) {
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.deleteName(userId, name,object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.deleteName(userId, name, object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                if(bean.result == "0"){
+                if (bean.result == "0") {
                     initData()
-                }else{
+                } else {
                     utils.showToast(bean.message)
                 }
             }

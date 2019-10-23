@@ -10,6 +10,7 @@ import card.com.allcard.adapter.ImgAdapter
 import card.com.allcard.adapter.NewListAdapter
 import card.com.allcard.bean.MainImgBean
 import card.com.allcard.bean.ServiceListBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -18,7 +19,6 @@ import com.alibaba.fastjson.TypeReference
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_tab_one.*
-import org.xutils.image.ImageOptions
 import org.xutils.x
 
 class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
@@ -27,9 +27,9 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     private var serviceGuide = mutableListOf<ServiceListBean.ListBean>()
     private var adapter: NewListAdapter? = null
     private var imgAdapter: ImgAdapter? = null
-    private var options: ImageOptions? = null
     var userId = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         adapter = NewListAdapter(this, R.layout.news_list_item, serviceGuide)
         utils.changeStatusBlack(false, window)
         refresh.setEnableOverScrollDrag(false)
@@ -41,9 +41,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         //动画效果
         adapter!!.openLoadAnimation(BaseQuickAdapter.EMPTY_VIEW)
         pull_view.adapter = adapter
-        initData()
         service_more.setOnClickListener { startActivity<MoreServiceActivity>() }
-        refresh.autoRefresh()
     }
 
     override fun onRefresh() {
@@ -59,7 +57,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                 val bean = JSONObject.parseObject(data, object : TypeReference<MainImgBean>() {})
                 //设置轮播图
                 if (detail.size == 0) {
-                    x.image().bind(kar, bean.image[0], options)
+                    x.image().bind(kar, bean.image[0])
                 }
                 //设置图标
                 val summarydetail = bean.summarydetail

@@ -21,8 +21,9 @@
             android:src="@drawable/back_h"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
+            android:layout_centerVertical="true"
             android:padding="10dp"
+            android:layout_marginLeft="10dp"
             tools:ignore="RtlHardcoded" />
 
         <TextView
@@ -31,8 +32,7 @@
             android:layout_width="wrap_content"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/size17"
-            android:layout_gravity="center" />
+            android:textSize="@dimen/size17" />
         <ImageView
             android:id="@+id/right_menu"
             android:layout_width="wrap_content"

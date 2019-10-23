@@ -12,6 +12,7 @@ import card.com.allcard.adapter.TabTopAdapter
 import card.com.allcard.adapter.TabTwoAdapter
 import card.com.allcard.bean.ResultBean
 import card.com.allcard.bean.TabTwoBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -43,6 +44,7 @@ class TabTwo : BaseActivity(), GridTopAdapter.GridClickListener, TabTwoAdapter.T
     private val iconList = ArrayList<String>()
 
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "服务"

@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_vertical"
             android:padding="10dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/back_h"
             tools:ignore="RtlHardcoded" />
 
@@ -62,7 +63,6 @@
         android:id="@+id/rl_zw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title"
         android:clickable="false"
         android:background="@color/white"
         android:visibility="gone">

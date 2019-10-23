@@ -2,11 +2,15 @@ package card.com.allcard.activity
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.adapter.TabThreeAdapter
 import card.com.allcard.bean.HospitalList
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -25,6 +29,7 @@ class TabThree : BaseActivity() {
     private val dataList = ArrayList<HospitalList.HospitalBean>()
     override fun layoutId(): Int = R.layout.activity_tab_three
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         area.setOnClickListener { utils.startActivityForResult(ChooseArea::class.java, REQUETCODE_SEARCH) }
@@ -53,6 +58,8 @@ class TabThree : BaseActivity() {
             utils.hideSoftKeyboard()
             et_search.isCursorVisible = false
         }
+        et_search.setOnClickListener {  et_search.isCursorVisible = true }
+        et_search!!.addTextChangedListener(Watcher(et_search))
     }
 
     fun getList() {
@@ -100,6 +107,22 @@ class TabThree : BaseActivity() {
         when {
             data == null -> adapter!!.addHeaderView(utils.getView(this, R.layout.view_no_web))
             data.size < 1 -> adapter!!.addHeaderView(utils.getView(this, R.layout.no_data))
+        }
+    }
+
+    internal inner class Watcher(var editText: EditText) : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+        }
+
+        override fun afterTextChanged(editable: Editable) {
+            val i = 1
+            searchName = when {
+                editText.text.length < i -> ""
+                else -> editable.toString()
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import card.com.allcard.R
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import com.zzhoujay.richtext.RichText
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.title.*
 class HospitalInfo : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_hospital_info
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }

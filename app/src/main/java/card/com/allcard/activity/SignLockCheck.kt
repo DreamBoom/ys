@@ -28,18 +28,19 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
     private var shake: ObjectAnimator? = null
     private var sign: String? = null
     private var sure: TextView? = null
-    internal var canBack = 0
+    private var canBack = 0
     val mkBD = SplashActivity.mkBD
     val userId = mk.decodeString(Tool.USER_ID, "")
     override fun initView() {
+        bar!!.layoutParams.height = utils.getStatusBarHeight(this)
+        utils.changeStatusBlack(true, window)
         //防止退出后台进入验证界面
         mk.encode(Tool.BY_LOGIN, "1")
         MyApplication.instance.addActivity(this)
         val mkBD = SplashActivity.mkBD
         val userId = mk.decodeString(Tool.USER_ID, "")
-        sign = mkBD!!.decodeString(userId+"sign", "")
-        bar!!.layoutParams.height = utils.getStatusBarHeight(this)
-        utils.changeStatusBlack(true, window)
+        sign = mkBD.decodeString(userId + "sign", "")
+
         shake = utils.shake(tv_sign)
         address!!.text = "验证手势密码"
         close.setOnClickListener {
@@ -66,7 +67,7 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
 
     @SuppressLint("SetTextI18n")
     override fun onComplete(result: String) {
-        sign = mkBD!!.decodeString(userId + "sign", "")
+        sign = mkBD.decodeString(userId + "sign", "")
         val idNum = mk.decodeString(Tool.USER_ID, "")
         mk.encode(Tool.BY_LOGIN, "0")
         if (sign == result) {
@@ -85,7 +86,7 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
                 mk.clearAll()
                 mkBD.encode(userId + "finger", "")
                 mkBD.encode(userId + "sign", "")
-                JPushInterface.deleteAlias(this@SignLockCheck,0)
+                JPushInterface.deleteAlias(this@SignLockCheck, 0)
                 JPushInterface.clearAllNotifications(this@SignLockCheck)
                 popup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
             } else {
@@ -115,9 +116,9 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
         sure.setOnClickListener {
             popup!!.dismiss()
             mk.clearAll()
-            mkBD!!.encode(userId+"finger","")
-            mkBD!!.encode(userId+"sign","")
-            JPushInterface.deleteAlias(this@SignLockCheck,0)
+            mkBD!!.encode(userId + "finger", "")
+            mkBD!!.encode(userId + "sign", "")
+            JPushInterface.deleteAlias(this@SignLockCheck, 0)
             JPushInterface.clearAllNotifications(this@SignLockCheck)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)

@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
     tools:context=".activity.SignLock">
+
     <ImageView
         android:id="@+id/bar"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <include layout="@layout/title"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <include
         android:id="@+id/title"
-        android:layout_below="@+id/bar"
+        layout="@layout/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dp"
+        android:layout_below="@+id/bar" />
+
     <TextView
         android:id="@+id/tv_sign"
-        android:layout_below="@+id/s_glt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请输入原手势密码"
-        android:textSize="@dimen/size14"
-        android:textColor="@color/black"
+        android:layout_below="@+id/s_glt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:text="请输入原手势密码"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size14" />
 
     <com.wangnan.library.GestureLockThumbnailView
         android:id="@+id/s_glt"
-        android:visibility="invisible"
-        android:layout_below="@+id/bar"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_below="@+id/bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        app:thumbnail_ratio="0.6"
-        app:thumbnail_color="#cccccc"/>
+        android:visibility="invisible"
+        app:thumbnail_color="#cccccc"
+        app:thumbnail_ratio="0.6" />
 
     <com.wangnan.library.GestureLockView
         android:id="@+id/glv"
@@ -46,18 +50,19 @@
         android:layout_below="@+id/tv_sign"
         android:layout_centerHorizontal="true"
         android:layout_margin="48dp"
+        app:error_color="#ED4446"
         app:line_thickness="1dp"
         app:normal_color="#68B1E6"
-        app:press_color="#1E8BDE"
-        app:error_color="#ED4446"/>
+        app:press_color="#1E8BDE" />
+
     <TextView
         android:id="@+id/sign_login"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="验证登录密码"
-        android:textSize="@dimen/size14"
-        android:textColor="@color/blue"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:text="验证登录密码"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/size14" />
 </RelativeLayout>

@@ -125,7 +125,7 @@ class Register : BaseActivity() {
                             mk.encode(Tool.IS_AUTH, token.is_auth)
                             mk.encode(Tool.HEADER, token.img)
                             mk.encode(Tool.REAL_NAME, token.real_name)
-                            mk.encode(Tool.isExitDefaultDevice, token.isExitDefaultDevice)
+                            SplashActivity.mkBD.encode(Tool.isExitDefaultDevice, token.isExitDefaultDevice)
                             mk.encode(Tool.EMAIL, token.email)
                             mk.encode(Tool.BINDQ, token.bindsecurityquestion)
                             mk.encode(Tool.BINDCARD, token.isbindcard)

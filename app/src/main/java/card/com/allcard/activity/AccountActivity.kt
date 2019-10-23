@@ -50,10 +50,14 @@ class AccountActivity : BaseActivity() {
         ll_login_word.setOnClickListener { utils.startActivity(ChangePasswordActivity::class.java) }
 
         ll_forget_pay.setOnClickListener {
-            when (isAuth) {
-                "0" -> utils.startActivity(ForgetPayPass::class.java)
-                else -> utils.showToast("请在个人中心先进行实名认证")
-            }
+            val bundle = Bundle()
+            bundle.putInt("type", 0)
+            bundle.putString("cardNo", "")
+            utils.startActivityBy(PayPassChangeActivity::class.java, bundle)
+//            when (isAuth) {
+//                "0" -> utils.startActivity(ForgetPayPass::class.java)
+//                else -> utils.showToast("请在个人中心先进行实名认证")
+//            }
         }
 
         sign.setOnClickListener { startActivity<SignSetting>() }
@@ -120,8 +124,8 @@ class AccountActivity : BaseActivity() {
                                 list.addAll(bean.safetyList)
                             }
                             if(i==0){
-                                val device = mk.decodeString(Tool.isExitDefaultDevice, "no")
-                                if (device == "yes") {
+                                val device = SplashActivity.mkBD.decodeString(Tool.isExitDefaultDevice, "1")
+                                if (device == "0") {
                                     if(list.size>0){
                                         if (list[0].deviceType == "0") {
                                             val intent = Intent(this@AccountActivity, DeviceInfo::class.java)
@@ -222,11 +226,11 @@ class AccountActivity : BaseActivity() {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                if (bean.result != "0") {
-                    utils.showToast("绑定失败，请重新绑定")
-                } else {
+                if (bean.result == "0") {
                     utils.showToast("绑定成功")
-                    mk.encode(Tool.isExitDefaultDevice, "yes")
+                    SplashActivity.mkBD.encode(Tool.isExitDefaultDevice, "0")
+                } else {
+                    utils.showToast("绑定失败，请重新绑定")
                 }
             }
 

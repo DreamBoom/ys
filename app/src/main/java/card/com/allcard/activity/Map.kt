@@ -67,7 +67,7 @@ class Map : AppCompatActivity() , LocationSource, RouteSearch.OnRouteSearchListe
         if(TextUtils.isEmpty(address0)){
             address0 = "暂无地址信息"
         }
-        address.text = name0
+        address.text = "医院地址"
         hospital_name.text = name0
         val latLng = LatLng(la, lg)
         markerOption.position(latLng)
@@ -107,7 +107,7 @@ class Map : AppCompatActivity() , LocationSource, RouteSearch.OnRouteSearchListe
             hospital_adr.text = "$address0\n距您:${distance.toInt()} KM"
             // tv.setText("距离:" + distance.toInt() + "KM")
             dw.setOnClickListener {
-                aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(la, lg), 18f))
+                aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat0, lgt0), 18f))
                 //   marker.showInfoWindow()
             }
             aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(la, lg), 18f))

@@ -3,12 +3,14 @@ package card.com.allcard.activity
 import android.annotation.SuppressLint
 import android.support.v4.content.ContextCompat
 import card.com.allcard.R
+import card.com.allcard.getActivity.MyApplication
 import kotlinx.android.synthetic.main.activity_money_of_deal.*
 
 class MoneyOfDeal : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_money_of_deal
     @SuppressLint("SetTextI18n")
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }

@@ -1,5 +1,6 @@
 package card.com.allcard.utils;
 
+import android.app.Activity;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -14,7 +15,6 @@ import java.util.regex.Pattern;
 
 public class MoneyInputFilter implements InputFilter {
     Pattern mPattern;
-
     //输入的最大金额
     public static double MAX_VALUE = Integer.MAX_VALUE;
     //小数点后的位数
@@ -23,8 +23,10 @@ public class MoneyInputFilter implements InputFilter {
     private static final String POINTER = ".";
 
     private static final String ZERO = "0";
+    private final ActivityUtils utils;
 
-    public MoneyInputFilter() {
+    public MoneyInputFilter(Activity act) {
+        utils = new ActivityUtils(act);
         mPattern = Pattern.compile("([0-9]|\\.)*");
     }
 
@@ -79,6 +81,7 @@ public class MoneyInputFilter implements InputFilter {
         //验证输入金额的大小
         double sumText = Double.parseDouble(destText + sourceText);
         if (sumText > MAX_VALUE) {
+            utils.showToast("已超出额度限制");
             return dest.subSequence(dstart, dend);
         }
 

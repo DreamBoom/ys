@@ -66,9 +66,7 @@ class WebOther : BaseActivity() {
     inner class ChangeIcon {
         @JavascriptInterface
         fun goBack() {
-            if (agentWeb!!.back()) {
-                agentWeb!!.back()
-            }
+            agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
         }
 
         @JavascriptInterface

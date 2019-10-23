@@ -11,12 +11,15 @@ import com.yatoooon.screenadaptation.ScreenAdapterTools
 
 
 
+
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         val mk = MMKV.mmkvWithID(Tool.MMKV_OUT, MMKV.SINGLE_PROCESS_MODE)
-    }
+        @SuppressLint("StaticFieldLeak")
+        var isForeground = false
 
+    }
     val utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         //隐藏状态栏
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         initView()
-         //屏幕适配
+        //屏幕适配
         ScreenAdapterTools.getInstance().loadView(window.decorView)
     }
 
@@ -41,5 +44,14 @@ abstract class BaseActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+    override fun onResume() {
+        isForeground = true
+        super.onResume()
+    }
+
+    override fun onPause() {
+        isForeground = false
+        super.onPause()
+    }
 
 }

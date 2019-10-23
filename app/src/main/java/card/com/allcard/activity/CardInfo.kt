@@ -14,6 +14,7 @@ import card.com.allcard.adapter.CardSAdapter
 import card.com.allcard.bean.CardBean
 import card.com.allcard.bean.CardStatusBean
 import card.com.allcard.bean.GetNum
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -40,6 +41,7 @@ class CardInfo : BaseActivity() {
         adapt = CardSAdapter(this, R.layout.card_item, serviceGuide)
         address.text = "社保卡服务"
         close.setOnClickListener { finish() }
+        MyApplication.instance.addActivity(this)
         list.adapter = adapt
         gs.setOnClickListener {
             when {

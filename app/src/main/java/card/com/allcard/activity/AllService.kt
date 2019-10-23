@@ -4,6 +4,7 @@ import android.content.Intent
 import card.com.allcard.R
 import card.com.allcard.adapter.MoreAdapter
 import card.com.allcard.bean.ServiceTypeBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -18,6 +19,7 @@ class AllService : BaseActivity(), MoreAdapter.AllClickListener {
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
+        MyApplication.instance.addActivity(this)
         val bundle = intent.extras
         val i = bundle.getInt("tab")
         HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {

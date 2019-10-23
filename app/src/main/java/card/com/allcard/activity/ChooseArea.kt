@@ -8,6 +8,7 @@ import card.com.allcard.adapter.QuAdapter
 import card.com.allcard.adapter.ShengAdapter
 import card.com.allcard.adapter.ShiAdapter
 import card.com.allcard.bean.AreaBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -28,6 +29,7 @@ class ChooseArea : BaseActivity(), TabLayout.OnTabSelectedListener {
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
+        MyApplication.instance.addActivity(this)
         address.text = "选择省"
         sheng.visibility = View.VISIBLE
         shi.visibility = View.GONE

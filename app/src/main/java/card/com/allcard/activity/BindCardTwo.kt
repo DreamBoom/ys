@@ -3,6 +3,7 @@ package card.com.allcard.activity
 import android.text.TextUtils
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -20,6 +21,7 @@ class BindCardTwo : BaseActivity() {
         utils.changeStatusBlack(true, window)
         address.text = "非记名市民卡绑定"
         close.setOnClickListener { finish() }
+        MyApplication.instance.addActivity(this)
         img_ok.setOnClickListener {
             val name = et_name.text.toString().trim()
             val num = et_num.text.toString().trim()

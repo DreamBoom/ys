@@ -16,7 +16,7 @@
 
     <TextView
         android:text="单笔消费额度"
-        android:paddingStart="15dp"
+        android:paddingStart="25dp"
         android:paddingTop="15dp"
         android:textColor="@color/black3"
         android:textSize="@dimen/size14"
@@ -28,7 +28,10 @@
         android:layout_height="wrap_content">
         <TextView
             android:text="¥"
-            android:padding="15dp"
+            android:paddingStart="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingEnd="15dp"
             android:textColor="@color/black3"
             android:textSize="@dimen/size17"
             android:layout_width="wrap_content"
@@ -58,7 +61,7 @@
         android:id="@+id/xt_m1"
         android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
-        android:paddingStart="15dp"
+        android:paddingStart="25dp"
         android:textSize="@dimen/size12"
         android:singleLine="true"
         android:layout_width="match_parent"
@@ -70,7 +73,7 @@
         android:layout_height="1dp" />
     <TextView
         android:text="账户余额额度"
-        android:paddingStart="15dp"
+        android:paddingStart="25dp"
         android:paddingTop="32dp"
         android:textColor="@color/black3"
         android:textSize="@dimen/size14"
@@ -82,7 +85,10 @@
         android:layout_height="wrap_content">
         <TextView
             android:text="¥"
-            android:padding="15dp"
+            android:paddingStart="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingEnd="15dp"
             android:textColor="@color/black3"
             android:textSize="@dimen/size17"
             android:layout_width="wrap_content"
@@ -112,7 +118,7 @@
         android:id="@+id/xt_m2"
         android:text="您可根据需求调整额度,可调区间为0~0元"
         android:textColor="@color/grey91"
-        android:paddingStart="15dp"
+        android:paddingStart="25dp"
         android:textSize="@dimen/size12"
         android:singleLine="true"
         android:layout_width="match_parent"

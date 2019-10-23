@@ -33,6 +33,7 @@ class ChangeQuestion2 : BaseActivity() {
         send_code.setOnClickListener {
             tv_djs2!!.visibility = View.VISIBLE
             send_code!!.visibility = View.GONE
+            send_code.text = "重新获取"
             getNum(phone)
             getCaptchaTime()
         }

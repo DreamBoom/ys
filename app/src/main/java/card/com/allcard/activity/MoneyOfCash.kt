@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import card.com.allcard.R
 import card.com.allcard.adapter.CashAdapter
 import card.com.allcard.bean.YjListBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -23,6 +24,7 @@ class MoneyOfCash : BaseActivity() {
     var nickName = ""
     var flag = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "卡押金"

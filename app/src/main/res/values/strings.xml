@@ -1,4 +1,10 @@
 <resources>
+    <string name="jg_channel_name_p_min">LOW</string>
+    <string name="jg_channel_name_p_low">LOW</string>
+    <string name="jg_channel_name_p_default">NORMAL</string>
+    <string name="jg_channel_name_p_high">HIGH</string>
+
+
     <string name="app_name">兰考市民卡</string>
     <string name="fingerprint">指纹仅对本机有效,开通即视为同意</string>
     <string name="fingerprint2">《指纹相关协议》</string>

@@ -33,6 +33,7 @@ class MyApplication : Application() {
         super.onCreate()
         context = applicationContext
         x.Ext.init(this)
+        JPushInterface.setDebugMode(true) 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this)
         ScreenAdapterTools.init(this)
         val helper = AppFrontBackHelper()

@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="40dp"
             android:text="设置交易密码"
             android:textColor="@color/black3"
             android:textSize="@dimen/size20" />

@@ -17,7 +17,7 @@
         android:id="@+id/title"
         android:layout_below="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         layout="@layout/title" />
 
     <LinearLayout
@@ -149,7 +149,7 @@
                 android:gravity="center"
                 android:text="获取验证码"
                 android:textColor="@color/white"
-                android:textSize="@dimen/size13" />
+                android:textSize="@dimen/size12" />
 
             <TextView
                 android:id="@+id/tv_djs"

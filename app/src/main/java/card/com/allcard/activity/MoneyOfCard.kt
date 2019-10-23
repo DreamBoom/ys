@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import card.com.allcard.R
 import card.com.allcard.bean.YjBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -21,6 +22,7 @@ class MoneyOfCard : BaseActivity() {
     var m = 0
     @SuppressLint("SetTextI18n")
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         utils.changeStatusBlack(false, window)
         close.setOnClickListener { finish() }
         pay.setOnClickListener {

@@ -7,6 +7,7 @@ import android.view.View
 import card.com.allcard.R
 import card.com.allcard.bean.OtherMoneyBean
 import card.com.allcard.bean.YjBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -20,6 +21,7 @@ class PayMoney : BaseActivity() {
     var cardNo = ""
     var name1 = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         utils.changeStatusBlack(false, window)
         address.text = "一卡通余额"
         close.setOnClickListener { finish() }
@@ -28,7 +30,15 @@ class PayMoney : BaseActivity() {
         val num1 = intent.getStringExtra("num")
         forWho.text = "为 $name1 一键充值"
         name.text = name1
-        num.text = num1
+        if(!TextUtils.isEmpty(num1)){
+            val cert = num1.substring(0, 6) + "********" +
+                    num1.substring(num1.length-4,num1.length)
+            num.text = cert
+        }else{
+            val cert = cardNo.substring(0, 6) + "********" +
+                    cardNo.substring(cardNo.length-4,cardNo.length)
+            num.text = cert
+        }
         rl_cz.setOnClickListener {
             if (TextUtils.isEmpty(cardNo)) {
                 val bundle = Bundle()

@@ -49,4 +49,5 @@ object Tool {
     val search = "search"
     val payPass = "payPass"
     val tab = "tab"
+    val jpushFirst = "jpushFirst"
 }

@@ -24,6 +24,7 @@ class ChangeCardPass : BaseActivity() {
     private var mRunnable: Runnable? = null
     private var captchaTime = 60
     var cardNo = ""
+    var phone0 = ""
     override fun layoutId(): Int = R.layout.activity_change_card_pass
 
     override fun initView() {
@@ -33,6 +34,7 @@ class ChangeCardPass : BaseActivity() {
         address!!.text = "重置交易密码"
         mHandler = Handler()
         cardNo = intent.getStringExtra("cardNo")
+        phone0 = intent.getStringExtra("phone")
         val name = intent.getStringExtra("name")
         close.setOnClickListener {
             finish()
@@ -45,6 +47,7 @@ class ChangeCardPass : BaseActivity() {
                 utils.showToast("输入办卡手机号")
                 return@setOnClickListener
             }
+            tv_get.text= "重新获取"
             getNum()
             getCaptchaTime()
         }
@@ -119,6 +122,7 @@ class ChangeCardPass : BaseActivity() {
                     bundle.putInt("type", 1)
                     bundle.putString("cardNo", cardNo)
                     utils.startActivityBy(PayPassChangeActivity::class.java, bundle)
+                    finish()
                 } else {
                     utils.showToast("验证码错误")
                 }
@@ -126,6 +130,10 @@ class ChangeCardPass : BaseActivity() {
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("验证码验证失败")
+            }
+
+            override fun onFinished() {
+                super.onFinished()
                 utils.hindProgress()
             }
         })
@@ -148,7 +156,7 @@ class ChangeCardPass : BaseActivity() {
                 return
             }
             if (et_phone!!.text.length == 11) {
-                if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
+                if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS||et_phone!!.text.toString().trim()!=phone0) {
                     utils.showToast("您输入的手机号不正确!")
                     tv_get.isEnabled = false
                     return

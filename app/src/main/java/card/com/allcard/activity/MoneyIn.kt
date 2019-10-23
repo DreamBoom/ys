@@ -17,10 +17,12 @@ import card.com.allcard.bean.AccBean
 import card.com.allcard.bean.EduBean
 import card.com.allcard.bean.GetNum
 import card.com.allcard.bean.PayTypeBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import card.com.allcard.utils.LogUtils
+import card.com.allcard.utils.MoneyInFilter
 import card.com.allcard.utils.MoneyInputFilter
 import card.com.allcard.view.MyListView
 import com.alibaba.fastjson.JSONObject
@@ -43,6 +45,7 @@ class MoneyIn : BaseActivity() {
     var flag = ""
     var actionNo = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
@@ -59,7 +62,7 @@ class MoneyIn : BaseActivity() {
             }
         }
         et_money!!.addTextChangedListener(PhoneWatcher(et_money))
-        val filters = arrayOf<InputFilter>(MoneyInputFilter())
+        val filters = arrayOf<InputFilter>(MoneyInFilter())
         et_money.filters = filters
         payType.setOnClickListener { showPopup() }
         adapter0 = PayTypeAdapter(this, dataList, R.layout.pay_item0)

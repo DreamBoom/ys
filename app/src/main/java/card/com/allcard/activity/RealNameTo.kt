@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.View
 import card.com.allcard.R
 import card.com.allcard.bean.GetNum
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -22,6 +23,7 @@ class RealNameTo : BaseActivity() {
     private var mRunnable: Runnable? = null
     private var captchaTime = 60
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }

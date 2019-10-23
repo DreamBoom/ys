@@ -23,12 +23,15 @@
         <TextView
             android:id="@+id/area"
             android:drawableTop="@drawable/icon_wd_dq"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_gravity="center"
             android:textSize="@dimen/size11"
             android:textColor="@color/grey91"
-            android:padding="16dp"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="全部" />
 
         <EditText

@@ -12,6 +12,7 @@ import card.com.allcard.R
 import card.com.allcard.adapter.CardAdapter
 import card.com.allcard.bean.GetNum
 import card.com.allcard.bean.JmBeam
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -34,7 +35,7 @@ class CardJmInfo : BaseActivity() {
         list.setFlatFlow(true)//平面滚动
         adapt = CardAdapter(this, R.layout.card_item1, serviceGuide)
         address.text = "记名市民卡   1/" + serviceGuide.size
-
+        MyApplication.instance.addActivity(this)
         close.setOnClickListener { finish() }
         list.adapter = adapt
         list.setOnItemSelectedListener { position ->

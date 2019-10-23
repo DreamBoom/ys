@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.bean.EduBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -29,6 +30,7 @@ class EdOfMoney : BaseActivity() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
+        MyApplication.instance.addActivity(this)
         address.text = "资金额度设置"
         bt_change.isEnabled = false
         bt_change.setOnClickListener {
@@ -101,7 +103,7 @@ class EdOfMoney : BaseActivity() {
                         }
                         if(TextUtils.isEmpty(et2.text)){
                             et2.setText(d2.toCharArray(), 0, d2.length)
-                            et1.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
+                            et2.setTextColor(ContextCompat.getColor(this@EdOfMoney,R.color.grey91))
                             bt_change.isEnabled = false
                         }
                     }
@@ -132,9 +134,9 @@ class EdOfMoney : BaseActivity() {
                     xt_m1.text = "您可根据需求调整额度,可调区间为0~$dl1 元"
                     MoneyInputFilter2.MAX_VALUE = (m2.toDouble()+1) * 0.01
                     xt_m2.text = "您可根据需求调整额度,可调区间为0~$dl2 元"
-                    val filters = arrayOf<InputFilter>(MoneyInputFilter())
+                    val filters = arrayOf<InputFilter>(MoneyInputFilter(this@EdOfMoney))
                     et1.filters = filters
-                    val filters2 = arrayOf<InputFilter>(MoneyInputFilter2())
+                    val filters2 = arrayOf<InputFilter>(MoneyInputFilter2(this@EdOfMoney))
                     et2.filters = filters2
                 } else {
                     utils.showToast("额度加载失败，返回后重进加载")

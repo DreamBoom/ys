@@ -54,6 +54,7 @@ class TabFourActivity : BaseActivity() {
     private var exitPop: PopupWindow? = null
     private var phoneKf = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         utils.changeStatusBlack(false, window)
         options = ImageOptions.Builder()
                 .setSize(300, 300)
@@ -180,52 +181,52 @@ class TabFourActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     fun init() {
-        val userId = mk.decodeString(Tool.USER_ID, "")
-        val bandCard = mk.decodeString(Tool.BINDCARD, "1")
-        val auth = mk.decodeString(Tool.IS_AUTH, "1")
-        val phone = mk.decodeString(Tool.PHONE, "")
-        val realName = mk.decodeString(Tool.REAL_NAME, "")
-        val dj = mk.decodeString(Tool.ZHDJ, "0")
-        if (dj == "2") {
-            im_dj.visibility = View.VISIBLE
-        } else {
-            im_dj.visibility = View.GONE
-        }
-        if (!TextUtils.isEmpty(userId)) {
-            ll_exit.visibility = View.VISIBLE
-            when (bandCard) {
-                "0" -> {
-                    val m = mk.decodeString(Tool.oneMoney, "0")
-                    oneMoney.text = utils.save2(m.toDouble())
-                }
-                "1" -> {
-                    oneMoney.text = "——"
-                }
-            }
-            if (auth != Tool.ZERO) {
-                bt_login!!.visibility = View.GONE
-                ll!!.visibility = View.VISIBLE
-                tv2!!.visibility = View.VISIBLE
-                tv2!!.text = "请进行实名认证"
-                tv3!!.visibility = View.VISIBLE
-                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
-                tv3!!.text = phone1
-                tv_real_name!!.text = "去认证"
-                im1!!.visibility = View.GONE
-            } else {
-                tv_real_name!!.text = "已认证"
-                bt_login!!.visibility = View.GONE
-                ll!!.visibility = View.VISIBLE
-                tv3!!.visibility = View.VISIBLE
-                tv3!!.text = realName
-                tv2!!.visibility = View.VISIBLE
-                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
-                tv2.text = phone1
-                im1!!.visibility = View.VISIBLE
-            }
-        } else {
-            ll_exit.visibility = View.GONE
-        }
+//        val userId = mk.decodeString(Tool.USER_ID, "")
+//        val bandCard = mk.decodeString(Tool.BINDCARD, "1")
+//        val auth = mk.decodeString(Tool.IS_AUTH, "1")
+//        val phone = mk.decodeString(Tool.PHONE, "")
+//        val realName = mk.decodeString(Tool.REAL_NAME, "")
+//        val dj = mk.decodeString(Tool.ZHDJ, "0")
+//        if (dj == "2") {
+//            im_dj.visibility = View.VISIBLE
+//        } else {
+//            im_dj.visibility = View.GONE
+//        }
+//        if (!TextUtils.isEmpty(userId)) {
+//            ll_exit.visibility = View.VISIBLE
+//            when (bandCard) {
+//                "0" -> {
+//                    val m = mk.decodeString(Tool.oneMoney, "0")
+//                    oneMoney.text = utils.save2(m.toDouble())
+//                }
+//                "1" -> {
+//                    oneMoney.text = "——"
+//                }
+//            }
+//            if (auth != Tool.ZERO) {
+//                bt_login!!.visibility = View.GONE
+//                ll!!.visibility = View.VISIBLE
+//                tv2!!.visibility = View.VISIBLE
+//                tv2!!.text = "请进行实名认证"
+//                tv3!!.visibility = View.VISIBLE
+//                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
+//                tv3!!.text = phone1
+//                tv_real_name!!.text = "去认证"
+//                im1!!.visibility = View.GONE
+//            } else {
+//                tv_real_name!!.text = "已认证"
+//                bt_login!!.visibility = View.GONE
+//                ll!!.visibility = View.VISIBLE
+//                tv3!!.visibility = View.VISIBLE
+//                tv3!!.text = realName
+//                tv2!!.visibility = View.VISIBLE
+//                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
+//                tv2.text = phone1
+//                im1!!.visibility = View.VISIBLE
+//            }
+//        } else {
+//            ll_exit.visibility = View.GONE
+//        }
 
         //获取客服电话
         HttpRequestPort.instance.baseData("telPhone", object : BaseHttpCallBack(this) {

@@ -11,6 +11,7 @@ import android.widget.TextView
 import card.com.allcard.R
 import card.com.allcard.adapter.MoneyAdapter
 import card.com.allcard.bean.MoneyBean
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -38,6 +39,7 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
     private val dataList = ArrayList<MoneyBean.DetailListBeanX>()
 
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         address.text = "余额明细"

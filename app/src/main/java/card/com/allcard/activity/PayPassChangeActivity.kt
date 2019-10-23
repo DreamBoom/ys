@@ -3,6 +3,7 @@ package card.com.allcard.activity
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import card.com.allcard.R
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -17,12 +18,12 @@ import kotlinx.android.synthetic.main.title.*
 class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
     override fun layoutId(): Int = R.layout.activity_pay_pass_change
     private var i = 0
-    var payPass = ""
     var setPass1 = ""
     var setPass2 = ""
     var type = 0
     var cardNo = ""
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         close.setOnClickListener { finish() }
         keyboard.setOnNumberKeyboardListener(this)
@@ -32,7 +33,7 @@ class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
         type = intent.getIntExtra("type", 0)
         cardNo = intent.getStringExtra("cardNo")
         address.text = "设置交易密码"
-        tv_t1.text = "请设置6位交易密码"
+        tv_t1.text = "请设置交易密码"
         tv_t2.visibility = View.VISIBLE
 
     }
@@ -126,15 +127,25 @@ class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
                                 setOtherPass(setPass2)
                             }
                         } else {
+                            keyboard.visibility = View.GONE
                             runDelayed(500){
                                 clear()
+                                keyboard.visibility = View.VISIBLE
                             }
                             setPass2 = ""
+                            setPass1 = ""
                             utils.showToast("密码输入不一致，请重新输入")
+                            tv_t1.text = "请设置交易密码"
+                            tv_t2.text = "请设置6位数字交易密码"
                         }
                     } else {
-                        tv_t1.text = "请再次确认6位数字交易密码"
-                        clear()
+                        tv_t1.text = "设置交易密码"
+                        tv_t2.text = "请再次确认6位数字交易密码"
+                        keyboard.visibility = View.GONE
+                        runDelayed(500){
+                            clear()
+                            keyboard.visibility = View.VISIBLE
+                        }
                     }
                 }
             }
@@ -152,6 +163,7 @@ class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
     }
 
     private fun setPass(pass: String) {
+        utils.getProgress(this)
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.resPwd(userId, pass, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
@@ -159,15 +171,41 @@ class PayPassChangeActivity : BaseActivity(), OnNumberKeyboardListener {
                 utils.showToast("设置成功")
                 finish()
             }
+
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("网络失败，请重试")
+                setPass2 = ""
+                setPass1 = ""
+                tv_t1.text = "请设置交易密码"
+                tv_t2.text = "请设置6位数字交易密码"
+            }
+            override fun onFinished() {
+                super.onFinished()
+                utils.hindProgress()
+            }
         })
     }
 
     private fun setOtherPass(pass: String) {
+        utils.getProgress(this)
         HttpRequestPort.instance.fsmResPwd(cardNo, pass, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 utils.showToast("设置成功")
                 finish()
+            }
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("网络失败，请重试")
+                setPass2 = ""
+                setPass1 = ""
+                tv_t1.text = "请设置交易密码"
+                tv_t2.text = "请设置6位数字交易密码"
+            }
+            override fun onFinished() {
+                super.onFinished()
+                utils.hindProgress()
             }
         })
     }

@@ -3,6 +3,7 @@ package card.com.allcard.activity
 import android.annotation.SuppressLint
 import card.com.allcard.R
 import card.com.allcard.bean.JmBeam
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -25,6 +26,7 @@ class CardOne : BaseActivity() {
                 jm()
             }
         }
+        MyApplication.instance.addActivity(this)
         fjm.setOnClickListener { startActivity<CardFjmInfo>() }
     }
 

@@ -39,6 +39,9 @@ class PayBind : BaseActivity() {
             getNum()
             getCaptchaTime()
         }
+        et_phone.hint =  "请输入${nickName}的手机号"
+        et_name.hint =  "请输入${nickName}的真实姓名"
+        et_num.hint =  "请输入${nickName}的身份证号"
         img_ok.setOnClickListener {
             val phone = et_phone!!.text.toString()
             if (TextUtils.isEmpty(phone)) {

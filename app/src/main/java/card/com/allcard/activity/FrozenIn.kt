@@ -110,12 +110,9 @@ class FrozenIn : BaseActivity() {
                 override fun onError(throwable: Throwable, b: Boolean) {
                     super.onError(throwable, b)
                     utils.showToast("验证码验证失败")
-                }
-
-                override fun onFinished() {
-                    super.onFinished()
                     utils.hindProgress()
                 }
+
             })
     }
 

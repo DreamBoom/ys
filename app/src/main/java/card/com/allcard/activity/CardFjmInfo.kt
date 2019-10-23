@@ -14,6 +14,7 @@ import card.com.allcard.R
 import card.com.allcard.adapter.CardFjmAdapter
 import card.com.allcard.bean.FjmBean
 import card.com.allcard.bean.GetNum
+import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -30,12 +31,14 @@ class CardFjmInfo : BaseActivity() {
     var certNo = ""
     var name1 = ""
     var cardNo = ""
+    var phone0 = ""
     private var pos = 0
     @SuppressLint("SetTextI18n")
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         list.setFlatFlow(true)//平面滚动
+        MyApplication.instance.addActivity(this)
         adapt = CardFjmAdapter(this, R.layout.card_item1, serviceGuide)
         address.text = "非记名市民卡   0/" + serviceGuide.size
         close.setOnClickListener { finish() }
@@ -51,30 +54,27 @@ class CardFjmInfo : BaseActivity() {
             val phoneNum = serviceGuide[position].certNo
             val s = phoneNum.substring(0, 3) + "****" + phoneNum.substring(phoneNum.length - 4, phoneNum.length)
             phone.text = s
+            phone0 = phoneNum
             when (serviceGuide[position].cardStatus) {
-                "0" -> state.text = "未启用"
-                "1" -> {
-                    state.setTextColor(ContextCompat.getColor(this@CardFjmInfo, R.color.blue))
-                    state.text = "正常"
-                }
-                "2", "8" -> {
+                "0" -> state.text = "正常"
+                else -> {
                     state.setTextColor(ContextCompat.getColor(this, R.color.red))
-                    state.text = "挂失"
+                    state.text = "异常"
                 }
-                "7" -> state.text = "作废"
-                "9" -> state.text = "注销"
             }
         }
         mx.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("cardNo", cardNo)
             bundle.putString("nickName", name1)
+
             bundle.putString("is_other", "2")
             utils.startActivityBy(MoneyInfo::class.java, bundle)
         }
         mm.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("cardNo", certNo)
+            bundle.putString("phone", phone0)
             bundle.putString("name", name1)
             utils.startActivityBy(ChangeCardPass::class.java, bundle)
         }
@@ -113,8 +113,9 @@ class CardFjmInfo : BaseActivity() {
                     val certNo = serviceGuide[pos].certNo
                     val s = certNo.substring(0, 3) + "****" + certNo.substring(certNo.length - 4, certNo.length)
                     phone.text = s
+                    phone0 = certNo
                     qd.text = serviceGuide[pos].cardStateName
-                    address.text = "非记名市民卡   1/" + serviceGuide.size
+                    address.text = "非记名市民卡   ${pos+1}/" + serviceGuide.size
                     time.text = serviceGuide[pos].updateTime
                     name.text = serviceGuide[pos].clientName
                     name1 = serviceGuide[pos].clientName
@@ -166,6 +167,7 @@ class CardFjmInfo : BaseActivity() {
         exitPop!!.setBackgroundDrawable(dw)
         sure.setOnClickListener {
             delete()
+            exitPop!!.dismiss()
         }
         cancel.setOnClickListener {
             exitPop!!.dismiss()

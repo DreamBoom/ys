@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import card.com.allcard.R
 import card.com.allcard.adapter.GuidePagerAdapter
+import card.com.allcard.getActivity.MyApplication
 import com.pawegio.kandroid.i
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_guide.*
@@ -19,6 +20,7 @@ class GuideActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_guide
 
     override fun initView() {
+        MyApplication.instance.addActivity(this)
         val pagerAdapter = GuidePagerAdapter({ gotoMian() }, this@GuideActivity, guideDrawable)
         vp_guide!!.adapter = pagerAdapter
         vp_guide.setOnPageChangeListener(object : ViewPager.OnPageChangeListener{

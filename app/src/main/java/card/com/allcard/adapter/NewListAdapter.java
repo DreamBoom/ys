@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.List;
@@ -22,10 +22,20 @@ import card.com.allcard.net.HttpRequestPort;
 
 public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, BaseViewHolder> {
     private Activity act;
+    private final ImageOptions options;
 
     public NewListAdapter(Activity act,int layoutResId, @Nullable List<ServiceListBean.ListBean> data) {
         super(layoutResId, data);
         this.act =act;
+        options = new ImageOptions.Builder()
+                .setSize(300, 300)
+                .setCrop(true)
+                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setLoadingDrawableId(R.drawable.user)
+                .setFailureDrawableId(R.drawable.user)
+                .setUseMemCache(true)
+                .setIgnoreGif(false)
+                .setCircular(false).build();
     }
 
     @SuppressLint("SetTextI18n")
@@ -34,11 +44,7 @@ public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, B
         holder.setText(R.id.tv_news_title,datas.getTitle());
         holder.setText(R.id.tv_news_data,datas.getIn_date());
         ImageView img = holder.getView(R.id.im_news);
-        if(TextUtils.isEmpty(datas.getSerimg())){
-            img.setBackgroundResource(R.drawable.img_sy_fezn);
-        }else {
-            x.image().bind(img, datas.getSerimg());
-        }
+        x.image().bind(img, datas.getSerimg(), options);
         RelativeLayout news = holder.getView(R.id.news);
         news.setOnClickListener(view -> {
             Intent intent = new Intent();

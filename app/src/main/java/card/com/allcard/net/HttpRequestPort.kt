@@ -11,7 +11,7 @@ import java.util.*
 class HttpRequestPort {
     companion object {
         /** 端口 + 头像端口  */
-
+//
 //        const val BASE_URL = "http://192.168.12.9:8080/app/"//留款
 //        const val BASEURL = "http://192.168.12.9:8080"
 //        const val H5_BASE_URL = "http://192.168.12.9:8080/"
