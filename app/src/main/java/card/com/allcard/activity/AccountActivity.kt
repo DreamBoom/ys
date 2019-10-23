@@ -50,14 +50,10 @@ class AccountActivity : BaseActivity() {
         ll_login_word.setOnClickListener { utils.startActivity(ChangePasswordActivity::class.java) }
 
         ll_forget_pay.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("type", 0)
-            bundle.putString("cardNo", "")
-            utils.startActivityBy(PayPassChangeActivity::class.java, bundle)
-//            when (isAuth) {
-//                "0" -> utils.startActivity(ForgetPayPass::class.java)
-//                else -> utils.showToast("请在个人中心先进行实名认证")
-//            }
+            when (isAuth) {
+                "0" -> utils.startActivity(ForgetPayPass::class.java)
+                else -> utils.showToast("请在个人中心先进行实名认证")
+            }
         }
 
         sign.setOnClickListener { startActivity<SignSetting>() }

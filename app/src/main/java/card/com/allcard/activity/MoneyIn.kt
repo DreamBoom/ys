@@ -23,7 +23,6 @@ import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import card.com.allcard.utils.LogUtils
 import card.com.allcard.utils.MoneyInFilter
-import card.com.allcard.utils.MoneyInputFilter
 import card.com.allcard.view.MyListView
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
@@ -62,8 +61,6 @@ class MoneyIn : BaseActivity() {
             }
         }
         et_money!!.addTextChangedListener(PhoneWatcher(et_money))
-        val filters = arrayOf<InputFilter>(MoneyInFilter())
-        et_money.filters = filters
         payType.setOnClickListener { showPopup() }
         adapter0 = PayTypeAdapter(this, dataList, R.layout.pay_item0)
         //获取充值类型
@@ -96,9 +93,11 @@ class MoneyIn : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<EduBean>() {})
                 if (bean.result == "0") {
                     val m1 = bean.cardsList[1].account_balance_ceiling.toDouble() * 0.01
-                    MoneyInputFilter.MAX_VALUE =
+                    MoneyInFilter.MAX_VALUE =
                             bean.cardsList[1].account_balance_ceiling.toDouble()*0.01 - bean.balance.toDouble()
-                    ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值${utils.save2(MoneyInputFilter.MAX_VALUE)}元"
+                    ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值${utils.save2(MoneyInFilter.MAX_VALUE)}元"
+                    val filters = arrayOf<InputFilter>(MoneyInFilter(this@MoneyIn))
+                    et_money.filters = filters
                 }
             }
         })

@@ -31,8 +31,8 @@ public class NewListAdapter extends BaseQuickAdapter<ServiceListBean.ListBean, B
                 .setSize(300, 300)
                 .setCrop(true)
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setLoadingDrawableId(R.drawable.user)
-                .setFailureDrawableId(R.drawable.user)
+                .setLoadingDrawableId(R.drawable.img_sy_fezn)
+                .setFailureDrawableId(R.drawable.img_sy_fezn)
                 .setUseMemCache(true)
                 .setIgnoreGif(false)
                 .setCircular(false).build();

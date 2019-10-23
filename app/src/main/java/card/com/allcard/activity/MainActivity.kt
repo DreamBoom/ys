@@ -57,6 +57,7 @@ class MainActivity : TabActivity() {
         @SuppressLint("StaticFieldLeak")
         val KEY_EXTRAS = "extras"
     }
+
     private var firstTime: Long = 0
     private var utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -148,6 +149,7 @@ class MainActivity : TabActivity() {
 
     //for receive customer msg from jpush server
     private var mMessageReceiver: MessageReceiver? = null
+
     fun registerMessageReceiver() {
         mMessageReceiver = MessageReceiver()
         val filter = IntentFilter()
@@ -157,7 +159,6 @@ class MainActivity : TabActivity() {
     }
 
     inner class MessageReceiver : BroadcastReceiver() {
-
         override fun onReceive(context: Context, intent: Intent) {
             try {
                 if (MESSAGE_RECEIVED_ACTION == intent.action) {
@@ -201,7 +202,7 @@ class MainActivity : TabActivity() {
                 SplashActivity.mkBD.encode(userId + "sign", "")
                 jPush(this, "")
                 JPushInterface.clearAllNotifications(context)
-                pop(this,  bean.datetime, 2)
+                pop(this, bean.datetime, 2)
             }
         }
     }
@@ -217,7 +218,7 @@ class MainActivity : TabActivity() {
             for (act in MyApplication.instance.activitys!!) {
                 if (".${act.localClassName}" == cn.shortClassName
                         || cn.shortClassName == ".unihome.UniHomeLauncher"
-                        ||cn.shortClassName == ".launcher.Launcher") {
+                        || cn.shortClassName == ".launcher.Launcher") {
                     if (!act.isDestroyed) {
                         when (type) {
                             0 -> alert(act, "您的账号于 $mes 在另一台设备登录。如非本人操作，则密码可能已泄露，建议前往修改密码。")
