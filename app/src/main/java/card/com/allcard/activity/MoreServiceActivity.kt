@@ -24,8 +24,6 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
          TabLayout.OnTabSelectedListener {
     override fun layoutId(): Int = R.layout.activity_more_service
     private var adapter: ServiceAdapter? = null
-    private var noData: View? = null
-    private var noWeb: View? = null
     private val dataList = ArrayList<ServiceListBean.ListBean>()
     var tabNum = ""
     override fun initView() {
@@ -34,8 +32,6 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
         utils.changeStatusBlack(true, window)
         close.setOnClickListener { finish() }
         address.text = "服务指南"
-        noData = utils.getView(R.layout.no_data)
-        noWeb = utils.getView(R.layout.view_no_web)
         HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
@@ -80,15 +76,13 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
                 val bean = JSONObject.parseObject(data, object : TypeReference<ServiceListBean>() {})
                 dataList.clear()
                 if (bean.list.size > 0) {
-                    if (listView!!.headerViewsCount > 0) {
-                        listView!!.removeHeaderView(noData)
-                    }
+                    no_web.visibility = View.GONE
+                    no_data.visibility = View.GONE
                     dataList.addAll(bean.list)
                     adapter!!.notifyDataSetChanged()
                 } else {
-                    if (listView!!.headerViewsCount == 0) {
-                        listView!!.addHeaderView(noData)
-                    }
+                    no_web.visibility = View.GONE
+                    no_data.visibility = View.VISIBLE
                 }
             }
 
@@ -96,10 +90,8 @@ class MoreServiceActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener,
                 super.onError(throwable, b)
                 dataList.clear()
                 adapter!!.notifyDataSetChanged()
-                if (listView.headerViewsCount > 0) {
-                    listView.removeAllViews()
-                }
-                listView.addHeaderView(noWeb)
+                no_data.visibility = View.GONE
+                no_web.visibility = View.VISIBLE
             }
 
             override fun onFinished() {

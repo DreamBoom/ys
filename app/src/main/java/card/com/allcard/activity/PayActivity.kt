@@ -65,7 +65,6 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
             utils.hideSoftKeyboard()
             list.isEnabled = true
             addItem.visibility = View.GONE
-            refresh.autoRefresh()
         }
         //设置左滑菜单
         val creator = SwipeMenuCreator { menu ->
@@ -109,11 +108,11 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
                 val bean = JSONObject.parseObject(data, object : TypeReference<PayListBean>() {})
                 if (bean.result == "0") {
                     if (bean.memberlinkList.size > 0) {
-                        if (no_data.visibility == View.VISIBLE) {
-                            no_data.visibility = View.GONE
-                        }
+                        no_data.visibility = View.GONE
+                        no_web.visibility = View.GONE
                         dataList.addAll(bean.memberlinkList)
                     } else {
+                        no_web.visibility = View.GONE
                         no_data.visibility = View.VISIBLE
                     }
                     payAdapter!!.notifyDataSetChanged()
@@ -123,7 +122,8 @@ class PayActivity : BaseActivity(), PayAdapter.ClickListener {
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("请求失败，下拉重试")
-                no_data.visibility = View.VISIBLE
+                no_data.visibility = View.GONE
+                no_web.visibility = View.VISIBLE
             }
         })
     }

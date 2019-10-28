@@ -80,4 +80,17 @@
         android:textColor="@color/grey91"
         android:textSize="@dimen/size13"
         android:visibility="gone" />
+    <TextView
+        android:id="@+id/no_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="220dp"
+        android:drawableTop="@drawable/img_wwl"
+        android:gravity="center"
+        android:text="网络异常，请刷新重试"
+        android:textColor="@color/grey91"
+        android:textSize="@dimen/size13"
+        android:visibility="gone" />
 </RelativeLayout>

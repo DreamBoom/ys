@@ -150,12 +150,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name=".activity.WebPost"-->
-        <!--            android:exported="true"-->
-        <!--            android:hardwareAccelerated="true"-->
-        <!--            android:launchMode="singleTop"-->
-        <!--            android:screenOrientation="portrait" />-->
 
         <activity
             android:name=".activity.WebNew"

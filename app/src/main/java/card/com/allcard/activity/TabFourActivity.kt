@@ -1,12 +1,10 @@
 package card.com.allcard.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -15,29 +13,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
-import android.widget.Toast
 import card.com.allcard.R
 import card.com.allcard.bean.PhoneBean
 import card.com.allcard.bean.UserDataBean
-import card.com.allcard.bean.VersionBean
-import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import card.com.allcard.tools.Tool.RESULTCODE_LOGIN
-import card.com.allcard.utils.MyNetUtils
-import card.com.allcard.view.CustomHorizontalProgresWithNum
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.just.agentweb.AgentWebConfig
-import com.maning.updatelibrary.InstallUtils
-import com.pawegio.kandroid.runDelayed
 import com.pawegio.kandroid.startActivity
-import com.pawegio.kandroid.toast
-import com.yanzhenjie.permission.AndPermission
-import com.yanzhenjie.permission.PermissionNo
-import com.yanzhenjie.permission.PermissionYes
 import kotlinx.android.synthetic.main.activity_tab_four.*
 import org.xutils.image.ImageOptions
 import org.xutils.x
@@ -54,7 +41,6 @@ class TabFourActivity : BaseActivity() {
     private var exitPop: PopupWindow? = null
     private var phoneKf = ""
     override fun initView() {
-        MyApplication.instance.addActivity(this)
         utils.changeStatusBlack(false, window)
         options = ImageOptions.Builder()
                 .setSize(300, 300)
@@ -176,58 +162,56 @@ class TabFourActivity : BaseActivity() {
         showPop()
         exitPop()
         init()
-        initCallBack()
     }
 
     @SuppressLint("SetTextI18n")
     fun init() {
-//        val userId = mk.decodeString(Tool.USER_ID, "")
-//        val bandCard = mk.decodeString(Tool.BINDCARD, "1")
-//        val auth = mk.decodeString(Tool.IS_AUTH, "1")
-//        val phone = mk.decodeString(Tool.PHONE, "")
-//        val realName = mk.decodeString(Tool.REAL_NAME, "")
-//        val dj = mk.decodeString(Tool.ZHDJ, "0")
-//        if (dj == "2") {
-//            im_dj.visibility = View.VISIBLE
-//        } else {
-//            im_dj.visibility = View.GONE
-//        }
-//        if (!TextUtils.isEmpty(userId)) {
-//            ll_exit.visibility = View.VISIBLE
-//            when (bandCard) {
-//                "0" -> {
-//                    val m = mk.decodeString(Tool.oneMoney, "0")
-//                    oneMoney.text = utils.save2(m.toDouble())
-//                }
-//                "1" -> {
-//                    oneMoney.text = "——"
-//                }
-//            }
-//            if (auth != Tool.ZERO) {
-//                bt_login!!.visibility = View.GONE
-//                ll!!.visibility = View.VISIBLE
-//                tv2!!.visibility = View.VISIBLE
-//                tv2!!.text = "请进行实名认证"
-//                tv3!!.visibility = View.VISIBLE
-//                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
-//                tv3!!.text = phone1
-//                tv_real_name!!.text = "去认证"
-//                im1!!.visibility = View.GONE
-//            } else {
-//                tv_real_name!!.text = "已认证"
-//                bt_login!!.visibility = View.GONE
-//                ll!!.visibility = View.VISIBLE
-//                tv3!!.visibility = View.VISIBLE
-//                tv3!!.text = realName
-//                tv2!!.visibility = View.VISIBLE
-//                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
-//                tv2.text = phone1
-//                im1!!.visibility = View.VISIBLE
-//            }
-//        } else {
-//            ll_exit.visibility = View.GONE
-//        }
-
+        val userId = mk.decodeString(Tool.USER_ID, "")
+        val bandCard = mk.decodeString(Tool.BINDCARD, "1")
+        val auth = mk.decodeString(Tool.IS_AUTH, "1")
+        val phone = mk.decodeString(Tool.PHONE, "")
+        val realName = mk.decodeString(Tool.REAL_NAME, "")
+        val dj = mk.decodeString(Tool.ZHDJ, "0")
+        if (dj == "2") {
+            im_dj.visibility = View.VISIBLE
+        } else {
+            im_dj.visibility = View.GONE
+        }
+        if (!TextUtils.isEmpty(userId)) {
+            ll_exit.visibility = View.VISIBLE
+            when (bandCard) {
+                "0" -> {
+                    val m = mk.decodeString(Tool.oneMoney, "0")
+                    oneMoney.text = utils.save2(m.toDouble())
+                }
+                "1" -> {
+                    oneMoney.text = "——"
+                }
+            }
+            if (auth != Tool.ZERO) {
+                bt_login!!.visibility = View.GONE
+                ll!!.visibility = View.VISIBLE
+                tv2!!.visibility = View.VISIBLE
+                tv2!!.text = "请进行实名认证"
+                tv3!!.visibility = View.VISIBLE
+                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
+                tv3!!.text = phone1
+                tv_real_name!!.text = "去认证"
+                im1!!.visibility = View.GONE
+            } else {
+                tv_real_name!!.text = "已认证"
+                bt_login!!.visibility = View.GONE
+                ll!!.visibility = View.VISIBLE
+                tv3!!.visibility = View.VISIBLE
+                tv3!!.text = realName
+                tv2!!.visibility = View.VISIBLE
+                val phone1 = phone!!.substring(0, 3) + "****" + phone.substring(7, 11)
+                tv2.text = phone1
+                im1!!.visibility = View.VISIBLE
+            }
+        } else {
+            ll_exit.visibility = View.GONE
+        }
         //获取客服电话
         HttpRequestPort.instance.baseData("telPhone", object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
@@ -256,7 +240,6 @@ class TabFourActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         login()
-        // upApp()
     }
 
     //退出弹窗
@@ -327,18 +310,6 @@ class TabFourActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    private fun searchYuE() {
-        val isAuth = mk.decodeString(Tool.IS_AUTH)
-        val userId = mk.decodeString(Tool.USER_ID)
-        if (!TextUtils.isEmpty(userId)) {
-            if (isAuth != Tool.ZERO) {
-                utils.showToast("请先进行实名认证")
-            } else {
-                login()
-            }
-        }
-    }
-
     @SuppressLint("SetTextI18n")
     private fun login() {
         val userId = mk.decodeString(Tool.USER_ID, "")
@@ -362,7 +333,6 @@ class TabFourActivity : BaseActivity() {
                         } else {
                             im_dj.visibility = View.GONE
                         }
-
                         if (bean.token[0].is_auth != Tool.ZERO) {
                             bt_login!!.visibility = View.GONE
                             ll!!.visibility = View.VISIBLE
@@ -402,6 +372,7 @@ class TabFourActivity : BaseActivity() {
             im_dj.visibility = View.GONE
             bt_login!!.visibility = View.VISIBLE
             ll!!.visibility = View.GONE
+            ll_exit.visibility = View.GONE
         }
         val img = mk.decodeString(Tool.HEADER, "")
         if (!TextUtils.isEmpty(img)) {
@@ -421,195 +392,6 @@ class TabFourActivity : BaseActivity() {
         }
     }
 
-    //以下为版本升级
-    var s1 = ""
-    var show = ""
-    var downloadUrl = ""
-    private fun upApp() {
-        HttpRequestPort.instance.getVersion(object : BaseHttpCallBack(this) {
-            override fun onSuccess(s: String) {
-                super.onSuccess(s)
-                val bean = JSONObject.parseObject(s, object : TypeReference<VersionBean>() {})
-                if ("0" == bean.status) {
-                    val num = bean.versionNum.replace("v", "")
-                    val version = utils.version
-                    val bv = version.replace(".", "")
-                    s1 = when {
-                        num.length > 2 -> num
-                        else -> num + "00"
-                    }
-
-                    if (bv != s1) {
-                        if (bean.remark == "1") {
-                            downloadUrl = bean.downloadUrl
-                            if (show == "") {
-                                if (popupWindow == null) {
-
-                                }
-                                popup()
-                            }
-                        }
-                    }
-                }
-            }
-        })
-    }
-
-    var popupWindow: PopupWindow? = null
-    private fun popup() {
-        val v = utils.getView(this, R.layout.pop_upapp2)
-        popupWindow = PopupWindow(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        popupWindow!!.contentView = v
-        popupWindow!!.setBackgroundDrawable(ColorDrawable(0x00000000))
-        popupWindow!!.isClippingEnabled = false
-        popupWindow!!.showAsDropDown(v)
-        v.findViewById<TextView>(R.id.tv_4).setOnClickListener {
-            mk.clearAll()
-            //为该客户端设置Alias，别名（uuid 即用户名等） 极光
-            JPushInterface.clearAllNotifications(this)
-            JPushInterface.deleteAlias(this, 0)
-            AndPermission.with(this)
-                    .requestCode(300)
-                    .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    // .rationale(...)
-                    .callback(this)
-                    .start()
-            popupWindow!!.dismiss()
-        }
-    }
-
-    private fun dowm() {
-        pop()
-        InstallUtils.with(this)
-                //必须-下载地址
-                .setApkUrl(HttpRequestPort.BASEURL + downloadUrl + "?fixparam=android")
-                //非必须，默认update
-                .setApkName("兰考市民卡")
-                //非必须-下载保存的路径
-                //.setApkPath(Constants.APK_SAVE_PATH)
-                //非必须-下载回调
-                .setCallBack(downloadCallBack)
-                //开始下载
-                .startDownload()
-    }
-
-    private var downloadCallBack: InstallUtils.DownloadCallBack? = null
-    private fun initCallBack() {
-
-        downloadCallBack = object : InstallUtils.DownloadCallBack {
-            override fun onStart() {
-                show = "1"
-            }
-
-            @SuppressLint("SetTextI18n")
-            override fun onComplete(path: String) {
-                tv!!.text = "正在更新 100%"
-                pro!!.progress = 100
-                InstallUtils.installAPK(this@TabFourActivity, path, object : InstallUtils.InstallCallBack {
-                    override fun onSuccess() {
-                        Toast.makeText(this@TabFourActivity, "正在安装程序", Toast.LENGTH_SHORT).show()
-                        System.exit(0)
-                    }
-
-                    override fun onFail(e: Exception) {
-                        toast("安装失败...")
-                    }
-                })
-                //  Log.i("===== ====>", "下载成功")
-            }
-
-            @SuppressLint("SetTextI18n")
-            override fun onLoading(total: Long, current: Long) {
-                // Log.i("=========>", (current * 100 / total).toInt().toString() + "%")
-                val lo = (current * 100 / total).toInt().toString()
-                tv!!.text = "正在更新 $lo %"
-                pro!!.progress = (current * 100 / total).toInt()
-            }
-
-            override fun onFail(e: Exception) {
-                // Log.i("=========>", "下载失败" + e.message)
-                InstallUtils.cancleDownload()
-                tv!!.text = "网络中断,下载失败"
-                cancel!!.visibility = View.VISIBLE
-            }
-
-            override fun cancle() {
-
-            }
-        }
-    }
-
-    //存储权限被拒弹窗
-    private fun promess() {
-        val v = utils.getView(this, R.layout.pop_prossmess)
-        val promess = PopupWindow(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        promess.contentView = v
-        promess.setBackgroundDrawable(ColorDrawable(0x00000000))
-        promess.isClippingEnabled = false
-        promess.showAsDropDown(bt_login)
-        v.findViewById<TextView>(R.id.tv_3).setOnClickListener {
-            promess.dismiss()
-            finish()
-        }
-        v.findViewById<TextView>(R.id.tv_4).setOnClickListener {
-            promess.dismiss()
-            popupWindow = null
-            startActivity(Intent(Settings.ACTION_SETTINGS))
-        }
-    }
-
-
-    var cancel: TextView? = null
-    var tv: TextView? = null
-    var pro: CustomHorizontalProgresWithNum? = null
-    private fun pop() {
-        val v = utils.getView(this, R.layout.pop_upapp)
-        val pop = PopupWindow(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        pop.contentView = v
-        pop.setBackgroundDrawable(ColorDrawable(0x00000000))
-        pop.isClippingEnabled = false
-        pop.showAsDropDown(v)
-        tv = v.findViewById(R.id.tv_up_app)
-        cancel = v.findViewById(R.id.cancel)
-        pro = v.findViewById(R.id.progress)
-        cancel!!.setOnClickListener {
-            if (MyNetUtils.isNetworkConnected(this@TabFourActivity)) {
-                if (pop.isShowing) {
-                    pop.dismiss()
-                }
-                dowm()
-            } else {
-                utils.showToast("网络异常，检查后点击重试")
-            }
-        }
-    }
-
-    // 成功回调的方法，用注解即可，这里的300就是请求时的requestCode。
-    @PermissionYes(300)
-    private fun getPermissionYes(grantedPermissions: List<String>) {
-        //申请权限成功
-        dowm()
-    }
-
-    @PermissionNo(300)
-    private fun getPermissionNo(deniedPermissions: List<String>) {
-        // 申请权限失败。
-        // 是否有不再提示并拒绝的权限
-        if (AndPermission.hasAlwaysDeniedPermission(this, deniedPermissions)) {
-            // 第一种：用AndPermission默认的提示语。
-            //AndPermission.defaultSettingDialog(this, 400).show()
-            promess()
-        } else {
-            runDelayed(200) {
-                MyApplication.instance.removeAllActivity()
-                System.exit(0)
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

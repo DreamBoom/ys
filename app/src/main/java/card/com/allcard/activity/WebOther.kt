@@ -86,7 +86,7 @@ class WebOther : BaseActivity() {
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_BACK) {
             if (agentWeb!!.back()) {
-                agentWeb!!.back()
+                agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
             } else {
                 finish()
             }

@@ -162,10 +162,12 @@ class PayBind : BaseActivity() {
 
         override fun afterTextChanged(editable: Editable) {
             val i = 11
+
             if (et_phone!!.text.length < i) {
                 send_code.isEnabled = false
                 return
             }
+
             if (et_phone!!.text.length == 11) {
                 if (RegexUtils.verifyUsername(et_phone!!.text.toString().trim()) != RegexUtils.VERIFY_SUCCESS) {
                     utils.showToast("您输入的手机号不正确!")
@@ -173,15 +175,10 @@ class PayBind : BaseActivity() {
                     return
                 }
             }
+
             if (et_phone!!.text.length == 11 && RegexUtils.verifyUsername(
                             et_phone!!.text.toString().trim()) == RegexUtils.VERIFY_SUCCESS) {
-                val trim = et_phone!!.text.toString().trim()
-                val decodeString = mk.decodeString(Tool.PHONE, "")
-                if(decodeString == trim){
-                    utils.showToast("不能绑定本人信息，请重新输入")
-                }else{
                     send_code.isEnabled = true
-                }
             }
         }
     }

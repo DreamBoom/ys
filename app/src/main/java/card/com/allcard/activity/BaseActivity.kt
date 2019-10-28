@@ -16,8 +16,7 @@ abstract class BaseActivity : AppCompatActivity() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         val mk = MMKV.mmkvWithID(Tool.MMKV_OUT, MMKV.SINGLE_PROCESS_MODE)
-        @SuppressLint("StaticFieldLeak")
-        var isForeground = false
+
 
     }
     val utils = ActivityUtils(this)
@@ -43,15 +42,4 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
-
-    override fun onResume() {
-        isForeground = true
-        super.onResume()
-    }
-
-    override fun onPause() {
-        isForeground = false
-        super.onPause()
-    }
-
 }

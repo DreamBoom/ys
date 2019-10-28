@@ -10,7 +10,6 @@ import android.widget.EditText
 import card.com.allcard.R
 import card.com.allcard.adapter.TabThreeAdapter
 import card.com.allcard.bean.HospitalList
-import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
@@ -29,7 +28,6 @@ class TabThree : BaseActivity() {
     private val dataList = ArrayList<HospitalList.HospitalBean>()
     override fun layoutId(): Int = R.layout.activity_tab_three
     override fun initView() {
-        MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         area.setOnClickListener { utils.startActivityForResult(ChooseArea::class.java, REQUETCODE_SEARCH) }

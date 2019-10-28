@@ -14,7 +14,7 @@ public class VersionBean {
     private String downloadUrl;
     private String remark;
     private String message;
-    private String status;
+    private String result;
 
     public String getVersionNum() {
         return versionNum;
@@ -48,11 +48,11 @@ public class VersionBean {
         this.message = message;
     }
 
-    public String getStatus() {
-        return status;
+    public String getResult() {
+        return result;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setResult(String result) {
+        this.result = result;
     }
 }

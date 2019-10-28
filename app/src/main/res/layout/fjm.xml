@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <card.com.allcard.view.PercentRelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/title">
+        android:layout_height="200dp">
 
         <recycler.coverflow.RecyclerCoverFlow
             android:id="@+id/list"
@@ -90,6 +90,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/kfw_yy"
@@ -186,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_weight="1"
-                android:text="办卡时间"
+                android:text="绑卡时间"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13"
                 app:width_percent="0.42"
@@ -336,8 +337,9 @@
 
     <TextView
         android:id="@+id/delete"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="25dp"
+        android:layout_below="@+id/ll2"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/btn_bg"
         android:text="删除本卡"
         android:gravity="center"

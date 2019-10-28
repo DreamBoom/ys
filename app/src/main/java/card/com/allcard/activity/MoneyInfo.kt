@@ -33,6 +33,8 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
     var cardNo = ""
     var nickName = ""
     var is_other = ""
+    private var noData: View? = null
+    private var noWeb: View? = null
     private  var type = 1
     private  var trCode = "all"
     var adapter: MoneyAdapter? = null
@@ -52,6 +54,8 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
             refresh.finishRefresh()
             getList()
         }
+        noData = utils.getView(R.layout.no_data)
+        noWeb = utils.getView(R.layout.view_no_web)
         cardNo = intent.getStringExtra("cardNo")
         nickName = intent.getStringExtra("nickName")
         is_other = intent.getStringExtra("is_other")
@@ -103,9 +107,22 @@ class MoneyInfo : BaseActivity(), OnDateSetListener,MoneyAdapter.ClickListener {
                         val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
                         if (bean.result == "0") {
                             dataList.clear()
-                            dataList.addAll(bean.detailList)
+                            if(bean.detailList.size>0){
+                                no_web.visibility = View.GONE
+                                no_data.visibility = View.GONE
+                                dataList.addAll(bean.detailList)
+                            }else{
+                                no_web.visibility = View.GONE
+                                no_data.visibility = View.VISIBLE
+                            }
                             adapter!!.notifyDataSetChanged()
                         }
+                    }
+
+                    override fun onError(throwable: Throwable, b: Boolean) {
+                        super.onError(throwable, b)
+                        no_data.visibility = View.GONE
+                        no_web.visibility = View.VISIBLE
                     }
                 })
     }

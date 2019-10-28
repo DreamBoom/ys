@@ -1,5 +1,6 @@
 package card.com.allcard.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
@@ -9,28 +10,39 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.content.LocalBroadcastManager
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.widget.LinearLayout
-import android.widget.TabHost
-import android.widget.TextView
+import android.view.*
+import android.widget.*
 import card.com.allcard.R
 import card.com.allcard.bean.JpushBean
+import card.com.allcard.bean.VersionBean
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.getActivity.MyApplication.Companion.context
+import card.com.allcard.net.BaseHttpCallBack
+import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.receiver.ExampleUtil
 import card.com.allcard.tools.DataCleanTools
 import card.com.allcard.tools.Tool
 import card.com.allcard.utils.ActivityUtils
+import card.com.allcard.utils.MyNetUtils
+import card.com.allcard.view.CustomHorizontalProgresWithNum
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
+import com.maning.updatelibrary.InstallUtils
+import com.pawegio.kandroid.runDelayed
 import com.pawegio.kandroid.startActivity
+import com.pawegio.kandroid.toast
 import com.tencent.mmkv.MMKV
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.PermissionNo
+import com.yanzhenjie.permission.PermissionYes
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_tab_four.*
 import kotlinx.android.synthetic.main.buttom_bar.*
 
 
@@ -47,7 +59,6 @@ class MainActivity : TabActivity() {
         var instance: MainActivity? = null
         @SuppressLint("StaticFieldLeak")
         var tab: TabHost? = null
-
         @SuppressLint("StaticFieldLeak")
         val MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION"
         @SuppressLint("StaticFieldLeak")
@@ -59,6 +70,7 @@ class MainActivity : TabActivity() {
     }
 
     private var firstTime: Long = 0
+    private var firstClick: Int = 0
     private var utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +80,7 @@ class MainActivity : TabActivity() {
         instance = this
         tab = tabhost
         initView()
-        registerMessageReceiver()
+        initCallBack()
     }
 
     private fun initView() {
@@ -112,6 +124,8 @@ class MainActivity : TabActivity() {
         rb_user.setOnClickListener {
             tabhost!!.setCurrentTabByTag("four")
         }
+
+        registerMessageReceiver()
     }
 
     private fun setIconBackGround() {
@@ -141,6 +155,11 @@ class MainActivity : TabActivity() {
         return super.dispatchKeyEvent(event)
     }
 
+    override fun onResume() {
+        super.onResume()
+        upApp()
+    }
+
 
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver!!)
@@ -149,7 +168,6 @@ class MainActivity : TabActivity() {
 
     //for receive customer msg from jpush server
     private var mMessageReceiver: MessageReceiver? = null
-
     fun registerMessageReceiver() {
         mMessageReceiver = MessageReceiver()
         val filter = IntentFilter()
@@ -216,10 +234,10 @@ class MainActivity : TabActivity() {
         val cn = am.getRunningTasks(1)[0].topActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             for (act in MyApplication.instance.activitys!!) {
-                if (".${act.localClassName}" == cn.shortClassName
-                        || cn.shortClassName == ".unihome.UniHomeLauncher"
-                        || cn.shortClassName == ".launcher.Launcher") {
-                    if (!act.isDestroyed) {
+                when(cn.shortClassName){
+                    ".${act.localClassName}",
+                    ".unihome.UniHomeLauncher",
+                    ".launcher.Launcher" -> if (!act.isFinishing) {
                         when (type) {
                             0 -> alert(act, "您的账号于 $mes 在另一台设备登录。如非本人操作，则密码可能已泄露，建议前往修改密码。")
                             1 -> alertLogin(act, "该账号于 $mes 在另一台设备修改了密码。请重新登录。")
@@ -266,6 +284,195 @@ class MainActivity : TabActivity() {
         }
         cancel.setOnClickListener {
             alertDialog.dismiss()
+        }
+    }
+
+
+    //以下为版本升级
+    var s1 = ""
+    var show = ""
+    var downloadUrl = ""
+    private fun upApp() {
+        HttpRequestPort.instance.getVersion(object : BaseHttpCallBack(this) {
+            override fun onSuccess(s: String) {
+                super.onSuccess(s)
+                val bean = JSONObject.parseObject(s, object : TypeReference<VersionBean>() {})
+                if ("0" == bean.result) {
+                    val num = bean.versionNum.replace("v", "")
+                    val version = utils.version
+                    val bv = version.replace(".", "")
+                    s1 = when {
+                        num.length > 2 -> num
+                        else -> num + "00"
+                    }
+                    if (bv != s1) {
+                        if (bean.remark == "1") {
+                            downloadUrl = bean.downloadUrl
+                            if (show == "") {
+                                popup()
+                                if (popupWindow != null) {
+                                    popupWindow!!.showAtLocation(bt_login, Gravity.NO_GRAVITY, 0, 0)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    var popupWindow: PopupWindow? = null
+    private fun popup() {
+        val v = utils.getView(this, R.layout.pop_upapp2)
+        popupWindow = PopupWindow(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        popupWindow!!.contentView = v
+        popupWindow!!.setBackgroundDrawable(ColorDrawable(0x00000000))
+        popupWindow!!.isClippingEnabled = false
+        popupWindow!!.showAsDropDown(v)
+        v.findViewById<TextView>(R.id.tv_4).setOnClickListener {
+            BaseActivity.mk.clearAll()
+            //为该客户端设置Alias，别名（uuid 即用户名等） 极光
+            JPushInterface.clearAllNotifications(this)
+            JPushInterface.deleteAlias(this, 0)
+            AndPermission.with(this)
+                    .requestCode(300)
+                    .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    // .rationale(...)
+                    .callback(this)
+                    .start()
+            popupWindow!!.dismiss()
+        }
+    }
+
+    private fun dowm() {
+        pop()
+        InstallUtils.with(this)
+                //必须-下载地址
+                .setApkUrl(downloadUrl)
+                //非必须，默认update
+                .setApkName("兰考市民卡")
+                //非必须-下载保存的路径
+                //.setApkPath(Constants.APK_SAVE_PATH)
+                //非必须-下载回调
+                .setCallBack(downloadCallBack)
+                //开始下载
+                .startDownload()
+    }
+
+    private var downloadCallBack: InstallUtils.DownloadCallBack? = null
+    private fun initCallBack() {
+        downloadCallBack = object : InstallUtils.DownloadCallBack {
+            override fun onStart() {
+                show = "1"
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onComplete(path: String) {
+                tv!!.text = "正在更新 100%"
+                pro!!.progress = 100
+                InstallUtils.installAPK(this@MainActivity, path, object : InstallUtils.InstallCallBack {
+                    override fun onSuccess() {
+                        Toast.makeText(this@MainActivity, "正在安装程序", Toast.LENGTH_SHORT).show()
+                        System.exit(0)
+                    }
+
+                    override fun onFail(e: Exception) {
+                        toast("安装失败...")
+                    }
+                })
+                //  Log.i("===== ====>", "下载成功")
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onLoading(total: Long, current: Long) {
+                // Log.i("=========>", (current * 100 / total).toInt().toString() + "%")
+                val lo = (current * 100 / total).toInt().toString()
+                tv!!.text = "正在更新 $lo %"
+                pro!!.progress = (current * 100 / total).toInt()
+            }
+
+            override fun onFail(e: Exception) {
+                // Log.i("=========>", "下载失败" + e.message)
+                InstallUtils.cancleDownload()
+                tv!!.text = "网络中断,下载失败"
+                cancel!!.visibility = View.VISIBLE
+            }
+
+            override fun cancle() {
+
+            }
+        }
+    }
+
+    //存储权限被拒弹窗
+    private fun promess() {
+        val v = utils.getView(this, R.layout.pop_prossmess)
+        val promess = PopupWindow(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        promess.contentView = v
+        promess.setBackgroundDrawable(ColorDrawable(0x00000000))
+        promess.isClippingEnabled = false
+        promess.showAsDropDown(bt_login)
+        v.findViewById<TextView>(R.id.tv_3).setOnClickListener {
+            promess.dismiss()
+            finish()
+        }
+        v.findViewById<TextView>(R.id.tv_4).setOnClickListener {
+            promess.dismiss()
+            popupWindow = null
+            startActivity(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
+
+
+    var cancel: TextView? = null
+    var tv: TextView? = null
+    var pro: CustomHorizontalProgresWithNum? = null
+    private fun pop() {
+        val v = utils.getView(this, R.layout.pop_upapp)
+        val pop = PopupWindow(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        pop.contentView = v
+        pop.setBackgroundDrawable(ColorDrawable(0x00000000))
+        pop.isClippingEnabled = false
+        pop.showAsDropDown(v)
+        tv = v.findViewById(R.id.tv_up_app)
+        cancel = v.findViewById(R.id.cancel)
+        pro = v.findViewById(R.id.progress)
+        cancel!!.setOnClickListener {
+            if (MyNetUtils.isNetworkConnected(this@MainActivity)) {
+                if (pop.isShowing) {
+                    pop.dismiss()
+                }
+                dowm()
+            } else {
+                utils.showToast("网络异常，检查后点击重试")
+            }
+        }
+    }
+
+    // 成功回调的方法，用注解即可，这里的300就是请求时的requestCode。
+    @PermissionYes(300)
+    private fun getPermissionYes(grantedPermissions: List<String>) {
+        //申请权限成功
+        dowm()
+    }
+
+    @PermissionNo(300)
+    private fun getPermissionNo(deniedPermissions: List<String>) {
+        // 申请权限失败。
+        // 是否有不再提示并拒绝的权限
+        if (AndPermission.hasAlwaysDeniedPermission(this, deniedPermissions)) {
+            // 第一种：用AndPermission默认的提示语。
+            //AndPermission.defaultSettingDialog(this, 400).show()
+            promess()
+        } else {
+            runDelayed(200) {
+                MyApplication.instance.removeAllActivity()
+                System.exit(0)
+            }
         }
     }
 }

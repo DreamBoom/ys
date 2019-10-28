@@ -63,11 +63,18 @@ class CardFjmInfo : BaseActivity() {
                 }
             }
         }
+
+        yue.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cardNo", cardNo)
+            bundle.putString("name", name1)
+            bundle.putString("num", certNo)
+            utils.startActivityBy(PayMoney::class.java, bundle)
+        }
         mx.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("cardNo", cardNo)
             bundle.putString("nickName", name1)
-
             bundle.putString("is_other", "2")
             utils.startActivityBy(MoneyInfo::class.java, bundle)
         }
@@ -77,13 +84,6 @@ class CardFjmInfo : BaseActivity() {
             bundle.putString("phone", phone0)
             bundle.putString("name", name1)
             utils.startActivityBy(ChangeCardPass::class.java, bundle)
-        }
-        yue.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("cardNo", cardNo)
-            bundle.putString("name", name1)
-            bundle.putString("num", certNo)
-            utils.startActivityBy(PayMoney::class.java, bundle)
         }
         jl.setOnClickListener {
             val bundle = Bundle()

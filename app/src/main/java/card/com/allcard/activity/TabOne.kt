@@ -10,13 +10,11 @@ import card.com.allcard.adapter.ImgAdapter
 import card.com.allcard.adapter.NewListAdapter
 import card.com.allcard.bean.MainImgBean
 import card.com.allcard.bean.ServiceListBean
-import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_tab_one.*
 import org.xutils.x
@@ -29,7 +27,6 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     private var imgAdapter: ImgAdapter? = null
     var userId = ""
     override fun initView() {
-        MyApplication.instance.addActivity(this)
         adapter = NewListAdapter(this, R.layout.news_list_item, serviceGuide)
         utils.changeStatusBlack(false, window)
         refresh.setEnableOverScrollDrag(false)
@@ -39,7 +36,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         }
         pull_view.layoutManager = LinearLayoutManager(this@TabOne)
         //动画效果
-        adapter!!.openLoadAnimation(BaseQuickAdapter.EMPTY_VIEW)
+       // adapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         pull_view.adapter = adapter
         service_more.setOnClickListener { startActivity<MoreServiceActivity>() }
     }

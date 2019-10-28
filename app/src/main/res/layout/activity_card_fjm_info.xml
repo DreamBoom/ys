@@ -1,86 +1,93 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:background="@color/white">
-
-    <ImageView
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white" />
+    android:scrollbars="none">
 
     <LinearLayout
-        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/close"
-            android:layout_width="wrap_content"
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
-            android:padding="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/back_h"
-            tools:ignore="RtlHardcoded" />
+            android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size17" />
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/right_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginEnd="10dp"
-            android:gravity="center"
-            android:text="+新增"
-            android:textColor="@color/black3"
-            android:textSize="@dimen/size13"
-            tools:ignore="RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:src="@drawable/back_h"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size17" />
+
+            <TextView
+                android:id="@+id/right_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:text="+新增"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size13"
+                tools:ignore="RtlHardcoded" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/clue"
+            layout="@layout/fjm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/rl_zw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:clickable="false"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/t1"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/img_zwsj" />
+
+            <TextView
+                android:id="@+id/t1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="暂无数据"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size13" />
+        </RelativeLayout>
     </LinearLayout>
-
-    <include
-        android:id="@+id/clue"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/fjm"/>
-
-    <RelativeLayout
-        android:id="@+id/rl_zw"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false"
-        android:background="@color/white"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/t1"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/img_zwsj" />
-
-        <TextView
-            android:id="@+id/t1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="暂无数据"
-            android:textColor="@color/grey91"
-            android:textSize="@dimen/size13" />
-    </RelativeLayout>
-</LinearLayout>
+</ScrollView>

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
-import card.com.allcard.activity.BaseActivity
 import card.com.allcard.activity.MainActivity
 import cn.jpush.android.api.*
 import cn.jpush.android.service.JPushMessageReceiver
@@ -98,7 +97,6 @@ class PushMessageReceiver : JPushMessageReceiver() {
 
     //send msg to MainActivity
     private fun processCustomMessage(context: Context?, customMessage: CustomMessage?) {
-        if (BaseActivity.isForeground) {
             val message = customMessage!!.message
             val extras = customMessage.extra
             val msgIntent = Intent(MainActivity.MESSAGE_RECEIVED_ACTION)
@@ -115,7 +113,6 @@ class PushMessageReceiver : JPushMessageReceiver() {
 
             }
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(msgIntent)
-        }
     }
 
     companion object {

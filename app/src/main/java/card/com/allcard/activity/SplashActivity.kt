@@ -80,7 +80,7 @@ class SplashActivity : BaseActivity() {
             override fun onSuccess(s: String) {
                 super.onSuccess(s)
                 val bean = JSONObject.parseObject(s, object : TypeReference<VersionBean>() {})
-                if ("0" == bean.status) {
+                if ("0" == bean.result) {
                     val num = bean.versionNum.replace("v", "")
                     val version = utils.version
                     val bv = version.replace(".", "")
@@ -116,7 +116,7 @@ class SplashActivity : BaseActivity() {
             override fun onFinished() {
                 super.onFinished()
                 if (canJump == 0) {
-                    //  jumpNextPage()
+                      jumpNextPage()
                 }
             }
         })
@@ -126,7 +126,6 @@ class SplashActivity : BaseActivity() {
     @PermissionYes(200)
     private fun PermissionYes(grantedPermissions: List<String>) {
         //申请权限成功
-        jumpNextPage()
         getVer()
     }
 
@@ -255,8 +254,7 @@ class SplashActivity : BaseActivity() {
         pop()
         InstallUtils.with(this)
                 //必须-下载地址
-                .setApkUrl("http://222.138.67.71:19533/uploads/app/v101.apk")
-                // .setApkUrl(HttpRequestPort.BASEURL + url + "?fixparam=android")
+                .setApkUrl(url)
                 //非必须，默认update
                 .setApkName("兰考市民卡")
                 //非必须-下载保存的路径
