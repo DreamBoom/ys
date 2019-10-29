@@ -30,7 +30,7 @@ class FrozenIn : BaseActivity() {
         utils.changeStatusBlack(true, window)
         address.text = "账户冻结"
         type = intent.getStringExtra("type")
-        if(type != "0"){
+        if (type != "0") {
             address.text = "账户解冻"
             bt_frozen.text = "确认解冻"
             tit.text = "解冻须知"
@@ -79,6 +79,7 @@ class FrozenIn : BaseActivity() {
         }
         mHandler!!.postDelayed(mRunnable, 1000)
     }
+
     private fun getNum() {
         send_code!!.visibility = View.GONE
         send_code.text = "重新获取"
@@ -88,35 +89,35 @@ class FrozenIn : BaseActivity() {
         HttpRequestPort.instance.sandMessage(ph, "d", object : BaseHttpCallBack(this) {})
     }
 
-    private fun check(){
-        utils.getProgress(this)
+    private fun check() {
         val ph = mk.decodeString(Tool.PHONE, "")
         val trim = et_code.text.toString().trim()
-            HttpRequestPort.instance.checkCode(ph, trim,"d", object : BaseHttpCallBack(this) {
-                override fun success(data: String) {
-                    super.success(data)
-                    val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
-                    val status = bean.result
-                    if (status == "0") {
-                        if(type == "0") {
-                            frozenIn()
-                        }else{
-                            frozenOut()
-                        }
+        HttpRequestPort.instance.checkCode(ph, trim, "d", object : BaseHttpCallBack(this) {
+            override fun success(data: String) {
+                super.success(data)
+                val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
+                val status = bean.result
+                if (status == "0") {
+                    if (type == "0") {
+                        frozenIn()
                     } else {
-                        utils.showToast("验证码错误")
+                        frozenOut()
                     }
+                } else {
+                    utils.showToast("验证码错误")
                 }
-                override fun onError(throwable: Throwable, b: Boolean) {
-                    super.onError(throwable, b)
-                    utils.showToast("验证码验证失败")
-                    utils.hindProgress()
-                }
+            }
 
-            })
+            override fun onError(throwable: Throwable, b: Boolean) {
+                super.onError(throwable, b)
+                utils.showToast("验证码验证失败")
+            }
+
+        })
     }
 
-    fun frozenIn(){
+    fun frozenIn() {
+        utils.getProgress(this)
         val ph = mk.decodeString(Tool.PHONE, "")
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.accountFrozen(userId, ph, "1", object : BaseHttpCallBack(this) {
@@ -126,22 +127,22 @@ class FrozenIn : BaseActivity() {
                 val status = bean.result
                 if (status == "0") {
                     utils.showToast(bean.message)
-                    finish() }
+                    finish()
+                } else {
+                    utils.hindProgress()
                 }
+            }
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("冻结请求失败")
-            }
-
-            override fun onFinished() {
-                super.onFinished()
                 utils.hindProgress()
             }
         })
     }
 
-    fun frozenOut(){
+    fun frozenOut() {
+        utils.getProgress(this)
         val ph = mk.decodeString(Tool.PHONE, "")
         val userId = mk.decodeString(Tool.USER_ID, "")
         HttpRequestPort.instance.accountFrozen(userId, ph, "2", object : BaseHttpCallBack(this) {
@@ -152,16 +153,14 @@ class FrozenIn : BaseActivity() {
                 if (status == "0") {
                     utils.showToast(bean.message)
                     finish()
+                }else{
+                    utils.hindProgress()
                 }
             }
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("解冻请求失败")
-            }
-
-            override fun onFinished() {
-                super.onFinished()
                 utils.hindProgress()
             }
         })

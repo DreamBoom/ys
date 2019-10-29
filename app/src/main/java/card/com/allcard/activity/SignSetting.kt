@@ -220,7 +220,7 @@ class SignSetting : BaseActivity() {
             mkBD.encode(userId + "finger", "")
             mkBD.encode(userId + "sign", "")
             mk.clearAll()
-            JPushInterface.deleteAlias(this@SignSetting,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@SignSetting)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(ForgetPassword::class.java)
@@ -240,7 +240,9 @@ class SignSetting : BaseActivity() {
             }
         }
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     private var sysEroPop: PopupWindow? = null
     private fun sysEroPop() {
         val view = LayoutInflater.from(this).inflate(R.layout.exit_dialog, null)

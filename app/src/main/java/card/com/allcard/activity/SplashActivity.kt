@@ -96,6 +96,7 @@ class SplashActivity : BaseActivity() {
                                 if (show1 == "") popup()
                                 canJump = 1
                             }
+
                             else -> {
                                 val canShow = mkBD.decodeBool(s1, true)
                                 when {
@@ -137,7 +138,6 @@ class SplashActivity : BaseActivity() {
 
 
     private fun jumpNextPage() {
-
         // 判断之前有没有显示过新手引导
         val isFirst = mkBD.decodeString(Tool.isFirst, "0")
         if (isFirst == str) {
@@ -194,7 +194,7 @@ class SplashActivity : BaseActivity() {
             mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            JPushInterface.deleteAlias(this, 0)
+            jPush("")
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -219,7 +219,7 @@ class SplashActivity : BaseActivity() {
             mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            JPushInterface.deleteAlias(this, 0)
+            jPush("")
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -230,7 +230,9 @@ class SplashActivity : BaseActivity() {
             popup.dismiss()
         }
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     //存储权限被拒弹窗
     private fun promess() {
         val v = utils.getView(this, R.layout.pop_prossmess)

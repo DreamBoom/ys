@@ -126,7 +126,6 @@ dependencies {
     //富文本
     implementation 'com.zzhoujay.richtext:richtext:3.0.8'
     // implementation 'com.zzhoujay:html:3.0.8'
-    implementation files('libs/jcore-android-2.1.6.jar')
 }
 repositories {
     mavenCentral()

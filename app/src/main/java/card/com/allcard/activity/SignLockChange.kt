@@ -157,14 +157,16 @@ class SignLockChange : BaseActivity(), OnGestureLockListener {
             mk.clearAll()
             mkBD!!.encode(userId+"finger","")
             mkBD!!.encode(userId+"sign","")
-            JPushInterface.deleteAlias(this@SignLockChange,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@SignLockChange)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)
             finish()
         }
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     private fun showLoginPop() {
         val view = LayoutInflater.from(this).inflate(R.layout.login_dialog, null)
         sure = view.findViewById(R.id.sure)

@@ -22,6 +22,7 @@ class ForgetPayPass : BaseActivity() {
     private var captchaTime = 60
     override fun layoutId(): Int = R.layout.activity_forget_pay_pass
 
+    @SuppressLint("DefaultLocale")
     override fun initView() {
         MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
@@ -47,7 +48,7 @@ class ForgetPayPass : BaseActivity() {
             val realName = mk.decodeString(Tool.REAL_NAME, "")
             val userNum = mk.decodeString(Tool.USER_NUM, "")
             val name = et_name.text.toString().trim()
-            val num = et_num.text.toString().trim()
+            val num = et_num.text.toString().trim().toUpperCase()
             val code = et_code.text.toString().trim()
             if (TextUtils.isEmpty(name) || name == "请输入姓名") {
                 utils.showToast("请输入姓名")

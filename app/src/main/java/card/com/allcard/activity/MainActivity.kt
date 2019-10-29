@@ -44,6 +44,7 @@ import com.yanzhenjie.permission.PermissionYes
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_tab_four.*
 import kotlinx.android.synthetic.main.buttom_bar.*
+import kotlin.system.exitProcess
 
 
 /**
@@ -54,6 +55,7 @@ import kotlinx.android.synthetic.main.buttom_bar.*
 
 class MainActivity : TabActivity() {
     var mk: MMKV? = null
+
     companion object {
         @SuppressLint("StaticFieldLeak")
         var instance: MainActivity? = null
@@ -70,7 +72,6 @@ class MainActivity : TabActivity() {
     }
 
     private var firstTime: Long = 0
-    private var firstClick: Int = 0
     private var utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,19 +114,27 @@ class MainActivity : TabActivity() {
         }
 
         rb_home.setOnClickListener {
+            upApp()
             tabhost!!.setCurrentTabByTag("one")
         }
         rb_service.setOnClickListener {
+            upApp()
             tabhost!!.setCurrentTabByTag("two")
         }
         rb_site.setOnClickListener {
+            upApp()
             tabhost!!.setCurrentTabByTag("three")
         }
         rb_user.setOnClickListener {
+            upApp()
             tabhost!!.setCurrentTabByTag("four")
         }
-
         registerMessageReceiver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        upApp()
     }
 
     private fun setIconBackGround() {
@@ -149,17 +158,11 @@ class MainActivity : TabActivity() {
             } else {
                 MyApplication.instance.removeAllActivity()
                 DataCleanTools.cleanApplicationData(this)
-                System.exit(0)
+                exitProcess(0)
             }
         }
         return super.dispatchKeyEvent(event)
     }
-
-    override fun onResume() {
-        super.onResume()
-        upApp()
-    }
-
 
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver!!)
@@ -168,6 +171,7 @@ class MainActivity : TabActivity() {
 
     //for receive customer msg from jpush server
     private var mMessageReceiver: MessageReceiver? = null
+
     fun registerMessageReceiver() {
         mMessageReceiver = MessageReceiver()
         val filter = IntentFilter()
@@ -234,16 +238,16 @@ class MainActivity : TabActivity() {
         val cn = am.getRunningTasks(1)[0].topActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             for (act in MyApplication.instance.activitys!!) {
-                when(cn.shortClassName){
-                    ".${act.localClassName}",
-                    ".unihome.UniHomeLauncher",
-                    ".launcher.Launcher" -> if (!act.isFinishing) {
+                if (cn.shortClassName == ".${act.localClassName}" || cn.shortClassName == ".unihome.UniHomeLauncher"
+                        ||cn.shortClassName == ".launcher.Launcher") {
+                    if (!act.isDestroyed) {
                         when (type) {
                             0 -> alert(act, "您的账号于 $mes 在另一台设备登录。如非本人操作，则密码可能已泄露，建议前往修改密码。")
                             1 -> alertLogin(act, "该账号于 $mes 在另一台设备修改了密码。请重新登录。")
                             2 -> alertLogin(act, "该账号于 $mes 在另一台设备修改了手机号。请重新登录。")
                         }
                     }
+                    break
                 }
             }
         }
@@ -261,6 +265,7 @@ class MainActivity : TabActivity() {
         title.text = str
         val sure = view.findViewById<TextView>(R.id.sure)
         sure.setOnClickListener {
+            alertDialog.dismiss()
             context.startActivity<LoginActivity>()
         }
     }
@@ -281,6 +286,7 @@ class MainActivity : TabActivity() {
         sure.setOnClickListener {
             alertDialog.dismiss()
             context.startActivity<ChangePasswordActivity>()
+
         }
         cancel.setOnClickListener {
             alertDialog.dismiss()
@@ -334,7 +340,7 @@ class MainActivity : TabActivity() {
             BaseActivity.mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            JPushInterface.deleteAlias(this, 0)
+            jPush("")
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -345,7 +351,9 @@ class MainActivity : TabActivity() {
             popupWindow!!.dismiss()
         }
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     private fun dowm() {
         pop()
         InstallUtils.with(this)

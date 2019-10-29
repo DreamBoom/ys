@@ -1,5 +1,6 @@
 package card.com.allcard.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import card.com.allcard.R
 import card.com.allcard.adapter.MoreAdapter
@@ -16,12 +17,16 @@ import java.util.*
 class AllService : BaseActivity(), MoreAdapter.AllClickListener {
     override fun layoutId(): Int = R.layout.activity_all_service
     private val dataList = ArrayList<ServiceTypeBean.ListBean>()
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        var i = 0
+    }
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
         MyApplication.instance.addActivity(this)
         val bundle = intent.extras
-        val i = bundle.getInt("tab")
+         i = bundle.getInt("tab",0)
         HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)

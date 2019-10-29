@@ -13,7 +13,6 @@ import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
-import card.com.allcard.utils.LogUtils
 import card.com.allcard.utils.MD5Utils
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.fastjson.JSONObject
@@ -149,8 +148,7 @@ class LoginActivity : BaseActivity() {
                             mk.encode(Tool.BINDCARD, token.isbindcard)
                             mk.encode(Tool.BY_LOGIN, "1")
                             jPush(token.user_id + deviceId)
-                            LogUtils.i("jpush====>",token.user_id + deviceId)
-                            utils.startActivity(MainActivity::class.java)
+                            startActivity<MainActivity>()
                             finish()
                         } else {
                             utils.showToast(bean.message)

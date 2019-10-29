@@ -30,15 +30,12 @@ class PushMessageReceiver : JPushMessageReceiver() {
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             context!!.startActivity(i)
         } catch (throwable: Throwable) {
-
         }
-
     }
 
     override fun onMultiActionClicked(context: Context, intent: Intent) {
         Log.e(TAG, "[onMultiActionClicked] 用户点击了通知栏按钮")
         val nActionExtra = intent.extras!!.getString(JPushInterface.EXTRA_NOTIFICATION_ACTION_EXTRA)
-
         //开发者根据不同 Action 携带的 extra 字段来分配不同的动作。
         if (nActionExtra == null) {
             Log.d(TAG, "ACTION_NOTIFICATION_CLICK_ACTION nActionExtra is null")
@@ -108,9 +105,7 @@ class PushMessageReceiver : JPushMessageReceiver() {
                         msgIntent.putExtra(MainActivity.KEY_MESSAGE, extras)
                     }
                 } catch (e: JSONException) {
-
                 }
-
             }
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(msgIntent)
     }

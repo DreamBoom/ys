@@ -86,7 +86,7 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
                 mk.clearAll()
                 mkBD.encode(userId + "finger", "")
                 mkBD.encode(userId + "sign", "")
-                JPushInterface.deleteAlias(this@SignLockCheck, 0)
+                jPush("")
                 JPushInterface.clearAllNotifications(this@SignLockCheck)
                 popup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
             } else {
@@ -99,7 +99,9 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
 
         }
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     private var popup: PopupWindow? = null
     private fun showPop() {
         val view = LayoutInflater.from(this).inflate(R.layout.to_login_dialog, null)
@@ -118,9 +120,8 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
             mk.clearAll()
             mkBD!!.encode(userId + "finger", "")
             mkBD!!.encode(userId + "sign", "")
-            JPushInterface.deleteAlias(this@SignLockCheck, 0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@SignLockCheck)
-            MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)
             finish()
         }

@@ -18,6 +18,8 @@ import com.tencent.mmkv.MMKV
 import com.yatoooon.screenadaptation.ScreenAdapterTools
 import org.xutils.x
 import java.util.*
+
+
 /**
  * @author Created by Dream
  */
@@ -74,6 +76,22 @@ class MyApplication : Application() {
         })
     }
 
+    override fun onTerminate() {
+        // 程序终止的时候执行
+        super.onTerminate()
+    }
+
+    override fun onLowMemory() {
+        // 低内存的时候执行
+        super.onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        // 程序在内存清理的时候执行（回收内存）
+        // HOME键退出应用程序、长按MENU键，打开Recent TASK都会执行
+        super.onTrimMemory(level)
+    }
+
     init {
         activists = LinkedList()
     }
@@ -97,6 +115,7 @@ class MyApplication : Application() {
             }
         }
     }
+
 
     companion object {
         private var myApplication: MyApplication? = null

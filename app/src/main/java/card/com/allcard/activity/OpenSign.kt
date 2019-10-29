@@ -32,7 +32,9 @@ class OpenSign : BaseActivity(), OnGestureLockListener {
     val deviceId = utils.getDeviceId(this)
     val mkBD = SplashActivity.mkBD
     val userId = mk.decodeString(Tool.USER_ID, "")
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     override fun initView() {
         MyApplication.instance.addActivity(this)
         //   bar!!.layoutParams.height = utils.getStatusBarHeight(this)
@@ -69,7 +71,7 @@ class OpenSign : BaseActivity(), OnGestureLockListener {
         glv!!.setGestureLockListener(this)
         change_user.setOnClickListener {
             mk.clearAll()
-            JPushInterface.deleteAlias(this@OpenSign,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@OpenSign)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)
@@ -113,7 +115,7 @@ class OpenSign : BaseActivity(), OnGestureLockListener {
                 mk.clearAll()
                 mkBD.encode(userId + "finger", "")
                 mkBD.encode(userId + "sign", "")
-                JPushInterface.deleteAlias(this@OpenSign,0)
+                jPush("")
                 JPushInterface.clearAllNotifications(this@OpenSign)
                 popup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
             } else {
@@ -179,7 +181,7 @@ class OpenSign : BaseActivity(), OnGestureLockListener {
             mk.clearAll()
             mkBD!!.encode(userId + "finger", "")
             mkBD!!.encode(userId + "sign", "")
-            JPushInterface.deleteAlias(this@OpenSign,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@OpenSign)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)
@@ -210,7 +212,7 @@ class OpenSign : BaseActivity(), OnGestureLockListener {
             mkBD!!.encode(userId + "finger", "")
             mkBD!!.encode(userId + "sign", "")
             mk.clearAll()
-            JPushInterface.deleteAlias(this@OpenSign,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@OpenSign)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(ForgetPassword::class.java)

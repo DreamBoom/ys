@@ -78,7 +78,7 @@ class OpenActivity : BaseActivity() {
 
         change_user.setOnClickListener {
             mk.clearAll()
-            JPushInterface.deleteAlias(this,0)
+            jPush("")
             JPushInterface.clearAllNotifications(this@OpenActivity)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)
@@ -89,7 +89,9 @@ class OpenActivity : BaseActivity() {
         showLoginPop()
         bindPopup()
     }
-
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
+    }
     private var popup: PopupWindow? = null
 
     private fun bindPopup() {
@@ -140,7 +142,7 @@ class OpenActivity : BaseActivity() {
             mkBD!!.encode(userId+"finger", "")
             mkBD!!.encode(userId+"sign", "")
             mk.clearAll()
-            JPushInterface.deleteAlias(this@OpenActivity,0)
+          jPush("")
             JPushInterface.clearAllNotifications(this)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(ForgetPassword::class.java)

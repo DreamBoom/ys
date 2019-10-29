@@ -1,10 +1,12 @@
 package card.com.allcard.adapter;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 
 import java.util.List;
 
 import card.com.allcard.R;
+import card.com.allcard.activity.AllService;
 import card.com.allcard.bean.ServiceTypeBean;
 import card.com.allcard.utils.ActivityUtils;
 
@@ -31,5 +33,9 @@ public class MoreAdapter extends CommonAdapter<ServiceTypeBean.ListBean> {
     public void convert(ViewHolder holder, ServiceTypeBean.ListBean data,int position) {
         holder.setText(R.id.tab, data.getPara_key());
         holder.getView(R.id.tab).setOnClickListener(v -> allClick.onClickListener(position));
+        if(position == AllService.Companion.getI()){
+            holder.setTextColor(R.id.tab, ContextCompat.getColor(act,R.color.blue));
+        }
+
     }
 }

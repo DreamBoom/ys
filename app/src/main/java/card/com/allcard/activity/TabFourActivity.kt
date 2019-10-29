@@ -259,7 +259,6 @@ class TabFourActivity : BaseActivity() {
         exitPop!!.setBackgroundDrawable(dw)
         sure.setOnClickListener {
             exit()
-
         }
         cancel.setOnClickListener {
             exitPop!!.dismiss()
@@ -270,11 +269,15 @@ class TabFourActivity : BaseActivity() {
         mk.clearAll()
         x.image().bind(im_icon, Tool.HEADER_IMG, options)
         im_dj.visibility = View.GONE
-        JPushInterface.deleteAlias(this, 0)
+        jPush("")
         JPushInterface.clearAllNotifications(this@TabFourActivity)
         ll_exit!!.visibility = View.GONE
         AgentWebConfig.clearDiskCache(this)
         MainActivity.instance!!.tabHost!!.currentTab = 0
+    }
+
+    private fun jPush(alias: String) {
+        JPushInterface.setAlias(applicationContext, 0, alias)
     }
 
     private var popup: PopupWindow? = null
