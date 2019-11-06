@@ -220,7 +220,7 @@ class SignSetting : BaseActivity() {
             mkBD.encode(userId + "finger", "")
             mkBD.encode(userId + "sign", "")
             mk.clearAll()
-            jPush("")
+            JPushInterface.deleteAlias(this@SignSetting,0)
             JPushInterface.clearAllNotifications(this@SignSetting)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(ForgetPassword::class.java)

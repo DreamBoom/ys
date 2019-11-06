@@ -157,7 +157,7 @@ class SignLockChange : BaseActivity(), OnGestureLockListener {
             mk.clearAll()
             mkBD!!.encode(userId+"finger","")
             mkBD!!.encode(userId+"sign","")
-            jPush("")
+            JPushInterface.deleteAlias(this@SignLockChange,0)
             JPushInterface.clearAllNotifications(this@SignLockChange)
             MyApplication.instance.removeAllActivity()
             utils.startActivity(LoginActivity::class.java)

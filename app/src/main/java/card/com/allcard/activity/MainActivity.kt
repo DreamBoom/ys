@@ -340,7 +340,7 @@ class MainActivity : TabActivity() {
             BaseActivity.mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            jPush("")
+            JPushInterface.deleteAlias(this@MainActivity,0)
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,

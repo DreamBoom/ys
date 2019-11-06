@@ -94,20 +94,20 @@ class PushMessageReceiver : JPushMessageReceiver() {
 
     //send msg to MainActivity
     private fun processCustomMessage(context: Context?, customMessage: CustomMessage?) {
-            val message = customMessage!!.message
-            val extras = customMessage.extra
-            val msgIntent = Intent(MainActivity.MESSAGE_RECEIVED_ACTION)
-            msgIntent.putExtra(MainActivity.KEY_MESSAGE, message)
-            if (!ExampleUtil.isEmpty(extras)) {
-                try {
-                    val extraJson = JSONObject(extras)
-                    if (extraJson.length() > 0) {
-                        msgIntent.putExtra(MainActivity.KEY_MESSAGE, extras)
-                    }
-                } catch (e: JSONException) {
+        val message = customMessage!!.message
+        val extras = customMessage.extra
+        val msgIntent = Intent(MainActivity.MESSAGE_RECEIVED_ACTION)
+        msgIntent.putExtra(MainActivity.KEY_MESSAGE, message)
+        if (!ExampleUtil.isEmpty(extras)) {
+            try {
+                val extraJson = JSONObject(extras)
+                if (extraJson.length() > 0) {
+                    msgIntent.putExtra(MainActivity.KEY_MESSAGE, extras)
                 }
+            } catch (e: JSONException) {
             }
-            LocalBroadcastManager.getInstance(context!!).sendBroadcast(msgIntent)
+        }
+        LocalBroadcastManager.getInstance(context!!).sendBroadcast(msgIntent)
     }
 
     companion object {

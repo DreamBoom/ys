@@ -55,7 +55,6 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun initView() {
-        MyApplication.instance.addActivity(this)
         if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
             finish()
             return
@@ -194,7 +193,7 @@ class SplashActivity : BaseActivity() {
             mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            jPush("")
+            JPushInterface.deleteAlias(this@SplashActivity,0)
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -219,7 +218,7 @@ class SplashActivity : BaseActivity() {
             mk.clearAll()
             //为该客户端设置Alias，别名（uuid 即用户名等） 极光
             JPushInterface.clearAllNotifications(this)
-            jPush("")
+            JPushInterface.deleteAlias(this@SplashActivity,0)
             AndPermission.with(this)
                     .requestCode(300)
                     .permission(Manifest.permission.READ_EXTERNAL_STORAGE,

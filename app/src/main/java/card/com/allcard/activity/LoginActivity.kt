@@ -148,7 +148,9 @@ class LoginActivity : BaseActivity() {
                             mk.encode(Tool.BINDCARD, token.isbindcard)
                             mk.encode(Tool.BY_LOGIN, "1")
                             jPush(token.user_id + deviceId)
-                            startActivity<MainActivity>()
+                            val i = Intent(this@LoginActivity, MainActivity::class.java)
+                            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            startActivity(i)
                             finish()
                         } else {
                             utils.showToast(bean.message)

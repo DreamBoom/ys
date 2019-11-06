@@ -16,8 +16,6 @@ abstract class BaseActivity : AppCompatActivity() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         val mk = MMKV.mmkvWithID(Tool.MMKV_OUT, MMKV.SINGLE_PROCESS_MODE)
-
-
     }
     val utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {

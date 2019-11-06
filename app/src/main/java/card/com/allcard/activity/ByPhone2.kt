@@ -112,10 +112,6 @@ class ByPhone2 : BaseActivity() {
             }
         })
     }
-    private fun jPush(alias: String) {
-        JPushInterface.setAlias(applicationContext, 0, alias)
-    }
-
     fun bindNewPhone() {
         val deviceId = utils.getDeviceId(this)
         val ph = phone.text.toString().trim()
@@ -131,7 +127,7 @@ class ByPhone2 : BaseActivity() {
                     utils.showToast("绑定成功")
                     SplashActivity.mkBD!!.encode(Tool.LOCK_PHONE, ph)
                     mk.clearAll()
-                    jPush("")
+                    JPushInterface.deleteAlias(this@ByPhone2,0)
                     JPushInterface.clearAllNotifications(this@ByPhone2)
                     MyApplication.instance.removeAllActivity()
                     startActivity<LoginActivity>()

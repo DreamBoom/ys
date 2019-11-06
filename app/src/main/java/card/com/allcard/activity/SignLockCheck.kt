@@ -86,7 +86,7 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
                 mk.clearAll()
                 mkBD.encode(userId + "finger", "")
                 mkBD.encode(userId + "sign", "")
-                jPush("")
+                JPushInterface.deleteAlias(this@SignLockCheck,0)
                 JPushInterface.clearAllNotifications(this@SignLockCheck)
                 popup!!.showAtLocation(bar, Gravity.NO_GRAVITY, 0, 0)
             } else {
@@ -120,7 +120,7 @@ class SignLockCheck : BaseActivity(), OnGestureLockListener {
             mk.clearAll()
             mkBD!!.encode(userId + "finger", "")
             mkBD!!.encode(userId + "sign", "")
-            jPush("")
+            JPushInterface.deleteAlias(this@SignLockCheck,0)
             JPushInterface.clearAllNotifications(this@SignLockCheck)
             utils.startActivity(LoginActivity::class.java)
             finish()

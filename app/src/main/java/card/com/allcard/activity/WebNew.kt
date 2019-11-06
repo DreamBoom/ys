@@ -10,6 +10,7 @@ import android.webkit.*
 import android.widget.LinearLayout
 import card.com.allcard.R
 import card.com.allcard.getActivity.MyApplication
+import card.com.allcard.utils.LogUtils
 import card.com.allcard.utils.MyNetUtils
 import com.just.agentweb.AgentWeb
 import com.pawegio.kandroid.runDelayed
@@ -122,6 +123,7 @@ class WebNew : BaseActivity() {
         override fun onPageFinished(view: WebView?, urltwo: String?) {
             super.onPageFinished(view, urltwo)
             url = urltwo!!
+            LogUtils.i("===>",urltwo)
             f_view4.visibility = View.GONE
         }
     }

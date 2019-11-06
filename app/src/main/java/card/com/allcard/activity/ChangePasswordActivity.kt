@@ -57,9 +57,6 @@ class ChangePasswordActivity : BaseActivity() {
         }
     }
 
-    private fun jPush(alias: String) {
-        JPushInterface.setAlias(applicationContext, 0, alias)
-    }
     private fun changePassword() {
         utils.getProgress(this)
         val ph = mk.decodeString(Tool.PHONE, "")
@@ -75,9 +72,8 @@ class ChangePasswordActivity : BaseActivity() {
                         utils.showToast(bean.message)
                         if (bean.result == "0") {
                             mk.clearAll()
-                            jPush("")
+                            JPushInterface.deleteAlias(this@ChangePasswordActivity,0)
                             JPushInterface.clearAllNotifications(this@ChangePasswordActivity)
-                            MyApplication.instance.removeAllActivity()
                             startActivity<LoginActivity>()
                             finish()
                         }

@@ -269,7 +269,7 @@ class TabFourActivity : BaseActivity() {
         mk.clearAll()
         x.image().bind(im_icon, Tool.HEADER_IMG, options)
         im_dj.visibility = View.GONE
-        jPush("")
+        JPushInterface.deleteAlias(this@TabFourActivity,0)
         JPushInterface.clearAllNotifications(this@TabFourActivity)
         ll_exit!!.visibility = View.GONE
         AgentWebConfig.clearDiskCache(this)
