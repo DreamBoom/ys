@@ -37,6 +37,7 @@ class WebNew : BaseActivity() {
                 .setMainFrameErrorView(R.layout.view_no_web, -1)
                 .createAgentWeb()
                 .go(url)
+        agentWeb!!.webCreator.webView.scrollBarSize = 0
         agentWeb!!.jsInterfaceHolder.addJavaObject("ChangeIcon", ChangeIcon())
         if (Build.VERSION.SDK_INT >= 21) {
             val webSettings = agentWeb!!.agentWebSettings.webSettings

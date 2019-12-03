@@ -50,4 +50,5 @@ object Tool {
     val payPass = "payPass"
     val tab = "tab"
     val jpushFirst = "jpushFirst"
+    val test = "test"
 }

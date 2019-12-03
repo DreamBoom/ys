@@ -59,7 +59,7 @@ class CardFjmInfo : BaseActivity() {
                 "0" -> state.text = "正常"
                 else -> {
                     state.setTextColor(ContextCompat.getColor(this, R.color.red))
-                    state.text = "异常"
+                    state.text = "无效"
                 }
             }
         }
@@ -127,7 +127,7 @@ class CardFjmInfo : BaseActivity() {
                         }
                         else -> {
                             state.setTextColor(ContextCompat.getColor(this@CardFjmInfo, R.color.red))
-                            state.text = "异常"
+                            state.text = "无效"
                         }
                     }
                     adapt!!.notifyDataSetChanged()

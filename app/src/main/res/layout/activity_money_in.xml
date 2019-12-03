@@ -54,7 +54,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="银联支付"
+                android:text="快e付"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/size13" />
 

@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.PopupWindow
@@ -63,25 +64,38 @@ class MoneyIn : BaseActivity() {
         et_money!!.addTextChangedListener(PhoneWatcher(et_money))
         payType.setOnClickListener { showPopup() }
         adapter0 = PayTypeAdapter(this, dataList, R.layout.pay_item0)
-        //获取充值类型
-        HttpRequestPort.instance.baseData("paytype", object : BaseHttpCallBack(this) {
-            @SuppressLint("SetTextI18n")
-            override fun success(data: String) {
-                super.success(data)
-                val bean = JSONObject.parseObject(data, object : TypeReference<PayTypeBean>() {})
-                if (bean.result == "0") {
-                    if (bean.list.size > 0) {
-                        dataList.addAll(bean.list)
-                        dataList[0].is_enable = "1"
-                        payWay = dataList[0].para_value
-                        adapter0!!.notifyDataSetChanged()
-                        x.image().bind(im_pay, bean.list[0].img)
+        val test = mk.decodeString(Tool.test, "")
+        if (TextUtils.isEmpty(test)) {
+            //获取充值类型
+            HttpRequestPort.instance.baseData("paytype", object : BaseHttpCallBack(this) {
+                @SuppressLint("SetTextI18n")
+                override fun success(data: String) {
+                    super.success(data)
+                    val bean = JSONObject.parseObject(data, object : TypeReference<PayTypeBean>() {})
+                    if (bean.result == "0") {
+                        if (bean.list.size > 0) {
+                            mk.encode(Tool.test, data)
+                            dataList.addAll(bean.list)
+                            dataList[0].is_enable = "1"
+                            payWay = dataList[0].para_value
+                            adapter0!!.notifyDataSetChanged()
+                            x.image().bind(im_pay, dataList[0].img)
+                        }
                     }
+                    //获取充值额度
+                    initData()
                 }
-                //获取充值额度
-                initData()
-            }
-        })
+            })
+        } else {
+            val bean = JSONObject.parseObject(test, object : TypeReference<PayTypeBean>() {})
+            dataList.addAll(bean.list)
+            dataList[0].is_enable = "1"
+            payWay = dataList[0].para_value
+            adapter0!!.notifyDataSetChanged()
+            x.image().bind(im_pay, dataList[0].img)
+        }
+
+
     }
 
     private fun initData() {
@@ -94,7 +108,7 @@ class MoneyIn : BaseActivity() {
                 if (bean.result == "0") {
                     val m1 = bean.cardsList[1].account_balance_ceiling.toDouble() * 0.01
                     MoneyInFilter.MAX_VALUE =
-                            bean.cardsList[1].account_balance_ceiling.toDouble()*0.01 - bean.balance.toDouble()
+                            bean.cardsList[1].account_balance_ceiling.toDouble() * 0.01 - bean.balance.toDouble()
                     ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值${utils.save2(MoneyInFilter.MAX_VALUE)}元"
                     val filters = arrayOf<InputFilter>(MoneyInFilter(this@MoneyIn))
                     et_money.filters = filters
@@ -110,7 +124,7 @@ class MoneyIn : BaseActivity() {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         popupWindow!!.contentView = v
         popupWindow!!.setBackgroundDrawable(ColorDrawable(0x00000000))
-        popupWindow!!.isClippingEnabled = false
+        popupWindow!!.isClippingEnabled = true
         popupWindow!!.showAsDropDown(bar)
         val list = v.findViewById<MyListView>(R.id.list)
         list.adapter = adapter0
@@ -124,6 +138,19 @@ class MoneyIn : BaseActivity() {
             pay_name.text = dataList[position].para_name
             popupWindow!!.dismiss()
         }
+    }
+
+
+    //安卓重写返回键事件
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (popupWindow!= null && popupWindow!!.isShowing) {
+                popupWindow!!.dismiss()
+            } else {
+                finish()
+            }
+        }
+        return true
     }
 
     private fun acc() {
@@ -276,7 +303,7 @@ class MoneyIn : BaseActivity() {
                 val bean = JSONObject.parseObject(data, object : TypeReference<GetNum>() {})
                 if (bean.result == "0") {
                     utils.showToast(bean.message)
-                    runDelayed(500){
+                    runDelayed(500) {
                         finish()
                     }
                 } else {

@@ -13,40 +13,28 @@ class HttpRequestPort {
         /** 端口 + 头像端口  */
 //
 //        const val BASE_URL = "http://192.168.12.9:8080/app/"//留款
-//        const val BASEURL = "http://192.168.12.9:8080"
 //        const val H5_BASE_URL = "http://192.168.12.9:8080/"
 
-//        const val BASE_URL = "http://192.168.12.10:8080/app/" //艳峰
-//        const val BASEURL = "http://192.168.12.10:8080"
-//        const val H5_BASE_URL = "http://192.168.12.10:8080/"
-
 //        const val BASE_URL = "http://192.168.12.11:8080/app/" //军红
-//        const val BASEURL = "http://192.168.12.11:8080"
 //        const val H5_BASE_URL = "http://192.168.12.11:8080/"
 
 //        const val BASE_URL = "http://192.168.12.8:8080/app/" //健民
-//        const val BASEURL = "http://192.168.12.8:8080"
 //        const val H5_BASE_URL = "http://192.168.12.8:8080/"
 
 //        const val BASE_URL = "http://192.168.12.18:8081/app/" //18
-//        const val BASEURL = "http://192.168.12.18:8081"
 //        const val H5_BASE_URL = "http://192.168.12.18:8081/"
 
 //        const val BASE_URL = "http://192.168.12.5:8080/app/"  //霍霍
-//        const val BASEURL = "http://192.168.12.5:8080"
 //        const val H5_BASE_URL = "http://192.168.12.5:8080/"
 
 //        const val BASE_URL = "http://222.138.67.71:19520/app/" //兰考正式
-//        const val BASEURL = "http://222.138.67.71:19520"
 //        const val H5_BASE_URL = "http://222.138.67.71:19520/"
+//
+//        const val BASE_URL = "http://222.138.67.71:19534/app/" //测试
+//        const val H5_BASE_URL = "http://222.138.67.71:19534/"
 
-        const val BASE_URL = "http://222.138.67.71:19534/app/" //测试
-        const val BASEURL = "http://222.138.67.71:19534"
-        const val H5_BASE_URL = "http://222.138.67.71:19534/"
-
-//       const val BASE_URL = "http://117.158.105.88:8887/app/" //测试
-//        const val BASEURL = "http://117.158.105.88:8887"
-//        const val H5_BASE_URL = "http://117.158.105.88:8887/"
+       const val BASE_URL = "http://117.159.162.165:8888/app/" //测试
+        const val H5_BASE_URL = "http://117.159.162.165:8888/"
 
         private var httpRequestPort: HttpRequestPort? = null
 
