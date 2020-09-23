@@ -1,5 +1,7 @@
 package card.com.allcard.net
 
+import card.com.allcard.utils.LogUtils
+import com.alibaba.fastjson.JSON
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x
@@ -51,7 +53,25 @@ class HttpUtil {
         params.connectTimeout = 5000
         return x.http().post(params, callback)
     }
-
+    /**
+     * post请求
+     * @param url
+     * @param map
+     * @param callback
+     * @param <T>
+     * @return
+    </T> */
+    fun <T> postSearch(url: String, map: Map<String, String>?, callback: Callback.CommonCallback<T>): Callback.Cancelable {
+        val params = RequestParams(url)
+        if (map != null) {
+            for ((key, value) in map) {
+                params.addParameter(key, value)
+            }
+        }
+        LogUtils.i(params.toString())
+        params.connectTimeout = 5000
+        return x.http().post(params, callback)
+    }
     /**
      * 上传文件
      * @param url

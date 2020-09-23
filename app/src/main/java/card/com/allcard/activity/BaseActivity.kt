@@ -9,9 +9,6 @@ import card.com.allcard.utils.ActivityUtils
 import com.tencent.mmkv.MMKV
 import com.yatoooon.screenadaptation.ScreenAdapterTools
 
-
-
-
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -21,8 +18,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
-        //隐藏状态栏
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         initView()
         //屏幕适配
         ScreenAdapterTools.getInstance().loadView(window.decorView)

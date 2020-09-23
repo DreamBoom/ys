@@ -124,7 +124,6 @@ class WebNew : BaseActivity() {
         override fun onPageFinished(view: WebView?, urltwo: String?) {
             super.onPageFinished(view, urltwo)
             url = urltwo!!
-            LogUtils.i("===>",urltwo)
             f_view4.visibility = View.GONE
         }
     }

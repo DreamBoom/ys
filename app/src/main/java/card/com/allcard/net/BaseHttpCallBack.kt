@@ -1,9 +1,7 @@
 package card.com.allcard.net
 
 import android.app.Activity
-import android.util.Log
 import android.widget.Toast
-import card.com.allcard.utils.LogUtils
 import org.xutils.common.Callback
 
 /**
@@ -16,7 +14,7 @@ open class BaseHttpCallBack(
 
     override fun onSuccess(s: String) {
         // utils.showToast(s)
-        LogUtils.i("TAG请求成功========>",s)
+     //   LogUtils.i("TAG请求成功========>",s)
         success(s)
     }
 
@@ -27,7 +25,7 @@ open class BaseHttpCallBack(
     open fun success(data: String) {}
 
     override fun onError(throwable: Throwable, b: Boolean) {
-        Log.i("TAG加载失败了========>", throwable.message.toString())
+    //    Log.i("TAG加载失败了========>", throwable.message.toString())
       //  utils.showToast("加载失败，请重试")
     }
 

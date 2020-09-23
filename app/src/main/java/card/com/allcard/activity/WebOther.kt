@@ -99,7 +99,6 @@ class WebOther : BaseActivity() {
     private val mWebViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            LogUtils.i("webOther===>",url)
             runDelayed(1500) {
                 no_web.visibility = View.GONE
             }

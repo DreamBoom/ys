@@ -18,23 +18,14 @@ class HttpRequestPort {
 //        const val BASE_URL = "http://192.168.12.11:8080/app/" //军红
 //        const val H5_BASE_URL = "http://192.168.12.11:8080/"
 
-//        const val BASE_URL = "http://192.168.12.8:8080/app/" //健民
-//        const val H5_BASE_URL = "http://192.168.12.8:8080/"
+        const val BASE_URL = "http://222.138.67.71:19520/app/" //兰考正式
+        const val H5_BASE_URL = "http://222.138.67.71:19520/"
 
-//        const val BASE_URL = "http://192.168.12.18:8081/app/" //18
-//        const val H5_BASE_URL = "http://192.168.12.18:8081/"
-
-//        const val BASE_URL = "http://192.168.12.5:8080/app/"  //霍霍
-//        const val H5_BASE_URL = "http://192.168.12.5:8080/"
-
-//        const val BASE_URL = "http://222.138.67.71:19520/app/" //兰考正式
-//        const val H5_BASE_URL = "http://222.138.67.71:19520/"
-//
 //        const val BASE_URL = "http://222.138.67.71:19534/app/" //测试
 //        const val H5_BASE_URL = "http://222.138.67.71:19534/"
 
-       const val BASE_URL = "http://117.159.162.165:8888/app/" //测试
-        const val H5_BASE_URL = "http://117.159.162.165:8888/"
+//       const val BASE_URL = "http://117.159.162.165:8181/app/" //测试
+//        const val H5_BASE_URL = "http://117.159.162.165:8181/"
 
         private var httpRequestPort: HttpRequestPort? = null
 
@@ -113,6 +104,7 @@ class HttpRequestPort {
     private val acc = "AppLoginController/accountrecharge.do"
     private val accother = "AppLoginController/accountrechargeForother.do"
     private val isSuccess = "AppLoginController/is_success.do"
+    private val search = "http://120.25.59.199:5712/ActionApi/Consumermachine/SelectConsumermachine"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -697,6 +689,19 @@ class HttpRequestPort {
         map = HashMap()
         map!!["actionNo"] = actionNo
         httpUtil[BASE_URL + isSuccess, map, callBack]
+    }
+
+    /**学生账户查询*/
+    fun search(studentId: String,Type: String,beginDate: String,endDate: String,page: String,limit: String,callBack: BaseHttpCallBack) {
+        map = HashMap()
+        map!!["studentId"] = studentId
+        map!!["equipment"] = ""
+        map!!["Type"] = Type
+        map!!["beginDate"] = beginDate
+        map!!["endDate"] = endDate
+        map!!["page"] = page
+        map!!["limit"] = limit
+        httpUtil.postSearch(search, map, callBack)
     }
 
 }

@@ -17,6 +17,7 @@ import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.LogUtils
 import card.com.allcard.utils.MyNetUtils
 import card.com.allcard.view.CustomHorizontalProgresWithNum
 import cn.jpush.android.api.JPushInterface
@@ -64,6 +65,7 @@ class SplashActivity : BaseActivity() {
                 .requestCode(200)
                 .permission(
                         CAMERA,
+                        RECEIVE_SMS,
                         READ_EXTERNAL_STORAGE,
                         WRITE_EXTERNAL_STORAGE,
                         ACCESS_COARSE_LOCATION,
@@ -87,7 +89,6 @@ class SplashActivity : BaseActivity() {
                         num.length > 2 -> num
                         else -> num + "00"
                     }
-
                     when {
                         bv != s1 -> when {
                             bean.remark == "1" -> {

@@ -55,6 +55,10 @@ class MoneyIn : BaseActivity() {
         flag = intent.getStringExtra("flag")
         bt_cz.isEnabled = false
         bt_cz.setOnClickListener {
+            if(TextUtils.isEmpty(payWay)){
+                utils.showToast("请选择充值方式")
+                return@setOnClickListener
+            }
             if (flag == "2") {
                 accOther()
             } else {
@@ -82,8 +86,6 @@ class MoneyIn : BaseActivity() {
                             x.image().bind(im_pay, dataList[0].img)
                         }
                     }
-                    //获取充值额度
-                    initData()
                 }
             })
         } else {
@@ -94,8 +96,8 @@ class MoneyIn : BaseActivity() {
             adapter0!!.notifyDataSetChanged()
             x.image().bind(im_pay, dataList[0].img)
         }
-
-
+        //获取充值额度
+        initData()
     }
 
     private fun initData() {
@@ -109,7 +111,12 @@ class MoneyIn : BaseActivity() {
                     val m1 = bean.cardsList[1].account_balance_ceiling.toDouble() * 0.01
                     MoneyInFilter.MAX_VALUE =
                             bean.cardsList[1].account_balance_ceiling.toDouble() * 0.01 - bean.balance.toDouble()
-                    ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值${utils.save2(MoneyInFilter.MAX_VALUE)}元"
+                    if (MoneyInFilter.MAX_VALUE < 0) {
+                        ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值0元"
+                    } else {
+                        ed.text = "账户余额不能超过${utils.save2(m1)} 元，还可充值${utils.save2(MoneyInFilter.MAX_VALUE)}元"
+                    }
+
                     val filters = arrayOf<InputFilter>(MoneyInFilter(this@MoneyIn))
                     et_money.filters = filters
                 }
@@ -144,7 +151,7 @@ class MoneyIn : BaseActivity() {
     //安卓重写返回键事件
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (popupWindow!= null && popupWindow!!.isShowing) {
+            if (popupWindow != null && popupWindow!!.isShowing) {
                 popupWindow!!.dismiss()
             } else {
                 finish()
@@ -222,7 +229,7 @@ class MoneyIn : BaseActivity() {
         utils.getProgress(this)
         val money = et_money.text.toString().trim()
         val userId = mk.decodeString(Tool.USER_ID, "")
-        HttpRequestPort.instance.accOther(userId, "5", payWay, money, "1", nickName,
+        HttpRequestPort.instance.accOther(userId, "5", payWay, money, flag, nickName,
                 object : BaseHttpCallBack(this) {
                     @SuppressLint("SetTextI18n")
                     override fun success(data: String) {
@@ -336,7 +343,6 @@ class MoneyIn : BaseActivity() {
             mk.encode(Tool.BY_LOGIN, "0")
             val code = extra.split("&")[1].split("=")[1]
             if ("0000" == code) {
-                LogUtils.i("===>", "农行返回：成功")
             } else {
                 when (code) {
                     "9999" -> utils.showToast("取消支付")

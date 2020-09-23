@@ -5,6 +5,7 @@ import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Base64
 import card.com.allcard.R
 import card.com.allcard.adapter.ImgAdapter
 import card.com.allcard.adapter.NewListAdapter
@@ -13,6 +14,8 @@ import card.com.allcard.bean.ServiceListBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.AES
+import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.pawegio.kandroid.startActivity
@@ -36,9 +39,26 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         }
         pull_view.layoutManager = LinearLayoutManager(this@TabOne)
         //动画效果
-       // adapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
+        // adapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         pull_view.adapter = adapter
-        service_more.setOnClickListener { startActivity<MoreServiceActivity>() }
+        service_more.setOnClickListener {
+            startActivity<Search>()
+          //  startActivity<MoreServiceActivity>()
+        }
+
+//        wx.setOnClickListener {
+//            val appId = "wx1467bf6a8cf0dffd" // 填应用AppId
+//
+//            val api = WXAPIFactory.createWXAPI(this@TabOne, appId)
+//            val req = WXLaunchMiniProgram.Req()
+//            req.userName = "gh_d43f693ca31f" // 填小程序原始id
+//
+//            //req.path = path;                  ////拉起小程序页面的可带参路径，不填默认拉起小程序首页，对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"。
+//            req.path = "/pages/login/login" ;                  ////拉起小程序页面的可带参路径，不填默认拉起小程序首页，对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"。
+//            req.miniprogramType = WXLaunchMiniProgram.Req.MINIPROGRAM_TYPE_TEST // 可选打开 开发版，体验版和正式版
+//            api.sendReq(req)
+//        }
+
     }
 
     override fun onRefresh() {
@@ -69,7 +89,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 //网络加载失败，设置默认图片
-                kar.setImageDrawable(ContextCompat.getDrawable(this@TabOne,R.drawable.banner))
+                kar.setImageDrawable(ContextCompat.getDrawable(this@TabOne, R.drawable.banner))
             }
 
             override fun onFinished() {
@@ -107,7 +127,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
 
     private fun setData(data: List<ServiceListBean.ListBean>?) {
-        if ( adapter!!.headerLayout != null) {
+        if (adapter!!.headerLayout != null) {
             adapter!!.removeAllHeaderView()
         }
         adapter!!.setNewData(data)

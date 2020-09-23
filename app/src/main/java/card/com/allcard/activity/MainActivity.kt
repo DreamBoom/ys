@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -21,7 +22,6 @@ import card.com.allcard.R
 import card.com.allcard.bean.JpushBean
 import card.com.allcard.bean.VersionBean
 import card.com.allcard.getActivity.MyApplication
-import card.com.allcard.getActivity.MyApplication.Companion.context
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.receiver.ExampleUtil
@@ -207,23 +207,9 @@ class MainActivity : TabActivity() {
                 pop(this, bean.datetime, 0)
             }
             "updatePwd" -> {
-                val mk = BaseActivity.mk
-                val userId = mk.decodeString(Tool.USER_ID, "")
-                mk.clearAll()
-                SplashActivity.mkBD.encode(userId + "finger", "")
-                SplashActivity.mkBD.encode(userId + "sign", "")
-                jPush(this, "")
-                JPushInterface.clearAllNotifications(context)
                 pop(this, bean.datetime, 1)
             }
             "modPhone" -> {
-                val mk = BaseActivity.mk
-                val userId = mk.decodeString(Tool.USER_ID, "")
-                mk.clearAll()
-                SplashActivity.mkBD.encode(userId + "finger", "")
-                SplashActivity.mkBD.encode(userId + "sign", "")
-                jPush(this, "")
-                JPushInterface.clearAllNotifications(context)
                 pop(this, bean.datetime, 2)
             }
         }
@@ -265,6 +251,13 @@ class MainActivity : TabActivity() {
         title.text = str
         val sure = view.findViewById<TextView>(R.id.sure)
         sure.setOnClickListener {
+            val mk = BaseActivity.mk
+            val userId = mk.decodeString(Tool.USER_ID, "")
+            mk.clearAll()
+            SplashActivity.mkBD.encode(userId + "finger", "")
+            SplashActivity.mkBD.encode(userId + "sign", "")
+            jPush(this, "")
+            JPushInterface.clearAllNotifications(MyApplication.context)
             alertDialog.dismiss()
             context.startActivity<LoginActivity>()
         }

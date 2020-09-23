@@ -56,10 +56,13 @@ class CardFjmInfo : BaseActivity() {
             phone.text = s
             phone0 = phoneNum
             when (serviceGuide[position].cardStatus) {
-                "0" -> state.text = "正常"
+                "0" -> {
+                    state.setTextColor(ContextCompat.getColor(this, R.color.blue))
+                    state.text = "正常"
+                }
                 else -> {
                     state.setTextColor(ContextCompat.getColor(this, R.color.red))
-                    state.text = "无效"
+                    state.text = "注销"
                 }
             }
         }
@@ -127,7 +130,7 @@ class CardFjmInfo : BaseActivity() {
                         }
                         else -> {
                             state.setTextColor(ContextCompat.getColor(this@CardFjmInfo, R.color.red))
-                            state.text = "无效"
+                            state.text = "注销"
                         }
                     }
                     adapt!!.notifyDataSetChanged()
