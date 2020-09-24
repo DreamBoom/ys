@@ -5,7 +5,6 @@ import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Base64
 import card.com.allcard.R
 import card.com.allcard.adapter.ImgAdapter
 import card.com.allcard.adapter.NewListAdapter
@@ -14,8 +13,6 @@ import card.com.allcard.bean.ServiceListBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
-import card.com.allcard.utils.AES
-import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.pawegio.kandroid.startActivity

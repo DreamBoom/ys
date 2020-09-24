@@ -11,20 +11,12 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import card.com.allcard.R
 import card.com.allcard.getActivity.MyApplication
-import card.com.allcard.net.BaseHttpCallBack
-import card.com.allcard.net.HttpRequestPort
-import card.com.allcard.utils.MD5Utils
-import card.com.allcard.view.MyListView
 import com.jzxiang.pickerview.TimePickerDialog
 import com.jzxiang.pickerview.data.Type
-import com.jzxiang.pickerview.data.source.TimeDataSource
 import com.jzxiang.pickerview.listener.OnDateSetListener
 import com.pawegio.kandroid.runDelayed
-import kotlinx.android.synthetic.main.activity_money_in.*
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.activity_search.bar
 import kotlinx.android.synthetic.main.title.*
-import org.xutils.x
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -134,11 +126,13 @@ class Search : BaseActivity(), OnDateSetListener{
         closePop.setOnClickListener { popupWindow!!.dismiss() }
         moneyIn.setOnClickListener {
             et_type.text = "充值"
+            et_type.setTextColor(ContextCompat.getColor(this,R.color.black3))
             searchType=1
             popupWindow!!.dismiss()
         }
         moneyOut.setOnClickListener {
             et_type.text = "消费"
+            et_type.setTextColor(ContextCompat.getColor(this,R.color.black3))
             searchType=2
             popupWindow!!.dismiss()
         }

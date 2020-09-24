@@ -45,8 +45,8 @@ class SignSetting : BaseActivity() {
         super.onResume()
         mManager = BiometricPromptManager.from(this)
         mManager1 = OpenBiometricPromptManager.from(this)
-        signLock = mkBD!!.decodeString(userId + "sign", "")
-        finger = mkBD!!.decodeString(userId + "finger", "")
+        signLock = mkBD.decodeString(userId + "sign", "")
+        finger = mkBD.decodeString(userId + "finger", "")
         if (signLock != "") {
             sign_word!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.but_open))
             sign_change!!.visibility = View.VISIBLE
@@ -232,7 +232,7 @@ class SignSetting : BaseActivity() {
             val localPassword = mk.decodeString(Tool.PASSWORD, "")
             if (encrypt == localPassword) {
                 loginPopup!!.dismiss()
-                mkBD!!.encode(userId + "finger", "")
+                mkBD.encode(userId + "finger", "")
                 im_finger.setImageDrawable(ContextCompat.getDrawable(this@SignSetting, R.drawable.but_close))
                 finger = ""
             } else {

@@ -17,12 +17,13 @@ import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_search_result.*
 
 class SearchResult : BaseActivity() {
-    override fun layoutId(): Int =R.layout.activity_search_result
+    override fun layoutId(): Int = R.layout.activity_search_result
     private var dataList = java.util.ArrayList<SearchBean.DataBean>()
     private var noData: View? = null
     private var noWeb: View? = null
     var adapter: SearchAdapter? = null
     var page = 1
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() {
         MyApplication.instance.addActivity(this)
@@ -36,11 +37,12 @@ class SearchResult : BaseActivity() {
         close.setOnClickListener { finish() }
         noData = utils.getView(R.layout.no_data)
         noWeb = utils.getView(R.layout.view_no_web)
-        adapter = SearchAdapter(this@SearchResult, dataList, R.layout.money_item,type)
+        adapter = SearchAdapter(this@SearchResult, dataList, R.layout.money_item, type)
         listView.adapter = adapter
         refresh.setOnRefreshListener {
             page = 1
-            getList(id, "" + type, start, end)  }
+            getList(id, "" + type, start, end)
+        }
         refresh.setOnLoadMoreListener { getList(id, "" + type, start, end) }
         refresh.autoRefresh()
     }
@@ -54,24 +56,25 @@ class SearchResult : BaseActivity() {
                     @SuppressLint("SetTextI18n")
                     override fun success(data: String) {
                         super.success(data)
+                        LogUtils.i(data)
                         val bean = JSONObject.parseObject(data, object : TypeReference<SearchBean>() {})
                         if (bean.code == "10000") {
                             no_web.visibility = View.GONE
                             if (bean.data.size > 0) {
                                 no_data.visibility = View.GONE
-                                money.text = "${bean.data[0].balance}"
-                                t2.text = "学生编号：${bean.data[0].studentId}"
-                                t3.text = "消费卡号：${bean.data[0].cardNo}"
                                 if (page == 1) {
+                                    money.text = "${bean.data[0].balance}"
+                                    t2.text = "学生编号：${bean.data[0].studentId}"
+                                    t3.text = "消费卡号：${bean.data[0].cardNo}"
                                     dataList.clear()
                                 }
                                 dataList.addAll(bean.data)
                                 adapter!!.notifyDataSetChanged()
                                 page++
-                            } else {
-                                if(page==1){
-                                    no_data.visibility = View.VISIBLE
-                                }
+                            }
+                        } else {
+                            if (page == 1) {
+                                no_data.visibility = View.VISIBLE
                             }
                         }
                     }
@@ -84,9 +87,9 @@ class SearchResult : BaseActivity() {
 
                     override fun onFinished() {
                         super.onFinished()
-                        if(refresh.isRefreshing){
+                        if (refresh.isRefreshing) {
                             refresh.finishRefresh()
-                        }else{
+                        } else {
                             refresh.finishLoadMore()
                         }
                     }

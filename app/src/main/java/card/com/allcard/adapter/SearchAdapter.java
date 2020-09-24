@@ -1,6 +1,7 @@
 package card.com.allcard.adapter;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class SearchAdapter extends CommonAdapter<SearchBean.DataBean> {
             holder.setText(R.id.tv_type,"账户充值");
             holder.setImageResource(R.id.type, R.drawable.img_yemx_cz);
             holder.setText(R.id.money,"+ "+s);
+            holder.setTextColor(R.id.money, ContextCompat.getColor(mContext,R.color.blue));
         }else {
             holder.setText(R.id.tv_type,"账户消费");
             holder.setImageResource(R.id.type, R.drawable.img_yemx_xf);
