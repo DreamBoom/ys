@@ -15,6 +15,7 @@ import card.com.allcard.bean.TabTwoBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_tab_two.*

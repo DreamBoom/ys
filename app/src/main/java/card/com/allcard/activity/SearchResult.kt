@@ -15,6 +15,7 @@ import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import kotlinx.android.synthetic.main.activity_search_result.*
+import kotlinx.android.synthetic.main.title.*
 
 class SearchResult : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_search_result
@@ -29,11 +30,15 @@ class SearchResult : BaseActivity() {
         MyApplication.instance.addActivity(this)
         bar.layoutParams.height = utils.getStatusBarHeight(this)
         utils.changeStatusBlack(true, window)
-        address.text = "账户余额"
         val id = intent.getStringExtra("id")
         val type = intent.getIntExtra("type", 0)
         val start = intent.getStringExtra("start")
         val end = intent.getStringExtra("end")
+        if(type==1){
+            address.text = "充值明细"
+        }else{
+            address.text = "消费明细"
+        }
         close.setOnClickListener { finish() }
         noData = utils.getView(R.layout.no_data)
         noWeb = utils.getView(R.layout.view_no_web)
@@ -56,26 +61,24 @@ class SearchResult : BaseActivity() {
                     @SuppressLint("SetTextI18n")
                     override fun success(data: String) {
                         super.success(data)
-                        LogUtils.i(data)
                         val bean = JSONObject.parseObject(data, object : TypeReference<SearchBean>() {})
                         if (bean.code == "10000") {
                             no_web.visibility = View.GONE
                             if (bean.data.size > 0) {
                                 no_data.visibility = View.GONE
                                 if (page == 1) {
-                                    money.text = "${bean.data[0].balance}"
-                                    t2.text = "学生编号：${bean.data[0].studentId}"
-                                    t3.text = "消费卡号：${bean.data[0].cardNo}"
                                     dataList.clear()
                                 }
                                 dataList.addAll(bean.data)
                                 adapter!!.notifyDataSetChanged()
                                 page++
+                            }else {
+                                if (page == 1) {
+                                    no_data.visibility = View.VISIBLE
+                                }
                             }
                         } else {
-                            if (page == 1) {
-                                no_data.visibility = View.VISIBLE
-                            }
+                            no_data.visibility = View.VISIBLE
                         }
                     }
 

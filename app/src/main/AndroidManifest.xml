@@ -71,7 +71,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".activity.SearchResult"></activity>
+        <activity android:name=".activity.SearchInfo"></activity>
+        <activity android:name=".activity.SearchResult" />
         <activity android:name=".activity.Search" /> <!-- 该行及上面一行处理9.0系统  三方BUG https请求 -->
         <activity
             android:name=".activity.MoneyIn"

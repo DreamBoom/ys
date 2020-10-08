@@ -80,6 +80,7 @@ class SplashActivity : BaseActivity() {
         HttpRequestPort.instance.getVersion(object : BaseHttpCallBack(this) {
             override fun onSuccess(s: String) {
                 super.onSuccess(s)
+                LogUtils.i(s)
                 val bean = JSONObject.parseObject(s, object : TypeReference<VersionBean>() {})
                 if ("0" == bean.result) {
                     val num = bean.versionNum.replace("v", "")
@@ -90,13 +91,12 @@ class SplashActivity : BaseActivity() {
                         else -> num + "00"
                     }
                     when {
-                        bv != s1 -> when {
-                            bean.remark == "1" -> {
+                        bv != s1 -> when (bean.remark) {
+                            "1" -> {
                                 url = bean.downloadUrl
                                 if (show1 == "") popup()
                                 canJump = 1
                             }
-
                             else -> {
                                 val canShow = mkBD.decodeBool(s1, true)
                                 when {

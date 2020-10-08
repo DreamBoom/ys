@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     signingConfigs {
         config {
             keyAlias 'key0'
@@ -16,8 +20,8 @@ android {
         applicationId "card.com.allcard"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.0.2"
+        versionCode 7
+        versionName "1.0.0"
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
@@ -59,6 +63,7 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs\\commons-codec-1.15.jar')
+    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -69,7 +74,6 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'

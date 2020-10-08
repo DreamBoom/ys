@@ -31,6 +31,7 @@ import card.com.allcard.activity.MoneyIn;
 import card.com.allcard.activity.MoneyInfo;
 import card.com.allcard.activity.MoneyOfCard;
 import card.com.allcard.activity.MoreServiceActivity;
+import card.com.allcard.activity.Search;
 import card.com.allcard.activity.TabTwo;
 import card.com.allcard.activity.WebOther;
 import card.com.allcard.bean.AccStateBean;
@@ -169,6 +170,9 @@ public class GridAdapter extends CommonAdapter<TabTwoBean.ListBean.IconAllBean.S
                             break;
                         case "58":
                             utils.startActivity(CardOne.class);
+                            break;
+                        case "59":
+                            utils.startActivity(Search.class);
                             break;
                         default:
                             Bundle bundle1 = new Bundle();
