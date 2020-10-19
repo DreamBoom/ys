@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AllCardYs.iml" filepath="$PROJECT_DIR$/AllCardYs.iml" group="AllCardYs" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="AllCardYs/app" />
-      <module fileurl="file://$PROJECT_DIR$/biometriclib/biometriclib.iml" filepath="$PROJECT_DIR$/biometriclib/biometriclib.iml" group="AllCardYs/biometriclib" />
+      <module fileurl="file://$PROJECT_DIR$/AllCardYs.iml" filepath="$PROJECT_DIR$/AllCardYs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AllCardYs.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AllCardYs.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/biometriclib/AllCardYs.biometriclib.iml" filepath="$PROJECT_DIR$/.idea/modules/biometriclib/AllCardYs.biometriclib.iml" />
     </modules>
   </component>
 </project>

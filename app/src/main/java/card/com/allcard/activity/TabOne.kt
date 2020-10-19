@@ -39,8 +39,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         // adapter!!.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         pull_view.adapter = adapter
         service_more.setOnClickListener {
-            startActivity<Search>()
-          //  startActivity<MoreServiceActivity>()
+            startActivity<MoreServiceActivity>()
         }
 
 //        wx.setOnClickListener {

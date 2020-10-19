@@ -55,6 +55,7 @@ class SearchResult : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun getList(id: String, type: String, start: String, end: String) {
         val encrypt = AES.Encrypt(id, "qaz14789wsxedcrf")
+        LogUtils.i(encrypt)
         HttpRequestPort.instance.search(encrypt, "" + type,
                 "$start 00:00:00", "$end 00:00:00", "" + page, "10",
                 object : BaseHttpCallBack(this) {
@@ -72,13 +73,11 @@ class SearchResult : BaseActivity() {
                                 dataList.addAll(bean.data)
                                 adapter!!.notifyDataSetChanged()
                                 page++
-                            }else {
-                                if (page == 1) {
-                                    no_data.visibility = View.VISIBLE
-                                }
                             }
-                        } else {
-                            no_data.visibility = View.VISIBLE
+                        }else{
+                            if(page==1){
+                                no_data.visibility = View.VISIBLE
+                            }
                         }
                     }
 

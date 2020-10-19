@@ -26,7 +26,7 @@ class AllService : BaseActivity(), MoreAdapter.AllClickListener {
         utils.changeStatusBlack(true, window)
         MyApplication.instance.addActivity(this)
         val bundle = intent.extras
-         i = bundle.getInt("tab",0)
+         i = bundle!!.getInt("tab",0)
         HttpRequestPort.instance.manageType(object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
@@ -43,7 +43,6 @@ class AllService : BaseActivity(), MoreAdapter.AllClickListener {
                     gridAdapter.notifyDataSetChanged()
                 }
             }
-
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
                 utils.showToast("请求失败")
@@ -61,6 +60,4 @@ class AllService : BaseActivity(), MoreAdapter.AllClickListener {
         setResult(Tool.RESULTCODE_SUCCESS, intent)
         finish()
     }
-
-
 }

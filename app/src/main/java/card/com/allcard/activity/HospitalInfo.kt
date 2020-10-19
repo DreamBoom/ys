@@ -9,6 +9,7 @@ import card.com.allcard.R
 import card.com.allcard.getActivity.MyApplication
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.LogUtils
 import com.zzhoujay.richtext.RichText
 import com.zzhoujay.richtext.callback.OnUrlClickListener
 import kotlinx.android.synthetic.main.activity_hospital_info.*
@@ -108,6 +109,7 @@ class HospitalInfo : BaseActivity() {
         }
 
         if (!TextUtils.isEmpty(hosInfo)) {
+            LogUtils.i(hosInfo)
             RichText.initCacheDir(this)
             RichText.debugMode = true
             RichText.from(hosInfo)
