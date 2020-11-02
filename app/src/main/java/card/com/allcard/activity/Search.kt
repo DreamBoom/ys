@@ -48,7 +48,7 @@ class Search : BaseActivity(), OnDateSetListener{
         img_ok.setOnClickListener {
             val id = et_id.text.toString()
             if(TextUtils.isEmpty(id)){
-                utils.showToast("请输入学生ID")
+                utils.showToast("请输入学生编号")
                 return@setOnClickListener
             }
             if(searchType ==0){
@@ -89,7 +89,7 @@ class Search : BaseActivity(), OnDateSetListener{
                 .setDayText("日")
                 .setCyclic(false)
                 .setMinMillseconds(System.currentTimeMillis() - tenYears)
-                .setMaxMillseconds(System.currentTimeMillis() + tenYears)
+                .setMaxMillseconds(System.currentTimeMillis())
                 .setCurrentMillseconds(System.currentTimeMillis())
                 .setThemeColor(ContextCompat.getColor(this, R.color.blue))
                 .setType(Type.ALL)
@@ -100,12 +100,24 @@ class Search : BaseActivity(), OnDateSetListener{
                 .build()
     }
 
+    var mStart = 0L
+    var mEnd = 0L
     override fun onDateSet(timePickerView: TimePickerDialog?, millseconds: Long) {
         val d = Date(millseconds)
         if(timeType == 0){
+            mStart = millseconds
+            if(mEnd != 0L&&millseconds>mEnd){
+                utils.showToast("开始时间不能大于结束时间")
+                return
+            }
             et_time1.setTextColor(ContextCompat.getColor(this,R.color.black3))
             et_time1.text = sf.format(d)
         }else{
+            mEnd = millseconds
+            if(mStart != 0L&&millseconds<mStart){
+                utils.showToast("结束时间不能小于开始时间")
+                return
+            }
             et_time2.setTextColor(ContextCompat.getColor(this,R.color.black3))
             et_time2.text = sf.format(d)
         }

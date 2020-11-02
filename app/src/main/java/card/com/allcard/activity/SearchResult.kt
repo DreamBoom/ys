@@ -57,7 +57,7 @@ class SearchResult : BaseActivity() {
         val encrypt = AES.Encrypt(id, "qaz14789wsxedcrf")
         LogUtils.i(encrypt)
         HttpRequestPort.instance.search(encrypt, "" + type,
-                "$start 00:00:00", "$end 00:00:00", "" + page, "10",
+                "$start 00:00:00", "$end 23:59:59", "" + page, "10",
                 object : BaseHttpCallBack(this) {
                     @SuppressLint("SetTextI18n")
                     override fun success(data: String) {

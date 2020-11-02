@@ -28,17 +28,18 @@ public class SearchAdapter extends CommonAdapter<SearchBean.DataBean> {
     }
     @Override
     public void convert(ViewHolder holder, SearchBean.DataBean datas) {
-        holder.setText(R.id.date,datas.getConsumeTime());
+        String consumeTime = datas.getConsumeTime().replace("/","-");
+        holder.setText(R.id.date,consumeTime);
         String s  = ""+datas.getAmount();
         String s1  = ""+datas.getBalance();
         if(type == 1){
-            holder.setText(R.id.tv_type,"账户充值");
+            holder.setText(R.id.tv_type,datas.getEquipment()+"充值");
             holder.setImageResource(R.id.type, R.drawable.img_yemx_cz);
             holder.setText(R.id.money,"+ "+s);
             holder.setText(R.id.yue,"余额:"+s1);
             holder.setTextColor(R.id.money, ContextCompat.getColor(mContext,R.color.blue));
         }else {
-            holder.setText(R.id.tv_type,"账户消费");
+            holder.setText(R.id.tv_type,datas.getEquipment()+"消费");
             holder.setImageResource(R.id.type, R.drawable.img_yemx_xf);
             holder.setText(R.id.money,"- "+s);
             holder.setText(R.id.yue,"余额:"+s1);
@@ -52,7 +53,7 @@ public class SearchAdapter extends CommonAdapter<SearchBean.DataBean> {
                 intent.putExtra("type",type);
                 intent.putExtra("money",s);
                 intent.putExtra("yue",s1);
-                intent.putExtra("time",datas.getConsumeTime());
+                intent.putExtra("time",consumeTime);
                 intent.putExtra("id",datas.getStudentId());
                 intent.putExtra("cardId",datas.getCardNo());
                 intent.putExtra("deviceId",datas.getEquipment());
