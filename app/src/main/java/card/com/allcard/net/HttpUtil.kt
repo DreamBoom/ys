@@ -1,7 +1,6 @@
 package card.com.allcard.net
 
 import card.com.allcard.utils.LogUtils
-import com.alibaba.fastjson.JSON
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x
@@ -68,7 +67,6 @@ class HttpUtil {
                 params.addParameter(key, value)
             }
         }
-        LogUtils.i(params.toString())
         params.connectTimeout = 5000
         return x.http().post(params, callback)
     }

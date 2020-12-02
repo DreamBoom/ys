@@ -35,7 +35,7 @@ object RegexUtils {
     }
 
     /**
-     * 长度在6~18之间，只能包含字符、数字和下划线
+     * 长度在6~10之间，只能包含字符、数字和下划线
      *
      * @param password 密码
      * @return [.VERIFY_SUCCESS], [.VERIFY_TYPE_ERROR], [.VERIFY_LENGTH_ERROR]
@@ -43,7 +43,7 @@ object RegexUtils {
     fun verifyPassword(password: String): Int {
 
         val length = password.length
-        if (length < 6 || length > 20) {
+        if (length < 6 || length > 10) {
             return VERIFY_LENGTH_ERROR
         }
 

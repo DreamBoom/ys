@@ -1,6 +1,7 @@
 package card.com.allcard.net
 
 import android.util.Log
+import card.com.allcard.utils.LogUtils
 import java.io.File
 import java.util.*
 
@@ -11,22 +12,9 @@ import java.util.*
 class HttpRequestPort {
     companion object {
         /** 端口 + 头像端口  */
-//
-//        const val BASE_URL = "http://192.168.12.9:8080/app/"//留款
-//        const val H5_BASE_URL = "http://192.168.12.9:8080/"
-
-//        const val BASE_URL = "http://192.168.12.11:8080/app/" //军红
-//        const val H5_BASE_URL = "http://192.168.12.11:8080/"
 
         const val BASE_URL = "http://222.138.67.71:19520/app/" //兰考正式
         const val H5_BASE_URL = "http://222.138.67.71:19520/"
-
-//        const val BASE_URL = "http://222.138.67.71:19534/app/" //测试
-//        const val H5_BASE_URL = "http://222.138.67.71:19534/"
-
-//       const val BASE_URL = "http://117.159.162.165:8181/app/" //测试
-//        const val H5_BASE_URL = "http://117.159.162.165:8181/"
-
         private var httpRequestPort: HttpRequestPort? = null
 
         val instance: HttpRequestPort
@@ -104,7 +92,7 @@ class HttpRequestPort {
     private val acc = "AppLoginController/accountrecharge.do"
     private val accother = "AppLoginController/accountrechargeForother.do"
     private val isSuccess = "AppLoginController/is_success.do"
-    private val search = "http://120.25.59.199:5712/ActionApi/Consumermachine/SelectConsumermachine"
+    private val search = "http://222.138.67.71:4503/ActionApi/Consumermachine/SelectConsumermachine"
 
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null
@@ -701,7 +689,10 @@ class HttpRequestPort {
         map!!["endDate"] = endDate
         map!!["page"] = page
         map!!["limit"] = limit
-        httpUtil.postSearch(search, map, callBack)
+        LogUtils.i(map.toString())
+        httpUtil.postSearch("http://222.138.67.71:4503/ActionApi/Consumermachine/SelectConsumermachine?" +
+                "studentId=$studentId&equipment=&Type=$Type&beginDate=$beginDate&endDate=$endDate&page=$page&limit=$limit",
+                null, callBack)
     }
 
 }
