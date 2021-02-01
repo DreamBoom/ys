@@ -79,7 +79,6 @@ class HttpUtil {
     </T> */
     fun <T> upload(url: String, file: File, user_id: String, old_img: String, callback: Callback.CommonCallback<T>): Callback.Cancelable {
         val params = RequestParams(url)
-
         params.isMultipart = true
         params.addBodyParameter("filename", file)
         params.addParameter("version", "v101")

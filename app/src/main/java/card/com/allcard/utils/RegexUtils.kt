@@ -43,7 +43,7 @@ object RegexUtils {
     fun verifyPassword(password: String): Int {
 
         val length = password.length
-        if (length < 6 || length > 10) {
+        if (length < 6 || length > 12) {
             return VERIFY_LENGTH_ERROR
         }
 

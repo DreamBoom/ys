@@ -690,7 +690,8 @@ class HttpRequestPort {
         map!!["page"] = page
         map!!["limit"] = limit
         LogUtils.i(map.toString())
-        httpUtil.postSearch("http://222.138.67.71:4503/ActionApi/Consumermachine/SelectConsumermachine?" +
+        //http://222.138.67.71:4503
+        httpUtil.postSearch("http://47.112.253.92:3030/ActionApi/Consumermachine/SelectConsumermachine?" +
                 "studentId=$studentId&equipment=&Type=$Type&beginDate=$beginDate&endDate=$endDate&page=$page&limit=$limit",
                 null, callBack)
     }

@@ -75,14 +75,13 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
 
             @Override
             public void afterTextChanged(Editable s) {
-             if(s.toString().equals(name.getText().toString())||TextUtils.isEmpty(s.toString())){
-                 sure.setEnabled(false);
-                 holder.setTextColor(R.id.sure, ContextCompat.getColor(act,R.color.grey91));
-             }else {
-                 sure.setEnabled(true);
-                 holder.setTextColor(R.id.sure, ContextCompat.getColor(act,R.color.blue));
-             }
-            }{
+                if (s.toString().equals(name.getText().toString()) || TextUtils.isEmpty(s.toString())) {
+                    sure.setEnabled(false);
+                    holder.setTextColor(R.id.sure, ContextCompat.getColor(act, R.color.grey91));
+                } else {
+                    sure.setEnabled(true);
+                    holder.setTextColor(R.id.sure, ContextCompat.getColor(act, R.color.blue));
+                }
             }
         });
 
@@ -163,7 +162,6 @@ public class PayAdapter extends CommonAdapter<PayListBean.MemberlinkListBean> {
             }
         });
     }
-
 
 
 }

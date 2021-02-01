@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.title.*
  * 登录页
  */
 class LoginActivity : BaseActivity() {
-
     override fun layoutId(): Int = R.layout.act_login
     var loginPhone = ""
     val deviceId = utils.getDeviceId(this)

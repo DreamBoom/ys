@@ -84,6 +84,7 @@ class MainActivity : TabActivity() {
         initCallBack()
     }
 
+    
     private fun initView() {
         //  BadgeUtil.setBadgeCount(this,1,R.drawable.icon_back)
         tab!!.addTab(tab!!.newTabSpec("one").setIndicator("首页").setContent(Intent(this, TabOne::class.java)))
