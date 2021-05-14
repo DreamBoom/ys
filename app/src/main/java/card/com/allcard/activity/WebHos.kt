@@ -49,6 +49,10 @@ class WebHos : BaseActivity() {
                 .setMainFrameErrorView(R.layout.view_no_web, -1)
                 .createAgentWeb()
                 .go(null)
+        //自适应屏幕
+        val webSettings1 = agentWeb!!.agentWebSettings.webSettings
+        webSettings1.useWideViewPort = true //将图片调整到适合webview的大小
+        webSettings1.loadWithOverviewMode = true // 缩放至屏幕的大小
         agentWeb!!.webCreator.webView.scrollBarSize = 0
         agentWeb!!.jsInterfaceHolder.addJavaObject("ChangeIcon", ChangeIcon())
         if (Build.VERSION.SDK_INT >= 21) {

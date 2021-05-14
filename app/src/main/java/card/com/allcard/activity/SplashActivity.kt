@@ -80,7 +80,6 @@ class SplashActivity : BaseActivity() {
         HttpRequestPort.instance.getVersion(object : BaseHttpCallBack(this) {
             override fun onSuccess(s: String) {
                 super.onSuccess(s)
-                LogUtils.i(s)
                 val bean = JSONObject.parseObject(s, object : TypeReference<VersionBean>() {})
                 if ("0" == bean.result) {
                     val num = bean.versionNum.replace("v", "")

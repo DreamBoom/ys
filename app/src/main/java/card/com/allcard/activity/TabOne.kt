@@ -13,6 +13,7 @@ import card.com.allcard.bean.ServiceListBean
 import card.com.allcard.net.BaseHttpCallBack
 import card.com.allcard.net.HttpRequestPort
 import card.com.allcard.tools.Tool
+import card.com.allcard.utils.LogUtils
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.pawegio.kandroid.startActivity
@@ -67,6 +68,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         HttpRequestPort.instance.mainImg(userId, object : BaseHttpCallBack(this) {
             @SuppressLint("SetTextI18n")
             override fun success(data: String) {
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<MainImgBean>() {})
                 //设置轮播图
                 if (detail.size == 0) {
@@ -84,6 +86,7 @@ class TabOne : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
+                LogUtils.i(throwable.toString())
                 //网络加载失败，设置默认图片
                 kar.setImageDrawable(ContextCompat.getDrawable(this@TabOne, R.drawable.banner))
             }

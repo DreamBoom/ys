@@ -99,6 +99,7 @@ public class TabTwoBean {
                 private String id;
                 private String summ_link;
                 private String is_login;
+                private String is_post;
 
                 public String getSumd_name() {
                     return sumd_name;
@@ -146,6 +147,14 @@ public class TabTwoBean {
 
                 public void setIs_login(String is_login) {
                     this.is_login = is_login;
+                }
+
+                public String getIs_post() {
+                    return is_post;
+                }
+
+                public void setIs_post(String is_post) {
+                    this.is_post = is_post;
                 }
             }
         }

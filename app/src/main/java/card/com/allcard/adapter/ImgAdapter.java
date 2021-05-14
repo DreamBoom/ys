@@ -31,6 +31,7 @@ import card.com.allcard.activity.MoneyInfo;
 import card.com.allcard.activity.MoneyOfCard;
 import card.com.allcard.activity.MoreServiceActivity;
 import card.com.allcard.activity.Search;
+import card.com.allcard.activity.WebNew;
 import card.com.allcard.activity.WebOther;
 import card.com.allcard.bean.AccStateBean;
 import card.com.allcard.bean.MainImgBean;
@@ -38,6 +39,7 @@ import card.com.allcard.net.BaseHttpCallBack;
 import card.com.allcard.net.HttpRequestPort;
 import card.com.allcard.tools.Tool;
 import card.com.allcard.utils.ActivityUtils;
+import card.com.allcard.utils.LogUtils;
 
 public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
     private Activity mContext;
@@ -141,9 +143,15 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                                 utils.startActivity(Search.class);
                                 break;
                             default:
-                                Bundle bundle1 = new Bundle();
-                                bundle1.putString("url", datas.getSumm_link());
-                                utils.startActivityBy(WebOther.class, bundle1);
+                                if(datas.getIs_post()=="0"){
+                                    Bundle bundle1 = new Bundle();
+                                    bundle1.putString("url", datas.getSumm_link());
+                                    utils.startActivityBy(WebOther.class, bundle1);
+                                }else {
+                                    Bundle bundle1 = new Bundle();
+                                    bundle1.putString("url", datas.getSumm_link());
+                                    utils.startActivityBy(WebNew.class, bundle1);
+                                }
                                 break;
                         }
                     }
@@ -156,9 +164,15 @@ public class ImgAdapter extends CommonAdapter<MainImgBean.SummarydetailBean> {
                         bundle.putString("type", "1");
                         utils.startActivityBy(ChangeQuestion.class, bundle);
                     } else {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("url", datas.getSumm_link());
-                        utils.startActivityBy(WebOther.class, bundle);
+                        if(datas.getIs_post()=="0"){
+                            Bundle bundle1 = new Bundle();
+                            bundle1.putString("url", datas.getSumm_link());
+                            utils.startActivityBy(WebOther.class, bundle1);
+                        }else {
+                            Bundle bundle1 = new Bundle();
+                            bundle1.putString("url", datas.getSumm_link());
+                            utils.startActivityBy(WebNew.class, bundle1);
+                        }
                     }
                 }
             }

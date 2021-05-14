@@ -110,6 +110,7 @@ class TabTwo : BaseActivity(), GridTopAdapter.GridClickListener, TabTwoAdapter.T
         HttpRequestPort.instance.tabTwo(userId, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<TabTwoBean>() {})
                 if (bean.result == "0") {
                     if (rl_zw.visibility == View.VISIBLE) {
